@@ -3,6 +3,4 @@
 - [python基础](python/python)
 - [深度强化学习(DRL)](DRL/DRL)
 - [神经网络](nn/nn)
-- [aaa](fuck/1)
 - [示例](chapter1/chapter1)
-
