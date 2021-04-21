@@ -1,4 +1,4 @@
-- 杰仔之目录
+- **杰仔之目录**
 - [Markdown&LaTeX相关](markdown/markdown)
 - [python基础](python/python)
 - [深度强化学习(DRL)](DRL/DRL)
