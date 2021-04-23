@@ -16,3 +16,16 @@
 ~可用来反转条件  
 
 ## 通用函数func  
+### 一元函数：np. *f* (arr)  
+- abs,fabs,sqrt开根,square平方  
+- exp,log,log10,log2  
+- sign,ceil向上取整,floor向下取整,rint四舍五入,modf拆成整数和小数  
+- isnan,isfinite,isinf  
+- cos,sin,cosh,sinh,tan,tanh  
+### 二元函数：np. *f* (arr)  
+- add,substract,multiply,divide,floor_divide除后取整  
+- power,maximum,fmax,mod
+- copysign得到第二个数组的符号  
+- greater,greater_equal,less,less_equal,equal,not_equal返回布尔值  
+  
+  
