@@ -1,7 +1,10 @@
 - **杰仔之目录**
-- [Markdown&LaTeX相关](markdown/markdown)
-- [python基础](python/python)
-- [机器学习](ml/ml)
-- [深度强化学习(DRL)](DRL/DRL)
-- [神经网络](nn/nn)
+- [1. Markdown&LaTeX相关](markdown/markdown)
+- 2. python基础
+  - [2.1 numpy](python/numpy)
+  - [2.2 pytorch](python/numpy)
+- [3. 机器学习](ml/ml)
+- [4. 神经网络](nn/nn)
+- [5. 深度强化学习(DRL)](DRL/DRL)
+- [6. 思考](thought/thought)
 - [示例](chapter1/chapter1)
