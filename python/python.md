@@ -1,5 +1,5 @@
 # numpy  
-----------------------
+
 `import numpy as np`  
 ### 基础  
 - 数组：np.array([[1,2,3],[4,5,6],...])  
@@ -73,6 +73,7 @@ sort
 
 
 # pytorch  
+
 创建网络的一种快捷方法：Sequential
 ```python
 net = torch.nn.Sequential(
