@@ -1,6 +1,6 @@
 - **杰仔之目录**
 - [1. Markdown&LaTeX相关](markdown/markdown)
-- 2. python基础
+- 2\. python基础
   - [2.1 numpy](python/numpy)
   - [2.2 pytorch](python/numpy)
 - [3. 机器学习](ml/ml)
