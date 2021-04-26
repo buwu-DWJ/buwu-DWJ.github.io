@@ -69,3 +69,15 @@ sort
 - uniform [0,1)均匀分布  
 ### 数组合并与拼接
 - append(arr,values,axis=None)  
+
+
+
+# pytorch  
+创建网络的一种快捷方法：Sequential
+```python
+net = torch.nn.Sequential(
+        torch.nn.Linear(STATE_SIZE, HIDDEN_SIZE),
+        torch.nn.ReLU(),
+        torch.nn.Linear(HIDDEN_SIZE, ACTION_SIZE),
+        )
+```
