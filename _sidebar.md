@@ -4,7 +4,11 @@
   - [2.1 numpy](python/numpy)
   - [2.2 pytorch](python/numpy)
 - [3. 机器学习](ml/ml)
-- [4. 神经网络](nn/nn)
+- 4\. 神经网络
+  - [4.1 基础](nn/basic.md)
+  - [4.2 前馈神经网络](nn/feedforward.md)
+  - [4.3 记忆神经网络](nn/memory.md)
+  - [4.4 图神经网络](nn/graph.md)  
 - [5. 深度强化学习(DRL)](DRL/DRL)
 - [6. 思考](thought/thought)
 - [示例](chapter1/chapter1)
