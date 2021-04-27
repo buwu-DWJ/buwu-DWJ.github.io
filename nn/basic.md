@@ -1,4 +1,4 @@
-# 1
+# 神经网络
 书可参考[邱锡鹏：神经网络与深度学习](https://nndl.github.io/nndl-book.pdf)
 
 # 一. 神经元
@@ -86,9 +86,9 @@ $$
 ![](img/3.JPG)  
 当 $\beta=0$ 时，Swish函数变成线性函数 $\frac{x}{2}$ ．当 $\beta=1$ 时，Swish函数在 $x>0$ 时近似线性，在 $x<0$ 时近似饱和，同时具有一定的非单调性．当 $\beta\rightarrow+\infin$ 时， $\sigma(\beta x)$ 趋向于离散的0-1函数，Swish函数近似为ReLU函数．因此，Swish函数可以看作线性函数和ReLU函数之间的非线性插值函数，其程度由参数 $\beta$ 控制．  
 ### 4. GELU函数
-TODO:
+TODO:GELU函数
 ### 5. Maxout单元  
-TODO:
+TODO:Maxout单元
 # 二. 网络结构
 ### 1. 网络结构总述
 目前为止，常用的神经网络有如下三种：
