@@ -12,6 +12,21 @@
 
 几个\#就代表几级标题  
 
+多行公式，在VSCODE中必须使用`aligned`环境，如：  
+$$
+\begin{aligned}
+a&=1\\
+&=2
+\end{aligned}
+$$
+```markdown
+$$
+\begin{aligned}
+a&=1\\
+&=2
+\end{aligned}
+$$
+```
 `反引号`  
 ```python
 import numpy as np  
@@ -43,3 +58,23 @@ import numpy as np
 | 1 | 1 | 1 |
 
 # LaTeX  
+#### 分段函数
+使用`cases`环境
+```LaTeX
+$$
+f(x) = 
+\begin{cases}
+a, a<1,\\
+b, a\geq1.
+\end{cases}
+$$
+效果如下
+```
+$$
+f(x) = 
+\begin{cases}
+a&, a<1,\\
+b&, a\geq1.
+\end{cases}
+$$
+
