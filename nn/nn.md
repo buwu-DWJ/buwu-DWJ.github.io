@@ -1,6 +1,6 @@
 书可参考[邱锡鹏：神经网络与深度学习](https://nndl.github.io/nndl-book.pdf)
 
-# 神经元  
+## 神经元  
 ### 1. Sigmoid型函数
 Sigmoid型函数是指一类S型曲线函数，为两端饱和函数．常用的Sigmoid型函数有Logistic函数和Tanh函数.  
 >对于函数 $f(x)$ ，若 $x\rightarrow -\infin$ 时，其导数 $f'(x)\rightarrow 0$ ，则称其为左饱和．若 $x\rightarrow +\infin$ 时，其导数 $f'(x)\rightarrow 0$ ，则称其为右饱和．当同时满足左、右饱和时，就称为两端饱和．  
@@ -84,5 +84,5 @@ $$
 当 $\beta=0$ 时，Swish函数变成线性函数 $\frac{x}{2}$ ．当 $\beta=1$ 时，Swish函数在 $x>0$ 时近似线性，在 $x<0$ 时近似饱和，同时具有一定的非单调性．当 $\beta\rightarrow+\infin$ 时， $\sigma(\beta x)$ 趋向于离散的0-1函数，Swish函数近似为ReLU函数．因此，Swish函数可以看作线性函数和ReLU函数之间的非线性插值函数，其程度由参数 $\beta$ 控制.  
 ### 4. GELU函数
 ### 5. Maxout单元  
-# 网络结构
+## 网络结构
 ### 网络结构总述
