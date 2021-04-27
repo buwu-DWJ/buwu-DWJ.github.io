@@ -1,3 +1,4 @@
+# 1
 # Markdown  
 - 圆点突出：\- +文字
 - 序号列表：数字+.
@@ -12,27 +13,12 @@
 
 几个\#就代表几级标题  
 
-多行公式，在VSCODE中必须使用`aligned`环境，如：  
-$$
-\begin{aligned}
-a&=1\\
-&=2
-\end{aligned}
-$$
-```markdown
-$$
-\begin{aligned}
-a&=1\\
-&=2
-\end{aligned}
-$$
-```
 `反引号`  
 ```python
 import numpy as np  
 利用三个反引号，后面加上代码使用的语言，如python可实现高亮
 ```
-## 表格
+#### 表格
 ```markdown
 |  表头   | 表头  |
 |  ----  | ----  |
@@ -57,7 +43,24 @@ import numpy as np
 | :-----| ----: | :----: |
 | 1 | 1 | 1 |
 
-# LaTeX  
+# markdown中的LaTeX  
+支持的写法详情见[katex官方文档](https://katex.org/docs/supported.html)  
+#### 多行公式
+在VSCODE中必须使用`aligned`环境，如：  
+$$
+\begin{aligned}
+a&=1\\
+&=2
+\end{aligned}
+$$
+```markdown
+$$
+\begin{aligned}
+a&=1\\
+&=2
+\end{aligned}
+$$
+```
 #### 分段函数
 使用`cases`环境
 ```LaTeX
@@ -77,4 +80,3 @@ a&, a<1,\\
 b&, a\geq1.
 \end{cases}
 $$
-
