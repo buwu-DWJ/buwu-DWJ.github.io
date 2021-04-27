@@ -46,6 +46,10 @@ import numpy as np
 # markdown中的LaTeX  
 支持的写法详情见[katex官方文档](https://katex.org/docs/supported.html)  
 #### 多行公式
+为公式加编号：\tag{number}  
+$$
+f(x) = x+1\tag{1}
+$$
 在VSCODE中必须使用`aligned`环境，如：  
 $$
 \begin{aligned}
