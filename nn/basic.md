@@ -19,7 +19,7 @@ tanh(x) = 2\sigma(2x) -1
 $$
 下图给出了Logistic函数和Tanh函数的形状．Tanh函数的输出是零中心化的（Zero-Centered），而Logistic函数的输出恒大于0．非零中心化的输出会使得其后一层的神经元的输入发生偏置偏移（Bias Shift），并进一步使得梯度下降的收敛速度变慢．  
 
-![](img/1.jpg)  
+![](img/1.png)  
 
 ### 2. ReLU函数  
 ReLU（Rectified Linear Unit，修正线性单元），也叫Rectifier函数，是目前深度神经网络中经常使用的激活函数．ReLU实际上是一个斜坡（ramp）函数，定义为
