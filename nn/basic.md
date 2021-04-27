@@ -1,6 +1,7 @@
 书可参考[邱锡鹏：神经网络与深度学习](https://nndl.github.io/nndl-book.pdf)
 
-# 一. 神经元  
+# 一. 神经元
+>时刻思考各个激活函数的特点，如合理性？梯度爆炸？梯度消失？
 ### 1. Sigmoid型函数
 Sigmoid型函数是指一类S型曲线函数，为两端饱和函数．常用的Sigmoid型函数有Logistic函数和Tanh函数．  
 >对于函数 $f(x)$ ，若 $x\rightarrow -\infin$ 时，其导数 $f'(x)\rightarrow 0$ ，则称其为左饱和．若 $x\rightarrow +\infin$ 时，其导数 $f'(x)\rightarrow 0$ ，则称其为右饱和．当同时满足左、右饱和时，就称为两端饱和．  
@@ -30,7 +31,7 @@ ReLU(x) =
 $$
 ReLU神经元训练时比较容易“**死亡**”，在训练时，如果参数在一次不恰当的更新后，第一个隐藏层中的某个ReLU神经元在所有的训练数据上都不能被激活，那么这个神经元自身参数的梯度永远都会是0，在以后的训练过程中永远不能被激活．这种现象称为死亡ReLU问题（DyingReLU Problem）．故有以下变种  
 #### 2.1 带泄露的ReLU  
-带泄露的ReLU（Leaky ReLU）在输入 $x<0$ 时，保持一个很小的梯度 $\gamma$ ．这样当神经元非激活时也能有一个非零的梯度可以更新参数，避免永远不能被激活
+带泄露的ReLU（Leaky ReLU）在输入 $x<0$ 时，保持一个很小的梯度 $\gamma$ ．这样当神经元非激活时也能有一个非零的梯度可以更新参数，避免永远不能被激活．
 $$
 \begin{aligned}
 LeakyReLU(x) &= 
@@ -71,7 +72,7 @@ Softplus函数可以看作Rectifier函数的平滑版本，其定义为
 $$
 Softplus(x) = log(1+exp(x))
 $$
-Softplus函数其导数刚好是Logistic函数．Softplus函数虽然也具有单侧抑制、宽兴奋边界的特性，却没有稀疏激活性
+Softplus函数其导数刚好是Logistic函数．Softplus函数虽然也具有单侧抑制、宽兴奋边界的特性，却没有稀疏激活性．
 ![](images/2.jpg)  
 
 ### 3. Swish函数
@@ -83,7 +84,9 @@ $$
 ![](images/3.jpg)  
 当 $\beta=0$ 时，Swish函数变成线性函数 $\frac{x}{2}$ ．当 $\beta=1$ 时，Swish函数在 $x>0$ 时近似线性，在 $x<0$ 时近似饱和，同时具有一定的非单调性．当 $\beta\rightarrow+\infin$ 时， $\sigma(\beta x)$ 趋向于离散的0-1函数，Swish函数近似为ReLU函数．因此，Swish函数可以看作线性函数和ReLU函数之间的非线性插值函数，其程度由参数 $\beta$ 控制．  
 ### 4. GELU函数
+TODO:
 ### 5. Maxout单元  
+TODO:
 # 二. 网络结构
 ### 1. 网络结构总述
 目前为止，常用的神经网络有如下三种：
