@@ -16,15 +16,15 @@ $$
 $$
 z_{t}=\boldsymbol{U} \boldsymbol{h}_{t-1}+\boldsymbol{W} \boldsymbol{x}_{t}+\boldsymbol{b}
 $$
-其中 $z_t$ 为隐藏层的净输入， $U\in \mathbb{R}^{D\times D}$ 为状态-状态权重矩阵， $W\in \mathbb{R}^{D\timesM$ 为状态-输入权重矩阵，$b\in \mathbb{R}^D$ 为偏置向量，$f(\cdot)$ 是非线性激活函数，通常为Logistic函数或Tanh函数．也经常直接写为
+其中 $z_t$ 为隐藏层的净输入， $U\in \mathbb{R}^{D\times D}$ 为状态-状态权重矩阵， $W\in \mathbb{R}^{D\times M}$ 为状态-输入权重矩阵，$b\in \mathbb{R}^D$ 为偏置向量，$f(\cdot)$ 是非线性激活函数，通常为Logistic函数或Tanh函数．也经常直接写为
 $$
 \boldsymbol{h}_{t}=f\left(\boldsymbol{U} \boldsymbol{h}_{t-1}+\boldsymbol{W} \boldsymbol{x}_{t}+\boldsymbol{b}\right)
 $$
 下图给出了按时间展开的循环神经网络：
 ![](img/2.PNG)  
 #### 循环神经网络的通用近似定理
-一个完全连接的循环网络是任何非线性动力系统的近似器．
-**定理：循环神经网络的通用近似定理[Haykin,2009]**：如果一个完全连接的循环神经网络有足够数量的sigmoid型隐藏神经元，那么它可以以任意的准确率去近似任何一个非线性动力系统
+一个完全连接的循环网络是任何非线性动力系统的近似器．  
+**定理：循环神经网络的通用近似定理**[Haykin,2009]：如果一个完全连接的循环神经网络有足够数量的sigmoid型隐藏神经元，那么它可以以任意的准确率去近似任何一个非线性动力系统
 $$
 \begin{array}{l}
 \boldsymbol{s}_{t}=g\left(\boldsymbol{s}_{t-1}, \boldsymbol{x}_{t}\right), \\
