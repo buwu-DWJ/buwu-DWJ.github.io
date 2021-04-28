@@ -1,5 +1,7 @@
-# Markdown与其支持的的LaTeX
+# Markdown与其支持的的LaTeX  
+
 # Markdown  
+
 - 圆点突出：\- +文字
 - 序号列表：数字+.
 - 链接：\[文本\]\(链接\)  
@@ -17,8 +19,10 @@
 ```python
 import numpy as np  
 利用三个反引号，后面加上代码使用的语言，如python可实现高亮
-```
+```  
+
 #### 表格
+
 ```markdown
 |  表头   | 表头  |
 |  ----  | ----  |
@@ -44,8 +48,11 @@ import numpy as np
 | 1 | 1 | 1 |
 
 # markdown中的LaTeX  
+
 支持的写法详情见[katex官方文档](https://katex.org/docs/supported.html)  
+
 #### 多行公式
+
 为公式加编号：\tag{number}  
 $$
 f(x) = x+1\tag{1}
@@ -64,8 +71,10 @@ a&=1\\
 &=2
 \end{aligned}
 $$
-```
+```  
+
 #### 分段函数
+
 使用`cases`环境
 ```LaTeX
 $$
