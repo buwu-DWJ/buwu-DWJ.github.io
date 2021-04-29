@@ -121,3 +121,12 @@ TODO:Maxout单元
 2. **记忆网络**：也称为**反馈网络**，网络中的神经元不但可以接收其他神经元的信息，也可以接收自己的历史信息．和前馈网络相比，记忆网络中的神经元具有**记忆**功能，在不同的时刻具有不同的状态．记忆神经网络中的信息传播可以是单向或双向传递，因此可用一个有向循环图或无向图来表示．记忆网络包括循环神经网络、Hopfield网络、玻尔兹曼机、受限玻尔兹曼机等．记忆网络可以看作一个**程序**，具有更强的计算和记忆能力．为了增强记忆网络的记忆容量，可以引入外部记忆单元和读写机制，用来保存一些网络的中间状态，称为记忆增强神经网络（Memory Augmented NeuralNetwork，MANN），比如神经图灵机和记忆网络等．  
 3. **图网络**：实际应用中很多数据是图结构的数据，比如知识图谱、社交网络、分子（Molecular）网络等．图网络是定义在图结构数据上的神经网络．图中每个节点都由一个或一组神经元构成．节点之间的连接可以是有向的，也可以是无向的．每个节点可以收到来自相邻节点或自身的信息．图网络是前馈网络和记忆网络的泛化，包含很多不同的实现方式，比如图卷积网络（Graph Convolutional Network，GCN）、图注意力网络（Graph Attention Network，GAT）、消息传递神经网络（Message Passing Neural Network，MPNN）等．  
 ![](img/4.JPG)  
+
+# 三． 小批量梯度下降
+**小批量梯度下降法**（Mini-BatchGradient Descent）．  
+
+令 $f(\boldsymbol{x} ; \theta)$ 表示一个深度神经网络， $\theta$ 为网络参数，在使用小批量梯度下降进行优化时，每次选取 $K$ 个训练样本 $\mathcal{S}_{t}=\left\{\left(\boldsymbol{x}^{(k)}, \boldsymbol{y}^{(k)}\right)\right\}_{k=1}^{K}$ ．第 $t$ 次迭代时损失函数关于参数 $\theta$ 的偏导数为
+$$
+g_{t}(\theta)=\frac{1}{K} \sum_{(x, y) \in \delta_{t}} \frac{\partial \mathcal{L}(y, f(x ; \theta))}{\partial \theta}，
+$$
+其中 $\mathcal{L}(·)$ 为可微分的损失函数， $K$ 为批量大小（batch size）．
