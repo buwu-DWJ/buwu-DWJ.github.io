@@ -11,5 +11,5 @@
   - [4.4 图神经网络](nn/graph.md)  
   - [4.5 生成对抗网络](nn/GAN.md)
 - [5. 深度强化学习(DRL)](DRL/DRL)
-- [6. 思考](thought/thought)
-- [示例](chapter1/chapter1)
+- 6\. 杂记
+  - [6.1 随机波动率](notes/sv.md)
