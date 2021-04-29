@@ -157,7 +157,7 @@ $$
 $$
 其中， $\sigma\left(S_{t}, t ; S_{0}\right)$ 是 $S_t$ 和 $t$ 的确定性函数， $S_0$ 是固定的参数．在风险中性测度 $\mu_{t}=r_{t}-q_{t}$ 下，一旦 $\sigma\left(S_{t}, t ; S_{0}\right)$ 给定，那么模型也就定了．  
 
-Dupire（1994）证明了 给定 $K$ 和 $T$ 的函数 $C\left(S_{0}, 0, K, T\right)$ ，局部波动率 $\sigma\left(S_{t}, t ; S_{0}\right)$ 是唯一确定的．  
+Dupire（1994）证明了当给定了关于 $K$（行权价） 和 $T$（到期日） 的期权价格函数 $C\left(S_{0}, 0, K, T\right)$ 时，局部波动率 $\sigma\left(S_{t}, t ; S_{0}\right)$ 是唯一确定的．  
 
 令 $\phi\left(S_{t}, t ; Y, T\right)$ 是如下定义的 $S_t$ 的transitional density function
 $$
@@ -173,10 +173,15 @@ $$
 \phi\left(S_{T}, T ; Y, T\right)=\delta\left(S_{T}-Y\right)
 \end{array}\right.
 $$
-和
+其中
 $$
 \mathcal{L}_{t, S}=\frac{1}{2} \sigma_{t}^{2} S^{2} \frac{\partial^{2}}{\partial S^{2}}+\mu_{t} S \frac{\partial}{\partial S}
 $$
+一维情形，Fokker-Planck 方程有两个参数，一是拖扑参数 $D_{1}(x, t)$，另一是扩散 $D_{2}(x, t)$
+$$
+\frac{\partial}{\partial t} f(x, t)=-\frac{\partial}{\partial x}\left[D_{1}(x, t) f(x, t)\right]+\frac{\partial^{2}}{\partial x^{2}}\left[D_{2}(x, t) f(x, t)\right] .
+$$
+
 又可证它也满足前向的 Fokker-Planck 方程
 $$
 \left(\frac{\partial}{\partial T}-\mathcal{L}_{T, Y}^{*}\right) \phi\left(S_{t}, t ; Y, T\right)=0, \quad \forall T>t
@@ -191,9 +196,9 @@ $$
 $$
 下面可推导 Dupire 方程，看涨期权的价格满足
 $$
-C\left(S_{0}, K, T\right)=e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T}, T\right)\left(S_{T}-K\right) d S_{T}\tag{0.1}
+C\left(S_{0}, K, T\right)=e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T}, T\right)\left(S_{T}-K\right) d S_{T}\tag{4.1}
 $$
-其中 $\phi\left(S_{0}, 0 ; S_{T}, T\right)$ 是 $S_T$ 的风险中性测度．对（0.1）关于 $K$ 做一次和二次微分，有
+其中 $\phi\left(S_{0}, 0 ; S_{T}, T\right)$ 是 $S_T$ 的风险中性测度．对（4.1）关于 $K$ 做一次和二次微分，有
 $$
 \begin{array}{l}
 \frac{\partial C}{\partial K}=-e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T}, T\right) d S_{T} \\
@@ -204,7 +209,7 @@ $$
 $$
 \frac{\partial \phi}{\partial T}=\frac{1}{2} \frac{\partial^{2}}{\partial S_{T}^{2}}\left(\sigma_{T}^{2} S_{T}^{2} \phi\right)-\frac{\partial}{\partial S_{T}}\left(\mu_{T} S_{T} \phi\right)
 $$
-（0.1）对 $T$ 微分，有
+（4.1）对 $T$ 微分，有
 $$
 \begin{aligned}
 \frac{\partial C\left(S_{0}, K, T\right)}{\partial T}=& e^{-r T} \int_{K}^{\infty} d S_{T}\left\{\frac{\partial \phi\left(S_{0}, 0 ; S_{T}, T\right)}{\partial T}\right\}\left(S_{T}-K\right)-r C \\
@@ -242,7 +247,7 @@ $L$ 的选取非常重要，需要很好地校准市场上观测到的隐含波�
 $$
 L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]}\tag{1.1} ,
 $$
-其中 $\sigma_{\text {Dup }}$ 指 **Dupire** 的local volatility function．注意到（1.1）是 $L$ 的隐式方程，因为 $\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]$ 中需要 $(S_t,\alpha_t)$ ．故此时 $(S_t)_{t\geq 0}$ 满足的SDE也成为了一个**McKeanaASVlasov SDE**．  
+其中 $\sigma_{\text {Dup }}$ 指 **Dupire** 的local volatility function．注意到（1.1）是 $L$ 的隐式方程，因为 $\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]$ 中需要 $(S_t,\alpha_t)$ ．故此时 $(S_t)_{t\geq 0}$ 满足的SDE也成为了一个**McKean-Vlasov SDE**．  
 
 本文采用了 an alternative，fully data-driven 方法，规避了其他计算 Dupire 局部波动率的方法中必须的对波动率曲面插值的做法，即此方法只需**离散数据**．  
 
