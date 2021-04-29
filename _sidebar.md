@@ -9,6 +9,7 @@
   - [4.2 前馈神经网络](nn/feedforward.md)
   - [4.3 记忆神经网络](nn/memory.md)
   - [4.4 图神经网络](nn/graph.md)  
+  - [4.5 生成对抗网络](nn/GAN.md)
 - [5. 深度强化学习(DRL)](DRL/DRL)
 - [6. 思考](thought/thought)
 - [示例](chapter1/chapter1)
