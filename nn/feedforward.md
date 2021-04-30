@@ -157,5 +157,66 @@ $$
 
 # 三． 自动微分
 
+**自动微分**（Automatic Differentiation，AD）．  
+
+为简单起见，这里以一个神经网络中常见的复合函数的例子来说明自动微分的过程．令复合函数 $f(x ; w, b)$ 为
+$$
+f(x ; w, b)=\frac{1}{\exp (-(w x+b))+1},
+$$
+其中 $x$ 为输入标量， $w$ 和 $b$ 分别为权重和偏置参数．  
+
+首先，我们将复合函数 $f(x ; w, b)$ 分解为一系列的基本操作，并构成一个计算图 ( Computational Graph )．计算图是数学运算的图形化表示．计算图中的每个非叶子节点表示一个基本操作，每个叶子节点为一个输入变量或常量．下图给
+出了当 $x=1, w=0, b=0$ 时复合函数 $f(x ; w, b)$ 的计算图，其中连边上的红色数字表示前向计算时复合函数中每个变量的实际取值．
+
+![](img/7.PNG)  
+
+从计算图上可以看出，复合函数 $f(x ; w, b)$ 由 6 个基本函数 $h_{i}, 1 \leq i \leq 6$ 组成．如下图所示，每个基本函数的导数都十分简单，可以通过规则来实现．  
+
+![](img/8.PNG)  
+
+整个复合函数 $f(x ; w, b)$ 关于参数 $w$ 和 $b$ 的导数可以通过计算图上的节点
+$f(x ; w, b)$ 与参数 $w$ 和 $b$ 之间路径上所有的导数连乘来得到，即
+$$
+\begin{aligned}
+\frac{\partial f(x ; w, b)}{\partial w}=\frac{\partial f(x ; w, b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}, \\
+\frac{\partial f(x ; w, b)}{\partial b}=\frac{\partial f(x ; w, b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial b}
+\end{aligned}
+$$
+以 $\frac{\partial f(x ; w, b)}{\partial w}$ 为例，当 $x=1, w=0, b=0$ 时，可以得到
+$$
+\begin{aligned}
+\left.\frac{\partial f(x ; w, b)}{\partial w}\right|_{x=1, w=0, b=0} &=\frac{\partial f(x ; w, b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w} \\
+&=1 \times-0.25 \times 1 \times 1 \times-1 \times 1 \times 1 \\
+&=0.25 .
+\end{aligned}
+$$
+如果函数和参数之间有多条路径，可以将这多条路径上的导数再进行相加，得到最终的梯度．  
+
+按照计算导数的顺序，自动微分可以分为两种模式：前向模式和反向模式．  
+
+**前向模式** $\quad$ 前向模式是按计算图中计算方向的相同方向来递归地计算梯度．以 $\frac{\partial f(x ; w, b)}{\partial w}$ 为例，当 $x=1, w=0, b=0$ 时，前向模式的累积计算顺序如下:
+$$
+\begin{aligned}
+\frac{\partial h_{1}}{\partial w}=x&=1, \\
+\frac{\partial h_{2}}{\partial w}=\frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}=1 \times 1&=1, \\
+\frac{\partial h_{3}}{\partial w}=\frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial w}&=-1 \times 1\\
+\vdots \qquad \qquad \qquad \vdots\\
+\frac{\partial h_{6}}{\partial w}=\frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial w}&=-0.25 \times-1=0.25 \\
+\frac{\partial f(x ; w, b)}{\partial w}=\frac{\partial f(x ; w, b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial w}&=1 \times 0.25=0.25
+\end{aligned}
+$$
+**反向模式** $\quad$ 反向模式是按计算图中计算方向的相反方向来递归地计算梯度．以 $\frac{\partial f(x ; w, b)}{\partial w}$ 为例，当 $x=1, w=0, b=0$ 时，反向模式的累积计算顺序如下：
+$$
+\begin{aligned}
+\frac{\partial f(x ; w, b)}{\partial h_{6}}&=1 \\
+\frac{\partial f(x ; w, b)}{\partial h_{5}}=\frac{\partial f(x ; w, b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}}&=1 \times-0.25 \\
+\frac{\partial f(x ; w, b)}{\partial h_{4}}=\frac{\partial f(x ; w, b)}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}}&=-0.25 \times 1=-0.25, \\
+\vdots \qquad \qquad \qquad \vdots \\
+\frac{\partial f(x ; w, b)}{\partial w}=\frac{\partial f(x ; w, b)}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}&=0.25 \times 1=0.25
+\end{aligned}
+$$
+前向模式和反向模式可以看作应用链式法则的两种梯度累积方式．从反向模式的计算顺序可以看出，反向模式和反向传播的计算梯度的方式相同．对于一般的函数形式 $f: \mathbb{R}^{N} \rightarrow \mathbb{R}^{M}$ ，前向模式需要对每一个输入变量都进行一遍遍历，共需要 $N$ 遍．而反向模式需要对每一个输出都进行一个遍历，共需要 $M$ 遍．当 $N>M$ 时，反向模式更高效．在前馈神经网络的参数学习中，风险函数为 $f: \mathbb{R}^{N} \rightarrow \mathbb{R}$ ，输出为标量，因此采用反向模式为最有效的计算方式，只需要一遍计算．  
+
+>静态计算图和动态计算图计算图按构建方式可以分为静态计算图（StaticCom-putational Graph）和动态计算图（Dynamic Computational Graph）．在目前深度学习框架里，Theano和Ten-sorflow采用的是静态计算图，而DyNet、Chainer和PyTorch采用的是动态计算图．Tensorflow 2.0也支持了动态计算图．静态计算图是在编译时构建计算图，计算图构建好之后在程序运行时不能改变，而动态计算图是在程序运行时动态构建．两种构建方式各有优缺点．静态计算图在构建时可以进行优化，并行能力强，但灵活性比较差．动态计算图则不容易优化，当不同输入的网络结构不一致时，难以并行计算，但是灵活性比较高．
 
 # 卷积神经网络
