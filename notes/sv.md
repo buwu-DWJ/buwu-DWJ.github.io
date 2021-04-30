@@ -200,11 +200,12 @@ C\left(S_{0}, K, T\right)=e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T},
 $$
 其中 $\phi\left(S_{0}, 0 ; S_{T}, T\right)$ 是 $S_T$ 的风险中性测度．对（4.1）关于 $K$ 做一次和二次微分，有
 $$
-\begin{array}{l}
-\frac{\partial C}{\partial K}=-e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T}, T\right) d S_{T} \\
-\frac{\partial^{2} C}{\partial K^{2}}=e^{-r T} \phi\left(S_{0}, 0 ; K, T\right)
-\end{array}\tag{0.2}
+\begin{aligned}
+\frac{\partial C}{\partial K}&=-e^{-r T} \int_{K}^{\infty} \phi\left(S_{0}, 0 ; S_{T}, T\right) d S_{T} \\
+\frac{\partial^{2} C}{\partial K^{2}}&=e^{-r T} \phi\left(S_{0}, 0 ; K, T\right)
+\end{aligned}
 $$
+
 已知 $\phi$ 满足前向 Fokker-Planck 方程
 $$
 \frac{\partial \phi}{\partial T}=\frac{1}{2} \frac{\partial^{2}}{\partial S_{T}^{2}}\left(\sigma_{T}^{2} S_{T}^{2} \phi\right)-\frac{\partial}{\partial S_{T}}\left(\mu_{T} S_{T} \phi\right)
