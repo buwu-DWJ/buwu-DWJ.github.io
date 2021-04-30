@@ -22,7 +22,7 @@
 $$
 \begin{array}{l}
 \boldsymbol{z}^{(l)}=\boldsymbol{W}^{(l)} \boldsymbol{a}^{(l-1)}+\boldsymbol{b}^{(l)} \\
-\boldsymbol{a}^{(l)}=f_{l}\left(\boldsymbol{z}^{(l)}\right)
+\boldsymbol{a}^{(l)}=f_{l}\left(\boldsymbol{z}^{(l)}\right)\tag{1.1}
 \end{array}
 $$
 
@@ -31,18 +31,18 @@ $$
 和一个非线性变换．
 上述两式也可以合并写为:
 $$
-z^{(l)}=\boldsymbol{W}^{(l)} f_{l-1}\left(z^{(l-1)}\right)+\boldsymbol{b}^{(l)}
+z^{(l)}=\boldsymbol{W}^{(l)} f_{l-1}\left(z^{(l-1)}\right)+\boldsymbol{b}^{(l)}\tag{1.2}
 $$
 或者
 $$
-\boldsymbol{a}^{(l)}=f_{l}\left(\boldsymbol{W}^{(l)} \boldsymbol{a}^{(l-1)}+\boldsymbol{b}^{(l)}\right)
+\boldsymbol{a}^{(l)}=f_{l}\left(\boldsymbol{W}^{(l)} \boldsymbol{a}^{(l-1)}+\boldsymbol{b}^{(l)}\right)\tag{1.3}
 $$
 
 >**仿射变换**：又称仿射映射，是指在几何中，一个向量空间进行一次线性变换并接上一个平移，变换为另一个向量空间．  
 
 这样， 前馈神经网络可以通过逐层的信息传递，得到网络最后的输出 $\boldsymbol{a}^{(L)}$ ．整个网络可以看作一个复合函数 $\phi(\boldsymbol{x} ; \boldsymbol{W}， \boldsymbol{b})$ ，将向量 $\boldsymbol{x}$ 作为第 1 层的输入 $\boldsymbol{a}^{(0)}$ ．将第 $L$ 层的输出 $\boldsymbol{a}^{(L)}$ 作为整个函数的输出．
 $$
-x=\boldsymbol{a}^{(0)} \rightarrow z^{(1)} \rightarrow \boldsymbol{a}^{(1)} \rightarrow \boldsymbol{z}^{(2)} \rightarrow \cdots \rightarrow \boldsymbol{a}^{(L-1)} \rightarrow \boldsymbol{z}^{(L)} \rightarrow \boldsymbol{a}^{(L)}=\phi(\boldsymbol{x} ; \boldsymbol{W}， \boldsymbol{b})，
+x=\boldsymbol{a}^{(0)} \rightarrow z^{(1)} \rightarrow \boldsymbol{a}^{(1)} \rightarrow \boldsymbol{z}^{(2)} \rightarrow \cdots \rightarrow \boldsymbol{a}^{(L-1)} \rightarrow \boldsymbol{z}^{(L)} \rightarrow \boldsymbol{a}^{(L)}=\phi(\boldsymbol{x} ; \boldsymbol{W}， \boldsymbol{b})，\tag{1.4}
 $$
 
 其中 $\boldsymbol{W}， \boldsymbol{b}$ 表示网络中所有层的连接权重和偏置．  
@@ -51,11 +51,11 @@ $$
 benko， 1989; Hornik et al.， 1989]: 令 $\phi(\cdot)$ 是一个非常数、有界、单调递增的连续函数，$\mathcal{J}_{D}$ 是一个 $D$ 维的单位超立方体 $[0，1]^{D}，C\left(\mathcal{J}_{D}\right)$ 是定义在 $\mathcal{J}_{D}$ 上的连续函数集合．对于任意给定的一个函数 $f \in C\left(\mathcal{T}_{D}\right)$ ，存在一个整数 $M$ ，和一组实数 $v_{m}， b_{m} \in \mathbb{R}$ 以及实数向量 $\boldsymbol{w}_{m} \in \mathbb{R}^{D}， m=1， \cdots， M$ ，以至于我
 们可以定义函数
 $$
-F(\boldsymbol{x})=\sum_{m=1}^{M} v_{m} \phi\left(\boldsymbol{w}_{m}^{\top} \boldsymbol{x}+b_{m}\right)
+F(\boldsymbol{x})=\sum_{m=1}^{M} v_{m} \phi\left(\boldsymbol{w}_{m}^{\top} \boldsymbol{x}+b_{m}\right)\tag{1.5}
 $$
 作为函数 $f$ 的近似实现，即
 $$
-|F(\boldsymbol{x})-f(\boldsymbol{x})|<\epsilon， \quad \forall \boldsymbol{x} \in \mathcal{J}_{D}
+|F(\boldsymbol{x})-f(\boldsymbol{x})|<\epsilon， \quad \forall \boldsymbol{x} \in \mathcal{J}_{D}\tag{1.6}
 $$
 其中 $\epsilon>0$ 是一个很小的正数．  
 
@@ -67,7 +67,7 @@ $$
 涉及向量对矩阵的微分，十分繁銷，因此我们先计算 $\mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})$ 关于参数矩阵中每个元素的偏导数 $\frac{\partial \mathcal{L}(\boldsymbol{y}， \boldsymbol{y})}{\partial w_{i j}^{(l)}}$ ．根据链式法则，
 $$
 \begin{aligned}
-\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial w_{i j}^{(l)}}=\frac{\partial \boldsymbol{z}^{(l)}}{\partial w_{i j}^{(l)}} \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}} \\
+\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial w_{i j}^{(l)}}=\frac{\partial \boldsymbol{z}^{(l)}}{\partial w_{i j}^{(l)}} \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}} \tag{2.1}\\
 \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{b}^{(l)}}=\frac{\partial \boldsymbol{z}^{(l)}}{\partial \boldsymbol{b}^{(l)}} \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}}
 \end{aligned}
 $$
@@ -81,7 +81,7 @@ $$
 \frac{\partial \boldsymbol{z}^{(l)}}{\partial w_{i j}^{(l)}} &=[\frac{\partial z_{1}^{(l)}}{\partial w_{i j}^{(l)}}， \cdots， {\frac{\partial z_{i}^{(l)}}{\partial w_{i j}^{(l)}}}， \cdots， \frac{\partial z_{M_{l}}^{(l)}}{\partial w_{i j}^{(l)}}] \\
 &=[0， \cdots， \frac{\partial\left(\boldsymbol{w}_{i:}^{(l)} \boldsymbol{a}^{(l-1)}+b_{i}^{(l)}\right)}{\partial w_{i j}^{(l)}}， \cdots， 0] \\
 &=\left[0， \cdots， a_{j}^{(l-1)}， \cdots， 0\right] \\
-& \triangleq \mathbb{I}_{i}\left(a_{j}^{(l-1)}\right) \in \mathbb{R}^{1 \times M_{l}}，
+& \triangleq \mathbb{I}_{i}\left(a_{j}^{(l-1)}\right) \in \mathbb{R}^{1 \times M_{l}}，\tag{2.2}
 \end{aligned}
 $$
 其中 $\boldsymbol{w}_{i:}^{(l)}$ 为权重矩阵 $\boldsymbol{W}^{(l)}$ 的第 $i$ 行， $\mathbb{I}_{i}\left(a_{j}^{(l-1)}\right)$ 表示第 $i$ 个元素为 $a_{j}^{(l-1)}$ ，其余为 0 的行向量．  
@@ -89,14 +89,14 @@ $$
 2. 计算偏导数 $\frac{\partial z^{(l)}}{\partial b^{(l)}} \quad$ 因为 $z^{(l)}$ 和 $\boldsymbol{b}^{(l)}$ 的函数关系为 $z^{(l)}=\boldsymbol{W}^{(l)} \boldsymbol{a}^{(l-1)}+$
 $\boldsymbol{b}^{(l)}$ ，因此偏导数
 $$
-\frac{\partial \boldsymbol{z}^{(l)}}{\partial \boldsymbol{b}^{(l)}}=\boldsymbol{I}_{M_{l}} \in \mathbb{R}^{M_{l} \times M_{l}}
+\frac{\partial \boldsymbol{z}^{(l)}}{\partial \boldsymbol{b}^{(l)}}=\boldsymbol{I}_{M_{l}} \in \mathbb{R}^{M_{l} \times M_{l}}\tag{2.3}
 $$
 为 $M_{l} \times M_{l}$ 的单位矩阵．  
 
 3. 计算偏导数 $\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{y})}{\partial z^{(l)}} \quad$ 偏导数 $\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}}$ 表示第 $l$ 层神经元对最终损失
 的影响，也反映了最终损失对第 $l$ 层神经元的敏感程度，因此一般称为第 $l$ 层神经元的**误差项**，用 $\delta^{(l)}$ 来表示．
 $$
-\delta^{(l)} \triangleq \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}} \in \mathbb{R}^{M_{l}}
+\delta^{(l)} \triangleq \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}} \in \mathbb{R}^{M_{l}}\tag{2.4}
 $$  
 
 误差项 $\delta^{(l)}$ 也间接反映了不同神经元对网络能力的贡献程度，从而比较好地解决
@@ -104,13 +104,13 @@ $$
 
 根据 $\boldsymbol{z}^{(l+1)}=\boldsymbol{W}^{(l+1)} \boldsymbol{a}^{(l)}+\boldsymbol{b}^{(l+1)}$ ，有
 $$
-\frac{\partial z^{(l+1)}}{\partial \boldsymbol{a}^{(l)}}=\left(\boldsymbol{W}^{(l+1)}\right)^{\top} \in \mathbb{R}^{M_{l} \times M_{l+1}}
+\frac{\partial z^{(l+1)}}{\partial \boldsymbol{a}^{(l)}}=\left(\boldsymbol{W}^{(l+1)}\right)^{\top} \in \mathbb{R}^{M_{l} \times M_{l+1}}\tag{2.5}
 $$
 根据 $\boldsymbol{a}^{(l)}=f_{l}\left(\boldsymbol{z}^{(l)}\right)$ ，其中 $f_{l}(\cdot)$ 为按位计算的函数，因此有
 $$
 \begin{aligned}
 \frac{\partial \boldsymbol{a}^{(l)}}{\partial \boldsymbol{z}^{(l)}} &=\frac{\partial f_{l}\left(\boldsymbol{z}^{(l)}\right)}{\partial \boldsymbol{z}^{(l)}} \\
-&=\operatorname{diag}\left(f_{l}^{\prime}\left(\boldsymbol{z}^{(l)}\right)\right) \quad \in \mathbb{R}^{M_{l} \times \boldsymbol{M}_{l}}
+&=\operatorname{diag}\left(f_{l}^{\prime}\left(\boldsymbol{z}^{(l)}\right)\right) \quad \in \mathbb{R}^{M_{l} \times \boldsymbol{M}_{l}}\tag{2.6}
 \end{aligned}
 $$
 因此，根据链式法则，第 $l$ 层的误差项为
@@ -119,7 +119,7 @@ $$
 \delta^{(l)} & \triangleq \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l)}} \\
 &=\frac{\partial \boldsymbol{a}^{(l)}}{\partial \boldsymbol{z}^{(l)}} \cdot \frac{\partial \boldsymbol{z}^{(l+1)}}{\partial \boldsymbol{a}^{(l)}} \cdot {\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{z}^{(l+1)}}}] \\
 &={\operatorname{diag}\left(f_{l}^{\prime}\left(\boldsymbol{z}^{(l)}\right)\right) \cdot\left(\boldsymbol{W}^{(l+1)}\right)^{\mathrm{T}} \cdot \cdot \delta^{(l+1)}} \\
-&=f_{l}^{\prime}\left(\boldsymbol{z}^{(l)}\right) \odot\left(\left(\boldsymbol{W}^{(l+1)}\right)^{\top} \delta^{(l+1)}\right) \in \mathbb{R}^{M_{l}}，
+&=f_{l}^{\prime}\left(\boldsymbol{z}^{(l)}\right) \odot\left(\left(\boldsymbol{W}^{(l+1)}\right)^{\top} \delta^{(l+1)}\right) \in \mathbb{R}^{M_{l}}，\tag{2.7}
 \end{aligned}
 $$
 其中 $\odot$ 是向量的点积运算符，表示每个元素相乘．  
@@ -133,21 +133,21 @@ $$
 \begin{aligned}
 \frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial w_{i j}^{(l)}} &=\mathbb{l}_{i}\left(a_{j}^{(l-1)}\right) \delta^{(l)} \\
 &=\left[0， \cdots， a_{j}^{(l-1)}， \cdots， 0\right]\left[\delta_{1}^{(l)}， \cdots， \delta_{i}^{(l)}， \cdots， \delta_{M_{l}}^{(l)}\right]^{\top} \\
-&=\delta_{i}^{(l)} a_{j}^{(l-1)}
+&=\delta_{i}^{(l)} a_{j}^{(l-1)}\tag{2.8}
 \end{aligned}
 $$
 其中 $\delta_{i}^{(l)} a_{j}^{(l-1)}$ 相当于向量 $\delta^{(l)}$ 和向量 $\boldsymbol{a}^{(l-1)}$ 的外积的第 $i， j$ 个元素．上式可以进一步写为
 $$
-\left[\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{W}^{(l)}}\right]_{i j}=\left[\delta^{(l)}\left(\boldsymbol{a}^{(l-1)}\right)^{\top}\right]_{i j} .
+\left[\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{W}^{(l)}}\right]_{i j}=\left[\delta^{(l)}\left(\boldsymbol{a}^{(l-1)}\right)^{\top}\right]_{i j} .\tag{2.9}
 $$
 因此， $\mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})$ 关于第 $l$ 层权重 $\boldsymbol{W}^{(l)}$ 的梯度为
 $$
-\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{W}^{(l)}}=\delta^{(l)}\left(\boldsymbol{a}^{(l-1)}\right)^{\mathrm{T}} \in \mathbb{R}^{M_{l} \times M_{l-1}}．
+\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{W}^{(l)}}=\delta^{(l)}\left(\boldsymbol{a}^{(l-1)}\right)^{\mathrm{T}} \in \mathbb{R}^{M_{l} \times M_{l-1}}．\tag{2.10}
 $$
 
 同理， $\mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})$ 关于第 $l$ 层偏置 $\boldsymbol{b}^{(l)}$ 的梯度为
 $$
-\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{b}^{(l)}}=\delta^{(l)} \in \mathbb{R}^{M_{l}}
+\frac{\partial \mathcal{L}(\boldsymbol{y}， \hat{\boldsymbol{y}})}{\partial \boldsymbol{b}^{(l)}}=\delta^{(l)} \in \mathbb{R}^{M_{l}}\tag{2.11}
 $$
 在计算出每一层的误差项之后，我们就可以得到每一层参数的梯度．因此，使用误差反向传播算法的前贵神经网络训练过程可以分为以下三步：
 
@@ -163,7 +163,7 @@ $$
 
 为简单起见，这里以一个神经网络中常见的复合函数的例子来说明自动微分的过程．令复合函数 $f(x ; w， b)$ 为
 $$
-f(x ; w， b)=\frac{1}{\exp (-(w x+b))+1}，
+f(x ; w， b)=\frac{1}{\exp (-(w x+b))+1}，\tag{3.1}
 $$
 其中 $x$ 为输入标量， $w$ 和 $b$ 分别为权重和偏置参数．  
 
@@ -180,8 +180,8 @@ $$
 $f(x ; w， b)$ 与参数 $w$ 和 $b$ 之间路径上所有的导数连乘来得到，即
 $$
 \begin{aligned}
-\frac{\partial f(x ; w， b)}{\partial w}=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}， \\
-\frac{\partial f(x ; w， b)}{\partial b}=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial b}
+\frac{\partial f(x ; w， b)}{\partial w}&=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}， \\
+\frac{\partial f(x ; w， b)}{\partial b}&=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial b}\tag{3.2}
 \end{aligned}
 $$
 以 $\frac{\partial f(x ; w， b)}{\partial w}$ 为例，当 $x=1， w=0， b=0$ 时，可以得到
@@ -189,7 +189,7 @@ $$
 \begin{aligned}
 \left.\frac{\partial f(x ; w， b)}{\partial w}\right|_{x=1， w=0， b=0} &=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}} \frac{\partial h_{4}}{\partial h_{3}} \frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial w} \\
 &=1 \times-0.25 \times 1 \times 1 \times-1 \times 1 \times 1 \\
-&=0.25 .
+&=0.25 .\tag{3.3}
 \end{aligned}
 $$
 如果函数和参数之间有多条路径，可以将这多条路径上的导数再进行相加，得到最终的梯度．  
@@ -204,7 +204,7 @@ $$
 \frac{\partial h_{3}}{\partial w}=\frac{\partial h_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial w}&=-1 \times 1\\
 \vdots \qquad \qquad \qquad \vdots\\
 \frac{\partial h_{6}}{\partial w}=\frac{\partial h_{6}}{\partial h_{5}} \frac{\partial h_{5}}{\partial w}&=-0.25 \times-1=0.25 \\
-\frac{\partial f(x ; w， b)}{\partial w}=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial w}&=1 \times 0.25=0.25
+\frac{\partial f(x ; w， b)}{\partial w}=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial w}&=1 \times 0.25=0.25\tag{3.4}
 \end{aligned}
 $$
 **反向模式** $\quad$ 反向模式是按计算图中计算方向的相反方向来递归地计算梯度．以 $\frac{\partial f(x ; w， b)}{\partial w}$ 为例，当 $x=1， w=0， b=0$ 时，反向模式的累积计算顺序如下：
@@ -214,7 +214,7 @@ $$
 \frac{\partial f(x ; w， b)}{\partial h_{5}}=\frac{\partial f(x ; w， b)}{\partial h_{6}} \frac{\partial h_{6}}{\partial h_{5}}&=1 \times-0.25 \\
 \frac{\partial f(x ; w， b)}{\partial h_{4}}=\frac{\partial f(x ; w， b)}{\partial h_{5}} \frac{\partial h_{5}}{\partial h_{4}}&=-0.25 \times 1=-0.25， \\
 \vdots \qquad \qquad \qquad \vdots \\
-\frac{\partial f(x ; w， b)}{\partial w}=\frac{\partial f(x ; w， b)}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}&=0.25 \times 1=0.25
+\frac{\partial f(x ; w， b)}{\partial w}=\frac{\partial f(x ; w， b)}{\partial h_{1}} \frac{\partial h_{1}}{\partial w}&=0.25 \times 1=0.25\tag{3.5}
 \end{aligned}
 $$
 前向模式和反向模式可以看作应用链式法则的两种梯度累积方式．从反向模式的计算顺序可以看出，反向模式和反向传播的计算梯度的方式相同．对于一般的函数形式 $f: \mathbb{R}^{N} \rightarrow \mathbb{R}^{M}$ ，前向模式需要对每一个输入变量都进行一遍遍历，共需要 $N$ 遍．而反向模式需要对每一个输出都进行一个遍历，共需要 $M$ 遍．当 $N>M$ 时，反向模式更高效．在前馈神经网络的参数学习中，风险函数为 $f: \mathbb{R}^{N} \rightarrow \mathbb{R}$ ，输出为标量，因此采用反向模式为最有效的计算方式，只需要一遍计算．  
@@ -245,24 +245,24 @@ $$
 \begin{aligned}
 y_{t} &=1 \times x_{t}+1 / 2 \times x_{t-1}+1 / 4 \times x_{t-2} \\
 &=w_{1} \times x_{t}+w_{2} \times x_{t-1}+w_{3} \times x_{t-2} \\
-&=\sum_{k=1}^{3} w_{k} x_{t-k+1}
+&=\sum_{k=1}^{3} w_{k} x_{t-k+1}\tag{4.1.1}
 \end{aligned}
 $$
 我们把 $w_{1}， w_{2}， \cdots$ 称为**滤波器** ( Filter ) 或**卷积核** ( Convolution Kernel )．假设滤波器长度为 $K$ ，它和一个信号序列 $x_{1}， x_{2}， \cdots$ 的卷积为
 $$
-y_{t}=\sum_{k=1}^{K} w_{k} x_{t-k+1}
+y_{t}=\sum_{k=1}^{K} w_{k} x_{t-k+1}\tag{4.1.2}
 $$
 为了简单起见，这里假设卷积的输出 $y_{t}$ 的下标 $t$ 从 $K$ 开始．  
 
 信号序列 $x$ 和滤波器 $\boldsymbol{w}$ 的卷积定义为
 $$
-y=w *x
+y=w *x\tag{4.1.3}
 $$
 其中 $*$ 表示卷积运算．一般情况下滤波器的长度 $K$ 远小于信号序列 $\boldsymbol{x}$ 的长度．  
 
 我们可以设计不同的滤波器来提取信号序列的不同特征．比如，当令滤波器 $\boldsymbol{w}=[1 / K， \cdots， 1 / K]$ 时，卷积相当于信号序列的简单移动平均 $($ 窗口大小为 $K)$；当令滤波器 $\boldsymbol{w}=[1，-2，1]$ 时，可以近似实现对信号序列的二阶微分，即
 $$
-x^{\prime \prime}(t)=x(t+1)+x(t-1)-2 x(t) .
+x^{\prime \prime}(t)=x(t+1)+x(t-1)-2 x(t) .\tag{4.1.4}
 $$
 下图给出了两个滤波器的一维卷积示例．可以看出，两个滤波器分别提取了输入序列的不同特征．滤波器 $\boldsymbol{w}=[1 / 3，1 / 3，1 / 3]$ 可以检测信号序列中的低频信息，而滤波器 $\boldsymbol{w}=[1，-2，1]$ 可以检测信号序列中的高频信息．（高低频指信号变化的强烈程度）  
 
@@ -273,13 +273,13 @@ $$
 卷积也经常用在图像处理中．因为图像为一个二维结构，所以需要将一维卷积进行扩展．给定一个图像 $\boldsymbol{X} \in \mathbb{R}^{M \times N}$ 和一个滤波器 $\boldsymbol{W} \in \mathbb{R}^{U \times V}$ ，一般
 $U<<M， V<<N$ ，其卷积为
 $$
-y_{i j}=\sum_{u=1}^{U} \sum_{v=1}^{V} w_{u v} x_{i-u+1， j-v+1}\tag{4.1}
+y_{i j}=\sum_{u=1}^{U} \sum_{v=1}^{V} w_{u v} x_{i-u+1， j-v+1}\tag{4.1.5}
 $$
 为了简单起见，这里假设卷积的输出 $y_{i j}$ 的下标 $(i， j)$ 从 $(U， V)$ 开始．  
 
 输入信息 $\boldsymbol{X}$ 和滤波器 $\boldsymbol{W}$ 的二维卷积定义为
 $$
-\boldsymbol{Y}=\boldsymbol{W} *\boldsymbol{X}
+\boldsymbol{Y}=\boldsymbol{W} *\boldsymbol{X}\tag{4.1.6}
 $$
 其中*表示二维卷积运算. 下图给出了二维卷积示例.  
 
@@ -296,7 +296,7 @@ $$
 在机器学习和图像处理领域，卷积的主要功能是在一个图像 ( 或某种特征 ) 居滑动一个卷积核 ( 即滤波器 $)，$ 通过卷积操作得到一组新的特征．在计算卷积的过程中，需要进行**卷积核翻转**．在具体实现上，一般会以互相关操作来代替卷积，从而会减少一些不必要的操作或开销．互相关 ( Cross-Correlation ) 是一个
 衡量两个序列相关性的函数，通常是用滑动窗口的点积计算来实现．给定一个图像 $X \in \mathbb{R}^{M \times N}$ 和卷积核 $\boldsymbol{W} \in \mathbb{R}^{U \times V}$ ，它们的互相关为
 $$
-y_{i j}=\sum_{u=1}^{U} \sum_{v=1}^{V} w_{u v} x_{i+u-1， j+v-1}\tag{4.2}
+y_{i j}=\sum_{u=1}^{U} \sum_{v=1}^{V} w_{u v} x_{i+u-1， j+v-1}\tag{4.1.7}
 $$
 和公式 (4.1) 对比可知，互相关和卷积的区别仅仅在于卷积核是否进行翻转．因此互相关也可以称为**不翻转卷积**．  
 
@@ -304,7 +304,7 @@ $$
 $$
 \begin{aligned}
 \boldsymbol{Y}&=\boldsymbol{W} \otimes \boldsymbol{X}
-&=\operatorname{rot} 180(\boldsymbol{W}) * \boldsymbol{X}
+&=\operatorname{rot} 180(\boldsymbol{W}) * \boldsymbol{X}\tag{4.1.8}
 \end{aligned}
 $$
 其中 $\otimes$ 表示互相关运算， $\operatorname{rot} 180(\cdot)$ 表示旋转 180 度，$\boldsymbol{Y} \in \mathbb{R}^{M-U+1， N-V+1}$ 为输出
@@ -337,11 +337,11 @@ $$
 
 我们先介绍**宽卷积** ( Wide Convolution ) 的定义．给定一个二维图像 $\boldsymbol{X} \in$ $\mathbb{R}^{M \times N}$ 和一个二维卷积核 $\boldsymbol{W} \in \mathbb{R}^{U \times V}$， 对图像 $\boldsymbol{X}$ 进行零填充，两端各补 $U-1$ 和 $V-1$ 个零，得到**全填充** ( Full Padding $)$ 的图像 $\tilde{\boldsymbol{X}} \in \mathbb{R}^{(M+2 U-2) \times(N+2 V-2)}$ ．图像 $X$ 和卷积核 $\boldsymbol{W}$ 的宽卷积定义为
 $$
-\boldsymbol{W} \tilde{\otimes} \boldsymbol{X} \triangleq \boldsymbol{W} \otimes \tilde{\boldsymbol{X}}
+\boldsymbol{W} \tilde{\otimes} \boldsymbol{X} \triangleq \boldsymbol{W} \otimes \tilde{\boldsymbol{X}}\tag{4.1.9}
 $$
 其中 $\tilde{\otimes}$ 表示宽卷积运算．当输入信息和卷积核有固定长度时，它们的宽卷积依然具有交换性，即
 $$
-\operatorname{rot} 180(\boldsymbol{W}) \tilde{\otimes} \boldsymbol{X}=\operatorname{rot} 180(\boldsymbol{X}) \tilde{\otimes} \boldsymbol{W}
+\operatorname{rot} 180(\boldsymbol{W}) \tilde{\otimes} \boldsymbol{X}=\operatorname{rot} 180(\boldsymbol{X}) \tilde{\otimes} \boldsymbol{W}\tag{4.1.10}
 $$
 其中 $\operatorname{rot} 180(\cdot)$ 表示旋转 180 度．
 
@@ -352,16 +352,16 @@ $$
 \begin{aligned}
 \frac{\partial f(\boldsymbol{Y})}{\partial w_{u v}} &=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} \frac{\partial y_{i j}}{\partial w_{u v}} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}} \\
 &=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} x_{i+u-1， j+v-1} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}} \\
-&=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}} x_{u+i-1， v+j-1} .
+&=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}} x_{u+i-1， v+j-1} .\tag{4.1.11}
 \end{aligned}
 $$
 从上式可以看出， $f(\boldsymbol{Y})$ 关于 $\boldsymbol{W}$ 的偏导数为 $\boldsymbol{X}$ 和 $\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}}$ 的卷积
 $$
-\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{W}}=\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}} \otimes \boldsymbol{X}
+\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{W}}=\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}} \otimes \boldsymbol{X}\tag{4.1.12}
 $$
 同理得到，
 $$
-\frac{\partial f(\boldsymbol{Y})}{\partial x_{s t}}=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} \frac{\partial y_{i j}}{\partial x_{s t}} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}}
+\frac{\partial f(\boldsymbol{Y})}{\partial x_{s t}}=\sum_{i=1}^{M-U+1} \sum_{j=1}^{N-V+1} \frac{\partial y_{i j}}{\partial x_{s t}} \frac{\partial f(\boldsymbol{Y})}{\partial y_{i j}}\tag{4.1.13}
 $$
 其中当 $(s-i+1)<1$ ，或 $(s-i+1)>U$ ，或 $(t-j+1)<1$ ，或 $(t-j+1)>V$ 时，$w_{s-i+1， t-j+1}=0$ ．即相当于对 $\boldsymbol{W}$ 进行了 $P=(M-U， N-V)$ 的零填充．  
 
@@ -369,7 +369,7 @@ $$
 $$
 \begin{aligned}
 \frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{X}} &=\operatorname{rot} 180\left(\frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}}\right) \tilde{\otimes} \boldsymbol{W} \\
-&=\operatorname{rot} 180(\boldsymbol{W}) \tilde{\otimes} \frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}}
+&=\operatorname{rot} 180(\boldsymbol{W}) \tilde{\otimes} \frac{\partial f(\boldsymbol{Y})}{\partial \boldsymbol{Y}}\tag{4.1.14}
 \end{aligned}
 $$
 其中 $\operatorname{rot} 180(\cdot)$ 表示旋转 180 度．
@@ -384,7 +384,7 @@ $$
 
 如果采用卷积来代替全连接，第 $l$ 层的净输入 $z^{(l)}$ 为第 $l-1$ 层活性值 $\boldsymbol{a}^{(l-1)}$ 和卷积核 $\boldsymbol{w}^{(l)} \in \mathbb{R}^{K}$ 的卷积，即
 $$
-\boldsymbol{z}^{(l)}=\boldsymbol{w}^{(l)} \otimes \boldsymbol{a}^{(l-1)}+b^{(l)}
+\boldsymbol{z}^{(l)}=\boldsymbol{w}^{(l)} \otimes \boldsymbol{a}^{(l-1)}+b^{(l)}\tag{4.2.1}
 $$
 其中卷积核 $\boldsymbol{w}^{(l)} \in \mathbb{R}^{K}$ 为可学习的权重向量， $b^{(l)} \in \mathbb{R}$ 为可学习的偏置．  
 
@@ -424,7 +424,7 @@ $$
 $$
 \begin{aligned}
 \boldsymbol{Z}^{p}&=\boldsymbol{W}^{p} \otimes \boldsymbol{X}+b^{p}=\sum_{d=1}^{D} \boldsymbol{W}^{p, d} \otimes \boldsymbol{X}^{d}+b^{p} \\
-\boldsymbol{Y}^{p}&=f\left(\boldsymbol{Z}^{p}\right)
+\boldsymbol{Y}^{p}&=f\left(\boldsymbol{Z}^{p}\right)\tag{4.2.2}
 \end{aligned}
 $$
 其中 $\boldsymbol{W}^{p} \in \mathbb{R}^{U \times V \times D}$ 为三维卷积核， $f(\cdot)$ 为非线性激活函数，一般用 $\operatorname{ReLU}$ 函数．  
@@ -449,12 +449,12 @@ $$
 
 1. 最大汇聚 ( Maximum Pooling 或 Max Pooling ) ：对于一个区域 $R_{m, n}^{d}$ ，选择这个区域内所有神经元的最大活性值作为这个区域的表示，即
 $$
-y_{m, n}^{d}=\max _{i \in R_{m, n}^{d}} x_{i}
+y_{m, n}^{d}=\max _{i \in R_{m, n}^{d}} x_{i}\tag{4.2.3}
 $$
 其中 $x_{i}$ 为区域 $R_{k}^{d}$ 内每个神经元的活性值．
 2. 平均汇聚 ( Mean Pooling ) ：一般是取区域内所有神经元活性值的平均值，即
 $$
-y_{m, n}^{d}=\frac{1}{\left|R_{m, n}^{d}\right|} \sum_{i \in R_{m, n}^{d}} x_{i}
+y_{m, n}^{d}=\frac{1}{\left|R_{m, n}^{d}\right|} \sum_{i \in R_{m, n}^{d}} x_{i}\tag{4.2.4}
 $$
 对每一个输入特征映射 $\boldsymbol{X}^{d}$ 的 $M^{\prime} \times N^{\prime}$ 个区域进行子采样，得到汇聚层的输出特征映射 $\boldsymbol{Y}^{d}=\left\{y_{m, n}^{d}\right\}, 1 \leq m \leq M^{\prime}, 1 \leq n \leq N^{\prime}$ ．  
 
@@ -464,7 +464,7 @@ $$
 
 目前主流的卷积网络中，汇聚层仅包含**下采样**操作．但在早期的一些卷积网络 $($ 比如 LeNet-5 ) 中，有时也会在汇聚层使用非线性激活函数，比如
 $$
-\boldsymbol{Y}^{\prime d}=f\left(w^{d} \boldsymbol{Y}^{d}+b^{d}\right)
+\boldsymbol{Y}^{\prime d}=f\left(w^{d} \boldsymbol{Y}^{d}+b^{d}\right)\tag{4.2.4}
 $$
 其中 $Y^{\prime d}$ 为汇聚层的输出，$f(\cdot)$ 为非线性激活函数， $w^{d}$ 和 $b^{d}$ 为可学习的标量权重和偏置．  
 
@@ -481,3 +481,69 @@ $$
 
 ## 4.3 参数学习（卷积网络的反向传播）
 
+在卷积网络中，参数为卷积核中权重以及偏置．和全连接前软网络类似，卷积网络也可以通过误差反向传播算法来进行参数学习．  
+
+在全连接前贵神经网络中，梯度主要通过每一层的误差项 $\delta$ 进行反向传播，并进一步计算每层参数的梯度．  
+
+在卷积神经网络中，主要有两种不同功能的神经层：卷积层和汇聚层．而参数为卷积核以及偏置，因此只需要计算卷积层中参数的梯度．  
+
+不失一般性，对第 $l$ 层为卷积层，第 $l-1$ 层的输入特征映射为 $x^{(l-1)} \in$ $\mathbb{R}^{M \times N \times D}$ ，通过卷积计算得到第 $l$ 层的特征映射净输入 $z^{(l)} \in \mathbb{R}^{M^{\prime} \times N^{\prime} \times P}$ ．第 $l$ 层的第 $p(1 \leq p \leq P)$ 个特征映射净输入
+$$
+Z^{(l, p)}=\sum_{d=1}^{D} \boldsymbol{W}^{(l, p, d)} \otimes \boldsymbol{X}^{(l-1, d)}+b^{(l, p)}\tag{4.3.1}
+$$
+其中 $\boldsymbol{W}^{(l, p, d)}$ 和 $b^{(l, p)}$ 为卷积核以及偏置．第 $l$ 层中共有 $P \times D$ 个卷积核和 $P$ 个偏
+置，可以分别使用链式法则来计算其梯度．  
+
+根据上式，损失函数 $\mathcal{L}$ 关于第 $l$ 层的卷积核 $\boldsymbol{W}^{(l, p, d)}$ 的偏
+导数为
+$$
+\begin{aligned}
+\frac{\partial \mathcal{L}}{\partial \boldsymbol{W}^{(l, p, d)}} &=\frac{\partial \mathcal{L}}{\partial \boldsymbol{Z}^{(l, p)}} \otimes \boldsymbol{X}^{(l-1, d)} \\
+&=\delta^{(l, p)} \otimes \boldsymbol{X}^{(l-1, d)}\tag{4.3.2}
+\end{aligned}
+$$
+其中 $\delta^{(l, p)}=\frac{\partial \mathcal{L}}{\partial Z^{(l, p)}}$ 为损失函数关于第 $l$ 层的第 $p$ 个特征映射净输入 $Z^{(l, p)}$ 的偏导数．  
+
+同理可得，损失函数关于第 $l$ 层的第 $p$ 个偏置 $b^{(l, p)}$ 的偏导数为
+$$
+\frac{\partial \mathcal{L}}{\partial b^{(l, p)}}=\sum_{i, j}\left[\delta^{(l, p)}\right]_{i, j}\tag{4.3.3}
+$$
+在卷积网络中，每层参数的梯度依赖其所在层的误差项 $\delta^{(l, p)}$ ．  
+
+### 4.3.1 卷积神经网络的反向传播算法
+
+卷积层和汇聚层中误差项的计算有所不同，因此我们分别计算其误差项．  
+
+**汇聚层** $\quad$ 当第 $l+1$ 层为汇聚层时，因为汇聚层是下采样操作， $l+1$ 层的每个神经元的误差项 $\delta$ 对应于第 $l$ 层的相应特征映射的一个区域． $l$ 层的第 $p$ 个特征映射中的每个神经元都有一条边和 $l+1$ 层的第 $p$ 个特征映射中的一个神经元相连．根据链式法则，第 $l$ 层的一个特征映射的误差项 $\delta^{(l, p)}$ ，只需要将 $l+1$ 层对应特征映射的误差项 $\delta^{(l+1, p)}$ 进行**上采样**操作 $($ 和第 $l$ 层的大小一样 $)$ ，再和 $l$ 层特征映射的激活值偏导数逐元素相乘，就得到了 $\delta^{(l, p)}$ ．  
+
+第 $l$ 层的第 $p$ 个特征映射的误差项 $\delta^{(l, p)}$ 的具体推导过程如下：
+$$
+\begin{aligned}
+\delta^{(l, p)} & \triangleq \frac{\partial \mathcal{L}}{\partial \boldsymbol{Z}^{(l, p)}} \\
+&=\frac{\partial \boldsymbol{X}^{(l, p)}}{\partial \boldsymbol{Z}^{(l, p)}} \frac{\partial \boldsymbol{Z}^{(l+1, p)}}{\partial \boldsymbol{X}^{(l, p)}} \frac{\partial \mathcal{L}}{\partial \boldsymbol{Z}^{(l+1, p)}} \\
+&=f_{l}^{\prime}\left(\boldsymbol{Z}^{(l, p)}\right) \odot \operatorname{up}\left(\delta^{(l+1, p)}\right)\tag{4.3.4}
+\end{aligned}
+$$
+其中 $f_{l}^{\prime}(\cdot)$ 为第 $l$ 层使用的激活函数导数，up 为上采样函数 ( up sampling )，与汇聚层中使用的下采样操作刚好相反．如果下采样是**最大汇聚**，误差项 $\delta^{(l+1, p)}$ 中每个值会直接传递到上一层对应区域中的最大值所对应的神经元，该区域中其他神经元的误差项都设为 $0$ ．如果下采样是平均汇聚，误差项 $\delta^{(l+1, p)}$ 中每个值会被平均分配到上一层对应区域中的所有神经元上．  
+
+**卷积层** $\quad$ 当 $l+1$ 层为卷积层时，假设特征映射净输入 $z^{(l+1)} \in \mathbb{R}^{M^{\prime} \times N^{\prime} \times P}$ ，其中
+第 $p(1 \leq p \leq P)$ 个特征映射净输入
+$$
+Z^{(l+1, p)}=\sum_{d=1}^{D} \boldsymbol{W}^{(l+1, p, d)} \otimes \boldsymbol{X}^{(l, d)}+b^{(l+1, p)}\tag{4.3.5}
+$$
+其中 $\boldsymbol{W}^{(l+1, p, d)}$ 和 $b^{(l+1, p)}$ 为第 $l+1$ 层的卷积核以及偏置．第 $l+1$ 层中共有 $P \times D$ 个卷积核和 $P$ 个偏置．  
+
+第 $l$ 层的第 $d$ 个特征映射的误差项 $\delta^{(l, d)}$ 的具体推导过程如下：
+$$
+\begin{aligned}
+\delta^{(l, d)} & \triangleq \frac{\partial \mathcal{L}}{\partial Z^{(l, d)}} \\
+&=\frac{\partial \boldsymbol{X}^{(l, d)}}{\partial \boldsymbol{Z}^{(l, d)}} \frac{\partial \mathcal{L}}{\partial \boldsymbol{X}^{(l, d)}} \\
+&=f_{l}^{\prime}\left(\boldsymbol{Z}^{(l, d)}\right) \odot \sum_{P=1}^{P}\left(\operatorname{rot} 180\left(\boldsymbol{W}^{(l+1, p, d)}\right) \tilde{\otimes} \frac{\partial \mathcal{L}}{\partial \boldsymbol{Z}^{(l+1, p)}}\right) \\
+&=f_{l}^{\prime}\left(\boldsymbol{Z}^{(l, d)}\right) \odot \sum_{P=1}^{P}\left(\operatorname{rot} 180\left(\boldsymbol{W}^{(l+1, p, d)}\right) \tilde{\otimes} \delta^{(l+1, p)}\right)\tag{4.3.6}
+\end{aligned}
+$$
+其中 $\tilde{8}$ 为宽卷积．  
+
+## 4.4 几种典型的卷积神经网络
+
+## 4.5 其他卷积方式
