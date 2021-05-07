@@ -1,4 +1,5 @@
-- **杰仔之目录**
+# 杰仔之目录
+
 - [1. Markdown与其中的LaTeX](markdown/markdown)
 - 2\. python基础
   - [2.1 numpy](python/numpy)

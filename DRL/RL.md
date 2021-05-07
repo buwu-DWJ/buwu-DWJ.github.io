@@ -276,14 +276,19 @@ $\left.k=k_{\max }\right)$ ，则跳出循环
 
 1. (初始化) $v_{0}(s) \leftarrow$ 任意值, $s \in \mathcal{S}$ ．如果有终止状态， $v_{0}\left(s_{\text {终止 }}\right) \leftarrow 0$
 2. (迭代) 对于 $k \leftarrow 0,1,2,3, \ldots$ ，执行以下步骤  
- 2.1 对于使用误差容忍度的情况，初始化本次迭代观测到的最大误差 $\vartheta \leftarrow 0$  
- 2.2 对于 $s \in \mathcal{S}$ 执行以下操作:
-  2.2.1 计算新状态价值 $v_{\text {新}}\leftarrow\max_{a}\left\{r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v\left(s^{\prime}\right)\right\}$  
-  2.2.2 对于使用误差容忍度的情况，更新本次迭代观测到的最大误差 $\vartheta \leftarrow \max \left\{\vartheta,\left|v_{\text {新}}-v(s)\right|\right\}$  
-  2.2.3 更新状态价值函数 $v(s) \leftarrow v_{\text {新}}$  
+    2.1 对于使用误差容忍度的情况，初始化本次迭代观测到的最大误差 $\vartheta \leftarrow 0$  
+    2.2 对于 $s \in \mathcal{S}$ 执行以下操作:
+     1. 计算新状态价值 $v_{\text {新}}\leftarrow\max_{a}\left\{r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v\left(s^{\prime}\right)\right\}$  
+     2. 对于使用误差容忍度的情况，更新本次迭代观测到的最大误差 $\vartheta \leftarrow \max \left\{\vartheta,\left|v_{\text {新}}-v(s)\right|\right\}$  
+     3. 更新状态价值函数 $v(s) \leftarrow v_{\text {新}}$  
  2.3 如果满足误差容忍度（即 $\left.\vartheta<\vartheta_{\max }\right)$ 或达到最大迭代次数 $\left(\right.$ 即 $\left.k=k_{\max }\right)$ ，则跳出循环
 3. (策略) 根据价值函数输出确定性策略:
 $$
 \pi(s)=\underset{a}{\arg \max }\left\{r(s, a)+\gamma \sum_{s} p\left(s^{\prime}|s, a\right) v\left(s^{\prime}\right)\right\}．
 $$
+**************************
+
+## 二． 回合更新价值迭代
+
+
 
