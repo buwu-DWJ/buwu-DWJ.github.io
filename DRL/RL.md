@@ -44,43 +44,43 @@ $$
 
 用状态价值函数表示状态价值函数：
 $$
-v_{\pi}(s)=\sum_{a} \pi(a \mid s)\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) v_{\pi}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
+v_{\pi}(s)=\sum_{a} \pi(a|s)\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v_{\pi}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
 $$
 用动作价值函数表示动作价值函数：
 $$
-q_{\pi}(s, a)=\sum_{s^{\prime}, r} p\left(s^{\prime}, r \mid s, a\right)\left[r+\gamma \sum_{a^{\prime}} \pi\left(a^{\prime} \mid s^{\prime}\right) q_{\pi}\left(s^{\prime}, a^{\prime}\right)\right], \quad s \in \mathcal{S}, a \in \mathcal{A}
+q_{\pi}(s, a)=\sum_{s^{\prime}, r} p\left(s^{\prime}, r|s, a\right)\left[r+\gamma \sum_{a^{\prime}} \pi\left(a^{\prime}|s^{\prime}\right) q_{\pi}\left(s^{\prime}, a^{\prime}\right)\right], \quad s \in \mathcal{S}, a \in \mathcal{A}
 $$
 
 #### ※ Bellman最优方程
 
 用最优状态价值函数表示最优状态价值函数：
 $$
-v_{*}(s)=\max _{a \in \mathcal{A}}\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) v_{*}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
+v_{*}(s)=\max _{a \in \mathcal{A}}\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v_{*}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
 $$
 用最优动作价值函数表示最优动作价值函数：
 $$
-q_{*}(s, a)=r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) \max _{a^{\prime}} q_{*}\left(s^{\prime}, a^{\prime}\right), \quad s \in \mathcal{S}, a \in \mathcal{A}
+q_{*}(s, a)=r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) \max _{a^{\prime}} q_{*}\left(s^{\prime}, a^{\prime}\right), \quad s \in \mathcal{S}, a \in \mathcal{A}
 $$
 
 这两个方程都有用状态价值表示状态价值的形式．根据这个形式，我们可以为度量空间 $\left(\mathcal{V}, d_{\infty}\right)$ 定义 Bellman 期望算子 和 Bellman 最优算子．  
 
-给定策略 $\pi(a \mid s)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 的 **Bellman 期望算子** $t_{\pi}: \mathcal{V} \rightarrow \mathcal{V}:$
+给定策略 $\pi(a|s)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 的 **Bellman 期望算子** $t_{\pi}: \mathcal{V} \rightarrow \mathcal{V}:$
 $$
-t_{n}(v)(s)=\sum_{a} \pi(a \mid s)\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) v\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
+t_{n}(v)(s)=\sum_{a} \pi(a|s)\left[r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
 $$
 **Bellman 最优算子** $t_{.}: \mathcal{V} \rightarrow \mathcal{V}$ :
 $$
-t_*(v)(s)=\max_{\operatorname{ces} A}\left[r(s, a)+\gamma \sum_{\text {ses }} p\left(s^{\prime} \mid s, a\right) v_{\cdot}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
+t_*(v)(s)=\max_{\operatorname{ces} A}\left[r(s, a)+\gamma \sum_{\text {ses }} p\left(s^{\prime}|s, a\right) v_{\cdot}\left(s^{\prime}\right)\right], \quad s \in \mathcal{S}
 $$
 下面我们就来证明，这两个算子都是压缩映射．  
 
 首先来看 $\mathrm{Bellman}$ 期望算子 $t_{\pi}$ ．由 $t_{\pi}$ 的定义可知，对任意的 $v^{\prime}, v^{\prime \prime} \in \mathcal{V}$ ，有
 $$
-t_{\pi}\left(v^{\prime}\right)(s)-t_{\pi}\left(v^{\prime \prime}\right)(s)=\gamma \sum_{a} \pi(a \mid s) \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right)\left[v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right]
+t_{\pi}\left(v^{\prime}\right)(s)-t_{\pi}\left(v^{\prime \prime}\right)(s)=\gamma \sum_{a} \pi(a|s) \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right)\left[v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right]
 $$
 所以
 $$
-\left|t_{\pi}\left(v^{\prime}\right)(s)-t_{\pi}\left(v^{\prime \prime}\right)(s)\right| \leqslant \gamma \sum_{a} \pi(a \mid s) \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) \max _{s^{\prime}}\left|v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right|=\gamma d_{\infty}\left(v^{\prime}, v^{\prime \prime}\right)
+\left|t_{\pi}\left(v^{\prime}\right)(s)-t_{\pi}\left(v^{\prime \prime}\right)(s)\right| \leqslant \gamma \sum_{a} \pi(a|s) \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) \max _{s^{\prime}}\left|v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right|=\gamma d_{\infty}\left(v^{\prime}, v^{\prime \prime}\right)
 $$
 考虑到 $s$ 是任取的，所以有
 $$
@@ -99,9 +99,9 @@ $$
 $$
 \begin{aligned}
 \qquad t_{*}\left(v^{\prime}\right)(s)&-t_{*}\left(v^{\prime \prime}\right)(s) \\
-&=\max _{a \in A}\left[r(s, a)+\gamma \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime} \mid s, a\right) v^{\prime}\left(s^{\prime}\right)\right]-\max_{a \in \mathcal{A}}\left[r(s, a)+\gamma \sum_{s^{\prime} \in S} p\left(s^{\prime} \mid s, a\right) v^{\prime \prime}\left(s^{\prime}\right)\right] \\
-&\leqslant \max _{a^{\prime} \in \mathcal{A}}\left|\gamma \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime} \mid s, a^{\prime}\right)\left(v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right)\right| \\
-&\leqslant \gamma \max _{a^{\prime} \in A}\left|\sum_{s^{\prime} \in S} p\left(s^{\prime} \mid s, a^{\prime}\right)\right| \max _{s^{\prime} \in S}\left|v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right| \\
+&=\max _{a \in A}\left[r(s, a)+\gamma \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime}|s, a\right) v^{\prime}\left(s^{\prime}\right)\right]-\max_{a \in \mathcal{A}}\left[r(s, a)+\gamma \sum_{s^{\prime} \in S} p\left(s^{\prime}|s, a\right) v^{\prime \prime}\left(s^{\prime}\right)\right] \\
+&\leqslant \max _{a^{\prime} \in \mathcal{A}}\left|\gamma \sum_{s^{\prime} \in \mathcal{S}} p\left(s^{\prime}|s, a^{\prime}\right)\left(v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right)\right| \\
+&\leqslant \gamma \max _{a^{\prime} \in A}\left|\sum_{s^{\prime} \in S} p\left(s^{\prime}|s, a^{\prime}\right)\right| \max _{s^{\prime} \in S}\left|v^{\prime}\left(s^{\prime}\right)-v^{\prime \prime}\left(s^{\prime}\right)\right| \\
 &\leqslant \gamma d_{\infty}\left(v^{\prime}, v^{\prime \prime}\right)
 \end{aligned}
 $$
@@ -139,4 +139,110 @@ Banach 不动点定理给出了求完备度量空间中压缩映射不动点的�
 
 #### 1.2.1 策略评估
 
+本节介绍如何用迭代方法评估给定策略的价值函数．如果能求得状态价值函数，那么就能很容易地求出动作价值函数．由于状态价值函数只有 $|S|$ 个自变量，而动作价值函数有
+$|\mathcal{S}| \times|\mathcal{A}|$ 个自变量，所以存储状态价值函数比较节约空间．  
+
+用迭代的方法评估给定策略的价值函数的算法如算法 1-1 所示．算法 1-1 一开始初始化状态价值函数 $v_{0}$ ，并在后续的迭代中用 $\mathrm{Bellman}$ 期望方程的表达式更新一轮所有状态的状态价值函数．这样对所有状态价值函数的一次更新又称为一次**扫描**（sweep)．在第 $k$ 次扫描时，用 $v_{k-1}$ 的值来更新 $v_{k}$ 的值，最终得到一系列的 $v_{0}, v_{1}, \nu_{2}, \ldots$ ．  
+
+**算法 1-1** 有模型策略评估迭代算法
+***********************
+输入: 动力系统 $p$, 策略 $\pi$  
+输出：状态价值函数 $v_{\pi}$ 的估计值 
+参数: 控制迭代次数的参数（如误差容忍度 $\vartheta_{\max }$ 或最大迭代次数 $\left.k_{\max }\right)$  
+
+1. (初始化) 对于 $s \in \mathcal{S}$ ，将 $v_{0}(s)$ 初始化为任意值 (比如 0 )．如果有终止状态，将终止状态初始化为 0，即 $v_{0}\left(S_{\text {终止}}\right) \leftarrow 0$  
+2. (迭代) 对于 $k \leftarrow 0,1,2,3, \ldots$ ，迭代执行以下步骤  
+2.1 对于 $s \in \mathcal{S}$, 逐一更新 $v_{k+1}(s) \leftarrow \sum_{a} \pi(a|s) q_{k}(s, a)$ ，其中$q_{k}(s, a) \leftarrow r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v_{k}\left(s^{\prime}\right)$．  
+2.2 如果满足迭代终止条件 (如对 $s \in \mathcal{S}$ 均有 $\left|v_{k+1}(s)-v_{k}(s)\right|<\vartheta_{\max }$ ，或达到最大迭代次数
+$\left.k=k_{\max }\right)$ ，则跳出循环
+
+*************************
+值得一提的是，算法 1-1 没必要为每次捉描都重新分配一套空间来存储．一种优化的方法是，设置奇数次迭代的存储空间和偶数次迭代的存储空间，一开始初始化偶数次存储空间，当 $k$ 是奇数时，用偶数次存储空间来更新奇数次存储空间; 当 $k$ 是偶数时, 用奇数次存储空间来更新偶数次存储空间．这样，一共只需要两套存储空间就可以完成算法．
+
+#### 1.2.2 策略改进
+
+对于给定的策略 $\pi$ ，如果得到该策略的价值函数，则可以用策略改进定理得到一个改进的策略．  
+
+策略改进定理的内容如下：对于策略 $\pi$ 和 $\pi^{\prime}$ ，如果
+$$
+v_{\pi}(s) \leqslant \sum_{a} \pi^{\prime}(a|s) q_{\pi}(s, a), \quad s \in \mathcal{S}
+$$
+则 $\pi \leqslant \pi^{\prime}$ ，即
+$$
+v_{\pi}(s) \leqslant v_{\pi^{\prime}}(s), \quad s \in \mathcal{S}
+$$
+在此基础上，如果存在状态使得第一式的不等号是严格小于号，那么就存在状态使得第二式中的不等号也是严格小于号．  
+
+**证明**: 考虑到第一个不等式等价于
+$$
+v_{\pi}(s)=\mathrm{E}_{\pi^{\prime}}\left[v_{\pi}\left(S_{t}\right)|S_{t}=s\right] \leqslant \mathrm{E}_{\pi^{\prime}}\left[q_{\pi}\left(S_{t}, A_{t}\right)|S_{t}=s\right], \quad s \in \mathcal{S}
+$$
+其中的期望是针对用策略 $\pi^{\prime}$ 生成的轨迹中，选取 $S_{t}=s$ 的那些轨迹而言的．进而有
+$$
+\begin{array}{l}
+\mathrm{E}_{\pi^{\prime}}\left[\nu_{\pi}\left(S_{t+\tau}\right)|S_{t}=s\right] \\
+\quad=\mathrm{E}_{\pi^{\prime}}\left[\mathrm{E}_{\pi^{\prime}}\left[v_{\pi}\left(S_{t+\tau}\right)|S_{t+\tau}\right]|S_{t}=s\right] \\
+\quad \leqslant \mathrm{E}_{\pi^{\prime}}\left[\mathrm{E}_{\pi^{\prime}}\left[q_{\pi}\left(S_{t+\tau}, A_{t+\tau}\right)|S_{t+\tau}\right]|S_{t}=s\right] \\
+\quad=\mathrm{E}_{\pi^{\prime}}\left[q_{\pi}\left(S_{t+\tau}, A_{t+\tau}\right)|S_{t}=s\right], \quad s \in \mathcal{S}, \tau=0,1,2, \ldots
+\end{array}
+$$
+考虑到
+$$
+\mathrm{E}_{\pi^{\prime}}\left[q_{\pi}\left(S_{t+\tau}, A_{t+\tau}\right)|S_{t}=s\right]=\mathrm{E}_{\pi^{\prime}}\left[R_{t+\tau+1}+\gamma v_{\pi}\left(S_{t+\tau+1}\right)|S_{t}=s\right], \quad s \in \mathcal{S}, \tau=0,1,2, \ldots
+$$
+所以
+$$
+\mathrm{E}_{\pi^{\prime}}\left[v_{\pi}\left(S_{t+\tau}\right)|S_{t}=s\right] \leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+\tau+1}+\gamma v_{\pi}\left(S_{t+\tau+1}\right)|S_{t}=s\right], \quad s \in \mathcal{S}, \tau=0,1,2, \ldots
+$$
+进而有
+$$
+\begin{array}{l}
+v_{\pi}(s)=\mathrm{E}_{\pi^{\prime}}\left[v_{\pi}\left(S_{t}\right)|S_{t}=s\right] \\
+\leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right)|S_{t}=s\right] \\
+\leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+1}+\gamma \mathrm{E}_{\pi^{\prime}}\left[R_{t+2}+\gamma v_{\pi}\left(S_{t+2}\right)|S_{t}=s\right]|S_{t}=s\right] \\
+\leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+1}+\gamma R_{t+2}+\gamma^{2} v_{\pi}\left(S_{t+2}\right)|S_{t}=s\right] \\
+\leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+1}+\gamma R_{t+2}+\gamma^{2} R_{t+3}+\gamma^{3} v_{\pi}\left(S_{t+4}\right)|S_{t}=s\right] \\
+\ldots \\
+\leqslant \mathrm{E}_{\pi^{\prime}}\left[R_{t+1}+\gamma R_{t+2}+\gamma^{2} R_{t+3}+\gamma^{3} R_{t+4}+\cdots|S_{t}=s\right] \\
+=\mathrm{E}_{\pi^{\prime}}\left[G_{t}|S_{t}=s\right] \\
+=v_{\pi^{\prime}}(s), \quad s \in \mathcal{S}
+\end{array}
+$$
+严格不等号的证明类似．  
+
+对于一个确定性策略 $\pi$ ，如果存在着 $s \in \mathcal{S}, a \in \mathcal{A}$ ，使得 $q_{\pi}(s, a)>v_{\pi}(s)$ ，那么我们可以构造一个新的确定策略 $\pi^{\prime}$ ，它在状态 $s$ 做动作 $a$ ，而在除状态 $s$ 以外的状态的动作都和策略一样．可以验证，策略 $\pi$ 和 $\pi^{\prime}$ 满足策略改进定理的条件．这样，我们就得到了一个比策略 $\pi$ 更好的策略 $\pi^{\prime}$ ．这样的策略更新算法可以用算法 1-2 来表示．  
+
+**算法 1-2**：有模型策略改进算法
+*****************************
+输入: 动力系统 $p$ ，策略 $\pi$ 及其状态价值函数 $v_{\pi}$  
+输出：改进的策略 $\pi^{\prime}$ ，或策略 $\pi$ 已经达到最优的标志  
+
+1. 对于每个状态 $s \in \mathcal{S}$ ，执行以下步骤:  
+ 1.1 为每个动作 $a \in \mathcal{A}$ ，求得动作价值函数 $q_{\pi}(s, a) \leftarrow r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v_{\pi}\left(s^{\prime}\right)$  
+ 1.2 找到使得 $q_{\pi}(s, a)$ 最大的动作 $a$ ，即 $\pi^{\prime}(s)=\arg\max_{a}q(s, a)$
+2. 如果新箱略 $\pi^{\prime}$ 和旧策略 $\pi$ 相同，则说明旧策略巳是最优; 否则，输出改进的新策略 $\pi^{\prime}$
+
+*************************
+值得一提的是，在算法 1-2 中，旧策略 $\pi$ 和新策略 $\pi^{\prime}$ 只在某些状态上有不同的动作值, 新策略 $\pi^{\prime}$ 可以很方便地在旧策略 $\pi$ 的基础上修改得到．所以，如果在后续不需要使用旧策略的情况下，可以不为新策略分配空间．
+
+#### 1.2.3 策略迭代
+
+策略迭代是一种综合利用策略评估和策略改进求解最优策略的迭代方法．  
+
+见算法 1-3 ，策略迭代从一个任意的确定性策略 $\pi_{0}$ 开始，交替进行策略评估和策略改进．这里的策略改进是严格的策略改进，即改进后的策略和改进前的策略是不同的 对于状态空间和动作空间均有限的 Markov 决策过程，其可能的确定性策略数是有限的．由于确定性策略总数是有限的，所以在迭代过程中得到的策略序列 $\pi_{0}, \pi_{1}, \pi_{2}, \ldots$ 一定能收敛，使得到某个 $k$ ，有 $\pi_{k}=\pi_{k+1}$ (即对任意的 $s \in \mathcal{S}$ 均有 $\left.\pi_{k+1}(s)=\pi_{k}(s)\right)$ ．由于在 $\pi_{k}=\pi_{k+1}$ 的情况下， $\pi_{k}(s)=\pi_{k+1}(s)=\arg \max _{a} q_{\pi_{k}}(s, a)$ ，进而 $v_{\pi_{k}}(s)=\max_{a} q_{\pi_{k}}(s, a)$ ，满足 Bellman 最优方程．因此， $\pi_{k}$ 就是最优策略．这样就证明了策略迭代能够收敛到最优策略．
+
+**算法 1-3**：有模型策略迭代
+********************
+输入: 动力系统 $p$  
+输出：最优策略  
+
+1. (初始化）将策略 $\pi_{0}$ 初始化为一个任意的确定性策略．
+2. (迭代) 对于 $k \leftarrow 0,1,2,3, \ldots$, 执行以下步骤  
+ 2.1 （策略评估）使用策略评估算法，计算策略 $\pi_{k}$ 的状态价值函数 $v_{\pi_{k}}$  
+ 2.2 （策略更新）利用状态价值函数 $v_{\pi_{k}}$ 改进确定性策略 $\pi_{k}$ ，得到改进的确定性策略 $\pi_{k+1}$ ．如果 $\pi_{k+1}=\pi_{k}$ ．（即对任意的 $s \in \mathcal{S}$ 均有 $\pi_{k+1}(s)=\pi_{k}(s)$），则迭代完成，返回策略 $\pi_{k}$ 为最终的最优策略．
+
+**************************
+策略迭代也可以通过重复利用空间来节约空间．为了节约空间，在各次迭代中用相同的空间 $v(s)(s \in \mathcal{S})$ 来存储状态价值函数，用空间 $\pi(s)(s \in \mathcal{S})$ 来存储确定性策略．
+
+### 1.3 有模型价值迭代
 
