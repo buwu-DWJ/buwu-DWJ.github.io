@@ -446,7 +446,7 @@ $$
 
 #### 2.2.2 异策回合更新策略评估
 
-基于 2.2.1 节给出的重要性采样，算法 2-7 给出了每次访问加权重要性采样回合更新策略评估算法．这个算法在初始化环节初始化了权重和 $c(s, a)$ 与动作价值 $q(s, a)$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ ，然后进行回合更新．回合更新需要借助行为策略 $b$ ．行为策略 $b$ 可以每个回合都单独设计，也可以为整个算法设计一个行为策略，而在所有回合都使用同一个行为策略．用行为策略生成轨迹样本后，逆序更新回报、价值函数和权重值．一开始权重值 $\rho$ 设为 1 ，以后会越来越小．如果某次权重值变为 0 (这往往是因为 $\left.\pi\left(A_{t} \mid S_{t}\right)=0\right)$ ，那么以 后的权重值就都为 0 ，再循环下去没有意义．所以这里设计了一个检查机制．事实上，这个检查机制保证了在更新 $q(s, a)$ 时权重和 $c(s, a)>0$ 是必需的．如果没有检查机制，则可能在更新 $c(s, a)$ 时，更新前和更新后的 $c(s, a)$ 值都是 0 ，进而在更新 $q(s, a)$ 时出现除零错误．加这个检查机制避免了这样的错误．
+基于 2.2.1 节给出的重要性采样，算法 2-7 给出了每次访问加权重要性采样回合更新策略评估算法．这个算法在初始化环节初始化了权重和 $c(s, a)$ 与动作价值 $q(s, a)$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ ，然后进行回合更新．回合更新需要借助行为策略 $b$ ．行为策略 $b$ 可以每个回合都单独设计，也可以为整个算法设计一个行为策略，而在所有回合都使用同一个行为策略．用行为策略生成轨迹样本后，逆序更新回报、价值函数和权重值．一开始权重值 $\rho$ 设为 1 ，以后会越来越小．如果某次权重值变为 0 (这往往是因为 $\left.\pi\left(A_{t}|S_{t}\right)=0\right)$ ，那么以 后的权重值就都为 0 ，再循环下去没有意义．所以这里设计了一个检查机制．事实上，这个检查机制保证了在更新 $q(s, a)$ 时权重和 $c(s, a)>0$ 是必需的．如果没有检查机制，则可能在更新 $c(s, a)$ 时，更新前和更新后的 $c(s, a)$ 值都是 0 ，进而在更新 $q(s, a)$ 时出现除零错误．加这个检查机制避免了这样的错误．
 
 >**算法 2-7**：$\quad$ 每次访问加权重要性采样异策回合更新评估策略的动作价值
 ***********************
@@ -459,7 +459,7 @@ $$
  2.4 对于 $t \leftarrow T-1, T-2, \ldots, 0$ 执行以下操作：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
     2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{i}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{1}\right) \leftarrow c\left(S_{t}, A\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
-    3. （更新权重） $\rho \leftarrow \rho \frac{\pi\left(A_{t} \mid S_{t}\right)}{b\left(A_{t} \mid S_{t}\right)}$
+    3. （更新权重） $\rho \leftarrow \rho \frac{\pi\left(A_{t}|S_{t}\right)}{b\left(A_{t}|S_{t}\right)}$
     4. （提前终止）如果 $\rho=0$ ，则结東步骤 2.4 的循环
 
 ***********************
@@ -468,8 +468,8 @@ $$
 
 #### 4.2.3 异策回合更新最优策略求解
 
-接下来介绍最优策略的求解．算法 2-8 给出了每次访问加权重要性采样异策回合最优策略求解算法．它和其他最优策略求解算法一样，都是在策略估计算法的基础上加上策略改进得来的．算法 2-8 的迭代过程中，始终让 $\pi$ 是一个确定性策略．所以，在回合更新的过程中，任选一个策略 $b$ 都满足 $\pi \ll b$ ．这个柔性策略可以每个回合都分别选取，也可以整个程序共用一个．由于采用了确定性的策略，则对于每个状态 $s \in \mathcal{S}$ 都有一个 $a \in \mathcal{A}(s)$ 使得 $\pi(a \mid s)=1$ ，而其他 $\pi(\cdot \mid s)=0$ ．算法 2-8 利用这一性质来更新权重并判断权重是否为 0 ．如果 $A_{t} \neq \pi\left(S_{t}\right)$ ，则意味着 $\pi\left(A_{t} \mid S_{t}\right)=0$ ，更新后的权重为 0 ，需要退出循环以避免除零错误；若 $A_{t}=\pi\left(S_{t}\right)$ ，则意味着 $\pi\left(A_{t} \mid S_{t}\right)=1$ ，所以权重更新语句 $\rho \leftarrow \rho \frac{\pi\left(A_{t} \mid S_{t}\right)}{b\left(A_{t} \mid S_{t}\right)}$ 就可以简化为
-$\rho \leftarrow \rho \frac{1}{b\left(A_{t} \mid S_{t}\right)}$．
+接下来介绍最优策略的求解．算法 2-8 给出了每次访问加权重要性采样异策回合最优策略求解算法．它和其他最优策略求解算法一样，都是在策略估计算法的基础上加上策略改进得来的．算法 2-8 的迭代过程中，始终让 $\pi$ 是一个确定性策略．所以，在回合更新的过程中，任选一个策略 $b$ 都满足 $\pi \ll b$ ．这个柔性策略可以每个回合都分别选取，也可以整个程序共用一个．由于采用了确定性的策略，则对于每个状态 $s \in \mathcal{S}$ 都有一个 $a \in \mathcal{A}(s)$ 使得 $\pi(a|s)=1$ ，而其他 $\pi(\cdot|s)=0$ ．算法 2-8 利用这一性质来更新权重并判断权重是否为 0 ．如果 $A_{t} \neq \pi\left(S_{t}\right)$ ，则意味着 $\pi\left(A_{t}|S_{t}\right)=0$ ，更新后的权重为 0 ，需要退出循环以避免除零错误；若 $A_{t}=\pi\left(S_{t}\right)$ ，则意味着 $\pi\left(A_{t}|S_{t}\right)=1$ ，所以权重更新语句 $\rho \leftarrow \rho \frac{\pi\left(A_{t}|S_{t}\right)}{b\left(A_{t}|S_{t}\right)}$ 就可以简化为
+$\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$．
 
 >**算法 4-8**：$\quad$ 每次访问加权重要性采样异策回合更新最优策略求解
 
@@ -483,7 +483,7 @@ $\rho \leftarrow \rho \frac{1}{b\left(A_{t} \mid S_{t}\right)}$．
     2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_{i}\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
     3. （策略更新） $\pi\left(S_{t}\right) \leftarrow \arg \max_{a} q\left(S_{t}, a\right)$
     4. （提前终止）若 $A_{t} \neq \pi\left(S_{t}\right)$ 则退出步骤 2.4
-    5. （更新权重） $\rho \leftarrow \rho \frac{1}{b\left(A_{t} \mid S_{t}\right)}$
+    5. （更新权重） $\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$
 
 ***********************
 算法 2-8 也可以修改得到首次访问的算法和普通重要性采样的算法，此处略过．
@@ -502,12 +502,12 @@ $\rho \leftarrow \rho \frac{1}{b\left(A_{t} \mid S_{t}\right)}$．
 从给定策略 $\pi$ 的情况下动作价值的定义出发，我们可以得到下式:
 $$
 \begin{aligned}
-q_{\pi}(s, a) &=\mathrm{E}_{\pi}\left[G_{t} \mid S_{t}=s, A_{t}=a\right] \\
-&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1} \mid S_{t}=S, A_{i}=a\right] \\
-&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right) \mid S_{t}=s, A_{1}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
+q_{\pi}(s, a) &=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{t}=a\right] \\
+&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1}|S_{t}=S, A_{i}=a\right] \\
+&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=s, A_{1}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
 \end{aligned}
 $$
-在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t} \mid S_{t}=s, A_{1}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{i+1}\right) \mid S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
+在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{1}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{i+1}\right)|S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
 
 基于以上分析，我们可以定义时序差分目标．时序差分目标可以针对动作价值定义，也可以针对状态价值定义．对于动作价值，其单步时序差分目标定义为
 $$
@@ -617,7 +617,7 @@ $$
 2. （时序差分更新）对每个回合执行以下操作  
  2.1 （生成 n 步）用策略 $\pi$ 生成轨迹 $S_0,A_0,R_1,...,R_n,S_n$ （若遇到终止状态，则令后续奖励均为0，状态均为 $s_{\text{终止}}$  
  2.2 对于 $t=0,1,2, \ldots$ 依次执行以下操作，直到 $S_{t}=S_{\text{终止}}$ ：
-    1. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则根据 $\pi\left(\cdot \mid S_{t+n}\right)$ 决定动作 $A_{t+n}$
+    1. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则根据 $\pi\left(\cdot|S_{t+n}\right)$ 决定动作 $A_{t+n}$
     2. （更新时序差分目标） $U_{t:t+n}^{(q)} U \leftarrow R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} q\left(S_{t+n}, A_{t+n}\right)$
     3. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\left[U-q\left(S_{t}, A_{t}\right)\right]^{2}$
     4. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则执行 $A_{t+n}$ ，得到奖励 $R_{t+n+1}$ 和下一状态 $S_{t+n+1}$ ；若 $S_{t+n}=S_{\text {终止 }}$, $R_{t+n+1} \leftarrow 0, \quad S_{t+n+1} \leftarrow S_{\text {终止 }}$
@@ -636,7 +636,7 @@ $$
  2.2 对于 $t=0,1,2, \ldots$ 依次执行以下操作，直到 $S_{t}=S_{\text {终止 }}$ :
     1. （更新时序差分目标 $U_{t:t+n}^{(\nu)}$）$U \leftarrow R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} v\left(S_{t+n}\right)$
     2. （更新价值）更新 $v\left(S_{t}\right)$ 以减小 $\left[U-v\left(S_{t}\right)\right]^{2}$
-    3. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则根据 $\pi\left(\cdot \mid S_{t+n}\right)$ 决定动作 $A_{t+n}$ 并执行，得到奖励 $R_{t+n+1}$ 和下一状态 $S_{t+n+1}$ ；若 $S_{t+n}=S_{\text {终止 }}$ ，令 $R_{t+n+1} \leftarrow 0, S_{t+n+1} \leftarrow S_{\text {终止 }}$．
+    3. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则根据 $\pi\left(\cdot|S_{t+n}\right)$ 决定动作 $A_{t+n}$ 并执行，得到奖励 $R_{t+n+1}$ 和下一状态 $S_{t+n+1}$ ；若 $S_{t+n}=S_{\text {终止 }}$ ，令 $R_{t+n+1} \leftarrow 0, S_{t+n+1} \leftarrow S_{\text {终止 }}$．
 
 ***********************
 
@@ -651,7 +651,7 @@ $$
 >**算法 3-5** $\quad$SARSA 算法求解最优策略（显式更新策略）
 ***********************
 输入：环境（无数学描述）  
-输出：最优策略估计 $\pi(a \mid s)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 和最优动作价值估计 $q(s, a)(s \in \mathcal{S}, a \in \mathcal{A}(s))$  
+输出：最优策略估计 $\pi(a|s)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 和最优动作价值估计 $q(s, a)(s \in \mathcal{S}, a \in \mathcal{A}(s))$  
 参数：优化器（隐含学习率 $\alpha$ ），折扣因子 $\gamma$ ，策略改进的参数（如 $\varepsilon$ ），其他控制回合数和回合步数的参数
 
 1. （初始化） $q(s, a) \leftarrow$ 任意值， $s \in \mathcal{S}, a \in \mathcal{A}(s)$ ．如果有终止状态，令 $q\left(s_{\text {终止}}, a\right) \leftarrow 0, a_{\in \mathcal{A}}$ ．用动作价值 $q(s, a)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 确定策略 $\pi($ 如使用 $\varepsilon$ 贪心策略 $)$
@@ -662,7 +662,7 @@ $$
     2. 用策略 $\pi$ 确定动作 $A^{\prime}$
     3. （计算回报的估计值） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime}\right)$
     4. （更新价值）更新 $q(S, A)$ 以减小 $[U-q(S, A)]^{2}($ 如 $q(S, A) \leftarrow q(S, A)+\alpha [U-q(S, A)])$
-    5. （策略改进）根据 $q(S, \cdot)$ 修改 $\pi(\cdot \mid S)($ 如 $\varepsilon$ 贪心策略 $)$
+    5. （策略改进）根据 $q(S, \cdot)$ 修改 $\pi(\cdot|S)($ 如 $\varepsilon$ 贪心策略 $)$
     6. $S \leftarrow S^{\prime}, A \leftarrow A^{\prime}$
 
 ***********************
@@ -673,11 +673,11 @@ $$
 SARSA 算法有一种变化一一期望 SARSA 算法（Expected SARSA）．期望 SARSA算法与 SARSA 算法的不同之处在于，它在估计 $U_{i}$ 时，不使用基于动作价值的时序差分目标 $U_{t+1}^{(q)}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ ，而使用基于状态价值的时序差分目标 $U_{t=1}^{(v)}=R_{t+1}+\gamma v\left(S_{t+1}\right)$ ．利用
 Bellman 方程，这样的目标又可以表示为
 $$
-U_{t}=R_{t+1}+\gamma \sum_{\sigma \in A\left(S_{t+1}\right)} \pi\left(a \mid S_{t+1}\right) q\left(S_{t+1}, a\right)
+U_{t}=R_{t+1}+\gamma \sum_{\sigma \in A\left(S_{t+1}\right)} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)
 $$
-与 SARSA 算法相比，期望 SARSA 需要计算 $\sum_{a} \pi\left(a \mid S_{t+1}\right) q\left(S_{t+1}, a\right)$ ，所以计算量比 SARSA 大．但是，这样的期望运算减小了 SARSA 算法中出现的个别不恰当决策．这样，可以避免在更新后期极个别不当决策对最终效果带来不好的影响．因此，期望 SARSA 常常有比 SARSA 更大的学习率．在很多情况下，期望 SARSA 的效果会比 SARSA 稍微好一些．
+与 SARSA 算法相比，期望 SARSA 需要计算 $\sum_{a} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)$ ，所以计算量比 SARSA 大．但是，这样的期望运算减小了 SARSA 算法中出现的个别不恰当决策．这样，可以避免在更新后期极个别不当决策对最终效果带来不好的影响．因此，期望 SARSA 常常有比 SARSA 更大的学习率．在很多情况下，期望 SARSA 的效果会比 SARSA 稍微好一些．
 
-算法 3-6 给出了期望 SARSA 求解最优策略的算法，它可以视作在单步时序差分状态价值估计算法上修改得到的．期望 SARSA 对回合数和回合内步数的控制方法等都和 SARSA 相同，但是由于期望 SARSA 在更新 $q\left(S_{t}, A_{t}\right)$ 时不需要 $A_{t+1}$ ，所以其循环结构有所简化．算法中让 $\pi$ 保持为 $\varepsilon$ 柔性策略．如果 $\varepsilon$ 很小，那么这个 $\varepsilon$ 柔性策略就很接近于确定性策略，则期望 SARSA 计算的 $\sum_{a} \pi\left(a \mid S_{t+1}\right) q\left(S_{t+1}, a\right)$ 就很接近于 $q\left(S_{t+1}, A_{t+1}\right)$ ．
+算法 3-6 给出了期望 SARSA 求解最优策略的算法，它可以视作在单步时序差分状态价值估计算法上修改得到的．期望 SARSA 对回合数和回合内步数的控制方法等都和 SARSA 相同，但是由于期望 SARSA 在更新 $q\left(S_{t}, A_{t}\right)$ 时不需要 $A_{t+1}$ ，所以其循环结构有所简化．算法中让 $\pi$ 保持为 $\varepsilon$ 柔性策略．如果 $\varepsilon$ 很小，那么这个 $\varepsilon$ 柔性策略就很接近于确定性策略，则期望 SARSA 计算的 $\sum_{a} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)$ 就很接近于 $q\left(S_{t+1}, A_{t+1}\right)$ ．
 
 >**算法 3-6** $\quad$ 期望 SARSA 求解最优策略
 ***********************
@@ -686,9 +686,9 @@ $$
 2. （时序差分更新）对每个回合执行以下操作  
  2.1 （初始化状态）选择状态 $S$  
  2.2 如果回合未结東（比如未达到最大步数、S不是终止状态），执行以下操作：
-    1. 用动作价值 $q(S, \cdot)$ 确定的策略（如 $\varepsilon$ 贪心策略）确定动作 $A$ 
+    1. 用动作价值 $q(S, \cdot)$ 确定的策略（如 $\varepsilon$ 贪心策略）确定动作 $A$
     2. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
-    3. （用期望计算回报的估计值） $U \leftarrow R+\gamma \sum_{a \in \mathcal{A}\left(s^{\prime}\right)} \pi\left(a \mid S^{\prime}\right) q\left(S^{\prime}, a\right)$
+    3. （用期望计算回报的估计值） $U \leftarrow R+\gamma \sum_{a \in \mathcal{A}\left(s^{\prime}\right)} \pi\left(a|S^{\prime}\right) q\left(S^{\prime}, a\right)$
     4. （更新价值）更新 $q(S, A)$ 以减小 $[U-q(S, A)]^{2}$ （如 $q(S, A) \leftarrow q(S, A)+\alpha\left[U-q(S, A)\right])$
     5. $S \leftarrow S^{\prime}$
 
@@ -703,13 +703,13 @@ $$
 时序差分策略评估也可以与重要性采样结合，进行异策的策略评估和最优策略求解．对于 $n$ 步时序差分评估策略的动作价值和 SARSA 算法，其时序差分目标 $U_{t:t+n}^{(q)}$ 依赖于轨迹 $\mathrm{S}_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}, A_{t+n}$ ．在给定 $S_{t}, A_{t}$ 的情况下，采用策略 $\pi$ 和另外的行为策略 $b$ 生成这个轨迹的概率分别为：
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} \pi\left(A_{\tau} \mid S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1} \mid S_{\tau}, A_{\tau}\right) \\
-\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} b\left(A_{\tau} \mid S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1} \mid S_{\tau}, A_{\tau}\right)
+\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
+\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
 $$
 它们的比值就是重要性采样比率：
 $$
-\rho_{t+1:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}, A_{t}\right]}{\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}, A_{t}\right]}=\prod_{\tau=t+1}^{t+n-1} \frac{\pi\left(A_{\tau} \mid S_{\tau}\right)}{b\left(A_{\tau} \mid S_{\tau}\right)}
+\rho_{t+1:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}{\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}=\prod_{\tau=t+1}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
 $$
 也就是说，通过行为策略 $b$ 拿到的估计，在原策略 $\pi$ 出现的概率是在策略 $b$ 中出现概率的 $\rho_{t+1:t+n-1}$ 倍．所以，在学习过程中，这样的时序差分目标的权重为 $\rho_{t+1:t+n-1}$ ．将这个权重整合到时序差分策略评估动作价值算法或 SARSA算法中，就可以得到它们的重要性采样的版本．算法 3-7 给出了多步时序差分的版本，单步版本请自行整理．
 
@@ -724,11 +724,11 @@ $$
  2.1 （行为策略）指定行为策略 $b$ ，使得 $\pi \ll b$  
  2.2 （生成 $n$ 步）用策略 $b$ 生成轨迹 $S_{0}, A_{0}, R_{1}, \ldots, R_{n}, S_{n}$ （若遇到终止状态，则令后续奖励均为 0 , 状态均为 $S_{\text {终止}}$ ）  
  2.3 对于 $t=0,1,2, \ldots$ 依次执行以下操作，直到 $S_{t}=S_{\text{终止}}$ ：
-    1. 若 $S_{t+n} \neq S_{\text{终止}}$ ，则根据 $\pi\left(\cdot \mid S_{t+n}\right)$ 决定动作 $A_{t+n}
+    1. 若 $S_{t+n} \neq S_{\text{终止}}$ ，则根据 $\pi\left(\cdot|S_{t+n}\right)$ 决定动作 $A_{t+n}
     2. （更新时序差分目标 $U_{t:t+n}^{(q)}$ ） $U\leftarrow R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} q\left(S_{t+n}, A_{i+n}\right)$
-    3. （计算重要性采样比率 $\rho_{t+1:t+n-1}$）$\rho \leftarrow \prod_{\tau=t+1}^{\min \{t+n, T\}-1} \frac{\pi\left(A_{\tau} \mid S_{\tau}\right)}{b\left(A_{\tau} \mid S_{\tau}\right)}$
+    3. （计算重要性采样比率 $\rho_{t+1:t+n-1}$）$\rho \leftarrow \prod_{\tau=t+1}^{\min \{t+n, T\}-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}$
     4. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[U-q\left(S_{t}, A_{t}\right)\right]^{2}$
-    5. （更新策略）如果是最优策略求解算法，需要根据 $q(S, \cdot)$ 修改 $\pi(. \mid S)$
+    5. （更新策略）如果是最优策略求解算法，需要根据 $q(S, \cdot)$ 修改 $\pi(.|S)$
     6. 若 $S_{t+n} \neq S_{\text {终止 }}$ ，则执行 $A_{t+n}$ ，得到奖励 $R_{t+n+1}$ 和下一状态 $S_{t+n+1}$ ；若 $S_{t+n}=S_{\text {终止}}$ ，则令$R_{t+n+1} \leftarrow 0, \quad S_{t+n+1} \leftarrow S_{\text{终止}}$ ．
 
 ***********************
@@ -736,18 +736,18 @@ $$
 我们可以用类似的方法将重要性采样运用于时序差分状态价值估计和期望 SARSA 算法中．具体而言，考虑从 $t$ 开始的 $n$ 步轨迹 $S_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}$ ．在给定 $S_{t}$ 的条件下，采用策略 $\pi$ 和策略 $b$ 生成这个轨迹的概率分别为:
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}\right]=\prod_{\tau=t}^{t+n-1} \pi\left(A_{\tau} \mid S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1} \mid S_{\tau}, A_{\tau}\right) \\
-\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}\right]=\prod_{\tau=t}^{t+n-1} b\left(A_{\tau} \mid S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1} \mid S_{\tau}, A_{\tau}\right)
+\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
+\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
 $$
 它们的比值就是时序差分状态评估和期望 SARSA 算法用到的重要性采样比率:
 $$
-\rho_{t:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}\right]}{\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n} \mid S_{t}\right]}=\prod_{\tau=t}^{t+n-1} \frac{\pi\left(A_{\tau} \mid S_{\tau}\right)}{b\left(A_{\tau} \mid S_{\tau}\right)}
+\rho_{t:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}{\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}=\prod_{\tau=t}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
 $$
 
 #### 3.2.2 Q学习
 
-3.1.3 节的期望 SARSA 算法将时序差分目标从 SARSA 算法的 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ 改为 $U_{t}=R_{t+1}+\gamma \mathrm{E}\left[q\left(S_{t+1}, A_{t+1}\right) \mid S_{t+1}\right]$ ，从而避免了偶尔出现的不当行为给整体结果带来的负面影响． Q 学习则是从改进后策略的行为出发，将时序差分目标改为
+3.1.3 节的期望 SARSA 算法将时序差分目标从 SARSA 算法的 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ 改为 $U_{t}=R_{t+1}+\gamma \mathrm{E}\left[q\left(S_{t+1}, A_{t+1}\right)|S_{t+1}\right]$ ，从而避免了偶尔出现的不当行为给整体结果带来的负面影响． Q 学习则是从改进后策略的行为出发，将时序差分目标改为
 $$
 U_{t}=R_{t+1}+\gamma \max _{a \in \mathcal{A}\left(S_{i+1}\right)} q\left(S_{t+1}, a\right)
 $$
@@ -826,3 +826,91 @@ $\lambda$ 回报 $U_{t}^{\lambda}$ 可以看作是回合更新中的目标 $G_{t
 由于离线 $\lambda$ 回报算法使用的目标在 $G_{t}$ 和 $U_{t t+1}$ 间做了折中，所以离线 $\lambda$ 回报算法的效果可能比回合更新和单步时序差分更新都要好．但是，离线 $\lambda$ 回报算法也有明显的缺点:
 其一，它只能用于回合制任务，不能用于连续性任务；其二，在回合结束后要计算 $U_{t}^{\lambda}$ $(t=0,1, \ldots, T-1)$ ，计算量巨大．在下一节我们将采用资格迹来弥补这两个缺点．
 
+#### 3.3.2 TD（$\lambda$）
+
+TD ($\lambda$) 是历史上具有重要影响力的强化学习算法，在离线 $\lambda$ 回报算法的基础上改进而来．以基于动作价值的算法为例，在离线 $\lambda$ 回报算法中，对任意的 $n=1,2, \ldots$ ，在更新 $q\left(S_{t-n}, A_{t-n}\right)\left(\right.$ 或 $\left.v\left(S_{t-n}\right)\right)$ 时，时序差分目标 $U_{t-n:t}$ 的权重是 $(1-\lambda) \lambda^{n-1}$ ．虽然需要等到回合结束才能计算 $U_{t-n}^{\lambda}$ ，但是在知道 $\left(S_{t}, A_{t}\right)$ 后就能计算 $U_{t-n t}$ ．所以我们在知道 $\left(S_{t}, A_{i}\right)$ 后，就可
+以用 $q\left(S_{t}, A_{\imath}\right)$ 去更新所有的 $q\left(S_{\tau}, A_{\tau}\right)(\tau=0,1, \ldots, t-1)$ ，并且更新的权重与 $\lambda^{t-\tau}$ 成正比．
+
+据此，给定轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, A_{1}, R_{2}, \ldots$ ，可以引入资格迹 $e_{t}(s, a), s \in \mathcal{S}, a \in \mathcal{A}(s)$ 来表示第 $t$ 步的状态动作对 $\left(S_{t}, A_{t}\right)$ 的单步自益结果 $U_{t:t+1}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ 对每个状态动作对 $(s, a)$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 需要更新的权重．**资格迹**（eligibility）用下列递推式定义：当 $t=0$ 时，
+$$
+e_{0}(s, a)=0, s \in \mathcal{S}, a \in \mathcal{A}
+$$
+当 $t>0$ 时，
+$$
+e_{t}(s, a)=\left\{\begin{array}{ll}
+1+\beta \gamma \lambda e_{t-1}(s, a), & S_{t}=s, A_{t}=a \\
+\gamma \lambda e_{t-1}(s, a), & \text { 其他 }
+\end{array}\right.
+$$
+其中 $\beta \in[0,1]$ 是事先给定的参数．资格迹的表达式应该这么理解：对于历史上的某个状念动作对 $\left(S_{\tau}, A_{\tau}\right)$ ，距离第 $t$ 步间隔了 $t-\tau$ 步， $U_{\tau t}$ 在 $\lambda$ 回报 $U_{\tau}^{\lambda}$ 中的权重为 $(1-\lambda) \lambda^{t-\tau-1}$ ，并且 $U_{\tau :s}=R_{\tau+1}+\cdots+\gamma^{t-\tau-1} U_{t-1:t}$ ，所以 $U_{t-1:t}$ 是以 $(1-\lambda)(\lambda \gamma)^{t-\tau-1}$ 的比率折算到 $U_{\tau}^{\lambda}$ 中．间隔的步数每增加一步，原先的资格迹大致需要衰减为 $\gamma \lambda$ 倍．对当前最新出现的状态动作对 $\left(S_{t}, A_{1}\right)$ ，大的更新权重则要进行某种强化．强化的强度 $\beta$ 常有以下取值：
+
+- $\beta=1$, 这时的资格迹称为**累积迹**（accumulating trace）
+- $\beta=1-\alpha$ （其中 $\alpha$ 是学习率）,这时的资格迹称为**荷兰迹**（dutch trace)
+- $\beta=0$ ，这时的资格迹称为**替换迹**（replacing trace）．
+
+当 $\beta=1$ 时，直接将其资格迹加 1 ；当 $\beta=0$ 时，资格迹总是取值在 $[0,1]$ 范围内，所以让其资格迹直接等于 1 也实现了增加，只是增加的幅度没有 $\beta=1$ 时那么大；当 $\beta \in(0,1)$ 时，增加的幅度在 $\beta=0$ 和 $\beta=1$ 之间．
+
+![不同资格迹](img/1.jpg)
+
+利用资格迹，可以得到 $\mathrm{TD}(\lambda)$ 策略评估算法．算法 3-10 给出了用 $\mathrm{TD}(\lambda)$ 评估动作价值的算法．它是在单步时序差分的基础上，加入资格迹来实现的．资格迹也可以和最优策略求解算法结合，例如和 $\mathrm{SARSA}$ 算法结合得到 $\operatorname{SARSA}(\lambda)$ 算法．算法 3-10 中如果没有策略输入，在选择动作时按照当前动作价值来选择最优动作，就是 $\operatorname{SARSA}(\lambda)$ 算法．
+
+>**算法 3-10** $\quad \mathrm{TD}(\lambda)$ 的动作价值评估或 $\operatorname{SARSA}(\lambda)$ 学习
+***********************
+
+输入：环境（无数学描述），若评估动作价值则需输入策略 $\pi$ ．  
+输出：动作价值估计 $q(s, a), s \in \mathcal{S}, a \in \mathcal{A}$  
+参数：资格迹参数 $\beta$ ，优化器（隐含学习率 $\alpha$ )，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数
+
+1. （初始化）初始化价值估计 $q(s, a) \leftarrow$ 任意值， $s \in \mathcal{S}, a \in \mathcal{A}$ ．如果有终止状态，令 $q\left(s_{\text {终止 }}, a\right) \leftarrow 0, a \in \mathcal{A}$
+2. 对每个回合执行以下操作：  
+ 2.1 （初始化资格迹） $e(s, a) \leftarrow 0, s \in \mathcal{S}, a \in \mathcal{A}$  
+ 2.2 （初始化状态动作对）选择状态 $S$ ，再根据输入策略 $\pi$ 确定动作 $A$  
+ 2.3 如果回合未结東（比如未达到最大步数、S不是终止状态)，执行以下操作:
+    1. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
+    2. 根据输入策略 $\pi\left(\cdot|S^{\prime}\right)$ 或是迭代的最优价值函数 $q\left(S^{\prime}, \cdot\right)$ 确定动作 $A^{\prime}$
+    3. （更新资格迹） $e(s, a) \leftarrow \gamma \lambda e(s, a), s \in \mathcal{S}, a \in \mathcal{A}(s), e(S, A) \leftarrow 1+\beta e(S, A)$
+    4. （计算回报的估计值） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime}\right)$
+    5. （更新价值） $q(s, a) \leftarrow q(s, a)+\alpha e(s, a)[U-q(S, A)], s \in \mathcal{S}, a \in \mathcal{A}(s)$
+    6. 若 $S^{\prime}=S_{\text {终止 }}$ ，则退出 2.2 步；否则 $S \leftarrow S^{\prime}, A \leftarrow A^{\prime}$．
+
+***********************
+
+资格迹也可以用于状态价值．给定轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, A_{1}, R_{2}, \ldots$ ，资格迹 $e_{t}(s), s \in \mathcal{S}$ 来表示第 $t$ 步的状态动作对 $S_{t}$ 对的单步自益结果 $U_{t:t+1}=R_{t+1}+\gamma v\left(S_{t+1}\right)$ 对每个状态 $s(s \in \mathcal{S})$ 需要更新的权重，其定义为：当 $t=0$ 时，
+$$
+e_{0}(s)=0, s \in \mathcal{S}
+$$
+当 $t>0$ 时，
+$$
+e_{t}(s)=\left\{\begin{array}{ll}
+1+\beta \gamma \lambda e_{t-1}(s), & S_{t}=s \\
+\gamma \lambda e_{t-1}(s), & \text { 其他. }
+\end{array}\right.
+$$
+算法 3-11 给出了用资格迹评估策略状态价值的算法．
+
+>**算法 5-14** $\quad \operatorname{TD}(\lambda)$ 更新评估策略的状态价值
+***********************
+
+输入：环境（无数学描述）、策略 $\pi$  
+输出：状态价值函数 $v(s), s \in \mathcal{S}$  
+参数：资格迹参数 $\beta$ ，优化器（隐含学习率 $\alpha$ )，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数
+
+1. （初始化）初始化价值 $v(s) \leftarrow$ 任意值， $s \in \mathcal{S}$ ．如果有终止状态， $v\left(S_{\text {终止 }}\right) \leftarrow 0$
+2. 对每个回合执行以下操作:  
+ 2.1 （初始化资格迹） $e(s) \leftarrow 0, s \in \mathcal{S}$  
+ 2.2 （初始化状态）选择状态 S．  
+ 2.3 如果回合未结東（比如未达到最大步数、 $S$ 不是终止状态），执行以下操作:
+    1. 根据输入策略 $\pi$ 确定动作 $A$
+    2. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
+    3. （更新资格迹） $e(s) \leftarrow \gamma \lambda e(s), s \in \mathcal{S}, e(S) \leftarrow 1+\beta e(S)$
+    4. （计算回报的估计值） $U \leftarrow R+\gamma v\left(S^{\prime}\right)$
+    5. （更新价值） $v(s) \leftarrow v(s)+\alpha e(s)[U-v(S)], s \in \mathcal{S}$
+    6. $S \leftarrow S^{\prime}$
+
+***********************
+
+$\mathrm{TD}(\lambda)$ 算法与离线 $\lambda$ 回报算法相比，具有三大优点：
+
+- $\mathrm{TD}(\lambda)$ 算法既可以用于回合制任务，又可以用于连续性任务
+- $\mathrm{TD}(\lambda)$ 算法在每一步都更新价值估计，能够及时反映变化
+- $\mathrm{TD}(\lambda)$ 算法在每一步都有均匀的计算，而且计算量都较小
