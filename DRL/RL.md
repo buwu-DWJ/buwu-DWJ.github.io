@@ -820,16 +820,16 @@ $$
 $$
 U_{t}^{\lambda}=(1-\lambda) \sum_{n=1}^{T-t-1} \lambda^{n-1} U_{t:t+n}+\lambda^{T-t-1} G_{t}
 $$
-$\lambda$ 回报 $U_{t}^{\lambda}$ 可以看作是回合更新中的目标 $G_{t}$ 和单步时序差分目标 $U_{t:t+1}$ 的推广：当 $\lambda=1$ 时， $U_{t}^{1}=G_{1}$ 就是回合更新的回报；当 $\lambda=0$ 时， $U_{t}^{0}=U_{t:t+1}$ 就是单步时序差分目标．
+$\lambda$ 回报 $U_{t}^{\lambda}$ 可以看作是回合更新中的目标 $G_{t}$ 和单步时序差分目标 $U_{t:t+1}$ 的推广：当 $\lambda=1$ 时， $U_{t}^{1}=G_{t}$ 就是回合更新的回报；当 $\lambda=0$ 时， $U_{t}^{0}=U_{t:t+1}$ 就是单步时序差分目标．
 
 **离线 $\lambda$ 回报算法**（ offline $\lambda$ -return algorithm ）则是在更新价值（如动作价值 $q\left(S_{t}, A_{t}\right)$ 或状态价值 $\left.v\left(S_{t}\right)\right)$ 时，用 $U_{t}^{\lambda}$ 作为目标，试图减小 $\left[U_{t}^{\lambda}-q\left(S_{t}, A_{t}\right)\right]^{2}$ 或 $\left[U_{t}^{\lambda}-v\left(S_{t}\right)\right]^{2}$ ．它与回合更新算法相比，只是将更新的目标从 $G_{t}$ 换为了 $U_{t}^{\lambda}$ ．对于回合制任务，在回合结束后为每一步 $t=0,1,2, \ldots$ 计算 $U_{t}^{\lambda}$ ，并统一更新价值．因此，这样的算法称为离线算法（ offline algorithm ）．对于连续性任务，没有办法计算 $U_{t}^{\lambda}$ ，所以无法使用离线 $\lambda$ 算法．
 
-由于离线 $\lambda$ 回报算法使用的目标在 $G_{t}$ 和 $U_{t t+1}$ 间做了折中，所以离线 $\lambda$ 回报算法的效果可能比回合更新和单步时序差分更新都要好．但是，离线 $\lambda$ 回报算法也有明显的缺点:
+由于离线 $\lambda$ 回报算法使用的目标在 $G_{t}$ 和 $U_{t:t+1}$ 间做了折中，所以离线 $\lambda$ 回报算法的效果可能比回合更新和单步时序差分更新都要好．但是，离线 $\lambda$ 回报算法也有明显的缺点:
 其一，它只能用于回合制任务，不能用于连续性任务；其二，在回合结束后要计算 $U_{t}^{\lambda}$ $(t=0,1, \ldots, T-1)$ ，计算量巨大．在下一节我们将采用资格迹来弥补这两个缺点．
 
 #### 3.3.2 TD（$\lambda$）
 
-TD ($\lambda$) 是历史上具有重要影响力的强化学习算法，在离线 $\lambda$ 回报算法的基础上改进而来．以基于动作价值的算法为例，在离线 $\lambda$ 回报算法中，对任意的 $n=1,2, \ldots$ ，在更新 $q\left(S_{t-n}, A_{t-n}\right)\left(\right.$ 或 $\left.v\left(S_{t-n}\right)\right)$ 时，时序差分目标 $U_{t-n:t}$ 的权重是 $(1-\lambda) \lambda^{n-1}$ ．虽然需要等到回合结束才能计算 $U_{t-n}^{\lambda}$ ，但是在知道 $\left(S_{t}, A_{t}\right)$ 后就能计算 $U_{t-n t}$ ．所以我们在知道 $\left(S_{t}, A_{t}\right)$ 后，就可
+TD ($\lambda$) 是历史上具有重要影响力的强化学习算法，在离线 $\lambda$ 回报算法的基础上改进而来．以基于动作价值的算法为例，在离线 $\lambda$ 回报算法中，对任意的 $n=1,2, \ldots$ ，在更新 $q\left(S_{t-n}, A_{t-n}\right)\left(\right.$ 或 $\left.v\left(S_{t-n}\right)\right)$ 时，时序差分目标 $U_{t-n:t}$ 的权重是 $(1-\lambda) \lambda^{n-1}$ ．虽然需要等到回合结束才能计算 $U_{t-n}^{\lambda}$ ，但是在知道 $\left(S_{t}, A_{t}\right)$ 后就能计算 $U_{t-n:t}$ ．所以我们在知道 $\left(S_{t}, A_{t}\right)$ 后，就可
 以用 $q\left(S_{t}, A_{\imath}\right)$ 去更新所有的 $q\left(S_{\tau}, A_{\tau}\right)(\tau=0,1, \ldots, t-1)$ ，并且更新的权重与 $\lambda^{t-\tau}$ 成正比．
 
 据此，给定轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, A_{1}, R_{2}, \ldots$ ，可以引入资格迹 $e_{t}(s, a), s \in \mathcal{S}, a \in \mathcal{A}(s)$ 来表示第 $t$ 步的状态动作对 $\left(S_{t}, A_{t}\right)$ 的单步自益结果 $U_{t:t+1}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ 对每个状态动作对 $(s, a)$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 需要更新的权重．**资格迹**（eligibility）用下列递推式定义：当 $t=0$ 时，
@@ -843,7 +843,7 @@ e_{t}(s, a)=\left\{\begin{array}{ll}
 \gamma \lambda e_{t-1}(s, a), & \text { 其他 }
 \end{array}\right.
 $$
-其中 $\beta \in[0,1]$ 是事先给定的参数．资格迹的表达式应该这么理解：对于历史上的某个状念动作对 $\left(S_{\tau}, A_{\tau}\right)$ ，距离第 $t$ 步间隔了 $t-\tau$ 步， $U_{\tau t}$ 在 $\lambda$ 回报 $U_{\tau}^{\lambda}$ 中的权重为 $(1-\lambda) \lambda^{t-\tau-1}$ ，并且 $U_{\tau :s}=R_{\tau+1}+\cdots+\gamma^{t-\tau-1} U_{t-1:t}$ ，所以 $U_{t-1:t}$ 是以 $(1-\lambda)(\lambda \gamma)^{t-\tau-1}$ 的比率折算到 $U_{\tau}^{\lambda}$ 中．间隔的步数每增加一步，原先的资格迹大致需要衰减为 $\gamma \lambda$ 倍．对当前最新出现的状态动作对 $\left(S_{t}, A_{1}\right)$ ，大的更新权重则要进行某种强化．强化的强度 $\beta$ 常有以下取值：
+其中 $\beta \in[0,1]$ 是事先给定的参数．资格迹的表达式应该这么理解：对于历史上的某个状念动作对 $\left(S_{\tau}, A_{\tau}\right)$ ，距离第 $t$ 步间隔了 $t-\tau$ 步， $U_{\tau:t}$ 在 $\lambda$ 回报 $U_{\tau}^{\lambda}$ 中的权重为 $(1-\lambda) \lambda^{t-\tau-1}$ ，并且 $U_{\tau :t}=R_{\tau+1}+\cdots+\gamma^{t-\tau-1} U_{t-1:t}$ ，所以 $U_{t-1:t}$ 是以 $(1-\lambda)(\lambda \gamma)^{t-\tau-1}$ 的比率折算到 $U_{\tau}^{\lambda}$ 中．间隔的步数每增加一步，原先的资格迹大致需要衰减为 $\gamma \lambda$ 倍．对当前最新出现的状态动作对 $\left(S_{t}, A_{1}\right)$ ，大的更新权重则要进行某种强化．强化的强度 $\beta$ 常有以下取值：
 
 - $\beta=1$, 这时的资格迹称为**累积迹**（accumulating trace）
 - $\beta=1-\alpha$ （其中 $\alpha$ 是学习率）,这时的资格迹称为**荷兰迹**（dutch trace)
