@@ -394,27 +394,27 @@ TODO:起始探索与柔性策略
 策略 $\pi$ 和策略 $b$ 生成这个轨迹的概率分别为：
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right] \\
+\operatorname{\mathbb{P}}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right] \\
 \quad=\pi\left(A_t|S_{t}\right) p\left(S_{t+1}, R_{t+1}|S_{t}, A_{t}\right) \pi\left(A_{t+1}|S_{t+1}\right) \cdots p\left(S_{T}, R_{T}|S_{T-1}, A_{T-1}\right) \\
 \quad=\prod_{\tau=t}^{T-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{T-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{r}, A_{r}\right), \\
-\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right] \\
+\operatorname{\mathbb{P}}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right] \\
 =b\left(A_{t}|S_{t}\right) p\left(S_{t+1}, R_{t+1}|S_{t}, A_{t}\right) b\left(A_{t+1}|S_{t+1}\right) \cdots p\left(S_{T}, R_{T}|S_{T-1}, A_{T-1}\right) \\
 =\prod_{\tau=t}^{T-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{T-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
 $$
 我们把这两个概率的比值定义为**重要性采样比率** (importance sample ratio)：
 $$
-\rho_{t:T-1}=\frac{\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right]}{\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right]}=\prod_{\tau=t}^{T-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
+\rho_{t:T-1}=\frac{\operatorname{\mathbb{P}}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right]}{\operatorname{\mathbb{P}}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}\right]}=\prod_{\tau=t}^{T-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
 $$
 这个比率只与轨迹和策略有关，而与动力无关．为了让这个比率对不同的轨迹总是有意义，我们需要使得任何满足 $\pi(a|s)>0$ 的 $s \in \mathcal{S}, a \in \mathcal{A}(s)$ ，均有 $b(a|s)>0$ 这样的关系可以记为$\pi \ll b$.
 
 对于给定状态动作对 $\left(S_{t}, A_{t}\right)$ 的条件概率也有类似的分析．在给定 $\left(S_{t}, A_{t}\right)$ 的条件下，采用策略 $\pi$ 和策略 $b$ 生成这个轨迹的概率分别为：
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}, A_{t}\right] \\
+\operatorname{\mathbb{P}}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}, A_{t}\right] \\
 \quad=p\left(S_{t+1}, R_{t+1}|S_{t}, A_{t}\right) \pi\left(A_{t+1}|S_{t+1}\right) \cdots p\left(S_{T}, R_{T}|S_{T-1}, A_{T-1}\right) \\
 \quad=\prod_{\tau=t+1}^{T-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{T-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
-\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}, A\right] \\
+\operatorname{\mathbb{P}}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}|S_{t}, A\right] \\
 \quad=p\left(S_{t+1}, R_{t+1}|S_{t}, A_t\right) b\left(A_{t+1}|S_{t+1}\right) \cdots p\left(S_{T}, R_{T}|S_{T-1}, A_{T-1}\right) \\
 \quad=\prod_{\tau=t+1}^{T-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{T-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
@@ -457,7 +457,7 @@ $$
  2.3 （初始化回报和权重） $G \leftarrow 0, \rho \leftarrow 1$  
  2.4 对于 $t \leftarrow T-1, T-2, \ldots, 0$ 执行以下操作：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{1}\right) \leftarrow c\left(S_{t}, A\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
+    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_t\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
     3. （更新权重） $\rho \leftarrow \rho \frac{\pi\left(A_{t}|S_{t}\right)}{b\left(A_{t}|S_{t}\right)}$
     4. （提前终止）如果 $\rho=0$ ，则结東步骤 2.4 的循环
 
@@ -497,7 +497,7 @@ $\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$．
 
 本节考虑无模型同策时序差分更新．与无模型回合更新的情况相同，在无模型的情况下动作价值比状态价值更为重要，因为动作价值能够决定策略和状态价值，但是状态价值得不到动作价值．
 
-本节考虑无模型同策时序差分更新。与无模型回合更新的情况相同，在无模型的情 下动作价值比状态价值更为重要，因为动作价值能够决定策略和状态价值，但是状态价倍 得不到动作价值。
+本节考虑无模型同策时序差分更新。与无模型回合更新的情况相同，在无模型的情况下动作价值比状态价值更为重要，因为动作价值能够决定策略和状态价值，但是状态价值得不到动作价值。
 从给定策略 $\pi$ 的情况下动作价值的定义出发，我们可以得到下式:
 $$
 \begin{aligned}
@@ -506,7 +506,7 @@ q_{\pi}(s, a) &=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{t}=a\right] \\
 &=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=s, A_{1}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
 \end{aligned}
 $$
-在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{1}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{i+1}\right)|S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
+在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{1}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
 
 基于以上分析，我们可以定义时序差分目标．时序差分目标可以针对动作价值定义，也可以针对状态价值定义．对于动作价值，其单步时序差分目标定义为
 $$
@@ -604,7 +604,7 @@ $$
 $$
 使用回合更新得到的状态价值估计值为 $v\left(s_{A}\right)=\frac{2}{5}, v\left(s_{B}\right)=0$ ，而使用时序差分更新得到的状态价值估计值为 $v\left(s_{A}\right)=v\left(s_{B}\right)=\frac{2}{5}$ ．这两种方法对 $v\left(s_{A}\right)$ 的估计是一样的，但是对于 $v\left(s_{B}\right)$ 的估计有明显不同：回合更新只考虑其中两个含有 $s_{B}$ 的轨迹样本，用这两个轨迹样本回报来估计状态价值；时序差分更新认为状态 $s_{B}$ 下一步肯定会到达状态 $s_{A}$ ，所以可以利用全部轨迹样本来估计 $v\left(s_{A}\right)$ ，进而由 $v\left(s_{A}\right)$ 推出 $v\left(s_{B}\right)$ ．试想，如果这个环境真的是 Markov 决策过程，并且我们正确地识别出了状态空间 $\mathcal{S}=\left\{s_{A}, s_{B}\right\}$ ，那么时序差分更新方法可以用更多的轨迹样本来帮助估计 $s_{B}$ 的状态价值，这样可以更好地利用现有的样本得到更精确的估计．但是，如果这个环境其实并不是 Markov 决策过程，或是 $\left\{s_{A}, s_{B}\right\}$ 并不是其真正的状态空间．那么也有可能 $s_{A}$ 之后获得的奖励值其实和这个轨迹是否到达过 $s_{B}$ 有关，例如如果达到过 $s_B$ 则奖励总是为 0 ．这种情况下，回合更新能够不受到这一错误的影响，只采用正确的信息，从而不受无关信息的干扰，得到正确的估计．这个例子比较了回合更新和时序差分更新的部分利弊。
 
-接下来看如何用多步时序差分目标来评估策略价值．算法 3-3 和算法 3-4 分别给出了用多步时序差分评估动作价值和状态价值的算法．实际实现时，可以让 $S_{t}, A_{4}, R_{,}$ 和 $S_{t+n+1}, A_{t+n+1}, R_{t+n+1}$ 共享同一存储空间，这样只需要 $n+1$ 份存储空间．
+接下来看如何用多步时序差分目标来评估策略价值．算法 3-3 和算法 3-4 分别给出了用多步时序差分评估动作价值和状态价值的算法．实际实现时，可以让 $S_{t}, A_{t}, R_{,}$ 和 $S_{t+n+1}, A_{t+n+1}, R_{t+n+1}$ 共享同一存储空间，这样只需要 $n+1$ 份存储空间．
 
 >**算法 3-3** $\quad n$ 步时序差分更新评估策略的动作价值  
 ***********************
@@ -649,6 +649,8 @@ $$
 
 >**算法 3-5** $\quad$SARSA 算法求解最优策略（显式更新策略）
 ***********************
+**与 Q-learning 区别在于，SARSA 每次算得的 $a^{\prime}$ 在下一步会使用，也就是这一步通过 Q 函数预测得到的下一步采取的动作 $a^{\prime}$ 也是在下一步更新时真正使用的，而 Q-learning 在下一步更新时的 $a^{\prime}$ 是重新算的（用这一步更新后的 Q 函数算得）**
+
 输入：环境（无数学描述）  
 输出：最优策略估计 $\pi(a|s)(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 和最优动作价值估计 $q(s, a)(s \in \mathcal{S}, a \in \mathcal{A}(s))$  
 参数：优化器（隐含学习率 $\alpha$ ），折扣因子 $\gamma$ ，策略改进的参数（如 $\varepsilon$ ），其他控制回合数和回合步数的参数
@@ -669,10 +671,10 @@ $$
 
 #### 3.1.3 期望SARSA算法
 
-SARSA 算法有一种变化一一期望 SARSA 算法（Expected SARSA）．期望 SARSA算法与 SARSA 算法的不同之处在于，它在估计 $U_{i}$ 时，不使用基于动作价值的时序差分目标 $U_{t+1}^{(q)}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ ，而使用基于状态价值的时序差分目标 $U_{t=1}^{(v)}=R_{t+1}+\gamma v\left(S_{t+1}\right)$ ．利用
+SARSA 算法有一种变化一一期望 SARSA 算法（Expected SARSA）．期望 SARSA算法与 SARSA 算法的不同之处在于，它在估计 $U_{t}$ 时，不使用基于动作价值的时序差分目标 $U_{t+1}^{(q)}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ ，而使用基于状态价值的时序差分目标 $U_{t=1}^{(v)}=R_{t+1}+\gamma v\left(S_{t+1}\right)$ ．利用
 Bellman 方程，这样的目标又可以表示为
 $$
-U_{t}=R_{t+1}+\gamma \sum_{\sigma \in A\left(S_{t+1}\right)} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)
+U_{t}=R_{t+1}+\gamma \sum_{a \in A\left(S_{t+1}\right)} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)
 $$
 与 SARSA 算法相比，期望 SARSA 需要计算 $\sum_{a} \pi\left(a|S_{t+1}\right) q\left(S_{t+1}, a\right)$ ，所以计算量比 SARSA 大．但是，这样的期望运算减小了 SARSA 算法中出现的个别不恰当决策．这样，可以避免在更新后期极个别不当决策对最终效果带来不好的影响．因此，期望 SARSA 常常有比 SARSA 更大的学习率．在很多情况下，期望 SARSA 的效果会比 SARSA 稍微好一些．
 
@@ -702,13 +704,13 @@ $$
 时序差分策略评估也可以与重要性采样结合，进行异策的策略评估和最优策略求解．对于 $n$ 步时序差分评估策略的动作价值和 SARSA 算法，其时序差分目标 $U_{t:t+n}^{(q)}$ 依赖于轨迹 $\mathrm{S}_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}, A_{t+n}$ ．在给定 $S_{t}, A_{t}$ 的情况下，采用策略 $\pi$ 和另外的行为策略 $b$ 生成这个轨迹的概率分别为：
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
-\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
+\operatorname{\mathbb{P}}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
+\operatorname{\mathbb{P}}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]=\prod_{\tau=t+1}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
 $$
 它们的比值就是重要性采样比率：
 $$
-\rho_{t+1:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}{\operatorname{Pr}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}=\prod_{\tau=t+1}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
+\rho_{t+1:t+n-1}=\frac{\operatorname{\mathbb{P}}_{\pi}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}{\operatorname{\mathbb{P}}_{b}\left[R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}, A_{t}\right]}=\prod_{\tau=t+1}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
 $$
 也就是说，通过行为策略 $b$ 拿到的估计，在原策略 $\pi$ 出现的概率是在策略 $b$ 中出现概率的 $\rho_{t+1:t+n-1}$ 倍．所以，在学习过程中，这样的时序差分目标的权重为 $\rho_{t+1:t+n-1}$ ．将这个权重整合到时序差分策略评估动作价值算法或 SARSA算法中，就可以得到它们的重要性采样的版本．算法 3-7 给出了多步时序差分的版本，单步版本请自行整理．
 
@@ -723,7 +725,7 @@ $$
  2.1 （行为策略）指定行为策略 $b$ ，使得 $\pi \ll b$  
  2.2 （生成 $n$ 步）用策略 $b$ 生成轨迹 $S_{0}, A_{0}, R_{1}, \ldots, R_{n}, S_{n}$ （若遇到终止状态，则令后续奖励均为 0 , 状态均为 $S_{\text {终止}}$ ）  
  2.3 对于 $t=0,1,2, \ldots$ 依次执行以下操作，直到 $S_{t}=S_{\text{终止}}$ ：
-    1. 若 $S_{t+n} \neq S_{\text{终止}}$ ，则根据 $\pi\left(\cdot|S_{t+n}\right)$ 决定动作 $A_{t+n}
+    1. 若 $S_{t+n} \neq S_{\text{终止}}$ ，则根据 $\pi\left(\cdot|S_{t+n}\right)$ 决定动作 $A_{t+n}$
     2. （更新时序差分目标 $U_{t:t+n}^{(q)}$ ） $U\leftarrow R_{t+1}+\gamma R_{t+2}+\cdots+\gamma^{n-1} R_{t+n}+\gamma^{n} q\left(S_{t+n}, A_{i+n}\right)$
     3. （计算重要性采样比率 $\rho_{t+1:t+n-1}$）$\rho \leftarrow \prod_{\tau=t+1}^{\min \{t+n, T\}-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}$
     4. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[U-q\left(S_{t}, A_{t}\right)\right]^{2}$
@@ -735,13 +737,13 @@ $$
 我们可以用类似的方法将重要性采样运用于时序差分状态价值估计和期望 SARSA 算法中．具体而言，考虑从 $t$ 开始的 $n$ 步轨迹 $S_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}$ ．在给定 $S_{t}$ 的条件下，采用策略 $\pi$ 和策略 $b$ 生成这个轨迹的概率分别为:
 $$
 \begin{array}{l}
-\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
-\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
+\operatorname{\mathbb{P}}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} \pi\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right) \\
+\operatorname{\mathbb{P}}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]=\prod_{\tau=t}^{t+n-1} b\left(A_{\tau}|S_{\tau}\right) \prod_{\tau=t}^{t+n-1} p\left(S_{\tau+1}, R_{\tau+1}|S_{\tau}, A_{\tau}\right)
 \end{array}
 $$
 它们的比值就是时序差分状态评估和期望 SARSA 算法用到的重要性采样比率:
 $$
-\rho_{t:t+n-1}=\frac{\operatorname{Pr}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}{\operatorname{Pr}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}=\prod_{\tau=t}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
+\rho_{t:t+n-1}=\frac{\operatorname{\mathbb{P}}_{\pi}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}{\operatorname{\mathbb{P}}_{b}\left[A_{t}, R_{t+1}, S_{t+1}, A_{t+1}, \ldots, S_{t+n}|S_{t}\right]}=\prod_{\tau=t}^{t+n-1} \frac{\pi\left(A_{\tau}|S_{\tau}\right)}{b\left(A_{\tau}|S_{\tau}\right)}
 $$
 
 #### 3.2.2 Q学习
@@ -1262,17 +1264,17 @@ $$
 $$
 \begin{aligned}
 \nabla v_{\pi(\theta)}(s) &=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \boldsymbol{\theta})+\sum_{a} \pi(a|s ; \boldsymbol{\theta}) \gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-&=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \boldsymbol{\theta})+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \boldsymbol{\theta}\right] \gamma v_{\pi(\theta)}\left(s^{\prime}\right), \quad s \in \mathcal{S}
+&=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \boldsymbol{\theta})+\sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \boldsymbol{\theta}\right] \gamma v_{\pi(\theta)}\left(s^{\prime}\right), \quad s \in \mathcal{S}
 \end{aligned}
 $$
 在策略 $\pi(\theta)$ 下，对 $S_{t}$ 求上式的期望，有
 $$
 \begin{array}{l}
 \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{t}\right)\right] \\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \nabla v_{\pi(\theta)}(s)\\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right]\left[\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\gamma \sum_{s} \operatorname{Pr}\left[S_{t+1}=s^{\prime} ; \theta\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+\quad =\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \nabla v_{\pi(\theta)}(s)\\
+\quad =\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right]\left[\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
+\quad =\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+\quad =\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\gamma \sum_{s} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime} ; \theta\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
 \quad =E\left[\sum_{\sigma} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a|S_{t} ; \theta\right)\right]+\gamma E\left[\nabla v_{\pi(\theta)}\left(S_{t+1}\right)\right]
 \end{array}
 $$
@@ -1823,15 +1825,15 @@ $$
 $$
 \nabla v_{\pi(\theta)}(s)=\nabla \pi(s ; \theta)\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, \pi(s ; \theta)\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right), \quad s \in \mathcal{S}
 $$
-对上式求关于 $S_{t}$ 的期望，并考虑到 $p\left(s^{\prime}|s, \pi(s ; \theta)\right)=\operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\theta)\right]$ (其中 $t$ 任取)，有
+对上式求关于 $S_{t}$ 的期望，并考虑到 $p\left(s^{\prime}|s, \pi(s ; \theta)\right)=\operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\theta)\right]$ (其中 $t$ 任取)，有
 $$
 \begin{array}{l}
 E\left[\nabla v_{\pi(\theta)}\left(S_{t}\right)\right] \\
-=\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \nabla v_{\pi(\theta)}\left(S_{t}\right) \\
-=\sum_{s} \operatorname{Pr}\left[S_{t}=s\right]\left[\nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, \pi(s ; \theta)\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
-=\sum_{s} \operatorname{Pr}\left[S_{t}=s\right]\left[\nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
-=\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-=\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime} ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+=\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \nabla v_{\pi(\theta)}\left(S_{t}\right) \\
+=\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right]\left[\nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, \pi(s ; \theta)\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
+=\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right]\left[\nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
+=\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+=\sum_{s} \operatorname{\mathbb{P}}\left[S_{t}=s\right] \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}+\gamma \sum_{s^{\prime}} \operatorname{\mathbb{P}}\left[S_{t+1}=s^{\prime} ; \pi(\boldsymbol{\theta})\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
 =\mathrm{E}\left[\nabla \pi(S ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(S, a)\right]_{a=\pi(s ; \theta)}\right]+\gamma \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{t+1}\right)\right],
 \end{array}
 $$
@@ -1857,15 +1859,15 @@ $$
 $$
 其中的期望是针对折扣的状态分布 (discounted state distribution)
 $$
-\rho_{\pi}(s)=\int_{s_{0} \in S} p_{s_{0}}\left(s_{0}\right) \sum_{t=0}^{+\infty} \gamma^{t} \operatorname{Pr}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}
+\rho_{\pi}(s)=\int_{s_{0} \in S} p_{s_{0}}\left(s_{0}\right) \sum_{t=0}^{+\infty} \gamma^{t} \operatorname{\mathbb{P}}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}
 $$
 而言的。（证明：
 $$
 \begin{array}{l}
 \nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\sum_{t=0}^{+\infty} \mathrm{E}\left[\gamma^{t} \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{a} q_{\pi(\theta)}\left(S_{t}, a\right)\right]_{a=\pi\left(S_{t} ; \theta\right)}\right] \\
 =\sum_{t=0}^{+\infty} \int_{s} p_{S_{t}}(s) \gamma^{t} \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi\left(S_{t} ; \theta\right)} \mathrm{d} s \\
-=\sum_{t=0}^{+\infty} \int_{s}\left(\int_{s_{0}} p_{s_{0}}\left(s_{0}\right) \operatorname{Pr}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}\right) \gamma^{t} \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)} \mathrm{d} s \\
-=\int_{s}\left(\int_{s_{0}} p_{s_{0}}\left(s_{0}\right) \sum_{t=0}^{+\infty} \gamma^{t} \operatorname{Pr}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}\right) \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)} \mathrm{d} s \\
+=\sum_{t=0}^{+\infty} \int_{s}\left(\int_{s_{0}} p_{s_{0}}\left(s_{0}\right) \operatorname{\mathbb{P}}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}\right) \gamma^{t} \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)} \mathrm{d} s \\
+=\int_{s}\left(\int_{s_{0}} p_{s_{0}}\left(s_{0}\right) \sum_{t=0}^{+\infty} \gamma^{t} \operatorname{\mathbb{P}}\left[S_{t}=s|S_{0}=s_{0} ; \boldsymbol{\theta}\right] \mathrm{d} s_{0}\right) \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)} \mathrm{d} s \\
 =\int_{s} \rho_{\pi(\theta)}(s) \nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)} \mathrm{d} s \\
 =\mathrm{E}_{\rho_{\pi(\theta)}}\left[\nabla \pi(s ; \boldsymbol{\theta})\left[\nabla_{a} q_{\pi(\theta)}(s, a)\right]_{a=\pi(s ; \theta)}\right]
 \end{array}
