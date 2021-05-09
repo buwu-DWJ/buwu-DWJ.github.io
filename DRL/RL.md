@@ -2028,7 +2028,7 @@ S. Fujimoto 等人在文章 《 Addressing function approximation error in actor
     - （估计回报）为经验估计回报 $U=R+\gamma \min _{i=0,1} q\left(S^{\prime}, A^{\prime} ; w^{(i)}\right)\left(\left(S, A, R, S^{\prime}\right) \in \mathcal{B}\right)$
     - （价值更新）更新 $\mathbf{w}^{(i)}$ 以减小 $\frac{1}{|\mathcal{B}|} \sum_{\left(S, A, R, S^{\prime}\right) \in \mathcal{B}}\left[U-q\left(S, A ; \mathbf{w}^{(i)}\right)\right]^{2}(i=0,1)$
     - （策略更新）在恰当的时机，更新 $\theta$ 以减小 $-\frac{1}{|\mathcal{B}|_{\left(S, A, R, S^{\prime}\right) \in \mathcal{B}}} q\left(S, \pi(S ; \boldsymbol{\theta}) ; \mathbf{w}^{(0)}\right)($ 如 $\boldsymbol{\theta} \leftarrow \left.\boldsymbol{\theta}+\alpha^{(0)} \frac{1}{|\mathcal{B}|} \sum_{\left(S, A, R, S^{\prime}\right) \in \mathcal{B}} \nabla \pi(S ; \boldsymbol{\theta})\left[\nabla_{a} q\left(S, a ; \mathbf{w}^{(0)}\right)\right]_{a=\pi(s ; \theta)}\right)$
-    - （$ 更新目标）在恰当的时机，更新目标网络和目标策略， $\mathbf{w}_{\text {目标 }}^{(i)} \leftarrow\left(1-\alpha_{\text {目标 }}\right)\mathbf{w}_{\text {甘标 }}^{(i)}+\alpha_{\text {目标 }} \mathbf{W}^{(i)}(i=0,1), \quad \boldsymbol{\theta}_{\text {目标 }} \leftarrow\left(1-\alpha_{\text {目标 }}\right) \boldsymbol{\theta}_{\text {目标 }}+\alpha_{\text {目标 }} \boldsymbol{\theta}$．
+    - （更新目标）在恰当的时机，更新目标网络和目标策略， $\mathbf{w}_{\text {目标 }}^{(i)} \leftarrow\left(1-\alpha_{\text {目标 }}\right)\mathbf{w}_{\text {甘标 }}^{(i)}+\alpha_{\text {目标 }} \mathbf{W}^{(i)}(i=0,1), \quad \boldsymbol{\theta}_{\text {目标 }} \leftarrow\left(1-\alpha_{\text {目标 }}\right) \boldsymbol{\theta}_{\text {目标 }}+\alpha_{\text {目标 }} \boldsymbol{\theta}$．
 
 ***********************
 
