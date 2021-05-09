@@ -1103,7 +1103,7 @@ V. Mnih 等在 2013 年发表文章《Playing Atari with deep reinforcement lear
     2. （存储）将经验 $\left(S, A, R, S^{\prime}\right)$ 存入经验库中
     3. （回放）从经验库中选取经验 $\left(S_{i}, A_{t}, R_{i}, S_{i}^{\prime}\right)$
     4. （计算回报的估计值） $U_{i} \leftarrow R_{i}+\gamma \max _{a} q\left(S_{i}^{\prime}, a ; \mathbf{w}\right)$
-    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w \leftarrow w}+\alpha\left[U_{i}-\right.$$\left.\left.q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
+    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w \leftarrow w}+\alpha\left[U_{i}-\right.\left.\left.q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
     6. $S \leftarrow S^{\prime}$
 
 ***********************
@@ -1393,7 +1393,7 @@ $\left.\left(A_{t}|S_{t} ; \theta\right)\right]$
  2.3 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
     2. （更新价值）更新 $\mathbf{w}$ 以减小 $\left[G-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}\left(\right.$ 如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla v\left(S_{t} ; \mathbf{w}\right)\right)$
-    3. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{t}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \gamma^{t}$$\left.\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
+    3. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{t}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \gamma^{t}\left.\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
 
 ***********************
 
@@ -1444,7 +1444,7 @@ $$
  2.3 （初始化回报和权重） $G \leftarrow 0$  
  2.4 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报）$G \leftarrow \gamma G+R_{t+1}$
-    2. （更新策略）更新参数 $\theta$ 以减小 $-\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t}|S_{t} ; \theta\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \frac{1}{b\left(A_{t}|S_{t}\right)}$$\left.\gamma^{t} G \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
+    2. （更新策略）更新参数 $\theta$ 以减小 $-\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t}|S_{t} ; \theta\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \frac{1}{b\left(A_{t}|S_{t}\right)}\left.\gamma^{t} G \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
 
 ***********************
 
@@ -1493,7 +1493,7 @@ $\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$ ，相当于用 $q_{\pi}\
     2. （执行）用 $\pi\left(\cdot|S^{\prime} ; \boldsymbol{\theta}\right)$ 得到动作 $A^{\prime}$
     3. （估计回报） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
     4. （策略改进）更新 $\theta$ 以减小 $-I q(S, A ; \mathbf{w}) \ln \pi(A|S ; \boldsymbol{\theta})\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I q(S, A ; \mathbf{w})$$\nabla \ln \pi(A|S ; \boldsymbol{\theta}))$
-    5. （更新价值）更新 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}\left(\right.$ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-q(S, A ; \mathbf{w})]$$\nabla q(S, A ; w))$
+    5. （更新价值）更新 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}\left(\right.$ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-q(S, A ; \mathbf{w})]\nabla q(S, A ; w))$
     6. （更新累积折扣） $I \leftarrow \gamma I$
     7. （更新状态） $S \leftarrow S^{\prime}, \quad A \leftarrow A^{\prime}$．
 
