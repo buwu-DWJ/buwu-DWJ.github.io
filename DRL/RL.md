@@ -1154,7 +1154,7 @@ D. Horgan 等在 2018 发表文章 《 Distributed prioritized experience replay
     2. （经验存储）将经验 $\left(S, A, R, S^{\prime}\right)$ 存入经验库 $\mathcal{D}$ 中
     3. （经验回放）从经验库 $\mathcal{D}$ 中选取一批经验 $\left(S_{i}, A_{t}, R_{i}, S_{i}^{\prime}\right)(i \in \mathcal{B})$
     4. （计算回报的估计值） $U_{i} \leftarrow R_{i}+\gamma \max _{a} q\left(S_{i}^{\prime}, a ; \mathbf{w}_{\text {目标 }}\right)(i \in \mathcal{B})$
-    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\frac{1}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha \frac{1}{|\mathcal{B}|}$$\left.\sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
+    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\frac{1}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha \frac{1}{|\mathcal{B}|}\left.\sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
     6. $S \leftarrow S^{\prime}$
     7. （更新目标网络）在一定条件下（例如访问本步若千次）更新目标网络的权重 $\mathbf{w}_{\text {目标 }} \leftarrow \mathbf{w}$
 
