@@ -1166,7 +1166,7 @@ D. Horgan 等在 2018 发表文章 《 Distributed prioritized experience replay
 
 第 3 章曾提到 $\mathrm{Q}$ 学习会带来最大化偏差，而双重 $\mathrm{Q}$ 学习却可以消除最大化偏差．基于查找表的双重 Q 学习引入了两个动作价值的估计 $q^{(0)}$ 和 $q^{(1)}$ ，每次更新动作价值时用其中的一个网络确定动作，用确定的动作和另外一个网络来估计回报．
 
-对于深度 Q 学习也有同样的结论．Deepmind 于 2015 年发表论文 $《$ Deep reinforcement learning with double Q-learning 》，将双重 Q 学习用于深度 Q 网络，得到了双重深度 Q 网络（Double Deep Q Network, Double $\mathrm{DQN}$ ）．考虑到深度 Q 网络已经有了评估网络和目标网络两个网络，所以双重深度 Q 学习在估计回报时只需要用评估网络确定动作，用目标网络确定回报的估计即可．所以，只需要将算法 4-10 中的
+对于深度 Q 学习也有同样的结论．Deepmind 于 2015 年发表论文 《 Deep reinforcement learning with double Q-learning 》，将双重 Q 学习用于深度 Q 网络，得到了双重深度 Q 网络（Double Deep Q Network, Double $\mathrm{DQN}$ ）．考虑到深度 Q 网络已经有了评估网络和目标网络两个网络，所以双重深度 Q 学习在估计回报时只需要用评估网络确定动作，用目标网络确定回报的估计即可．所以，只需要将算法 4-10 中的
 $$
 U_{i} \leftarrow R_{i}+\gamma \max _{a} q\left(S_{i}^{\prime}, a ; \mathbf{w}_{\text {目标 }}\right)
 $$
@@ -1176,7 +1176,7 @@ U_{i} \leftarrow R_{i}+\gamma q\left(S_{i}^{\prime}, \arg \max _{a} q\left(S_{i}
 $$
 就得到了带经验回放的双重深度 Q 网络算法．
 
-#### 4.4.4$ 对偶深度 Q 网络
+#### 4.4.4 对偶深度 Q 网络
 
 Z. Wang 等在 2015 年发表论文《Dueling network architectures for deep reinforcement learning 》，提出了一种神经网络的结构——对偶网络（ duel network）．对偶网络理论利用动作价值函数和状态价值函数之差定义了一个新的函数——优势函数（advantage function)：
 $$
