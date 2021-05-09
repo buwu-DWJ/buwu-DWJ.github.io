@@ -1477,7 +1477,7 @@ $\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$ ，相当于用 $q_{\pi}\
 
 根据前述分析，同策执行者 / 评论者算法在更新策略参数 $\theta$ 时也应该试图减小 $-\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ ，只是在计算 $\Psi_{t}$ 时采用了基于自益的回报估计．算法 6-1 给出了在回报估计为 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ ，并取 $\Psi_{1}=\gamma^{\prime} q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 时的同策算法，称为动作价值执行者 / 评论者算法．算法一开始初始化了策略参数和价值参数．虽然算法中写的是可以将这个参数初始化为任意值，但是如果它们是神经网络的参数，还是应该按照神经网络的要求来初始化参数．在迭代过程中有个变量 $I$ ，用来存储策略梯度的表达式中的折扣因子 $\gamma^{t}$ ．在同一回合中，每一步都把这个折扣因子乘上 $\gamma$ ，所以第 $t$ 步就是 $\gamma^{t}$ ．
 
->**算法 8-1**：$\quad$ 动作价值同策执行者 / 评论者算法
+>**算法 6-1**：$\quad$ 动作价值同策执行者 / 评论者算法
 ***********************
 
 输入：环境（无数学描述）
@@ -1492,7 +1492,7 @@ $\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$ ，相当于用 $q_{\pi}\
     1. （采样）根据状态 $S$ 和动作 $A$ 得到奖励 $R$ 和下一状态 $S^{\prime}$
     2. （执行）用 $\pi\left(\cdot|S^{\prime} ; \boldsymbol{\theta}\right)$ 得到动作 $A^{\prime}$
     3. （估计回报） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
-    4. （策略改进）更新 $\theta$ 以减小 $-I q(S, A ; \mathbf{w}) \ln \pi(A|S ; \boldsymbol{\theta})\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I q(S, A ; \mathbf{w})$$\nabla \ln \pi(A|S ; \boldsymbol{\theta}))$
+    4. （策略改进）更新 $\theta$ 以减小 $-I q(S, A ; \mathbf{w}) \ln \pi(A|S ; \boldsymbol{\theta})\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I q(S, A ; \mathbf{w})\nabla \ln \pi(A|S ; \boldsymbol{\theta}))$
     5. （更新价值）更新 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}\left(\right.$ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-q(S, A ; \mathbf{w})]\nabla q(S, A ; w))$
     6. （更新累积折扣） $I \leftarrow \gamma I$
     7. （更新状态） $S \leftarrow S^{\prime}, \quad A \leftarrow A^{\prime}$．
