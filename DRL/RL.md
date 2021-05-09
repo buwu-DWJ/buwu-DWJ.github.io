@@ -320,7 +320,7 @@ $$
  2.2 (初始化回报） $G \leftarrow 0$  
  2.3 (逐步更新）对 $t \leftarrow T-1, T-2, \ldots, 0$ 执行以下步骤
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新动作价值）更新 $q\left(S_{t}, A_{i}\right)$ 以减小 $\left[G-q\left(S_{t}, A_{y}\right)\right]^{2}$ （如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_{1}\right)+1$ ， $\left.q\left(S_{t}, A_{i}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{1}{c\left(S_{i}, A_{i}\right)}\left[G-q\left(S_{t}, A_{1}\right)\right]\right)$．
+    2. （更新动作价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\left[G-q\left(S_{t}, A_{y}\right)\right]^{2}$ （如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_{1}\right)+1$ ， $\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{1}{c\left(S_{i}, A_{t}\right)}\left[G-q\left(S_{t}, A_{1}\right)\right]\right)$．
 
 ***********************
 
@@ -458,7 +458,7 @@ $$
  2.3 （初始化回报和权重） $G \leftarrow 0, \rho \leftarrow 1$  
  2.4 对于 $t \leftarrow T-1, T-2, \ldots, 0$ 执行以下操作：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{i}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{1}\right) \leftarrow c\left(S_{t}, A\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
+    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{1}\right) \leftarrow c\left(S_{t}, A\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
     3. （更新权重） $\rho \leftarrow \rho \frac{\pi\left(A_{t}|S_{t}\right)}{b\left(A_{t}|S_{t}\right)}$
     4. （提前终止）如果 $\rho=0$ ，则结東步骤 2.4 的循环
 
@@ -480,7 +480,7 @@ $\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$．
  2.3 （初始化回报和权重） $G \leftarrow 0, \rho \leftarrow 1$  
  2.4 对 $t \leftarrow T-1, T-2, \ldots, 0:$
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_{i}\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
+    2. （更新价值）更新 $q\left(S_{t}, A_{t}\right)$ 以减小 $\rho\left[G-q\left(S_{t}, A_{t}\right)\right]^{2}\left(\right.$ 如 $c\left(S_{t}, A_{t}\right) \leftarrow c\left(S_{t}, A_{t}\right)+\rho$，$\left.q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\frac{\rho}{c\left(S_{t}, A_{t}\right)}\left[G-q\left(S_{t}, A_{t}\right)\right]\right)$
     3. （策略更新） $\pi\left(S_{t}\right) \leftarrow \arg \max_{a} q\left(S_{t}, a\right)$
     4. （提前终止）若 $A_{t} \neq \pi\left(S_{t}\right)$ 则退出步骤 2.4
     5. （更新权重） $\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$
@@ -503,7 +503,7 @@ $\rho \leftarrow \rho \frac{1}{b\left(A_{t}|S_{t}\right)}$．
 $$
 \begin{aligned}
 q_{\pi}(s, a) &=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{t}=a\right] \\
-&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1}|S_{t}=S, A_{i}=a\right] \\
+&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1}|S_{t}=S, A_{t}=a\right] \\
 &=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=s, A_{1}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
 \end{aligned}
 $$
@@ -544,7 +544,7 @@ $$
 $$
 q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\alpha\left[G_{t}-q\left(S_{t}, A_{t}\right)\right]
 $$
-的增量更新来学习动作价值函数，试图减小 $\left[G_{t}-q\left(S_{t}, A_{i}\right)\right]^{2}$ ．在这个式子中， $G_{t}$ 是回报样本．在时序差分中，这个量就对应着 $U_{t}$ ．因此，只需在回合更新策略评估算法的基础上，将这个增量更新式中的回报 $G_{t}$ 替换为时序差分目标 $U_{t}$ ，就可以得到时序差分策略评估算法了．
+的增量更新来学习动作价值函数，试图减小 $\left[G_{t}-q\left(S_{t}, A_{t}\right)\right]^{2}$ ．在这个式子中， $G_{t}$ 是回报样本．在时序差分中，这个量就对应着 $U_{t}$ ．因此，只需在回合更新策略评估算法的基础上，将这个增量更新式中的回报 $G_{t}$ 替换为时序差分目标 $U_{t}$ ，就可以得到时序差分策略评估算法了．
 
 时序差分目标既可以是单步时序差分目标，也可以是多步时序差分目标．我们先来看单步时序差分目标．
 
@@ -642,7 +642,7 @@ $$
 
 #### 3.1.2 SARSA算法
 
-本节我们采用同策时序差分更新来求解最优策略．首先我们来看 “状态 / 动作 / 奖励 状态 / 动作”（State-Action-Reward-State-Action, SARSA）算法．这个算法得名于更新涉及的随机变量 $\left(S_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}\right)$ ．该算法利用 $R_{t+1}+\gamma q_{t}\left(S_{t+1}, A_{t+1}\right)$ 得到单步时序差分目标 $U_{t}$ ，进而更新 $q\left(S_{t}, A_{i}\right)$ ．该算法的更新式为：
+本节我们采用同策时序差分更新来求解最优策略．首先我们来看 “状态 / 动作 / 奖励 状态 / 动作”（State-Action-Reward-State-Action, SARSA）算法．这个算法得名于更新涉及的随机变量 $\left(S_{t}, A_{t}, R_{t+1}, S_{t+1}, A_{t+1}\right)$ ．该算法利用 $R_{t+1}+\gamma q_{t}\left(S_{t+1}, A_{t+1}\right)$ 得到单步时序差分目标 $U_{t}$ ，进而更新 $q\left(S_{t}, A_{t}\right)$ ．该算法的更新式为：
 $$
 q\left(S_{t}, A_{t}\right) \leftarrow q\left(S_{t}, A_{t}\right)+\alpha\left[U_{t}-q\left(S_{t}, A_{t}\right)\right]
 $$
@@ -780,10 +780,10 @@ $$
 我们来看一个最大化偏差的例子．下所示的回合制任务中，Markov决策过程的状态空间为 $\mathcal{S}=\left\{s_{\text{开始}}, S_{\text{中间}}\right\}$ ，回合开始时总是处在 $s_{\text {开始 }}$ 状态，可以选择的动作空间 $\mathcal{A}\left(s_{\text{开始}}\right)=\left\{a_{\text {去中间 }}, a_{\text {去终止 }}\right\}$ ．如果选择动作 $a_{\text {去中间 }}$ ，则可以到达状态 $s_{\text {中间 }}$ ，该步奖励为 0 ；如果选择动作 $s_{\text {去终止 }}$ ，则可以达到终止状态并获得奖励 $+1$ ．从状态 $s_{\text {中间 }}$ 出发，有很多可选的动作（例如有 1000 个可选的动作），但是这些动作都指向终止状态，并且奖励都服从均值为 0 、方差为 100 的正态分布．从理论上说，这个例子的最优价值函数为: $v_{*}\left(s_{\text {中间 }}\right)=q_{*}\left(S_{\text {中间 }}, \cdot\right)=0$ ，$v_{*}\left(S_{\text {开始 }}\right)=q_{*}\left(S_{\text {开始 }}, a_{\text {去终止 }}\right)=1$ ，最优策略应当是 $\pi_{*}\left(S_{\text {开始 }}\right)=a_{\text {去终止 }}$ ．但是，如果采用 Q 学习，在中间过程中会走一些弯路：在学习过程中，从 $s_{\text {中间 }}$ 出发的某些动作会采样到比较大的奖励值，从而导致 $\max _{a \in \mathcal{A}\left(s_{\text {中苗 }}\right)} q\left(S_{\text {中伺 }}, a\right)$ 会比较大，使得从 $s_{\text {开始更倾向于选择 }} a_{\text {去中间}}$ ．这样的错误需要大量的数据才能纠正．为了解决这一问题，**双重 Q 学习** ( Double Q Learning）算法使用两个独立的动作价值估计值 $q^{(0)}(\cdot, \cdot)$ 和 $q^{(1)}(\cdot, \cdot)$ ，用 $q^{(0)}\left(S_{t+1}, \arg \max _{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 或 $q^{(1)}\left(S_{t+1}, \arg \max _{a} q^{(0)}\left(S_{t+1}, a\right)\right)$ 来 代替 Q 学习中的 $\max _{a} q\left(S_{t+1}, a\right)$ ．由于 $q^{(0)}$ 和 $q^{(1)}$ 是相互独立的估计，所以 $\mathrm{E}\left[q^{(0)}\left(S_{t+1}, A^{*}\right)\right]=q\left(S_{t+1}, A^{*}\right)$ ，其中 $A^{*}=\arg \max _{a} q^{(1)}\left(S_{t+1}, a\right)$ ，这样就消除了偏差．在双重学习的过程中， $q^{(0)}$ 和 $q^{(1)}$ 都需要逐渐更新．所以，每步学习可以等概率选择以下两个更新 中的任意一个：
 
 - 使用 $U_{t}^{(0)}=R_{t+1}+\gamma q^{(1)}\left(S_{t+1}, \arg \max_{a} q^{(0)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{t}\right), \quad$ 以减小 $U_{t}^{(0)}$ 和
-$q^{(0)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{i}\right)\right]^{2}$ ，或采用 $q^{(0)}\left(S_{t}, A_{i}\right) \leftarrow$
-$q^{(0)}\left(S_{t}, A_{i}\right)+\alpha\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{i}\right)\right]$ 更新 $)$
-- 使用 $U_{t}^{(1)}=R_{t+1}+\gamma q^{(0)}\left(S_{t+1}, \arg \max_{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{i}\right)$ ，以减小 $U_{t}^{(1)}$ 和 $q^{(1)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{2}\right)\right]^{2}$ ，或采用 $q^{(1)}\left(S_{t}, A_{i}\right) \leftarrow q^{(1)}\left(S_{t}, A_{i}\right)+$
-$\alpha\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{i}\right)\right]$ 更新 $)_{0}$
+$q^{(0)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{t}\right)\right]^{2}$ ，或采用 $q^{(0)}\left(S_{t}, A_{t}\right) \leftarrow$
+$q^{(0)}\left(S_{t}, A_{t}\right)+\alpha\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{t}\right)\right]$ 更新 $)$
+- 使用 $U_{t}^{(1)}=R_{t+1}+\gamma q^{(0)}\left(S_{t+1}, \arg \max_{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{t}\right)$ ，以减小 $U_{t}^{(1)}$ 和 $q^{(1)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{2}\right)\right]^{2}$ ，或采用 $q^{(1)}\left(S_{t}, A_{t}\right) \leftarrow q^{(1)}\left(S_{t}, A_{t}\right)+$
+$\alpha\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{t}\right)\right]$ 更新 $)_{0}$
 
 算法 3-9 给出了双重 Q 学习求解最优策略的算法．这个算法中最终输出的动作价值函数是 $q^{(0)}$ 和 $q^{(1)}$ 的平均值，即 $\frac{1}{2}\left(q^{(0)}+q^{(1)}\right)$ ．在算法的中间步骤，我们用这两个估计的和 $q^{(0)}+q^{(1)}$ 来代替平均值 $\frac{1}{2}\left(q^{(0)}+q^{(1)}\right)$ ，在略微简化的计算下也可以达到相同的效果．
 
@@ -821,14 +821,14 @@ U_{t}^{\lambda}=(1-\lambda) \sum_{n=1}^{T-t-1} \lambda^{n-1} U_{t:t+n}+\lambda^{
 $$
 $\lambda$ 回报 $U_{t}^{\lambda}$ 可以看作是回合更新中的目标 $G_{t}$ 和单步时序差分目标 $U_{t:t+1}$ 的推广：当 $\lambda=1$ 时， $U_{t}^{1}=G_{1}$ 就是回合更新的回报；当 $\lambda=0$ 时， $U_{t}^{0}=U_{t:t+1}$ 就是单步时序差分目标．
 
-**离线 $\lambda$ 回报算法**（ offline $\lambda$ -return algorithm ）则是在更新价值（如动作价值 $q\left(S_{t}, A_{i}\right)$ 或状态价值 $\left.v\left(S_{t}\right)\right)$ 时，用 $U_{t}^{\lambda}$ 作为目标，试图减小 $\left[U_{t}^{\lambda}-q\left(S_{t}, A_{t}\right)\right]^{2}$ 或 $\left[U_{t}^{\lambda}-v\left(S_{t}\right)\right]^{2}$ ．它与回合更新算法相比，只是将更新的目标从 $G_{t}$ 换为了 $U_{t}^{\lambda}$ ．对于回合制任务，在回合结束后为每一步 $t=0,1,2, \ldots$ 计算 $U_{t}^{\lambda}$ ，并统一更新价值．因此，这样的算法称为离线算法（ offline algorithm ）．对于连续性任务，没有办法计算 $U_{t}^{\lambda}$ ，所以无法使用离线 $\lambda$ 算法．
+**离线 $\lambda$ 回报算法**（ offline $\lambda$ -return algorithm ）则是在更新价值（如动作价值 $q\left(S_{t}, A_{t}\right)$ 或状态价值 $\left.v\left(S_{t}\right)\right)$ 时，用 $U_{t}^{\lambda}$ 作为目标，试图减小 $\left[U_{t}^{\lambda}-q\left(S_{t}, A_{t}\right)\right]^{2}$ 或 $\left[U_{t}^{\lambda}-v\left(S_{t}\right)\right]^{2}$ ．它与回合更新算法相比，只是将更新的目标从 $G_{t}$ 换为了 $U_{t}^{\lambda}$ ．对于回合制任务，在回合结束后为每一步 $t=0,1,2, \ldots$ 计算 $U_{t}^{\lambda}$ ，并统一更新价值．因此，这样的算法称为离线算法（ offline algorithm ）．对于连续性任务，没有办法计算 $U_{t}^{\lambda}$ ，所以无法使用离线 $\lambda$ 算法．
 
 由于离线 $\lambda$ 回报算法使用的目标在 $G_{t}$ 和 $U_{t t+1}$ 间做了折中，所以离线 $\lambda$ 回报算法的效果可能比回合更新和单步时序差分更新都要好．但是，离线 $\lambda$ 回报算法也有明显的缺点:
 其一，它只能用于回合制任务，不能用于连续性任务；其二，在回合结束后要计算 $U_{t}^{\lambda}$ $(t=0,1, \ldots, T-1)$ ，计算量巨大．在下一节我们将采用资格迹来弥补这两个缺点．
 
 #### 3.3.2 TD（$\lambda$）
 
-TD ($\lambda$) 是历史上具有重要影响力的强化学习算法，在离线 $\lambda$ 回报算法的基础上改进而来．以基于动作价值的算法为例，在离线 $\lambda$ 回报算法中，对任意的 $n=1,2, \ldots$ ，在更新 $q\left(S_{t-n}, A_{t-n}\right)\left(\right.$ 或 $\left.v\left(S_{t-n}\right)\right)$ 时，时序差分目标 $U_{t-n:t}$ 的权重是 $(1-\lambda) \lambda^{n-1}$ ．虽然需要等到回合结束才能计算 $U_{t-n}^{\lambda}$ ，但是在知道 $\left(S_{t}, A_{t}\right)$ 后就能计算 $U_{t-n t}$ ．所以我们在知道 $\left(S_{t}, A_{i}\right)$ 后，就可
+TD ($\lambda$) 是历史上具有重要影响力的强化学习算法，在离线 $\lambda$ 回报算法的基础上改进而来．以基于动作价值的算法为例，在离线 $\lambda$ 回报算法中，对任意的 $n=1,2, \ldots$ ，在更新 $q\left(S_{t-n}, A_{t-n}\right)\left(\right.$ 或 $\left.v\left(S_{t-n}\right)\right)$ 时，时序差分目标 $U_{t-n:t}$ 的权重是 $(1-\lambda) \lambda^{n-1}$ ．虽然需要等到回合结束才能计算 $U_{t-n}^{\lambda}$ ，但是在知道 $\left(S_{t}, A_{t}\right)$ 后就能计算 $U_{t-n t}$ ．所以我们在知道 $\left(S_{t}, A_{t}\right)$ 后，就可
 以用 $q\left(S_{t}, A_{\imath}\right)$ 去更新所有的 $q\left(S_{\tau}, A_{\tau}\right)(\tau=0,1, \ldots, t-1)$ ，并且更新的权重与 $\lambda^{t-\tau}$ 成正比．
 
 据此，给定轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, A_{1}, R_{2}, \ldots$ ，可以引入资格迹 $e_{t}(s, a), s \in \mathcal{S}, a \in \mathcal{A}(s)$ 来表示第 $t$ 步的状态动作对 $\left(S_{t}, A_{t}\right)$ 的单步自益结果 $U_{t:t+1}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1}\right)$ 对每个状态动作对 $(s, a)$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 需要更新的权重．**资格迹**（eligibility）用下列递推式定义：当 $t=0$ 时，
@@ -936,13 +936,13 @@ $\mathrm{TD}(\lambda)$ 算法与离线 $\lambda$ 回报算法相比，具有三�
  2.2 （初始化回报） $G \leftarrow 0$  
  2.3 （逐步更新）对 $t \leftarrow T-1, T-2, \ldots, 0$ ，执行以下步骤
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新价值）若评估的是动作价值则更新 $\mathbf{w}$ 以减小 $\left[G-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right]^{2}$ (如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha\left[G-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right] \nabla q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right) ;$ 若评估的是状态价值则更新 $\mathbf{w}$ 以减小
+    2. （更新价值）若评估的是动作价值则更新 $\mathbf{w}$ 以减小 $\left[G-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha\left[G-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right) ;$ 若评估的是状态价值则更新 $\mathbf{w}$ 以减小
  $\left[G-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}\left(\text { 如 } \mathbf{w} \leftarrow \mathbf{w}+\alpha\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla v\left(S_{t} ; \mathbf{w}\right)\right)$．
 
 ***********************
 
-如果我们用算法 4-1 评估动作价值，则更新参数时应当试图减小每一步的回报估计 $G$ 和动作价值估计 $q\left(S_{t}, A_{i} ; \mathbf{w}\right)$ 的差别．所以，可以定义每一步损失为 $\left[G_{t}-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right]^{2}$ ，而整个回合的损失为 $\sum_{t=0}^{T-1}\left[G_{t}-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right]^{2}$ ．如果我们沿着 $\sum_{t=0}^{T-1}\left[G_{t}-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right]^{2}$ 对 $\mathbf{w}$ 的梯度的反方向更新策略参数 $\mathbf{w}$ ，就有机会减小损失．这样的方法称为随机梯度下降（ stochastic gradient-descent, SGD ）算法．对于能支持自动梯度计算的软件包，往往自带根据损失函数更新参数的功能．如果不使用现成的参数更新软件包，也可以自己计算得到 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 的
-梯度 $\nabla q\left(S_{t}, A_{i} ; \mathbf{w}\right)$ ，然后利用下式进行更新 :
+如果我们用算法 4-1 评估动作价值，则更新参数时应当试图减小每一步的回报估计 $G$ 和动作价值估计 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 的差别．所以，可以定义每一步损失为 $\left[G_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ ，而整个回合的损失为 $\sum_{t=0}^{T-1}\left[G_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ ．如果我们沿着 $\sum_{t=0}^{T-1}\left[G_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ 对 $\mathbf{w}$ 的梯度的反方向更新策略参数 $\mathbf{w}$ ，就有机会减小损失．这样的方法称为随机梯度下降（ stochastic gradient-descent, SGD ）算法．对于能支持自动梯度计算的软件包，往往自带根据损失函数更新参数的功能．如果不使用现成的参数更新软件包，也可以自己计算得到 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 的
+梯度 $\nabla q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ ，然后利用下式进行更新 :
 $$
 \mathbf{w} \leftarrow \mathbf{w}-\frac{1}{2} \alpha_{t} \nabla\left[G_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}=\mathbf{w}+\alpha_{t}\left[G_{t}-q\left(S_{t}, A_t ; \mathbf{w}\right)\right] \nabla q\left(S_{t}, A_{t} ; \mathbf{w}\right)
 $$
@@ -971,17 +971,17 @@ $\left.\left.q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{t},
 
 #### 4.1.2 半梯度下降
 
-动态规划和时序差分学习都用了“自益”来估计回报，回报的估计值与 $\mathbf{w}$ 有关，是存在偏差的．例如，对于单步更新时序差分估计的动作价值函数，回报的估计为 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1} ; \mathbf{w}\right)$ ，而动作价值的估计为 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ ，这两个估计都与权重 $\mathbf{w}$ 有关．在试图减小每一步的回报估计 $U_{t}$ 和动作价值估计 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 的差别时，可以定义每一步损失为 $\left[U_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ ，而整个回合的损失为 $\sum_{t=0}^{T-1}\left[U_{t}-q\left(S_{t}, A_{i} ; \mathbf{w}\right)\right]^{2}$ ．在更新参数 $\mathbf{w}$ 以减小损失时，应当注意不对回报的估计 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1} ; \mathbf{w}\right)$ 求梯度，只对动作价值的估计 $q\left(S_{t}, A_{i} ; \mathbf{w}\right)$ 求关于 $\mathbf{w}$ 的梯度，这就是**半梯度下降**（semi-gradient descent）算法．半梯度下降算法同样既可以用于策略评估，也可以用于求解最优策略（见算法 4-3 和算法 4-4 ）．
+动态规划和时序差分学习都用了“自益”来估计回报，回报的估计值与 $\mathbf{w}$ 有关，是存在偏差的．例如，对于单步更新时序差分估计的动作价值函数，回报的估计为 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1} ; \mathbf{w}\right)$ ，而动作价值的估计为 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ ，这两个估计都与权重 $\mathbf{w}$ 有关．在试图减小每一步的回报估计 $U_{t}$ 和动作价值估计 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 的差别时，可以定义每一步损失为 $\left[U_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ ，而整个回合的损失为 $\sum_{t=0}^{T-1}\left[U_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}$ ．在更新参数 $\mathbf{w}$ 以减小损失时，应当注意不对回报的估计 $U_{t}=R_{t+1}+\gamma q\left(S_{t+1}, A_{t+1} ; \mathbf{w}\right)$ 求梯度，只对动作价值的估计 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 求关于 $\mathbf{w}$ 的梯度，这就是**半梯度下降**（semi-gradient descent）算法．半梯度下降算法同样既可以用于策略评估，也可以用于求解最优策略（见算法 4-3 和算法 4-4 ）．
 
 >**算法 4-3**：$\quad$ 半梯度下降算法估计动作价值或 $\mathrm{SARSA}$ 算法求最优策略
 ***********************
 
 1. （初始化）任意初始化参数 $\mathbf{w}$
 2. 逐回合执行以下操作  
- 2.1 （初始化状态动作对）选择状态 $S$ ．如果是策略评估，则用输入策略 $\pi(\cdot \mid S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$  
+ 2.1 （初始化状态动作对）选择状态 $S$ ．如果是策略评估，则用输入策略 $\pi(\cdot|S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$  
  2.2 如果回合未结東，执行以下操作：
     1. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
-    2. 如果是策略评估，则用输入策略 $\pi\left(\cdot \mid S^{\prime}\right)$ 确定动作 $A^{\prime}$ ；如果是寻找最优策略，则用当前动作价值估计 $q\left(S^{\prime}, ; \mathbf{w}\right)$ 导出的策略 $\left(\right.$ 如 $\varepsilon$ 柔性策略）确定动作 $A_{0}^{\prime}$
+    2. 如果是策略评估，则用输入策略 $\pi\left(\cdot|S^{\prime}\right)$ 确定动作 $A^{\prime}$ ；如果是寻找最优策略，则用当前动作价值估计 $q\left(S^{\prime}, ; \mathbf{w}\right)$ 导出的策略 $\left(\right.$ 如 $\varepsilon$ 柔性策略）确定动作 $A_{0}^{\prime}$
     3. （计算回报的估计值） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
     4. （更新动作价值函数）更新参数 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}($ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-q(S, A ; \mathbf{w})] \nabla q(S, A ; \mathbf{w}))$ ．注意此步不可以重新计算 $U$
     5. $S\leftarrow S^{\prime}, \quad A \leftarrow A^{\prime}$
@@ -996,9 +996,9 @@ $\left.\left.q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{t},
 2. 逐回合执行以下操作  
  2.1 （初始化状态）选择状态 $S$  
  2.2 如果回合未结束，执行以下操作
-    1. 如果是策略评估，则用输入策略 $\pi(\cdot \mid S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略（如 $\varepsilon$ 柔性策略）确定动作 $A$
+    1. 如果是策略评估，则用输入策略 $\pi(\cdot|S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略（如 $\varepsilon$ 柔性策略）确定动作 $A$
     2. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S_{0}^{\prime}$
-    3. （计算回报的估计值）如果是状态价值评估，则 $U \leftarrow R+\gamma v\left(S^{\prime} ; \mathbf{w}\right)$ ．如果是期望 SARSA 算法，则 $U \leftarrow R+\gamma \sum_{a} \pi\left(a \mid S^{\prime} ; \mathbf{w}\right) q\left(S^{\prime}, a ; \mathbf{w}\right)$ ，其中 $\pi\left(\cdot \mid S^{\prime} ; \mathbf{w}\right)$ 是 $q\left(S^{\prime}, \cdot ; \mathbf{w}\right)$ 确定的策略（如 $\varepsilon$ 柔性策略）若是 $\mathrm{Q}$ 学习则 $U \leftarrow R+\gamma \max_{a} q\left(S^{\prime}, a ; \mathbf{w}\right)$
+    3. （计算回报的估计值）如果是状态价值评估，则 $U \leftarrow R+\gamma v\left(S^{\prime} ; \mathbf{w}\right)$ ．如果是期望 SARSA 算法，则 $U \leftarrow R+\gamma \sum_{a} \pi\left(a|S^{\prime} ; \mathbf{w}\right) q\left(S^{\prime}, a ; \mathbf{w}\right)$ ，其中 $\pi\left(\cdot|S^{\prime} ; \mathbf{w}\right)$ 是 $q\left(S^{\prime}, \cdot ; \mathbf{w}\right)$ 确定的策略（如 $\varepsilon$ 柔性策略）若是 $\mathrm{Q}$ 学习则 $U \leftarrow R+\gamma \max_{a} q\left(S^{\prime}, a ; \mathbf{w}\right)$
     4. （更新动作价值函数）若是状态价值评估则更新 $\mathbf{w}$ 以减小 $[U-v(S ; \mathbf{w})]^{2}$ (如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-v(S ; \mathbf{w})] \nabla v(S ; \mathbf{w}))$ ，若是期望 $\operatorname{SARSA}$ 算法或 $\mathrm{Q}$ 学习则更新参数 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}($ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-q(S, A ; \mathbf{w})] \nabla q(S, A ; \mathbf{w}))$ ．注意此步不可以重新计算 $U_{0}$
     5. $S \leftarrow S^{\prime}$．
 
@@ -1041,10 +1041,10 @@ $$
 
 1. （初始化）任意初始化参数 $\mathbf{w}$
 2. 逐回合执行以下操作  
- 2.1 （初始化状态动作对）选择状态 $S_{0}$ 如果是策略评估，则用输入策略 $\pi(\cdot \mid S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略（如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$  
+ 2.1 （初始化状态动作对）选择状态 $S_{0}$ 如果是策略评估，则用输入策略 $\pi(\cdot|S)$ 确定动作 $A$ ；如果是寻找最优策略，则用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略（如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$  
  2.2 如果回合未结東，执行以下操作
     1. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
-    2. 如果是策略评估，则用输入策略 $\pi\left(\cdot \mid S^{\prime}\right)$ 确定动作 $A^{\prime}$ ；如果是寻找最优策略，用当前动作价值估计 $q\left(S^{\prime}, ; \mathbf{w}\right)$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A^{\prime}$；
+    2. 如果是策略评估，则用输入策略 $\pi\left(\cdot|S^{\prime}\right)$ 确定动作 $A^{\prime}$ ；如果是寻找最优策略，用当前动作价值估计 $q\left(S^{\prime}, ; \mathbf{w}\right)$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A^{\prime}$；
     3. （计算回报的估计值） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
     4. （更新资格迹） $\mathbf{z} \leftarrow \gamma \lambda \mathbf{z}+\nabla q(S, A ; \mathbf{w})$
     5. （更新动作价值函数） $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-q(S, A ; \mathbf{w})] \mathbf{z}$
@@ -1060,9 +1060,9 @@ $$
  2.1 （初始化资格迹） $\mathbf{z} \leftarrow \mathbf{0}$  
  2.2 （初始化状态）选择状态 S  
  2.3 如果回合未结束，执行以下操作
-    1. 如果是策略评估，则用输入策略 $\pi(\cdot \mid S)$ 确定动作 $A$ ；如果是寻找最优策略，用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$
+    1. 如果是策略评估，则用输入策略 $\pi(\cdot|S)$ 确定动作 $A$ ；如果是寻找最优策略，用当前动作价值估计 $q(S, \cdot ; \mathbf{w})$ 导出的策略 $($ 如 $\varepsilon$ 柔性策略 $)$ 确定动作 $A$
     2. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
-    3. （计算回报的估计值）如果是状态价值评估，则$U\leftarrow R+\gamma v(S^{\prime};\mathbf{w})$ ．如果是期望 SARSA 算法，则 $U \leftarrow R+\gamma \sum_{a} \pi\left(a \mid S^{\prime} ; \mathbf{w}\right) q\left(S^{\prime}, a ; \mathbf{w}\right)$ ，其中 $\pi\left(\cdot \mid S^{\prime} ; \mathbf{w}\right)$ 是 $q\left(S^{\prime},\cdot\:, \mathbf{w}\right)$ 确定的策略 (如 $\varepsilon$ 柔性策略 $)$ ．若是 $Q$ 学习则 $U \leftarrow R+\gamma \max_{a} q\left(S^{\prime}, a ; \mathbf{w}\right)$
+    3. （计算回报的估计值）如果是状态价值评估，则$U\leftarrow R+\gamma v(S^{\prime};\mathbf{w})$ ．如果是期望 SARSA 算法，则 $U \leftarrow R+\gamma \sum_{a} \pi\left(a|S^{\prime} ; \mathbf{w}\right) q\left(S^{\prime}, a ; \mathbf{w}\right)$ ，其中 $\pi\left(\cdot|S^{\prime} ; \mathbf{w}\right)$ 是 $q\left(S^{\prime},\cdot\:, \mathbf{w}\right)$ 确定的策略 (如 $\varepsilon$ 柔性策略 $)$ ．若是 $Q$ 学习则 $U \leftarrow R+\gamma \max_{a} q\left(S^{\prime}, a ; \mathbf{w}\right)$
     4. （更新资格迹）若是状态价值评估，则 $\mathbf{z} \leftarrow \gamma \lambda \mathbf{z}+\nabla v(S ; \mathbf{w})$ ；若是期望 $\mathrm{SARSA}$ 法或 $\mathrm{Q}$ 学习，则 $\mathbf{z} \leftarrow \gamma \lambda \mathbf{z}+\nabla q(S, A ; \mathbf{w})$
     5. （更新动作价值函数）若是状态价值评估，则 $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-v(S ; \mathbf{w})] \mathbf{z}$ ；若是期望 $\mathrm{SARSA}$ 算法或 $\mathrm{Q}$ 学习，则 $\mathbf{w} \leftarrow \mathbf{w}+\alpha[U-q(S, A ; \mathbf{w})] \mathbf{z}$
     6. $S \leftarrow S^{\prime}$.
@@ -1100,9 +1100,9 @@ V. Mnih 等在 2013 年发表文章《Playing Atari with deep reinforcement lear
  2.2 如果回合未结東，执行以下操作
     1. （采样）根据 $q(S, \cdot ; \mathbf{w})$ 选择动作 $A$ 并执行，观测得到奖励 $R$ 和新状态 $S^{\prime}$
     2. （存储）将经验 $\left(S, A, R, S^{\prime}\right)$ 存入经验库中
-    3. （回放）从经验库中选取经验 $\left(S_{i}, A_{i}, R_{i}, S_{i}^{\prime}\right)$
+    3. （回放）从经验库中选取经验 $\left(S_{i}, A_{t}, R_{i}, S_{i}^{\prime}\right)$
     4. （计算回报的估计值） $U_{i} \leftarrow R_{i}+\gamma \max _{a} q\left(S_{i}^{\prime}, a ; \mathbf{w}\right)$
-    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\left[U_{i}-q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w \leftarrow w}+\alpha\left[U_{i}-\right.$$\left.\left.q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right)$
+    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w \leftarrow w}+\alpha\left[U_{i}-\right.$$\left.\left.q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
     6. $S \leftarrow S^{\prime}$
 
 ***********************
@@ -1151,9 +1151,9 @@ D. Horgan 等在 2018 发表文章 《 Distributed prioritized experience replay
  2.2 如果回合未结束，执行以下操作：
     1. （采样）根据 $q(S, \cdot ; \mathbf{w})$ 选择动作 $A$ 并执行，观测得到奖励 $R$ 和新状态 $S^{\prime}$
     2. （经验存储）将经验 $\left(S, A, R, S^{\prime}\right)$ 存入经验库 $\mathcal{D}$ 中
-    3. （经验回放）从经验库 $\mathcal{D}$ 中选取一批经验 $\left(S_{i}, A_{i}, R_{i}, S_{i}^{\prime}\right)(i \in \mathcal{B})$
+    3. （经验回放）从经验库 $\mathcal{D}$ 中选取一批经验 $\left(S_{i}, A_{t}, R_{i}, S_{i}^{\prime}\right)(i \in \mathcal{B})$
     4. （计算回报的估计值） $U_{i} \leftarrow R_{i}+\gamma \max _{a} q\left(S_{i}^{\prime}, a ; \mathbf{w}_{\text {目标 }}\right)(i \in \mathcal{B})$
-    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\frac{1}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha \frac{1}{|\mathcal{B}|}$$\left.\sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{i} ; \mathbf{w}\right)\right)$
+    5. （更新动作价值函数）更新 $\mathbf{w}$ 以减小 $\frac{1}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right]^{2}$ (如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha \frac{1}{|\mathcal{B}|}$$\left.\sum_{i \in \mathcal{B}}\left[U_{i}-q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right] \nabla q\left(S_{i}, A_{t} ; \mathbf{w}\right)\right)$
     6. $S \leftarrow S^{\prime}$
     7. （更新目标网络）在一定条件下（例如访问本步若千次）更新目标网络的权重 $\mathbf{w}_{\text {目标 }} \leftarrow \mathbf{w}$
 
@@ -1198,7 +1198,7 @@ q(s, a ; \mathbf{w})=v(s ; \mathbf{w})+a(s, a ; \mathbf{w})-\max _{a \in \mathca
 $$
 使得等效优势函数 $a_{\text {等效 }}(s, a ; \mathbf{w})=a(s, a ; \mathbf{w})-\max _{a \in \mathcal{A}} a(s, a ; \mathbf{w})$ 满足
 $$
-\max _{\sigma \in \mathcal{A}} a_{\text {等效 }}(s, a ; \mathbf{w})=0, \quad s \in \mathcal{S}
+\max_{\sigma \in \mathcal{A}} a_{\text {等效 }}(s, a ; \mathbf{w})=0, \quad s \in \mathcal{S}
 $$
 - 考虑优势函数的平均值，令
 $$
@@ -1224,12 +1224,12 @@ $$
 
 ### 7.1.1 函数近似与动作偏好
 
-用函数近似方法估计最优策略 $\pi_*(a \mid s)$ 的基本思想是用含参函数 $\pi(a \mid s ; \theta)$ 来近似最优策略．由于任意策略 $\pi$ 都需要满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a \mid s)=1$ ，我们也希望 $\pi(a \mid s ; \theta)$ 满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a \mid s ; \theta)=1$ ．为此引入动作偏好函数（action preference function） $h(s, a ; \theta)$ ，其 softmax 的值为 $\pi(a \mid s ; \theta)$ ，即
+用函数近似方法估计最优策略 $\pi_*(a|s)$ 的基本思想是用含参函数 $\pi(a|s ; \theta)$ 来近似最优策略．由于任意策略 $\pi$ 都需要满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a|s)=1$ ，我们也希望 $\pi(a|s ; \theta)$ 满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a|s ; \theta)=1$ ．为此引入动作偏好函数（action preference function） $h(s, a ; \theta)$ ，其 softmax 的值为 $\pi(a|s ; \theta)$ ，即
 $$
-\pi(a \mid s ; \theta)=\frac{\exp h(s, a ; \theta)}{\sum_{o^{\prime}} \exp h\left(s, a^{\prime} ; \theta\right)}, \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
+\pi(a|s ; \theta)=\frac{\exp h(s, a ; \theta)}{\sum_{o^{\prime}} \exp h\left(s, a^{\prime} ; \theta\right)}, \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
 $$
 在第 3~4 章中，从动作价值函数导出最优策略估计往往有特定的形式 (如 $\varepsilon$ 贪心策
-略)．与之相比，从动作偏好导出的最优策略的估计不拘泥于特定的形式，其每个动作都可以有不同的概率值，形式更加灵活．如果采用迭代方法更新参数 $\boldsymbol{\theta}$ ，随着迭代的进行， $\pi(a \mid s ; \theta)$ 可以自然而然地逼近确定性策略，而不需要手动调节 $\varepsilon$ 等参数．
+略)．与之相比，从动作偏好导出的最优策略的估计不拘泥于特定的形式，其每个动作都可以有不同的概率值，形式更加灵活．如果采用迭代方法更新参数 $\boldsymbol{\theta}$ ，随着迭代的进行， $\pi(a|s ; \theta)$ 可以自然而然地逼近确定性策略，而不需要手动调节 $\varepsilon$ 等参数．
 
 动作偏好函数可以具有线性组合、人工神经网络等多种形式．在确定动作偏好的形式中，只需要再确定参数 $\theta$ 的值，就可以确定整个最优状态估计．参数 $\boldsymbol{\theta}$ 的值常通过基于梯度的迭代算法更新，所以，动作偏好函数往往需要对参数 $\boldsymbol{\theta}$ 可导．
 
@@ -1239,31 +1239,31 @@ $$
 
 在回合制任务中，策略 $\pi(\theta)$ 期望回报可以表示为 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ ．**策略梯度定理**（policy gradient theorem) 给出了它对策略参数 $\boldsymbol{\theta}$ 的梯度为
 $$
-\nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 $$
-其等式右边是和的期望，求和的 $\gamma^{\prime} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)$ 中，只有 $\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)$ 显式含有参数 $\theta$ ．
+其等式右边是和的期望，求和的 $\gamma^{\prime} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ 中，只有 $\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ 显式含有参数 $\theta$ ．
 
-策略梯度定理告诉我们，只要知道了 $\nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)$ 的值，再配合其他一些容易获得的 值（如 $\gamma^{t}$ 和 $\left.G_{t}\right)$ ，就可以得到期望回报的梯度．这样，我们也可以顺着梯度方向改变 $\theta$ 以增大期望回报．
+策略梯度定理告诉我们，只要知道了 $\nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)$ 的值，再配合其他一些容易获得的 值（如 $\gamma^{t}$ 和 $\left.G_{t}\right)$ ，就可以得到期望回报的梯度．这样，我们也可以顺着梯度方向改变 $\theta$ 以增大期望回报．
 
 接下来我们来证明这个定理．回顾，策略 $\pi(\boldsymbol{\theta})$ 满足 $\mathrm{Bellman}$ 期望方程，即
 $$
 \begin{array}{ll}
-v_{\pi(\theta)}(s)=\sum_{a} \pi(a \mid s ; \theta) q_{\pi(\theta)}(s, a), & s \in \mathcal{S} \\
-q_{\pi(\theta)}(s, a)=r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) v_{\pi(\theta)}\left(s^{\prime}\right), & s \in \mathcal{S}, a \in \mathcal{A}(s)
+v_{\pi(\theta)}(s)=\sum_{a} \pi(a|s ; \theta) q_{\pi(\theta)}(s, a), & s \in \mathcal{S} \\
+q_{\pi(\theta)}(s, a)=r(s, a)+\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) v_{\pi(\theta)}\left(s^{\prime}\right), & s \in \mathcal{S}, a \in \mathcal{A}(s)
 \end{array}
 $$
 将以上两式对 $\boldsymbol{\theta}$ 求梯度，有
 $$
 \begin{array}{ll}
-\nabla v_{\pi(\theta)}(s)=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \theta)+\sum_{a} \pi(a \mid s ; \theta) \nabla q_{\pi(\theta)}(s, a), & s \in \mathcal{S} \\
-\nabla q_{\pi(\theta)}(s, a)=\gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right), & s \in \mathcal{S}
+\nabla v_{\pi(\theta)}(s)=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{a} \pi(a|s ; \theta) \nabla q_{\pi(\theta)}(s, a), & s \in \mathcal{S} \\
+\nabla q_{\pi(\theta)}(s, a)=\gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right), & s \in \mathcal{S}
 \end{array}
 $$
 将 $\nabla q_{\pi(\theta)}(s, a)$ 的表达式代人 $\nabla v_{\pi(\theta)}(s)$ 的表达式中，有
 $$
 \begin{aligned}
-\nabla v_{\pi(\theta)}(s) &=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \boldsymbol{\theta})+\sum_{a} \pi(a \mid s ; \boldsymbol{\theta}) \gamma \sum_{s^{\prime}} p\left(s^{\prime} \mid s, a\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-&=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \boldsymbol{\theta})+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime} \mid S_{t}=s ; \boldsymbol{\theta}\right] \gamma v_{\pi(\theta)}\left(s^{\prime}\right), \quad s \in \mathcal{S}
+\nabla v_{\pi(\theta)}(s) &=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \boldsymbol{\theta})+\sum_{a} \pi(a|s ; \boldsymbol{\theta}) \gamma \sum_{s^{\prime}} p\left(s^{\prime}|s, a\right) \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+&=\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \boldsymbol{\theta})+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \boldsymbol{\theta}\right] \gamma v_{\pi(\theta)}\left(s^{\prime}\right), \quad s \in \mathcal{S}
 \end{aligned}
 $$
 在策略 $\pi(\theta)$ 下，对 $S_{t}$ 求上式的期望，有
@@ -1271,10 +1271,10 @@ $$
 \begin{array}{l}
 \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{t}\right)\right] \\
 \quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \nabla v_{\pi(\theta)}(s)\\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right]\left[\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \theta)+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime} \mid S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \theta)+\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime} \mid S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a \mid s ; \theta)+\gamma \sum_{s} \operatorname{Pr}\left[S_{t+1}=s^{\prime} ; \theta\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
-\quad =E\left[\sum_{\sigma} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a \mid S_{t} ; \theta\right)\right]+\gamma E\left[\nabla v_{\pi(\theta)}\left(S_{t+1}\right)\right]
+\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right]\left[\sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right)\right] \\
+\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{s^{\prime}} \operatorname{Pr}\left[S_{t+1}=s^{\prime}|S_{t}=s ; \theta\right] \gamma\nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+\quad =\sum_{s} \operatorname{Pr}\left[S_{t}=s\right] \sum_{a} q_{\pi(\theta)}(s, a) \nabla \pi(a|s ; \theta)+\gamma \sum_{s} \operatorname{Pr}\left[S_{t+1}=s^{\prime} ; \theta\right] \nabla v_{\pi(\theta)}\left(s^{\prime}\right) \\
+\quad =E\left[\sum_{\sigma} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a|S_{t} ; \theta\right)\right]+\gamma E\left[\nabla v_{\pi(\theta)}\left(S_{t+1}\right)\right]
 \end{array}
 $$
 这样就得到了从 $\mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{t}\right)\right]$ 到 $\mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{t+1}\right)\right]$ 的递推式．注意到最终关注的梯度值就是
@@ -1285,47 +1285,47 @@ $$
 $$
 \begin{array}{l}
 \nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{0}\right)\right] \\
-\quad=\mathrm{E}\left[\sum_{a} q_{\pi(\theta)}\left(S_{0}, a\right) \nabla \pi\left(a \mid S_{0} ; \boldsymbol{\theta}\right)\right]+\gamma \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{1}\right)\right] \\
-\quad=\mathrm{E}\left[\sum_{a} q_{\pi(\theta)}\left(S_{0}, a\right) \nabla \pi\left(a \mid S_{0} ; \boldsymbol{\theta}\right)\right]+\mathrm{E}\left[\sum_{a} \gamma q_{\pi(\theta)}\left(S_{1}, a\right) \nabla \pi\left(a \mid S_{1} ; \boldsymbol{\theta}\right)\right]+\gamma^{2} \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{1}\right)\right] \\
+\quad=\mathrm{E}\left[\sum_{a} q_{\pi(\theta)}\left(S_{0}, a\right) \nabla \pi\left(a|S_{0} ; \boldsymbol{\theta}\right)\right]+\gamma \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{1}\right)\right] \\
+\quad=\mathrm{E}\left[\sum_{a} q_{\pi(\theta)}\left(S_{0}, a\right) \nabla \pi\left(a|S_{0} ; \boldsymbol{\theta}\right)\right]+\mathrm{E}\left[\sum_{a} \gamma q_{\pi(\theta)}\left(S_{1}, a\right) \nabla \pi\left(a|S_{1} ; \boldsymbol{\theta}\right)\right]+\gamma^{2} \mathrm{E}\left[\nabla v_{\pi(\theta)}\left(S_{1}\right)\right] \\
 \quad=\cdots \\
-\quad=\sum_{t=0}^{+\infty} \mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\quad=\sum_{t=0}^{+\infty} \mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)\right]
 \end{array}
 $$
 考虑到
 $$
-\nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)=\pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right) \nabla \ln \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)
+\nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)=\pi\left(a|S_{t} ; \boldsymbol{\theta}\right) \nabla \ln \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)
 $$
 所以
 $$
 \begin{array}{l}
-\mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)\right] \\
-\quad=\mathrm{E}\left[\sum_{a} \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right) \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \ln \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)\right] \\
-\quad=\mathrm{E}\left[\gamma^{t} q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A_{i} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)\right] \\
+\quad=\mathrm{E}\left[\sum_{a} \pi\left(a|S_{t} ; \boldsymbol{\theta}\right) \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \ln \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)\right] \\
+\quad=\mathrm{E}\left[\gamma^{t} q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 \end{array}
 $$
-又由于 $q_{\pi(\theta)}\left(S_{t}, A_{t}\right)=\mathrm{E}\left[G_{t} \mid S_{t}, A_{t}\right]$ ，所以
+又由于 $q_{\pi(\theta)}\left(S_{t}, A_{t}\right)=\mathrm{E}\left[G_{t}|S_{t}, A_{t}\right]$ ，所以
 $$
-\mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\mathrm{E}\left[\sum_{a} \gamma^{t} q_{\pi(\theta)}\left(S_{t}, a\right) \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 $$
 得证．
 
 ### 7.2 同策回合更新策略梯度算法
 
-策略梯度定理告诉我们，沿着 $\nabla E_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]$ 的方向改变策略参数 $\theta$ 的值，就有机会增加期望回报．基于这一结论，可以设计策略梯度算法．本节考虑同策更新算法
+策略梯度定理告诉我们，沿着 $\nabla E_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方向改变策略参数 $\theta$ 的值，就有机会增加期望回报．基于这一结论，可以设计策略梯度算法．本节考虑同策更新算法
 
 #### 7.2.1 简单的策略梯度算法
 
 在每一个回合结束后，我们可以就回合中的每一步用形如
 $$
-\boldsymbol{\theta}_{t+1} \leftarrow \boldsymbol{\theta}_{t}+\alpha \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right), \quad t=0,1, \ldots
+\boldsymbol{\theta}_{t+1} \leftarrow \boldsymbol{\theta}_{t}+\alpha \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right), \quad t=0,1, \ldots
 $$
 的迭代式更新参数 $\boldsymbol{\theta}$ ．这样的算法称为简单的策略梯度算法（Vanilla Policy Gradient, VPG)．
 
-R Willims 在文章《Simple statistical gradient-following algorithms for connectionist reinforcement learning 》中给出了该算法，并称它为“REward Increment = Nonnegative Factor $\times$ Offset Reinforcement $\times$ Characteristic Eligibility” ( $\mathrm{REINFORCE})$ ，表示增量 $\alpha \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta_{t}\right)$ 是由三个部分的积组成的．这样迭代完这个回合轨迹就实现了
+R Willims 在文章《Simple statistical gradient-following algorithms for connectionist reinforcement learning 》中给出了该算法，并称它为“REward Increment = Nonnegative Factor $\times$ Offset Reinforcement $\times$ Characteristic Eligibility” ( $\mathrm{REINFORCE})$ ，表示增量 $\alpha \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta_{t}\right)$ 是由三个部分的积组成的．这样迭代完这个回合轨迹就实现了
 $$
-\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)
+\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)
 $$
-在具体的更新过程中，不一定要严格采用这样的形式．当采用 TensorFlow 等自动微分的软件包来学习参数时，可以定义单步的损失为 $-\gamma^{\prime} G_{t} \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)$ ，让软件包中的优化器减小整个回合中所有步的平均损失，就会沿着 $\sum_{t=0}^{+\infty} \gamma^{\prime} G_{t} \nabla \ln \pi\left(A, \mid S_{t} ; \theta\right)$ 的梯度方向改变 $\theta$ 的值．
+在具体的更新过程中，不一定要严格采用这样的形式．当采用 TensorFlow 等自动微分的软件包来学习参数时，可以定义单步的损失为 $-\gamma^{\prime} G_{t} \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)$ ，让软件包中的优化器减小整个回合中所有步的平均损失，就会沿着 $\sum_{t=0}^{+\infty} \gamma^{\prime} G_{t} \nabla \ln \pi\left(A,|S_{t} ; \theta\right)$ 的梯度方向改变 $\theta$ 的值．
 
 简单的策略梯度算法见算法 5-1．
 
@@ -1342,7 +1342,7 @@ $$
  2.2 （初始化回报） $G \leftarrow 0$
  2.3 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{\prime} G \ln \pi\left(A_{1} \mid S_{t} ; \boldsymbol{\theta}\right)\left(\text { 如 } \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \gamma^{t} G \nabla \ln \pi\left(A_{i} \mid S_{t} ; \boldsymbol{\theta}\right)\right)$
+    2. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{\prime} G \ln \pi\left(A_{1}|S_{t} ; \boldsymbol{\theta}\right)\left(\text { 如 } \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \gamma^{t} G \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)$
 
 ***********************
 
@@ -1350,27 +1350,27 @@ $$
 
 本节介绍简单的策略梯度算法的一种改进一带基线的简单的策略梯度算法（REINFOCE with baselines)．为了降低学习过程中的方差，可以引人基线函数 $B(s)(s \in \mathcal{S})$ ．基线函数 $B$ 可以是任意随机函数或确定函数，它可以与状态 $s$ 有关，但是不能和动作 $a$ 有关．满足这样的条件后，基线函数 $B$ 自然会满足
 $$
-\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 $$
 证明如下：由于 $B$ 与 $a$ 无关，所以
 $$
-\sum_{a} B\left(S_{t}\right) \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)=B\left(S_{t}\right) \nabla \sum_{a} \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right)=B\left(S_{t}\right) \nabla 1=0
+\sum_{a} B\left(S_{t}\right) \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)=B\left(S_{t}\right) \nabla \sum_{a} \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)=B\left(S_{t}\right) \nabla 1=0
 $$
 进而
 $$
 \begin{aligned}
-\mathrm{E} &\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right] \\
-&=\sum_{a} \gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right) \\
-&=\sum_{a} \gamma^{t} G_{t} \nabla \pi\left(a \mid S_{t} ; \boldsymbol{\theta}\right) \\
-&=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+\mathrm{E} &\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right] \\
+&=\sum_{a} \gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right) \\
+&=\sum_{a} \gamma^{t} G_{t} \nabla \pi\left(a|S_{t} ; \boldsymbol{\theta}\right) \\
+&=\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 \end{aligned}
 $$
 得证．
 基线函数可以任意选择，例如以下情况
 
-1) 选择基线函数为由轨迹确定的随机变量 $B\left(S_{t}\right)=-\sum_{\tau=0}^{t-1} \gamma^{\tau-t} R_{\tau+1}$ ，这时 $\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right)=G_{0}$ ，梯度的形式为 $\mathrm{E}\left[G_{0} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$
+1) 选择基线函数为由轨迹确定的随机变量 $B\left(S_{t}\right)=-\sum_{\tau=0}^{t-1} \gamma^{\tau-t} R_{\tau+1}$ ，这时 $\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right)=G_{0}$ ，梯度的形式为 $\mathrm{E}\left[G_{0} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$
 2) 选择基线函数为 $B\left(S_{t}\right)=\gamma^{t} v_{*}\left(S_{t}\right)$ ，这时梯度的形式 为 $\mathrm{E}\left[\gamma^{t}\left(G_{t}-v_{*}\left(S_{t}\right)\right) \nabla \ln \pi\right.$
-$\left.\left(A_{t} \mid S_{t} ; \theta\right)\right]$
+$\left.\left(A_{t}|S_{t} ; \theta\right)\right]$
 
 但是，在实际选择基线时，应当参照以下两个思想．
 
@@ -1392,46 +1392,46 @@ $\left.\left(A_{t} \mid S_{t} ; \theta\right)\right]$
  2.3 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
     2. （更新价值）更新 $\mathbf{w}$ 以减小 $\left[G-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}\left(\right.$ 如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla v\left(S_{t} ; \mathbf{w}\right)\right)$
-    3. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{t}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \gamma^{t}$$\left.\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
+    3. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{t}\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \gamma^{t}$$\left.\left[G-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
 
 ***********************
 
-接下来，我们来分析什么样的基线函数能最大程度地减小方差．考虑 $\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]$ 的方差为
-接下来，我们来分析什么样的基线函数能最大程度地减小方差。考虑 $\mathrm{E}\left[\gamma^{\prime}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]$ 的方差为
+接下来，我们来分析什么样的基线函数能最大程度地减小方差．考虑 $\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方差为
+接下来，我们来分析什么样的基线函数能最大程度地减小方差。考虑 $\mathrm{E}\left[\gamma^{\prime}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方差为
 $$
-\mathrm{E}\left[\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]^{2}\right]-\left[\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]\right]^{2}
+\mathrm{E}\left[\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]-\left[\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]\right]^{2}
 $$
 其对 $B\left(S_{t}\right)$ 求偏导数为
 $$
-\mathrm{E}\left[-2 \gamma^{2 t}\left(G_{t}-B\left(S_{t}\right)\right)\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]^{2}\right]
+\mathrm{E}\left[-2 \gamma^{2 t}\left(G_{t}-B\left(S_{t}\right)\right)\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]^{2}\right]
 $$
-（求偏导数时用到了 $\frac{\partial}{\partial B\left(S_{t}\right)} \mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]=0$）．令这个偏导数为 0 ，并假设
+（求偏导数时用到了 $\frac{\partial}{\partial B\left(S_{t}\right)} \mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=0$）．令这个偏导数为 0 ，并假设
 $$
-\mathrm{E}\left[B\left(S_{t}\right)\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]^{2}\right]=\mathrm{E}\left[B\left(S_{t}\right)\right] \mathrm{E}\left[\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]^{2}\right]
+\mathrm{E}\left[B\left(S_{t}\right)\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]=\mathrm{E}\left[B\left(S_{t}\right)\right] \mathrm{E}\left[\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]
 $$
 可知
 $$
-\mathrm{E}\left[B\left(S_{t}\right)\right]=\frac{\mathrm{E}\left[G_{t}\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]^{2}\right]}{E\left[\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]^{2}\right]}
+\mathrm{E}\left[B\left(S_{t}\right)\right]=\frac{\mathrm{E}\left[G_{t}\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]}{E\left[\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]}
 $$
-这意味着，最佳的基线函数应当接近回报 $G_{t}$ 以梯度 $\left[\nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]^{2}$ 为权重加权平均的结果．但是，在实际应用中，无法事先知道这个值，所以无法使用这样的基线函数．
+这意味着，最佳的基线函数应当接近回报 $G_{t}$ 以梯度 $\left[\nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]^{2}$ 为权重加权平均的结果．但是，在实际应用中，无法事先知道这个值，所以无法使用这样的基线函数．
 
 值得一提的是，当策略参数和价值参数同时需要学习的时候，算法的收敛性需要通过双时间轴 Robbins-Monro 算法（two timescale Robbins-Monro algorithm）来分析．
 
 ### 7.3 异策回合更新策略梯度算法
 
-在简单的策略梯度算法的基础上引入重要性采样，可以得到对应的异策算法．记行为策略为 $b(a \mid s)$ ，有
+在简单的策略梯度算法的基础上引入重要性采样，可以得到对应的异策算法．记行为策略为 $b(a|s)$ ，有
 $$
 \begin{array}{c}
-\sum_{a} \pi(a \mid s ; \boldsymbol{\theta}) \gamma^{t} G_{t} \nabla \ln \pi(a \mid s ; \boldsymbol{\theta}) \\
-\qquad=\sum_{\sigma} b(a \mid s) \frac{\pi(a \mid s ; \boldsymbol{\theta})}{b(a \mid s)} \gamma^{t} G_{t} \nabla \ln \pi(a \mid s ; \boldsymbol{\theta}) \\
-=\sum_{a} b(a \mid s) \frac{1}{b(a \mid s)} \gamma^{t} G_{t} \nabla \pi(a \mid s ; \boldsymbol{\theta})
+\sum_{a} \pi(a|s ; \boldsymbol{\theta}) \gamma^{t} G_{t} \nabla \ln \pi(a|s ; \boldsymbol{\theta}) \\
+\qquad=\sum_{\sigma} b(a|s) \frac{\pi(a|s ; \boldsymbol{\theta})}{b(a|s)} \gamma^{t} G_{t} \nabla \ln \pi(a|s ; \boldsymbol{\theta}) \\
+=\sum_{a} b(a|s) \frac{1}{b(a|s)} \gamma^{t} G_{t} \nabla \pi(a|s ; \boldsymbol{\theta})
 \end{array}
 $$
 即
 $$
-E_{\pi(\theta)}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}_{b}\left[\frac{1}{b\left(A_{t} \mid S_{t}\right)} \gamma^{t} G_{t} \nabla \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]
+E_{\pi(\theta)}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}_{b}\left[\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]
 $$
-所以，采用重要性采样的离线算法，只需要把用在线策略采样得到的梯度方向 $\gamma^{\prime} G_{t} \nabla \ln \pi\left(A_{i} \mid S_{t} ; \theta\right)$ 改为用行为策略 $b$ 采样得到的梯度方向 $\frac{1}{b\left(A_{t} \mid S_{t}\right)} \gamma^{t} G_{t} \nabla \pi\left(A_{i} \mid S_{t} ; \theta\right)$ 即可．这就意味着，在更新参数 $\boldsymbol{\theta}$ 时可以试图增大 $\frac{1}{b\left(A_{t} \mid S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t} \mid S_{t} ; \theta\right)$ ．
+所以，采用重要性采样的离线算法，只需要把用在线策略采样得到的梯度方向 $\gamma^{\prime} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ 改为用行为策略 $b$ 采样得到的梯度方向 $\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \nabla \pi\left(A_{t}|S_{t} ; \theta\right)$ 即可．这就意味着，在更新参数 $\boldsymbol{\theta}$ 时可以试图增大 $\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t}|S_{t} ; \theta\right)$ ．
 
 >**算法7-3**：$\quad$ 重要性采样简单策略梯度求解最优策略
 ***********************
@@ -1443,7 +1443,7 @@ $$
  2.3 （初始化回报和权重） $G \leftarrow 0$  
  2.4 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报）$G \leftarrow \gamma G+R_{t+1}$
-    2. （更新策略）更新参数 $\theta$ 以减小 $-\frac{1}{b\left(A_{t} \mid S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t} \mid S_{t} ; \theta\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \frac{1}{b\left(A_{t} \mid S_{t}\right)}$$\left.\gamma^{t} G \nabla \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
+    2. （更新策略）更新参数 $\theta$ 以减小 $-\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t}|S_{t} ; \theta\right)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \frac{1}{b\left(A_{t}|S_{t}\right)}$$\left.\gamma^{t} G \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)_{0}$
 
 ***********************
 
@@ -1451,5 +1451,338 @@ $$
 
 ### 5.4 策略梯度更新和极大似然估计的关系
 
-至此，本章已经介绍了各种各样的策略梯度算法．这些算法在学习的过程中，都是通过更新策略参数 $\theta$ 以试图增大形如 $\mathrm{E}\left[\Psi_{t} \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$ 的目标（考虑单个条目则为
-$\left.\Psi_{t} \ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right)$ ，其中 $\Psi_{t}$ 可取 $G_{0}, G_{t}$ 等值．将这一学习过程与下列有监督学习最大似然问题的过程进行比较，如果已经有一个表达式未知的策略 $\pi$ ，我们要用策略 $\pi(\boldsymbol{\theta})$ 来近似它，这时可以考虑用最大似然的方法来估计策略参数 $\boldsymbol{\theta}$ ．具体而言，如果已经用未知策略 $\pi$ 生成了很多样本，那么这些样本对于策略 $\pi(\boldsymbol{\theta})$ 的对数似然值正比于 $\mathrm{E}\left[\ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$ ．用这些样本进行有监督学习，需要更新策略参数 $\theta$ 以增大 $\mathrm{E}\left[\ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right]$ (考虑单个条目则为 $\left.\ln \pi\left(A_{t} \mid S_{t} ; \theta\right)\right)$ ．可以看出，$\mathrm{E}\left[\ln \pi\left(A_{i} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$ 可以通过 $\mathrm{E}\left[\Psi_{t} \ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$ 中取 $\Psi_{t}=1$ 得到，在形式上具有相似性．策略梯度算法在学习的过程中巧妙地利用观测到的奖励信号决定每步对数似然值 $\ln \pi\left(A_{t} \mid S_{t} ; \theta\right)$ 对策略奖励的贡献，为其加权 $\Psi_{t}$ (这里的 $\Psi_{t}$ 可能是正数，可能是负数，也可 能是 0 )，使得策略 $\pi(\boldsymbol{\theta})$ 能够变得越来越好．注意，如果取 $\Psi$ ，在整个回合中是不变的（例如 $\left.\Psi_{t}=G_{0}\right)$ ，那么在单一回合中的 $\mathrm{E}\left[G_{0} \ln \pi\left(A_{i} \mid S_{t} ; \boldsymbol{\theta}\right)\right]=G_{0} \mathrm{E}\left[\ln \pi\left(A_{t} \mid S_{t} ; \boldsymbol{\theta}\right)\right]$ 就是对整个回合的对数似然值进行加权后对策略的贡献，使得策略 $\pi(\boldsymbol{\theta})$ 能够变得越来越好．试想，如果有的回合表现很好 (比如 $G_{0}$ 是很大的正数 )，在策略梯度更新的时候这个回合的似然值 $\mathrm{E}\left[\ln \pi\left(A_{i} \mid S_{t} ; \theta\right)\right]$ 就会有一个比较大的权重 $\Psi_{t}\left(\right.$ 例如 $\left.\Psi_{t}=G_{0}\right)$ ，这样这个表现比较好的回合就会更倾向于出现；如果有的回合表现很差（比如 $G_{0}$ 是很小的负数，即绝对值很大的负数）则策略梯度更新时这个回合的似然值就会有比较小的权重，这样这个表现较差的回合就更倾向于不出现．
+至此，本章已经介绍了各种各样的策略梯度算法．这些算法在学习的过程中，都是通过更新策略参数 $\theta$ 以试图增大形如 $\mathrm{E}\left[\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 的目标（考虑单个条目则为
+$\left.\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right)$ ，其中 $\Psi_{t}$ 可取 $G_{0}, G_{t}$ 等值．将这一学习过程与下列有监督学习最大似然问题的过程进行比较，如果已经有一个表达式未知的策略 $\pi$ ，我们要用策略 $\pi(\boldsymbol{\theta})$ 来近似它，这时可以考虑用最大似然的方法来估计策略参数 $\boldsymbol{\theta}$ ．具体而言，如果已经用未知策略 $\pi$ 生成了很多样本，那么这些样本对于策略 $\pi(\boldsymbol{\theta})$ 的对数似然值正比于 $\mathrm{E}\left[\ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ ．用这些样本进行有监督学习，需要更新策略参数 $\theta$ 以增大 $\mathrm{E}\left[\ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ (考虑单个条目则为 $\left.\ln \pi\left(A_{t}|S_{t} ; \theta\right)\right)$ ．可以看出，$\mathrm{E}\left[\ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 可以通过 $\mathrm{E}\left[\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 中取 $\Psi_{t}=1$ 得到，在形式上具有相似性．策略梯度算法在学习的过程中巧妙地利用观测到的奖励信号决定每步对数似然值 $\ln \pi\left(A_{t}|S_{t} ; \theta\right)$ 对策略奖励的贡献，为其加权 $\Psi_{t}$ (这里的 $\Psi_{t}$ 可能是正数，可能是负数，也可 能是 0 )，使得策略 $\pi(\boldsymbol{\theta})$ 能够变得越来越好．注意，如果取 $\Psi$ ，在整个回合中是不变的（例如 $\left.\Psi_{t}=G_{0}\right)$ ，那么在单一回合中的 $\mathrm{E}\left[G_{0} \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=G_{0} \mathrm{E}\left[\ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 就是对整个回合的对数似然值进行加权后对策略的贡献，使得策略 $\pi(\boldsymbol{\theta})$ 能够变得越来越好．试想，如果有的回合表现很好 (比如 $G_{0}$ 是很大的正数 )，在策略梯度更新的时候这个回合的似然值 $\mathrm{E}\left[\ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 就会有一个比较大的权重 $\Psi_{t}\left(\right.$ 例如 $\left.\Psi_{t}=G_{0}\right)$ ，这样这个表现比较好的回合就会更倾向于出现；如果有的回合表现很差（比如 $G_{0}$ 是很小的负数，即绝对值很大的负数）则策略梯度更新时这个回合的似然值就会有比较小的权重，这样这个表现较差的回合就更倾向于不出现．
+
+## 六． 执行者/评论者方法
+
+本章介绍带自益的策略梯度算法．这类算法将策略梯度和自益结合了起来：一方面，用一个含参函数近似价值函数，然后利用这个价值函数的近似值来估计回报值；另一方面，利用估计得到的回报值估计策略梯度，进而更新策略参数．这两方面又常常被称为**评论者** (critic) 和**执行者**（actor）．所以，带自益的策略梯度算法被称为**执行者 / 评论者算法**（actorcritic algorithm)．
+
+### 8.1 执行者 / 评论者算法
+
+同样用含参函数 $h(s, a ; \theta)$ 表示偏好，用其 $\operatorname{softmax}$ 运算的结果 $\pi(a|s ; \boldsymbol{\theta})$ 来近似最优策略．在更新参数 $\boldsymbol{\theta}$ 时，执行者 / 评论者算法依然也是根据策略梯度定理，取 $\mathrm{E}\left[\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 为梯度方向迭代更新．其中， $\Psi_{t}=\gamma^{t}\left(G_{t}-B(s)\right) \circ \mathrm{J} .$ Schulman 等在文章《 High-dimensional continuous control using generalized advantage estimation 》中指出， $\Psi_{t}$ 并不拘泥于以上形式． $\Psi_{t}$ 可以是以下几种形式：
+
+- （动作价值） $\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$
+- （优势函数） $\Psi_{t}=\gamma^{t}\left[q_{\pi}\left(S_{t}, A_{t}\right)-v_{\pi}\left(S_{t}\right)\right]$
+- （时序差分） $\Psi_{t}=\gamma^{t}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right)-v_{\pi}\left(S_{t}\right)\right]$
+
+在以上形式中，往往用价值函数来估计回报．例如，由于 $\mathrm{E}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=$$\mathrm{E}\left[\gamma^{t} q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ ，而且 $\mathrm{E}\left[q_{\pi(\theta)}\left(S_{t}, A_{t}\right) \nabla \ln \pi\left(A,|S_{t} ; \theta\right)\right]$ 也表征期望方向，所以
+$\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$ ，相当于用 $q_{\pi}\left(S_{t}, A_{t}\right)$ 表示期望．再例如，对于 $\Psi_{t}=\gamma^{t}\left[q_{\pi}\left(S_{t}, A_{t}\right)-v_{\pi}\left(S_{t}\right)\right]$ ，就相当于在回报 $q_{\pi}\left(S_{t}, A_{t}\right)$ 的基础上减去基线 $B(s)=v_{\pi}(s)$ 以减小方差．对于时序差分 $\Psi_{t}=\gamma^{t}\left[R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right)-v_{\pi}\left(S_{t}\right)\right]$ ，也是用 $R_{t+1}+\gamma v_{\pi}\left(S_{t+1}\right)$ 代表回报，再减去基线 $B(s)=v_{\pi}(s)$ 以减小方差．
+
+不过在实际使用时，真实的价值函数是不知道的．但是，我们可以去估计这些价值函数．具体而言，我们可以用函数近似的方法，用含参函数 $v(s ; w)(s \in \mathcal{S})$ 或 $q(s, a ; \mathbf{w})$ $(s \in \mathcal{S}, a \in \mathcal{A}(s))$ 来近似 $v_{\pi}$ 和 $q_{\pi}$ ．在上一章中，带基线的简单策略梯度算法已经使用了含参函数 $v(\mathrm{~s} ; \mathbf{w})(s \in \mathcal{S})$ 作为基线函数．我们可以在此基础上进一步引人自益的思想，用价值的估计 $U_{t}$ 来代替 $\Psi_{t}$ 中表示回报的部分．例如，对于时序差分，用估计来代替价值函数可以得到 $\Psi_{t}=\gamma^{t}\left[R_{t+1}+\gamma v\left(S_{t+1} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)\right]$ ．这里的估计值 $v(\mathbf{w})$ 就是评论者，这样的算法就是执行者 / 评论者算法．
+>注意：只有采用了自益的方法，即用价值估计来估计回报，并引入了偏差，才是执行者 / 评论者算法．用价值估计来做基线并没有带来偏差（因为基线本来就可以任意选择）．所以，带基线的简单策略梯度算法不是执行者 / 评论者算法．
+
+#### 6.1.1 动作价值执行者 / 评论者算法
+
+根据前述分析，同策执行者 / 评论者算法在更新策略参数 $\theta$ 时也应该试图减小 $-\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ ，只是在计算 $\Psi_{t}$ 时采用了基于自益的回报估计．算法 6-1 给出了在回报估计为 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ ，并取 $\Psi_{1}=\gamma^{\prime} q\left(S_{t}, A_{t} ; \mathbf{w}\right)$ 时的同策算法，称为动作价值执行者 / 评论者算法．算法一开始初始化了策略参数和价值参数．虽然算法中写的是可以将这个参数初始化为任意值，但是如果它们是神经网络的参数，还是应该按照神经网络的要求来初始化参数．在迭代过程中有个变量 $I$ ，用来存储策略梯度的表达式中的折扣因子 $\gamma^{t}$ ．在同一回合中，每一步都把这个折扣因子乘上 $\gamma$ ，所以第 $t$ 步就是 $\gamma^{t}$ ．
+
+>**算法 8-1**：$\quad$ 动作价值同策执行者 / 评论者算法
+***********************
+
+输入：环境（无数学描述）
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：优化器（隐含学习率 $\left.\alpha^{(\mathrm{w})}, \alpha^{(\theta)}\right)$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （初始化） $\boldsymbol{\theta} \leftarrow$ 任意值， $\mathbf{w} \leftarrow$ 任意值
+2. （带自益的策略更新）对每个回合执行以下操作:  
+ 2.1 （初始化累积折扣） $I \leftarrow 1$  
+ 2.2 （决定初始状态动作对）选择状态 $S$ ，并用 $\pi(\cdot|S ; \boldsymbol{\theta})$ 得到动作 $A$  
+ 2.3 如果回合未结束，执行以下操作：
+    1. （采样）根据状态 $S$ 和动作 $A$ 得到奖励 $R$ 和下一状态 $S^{\prime}$
+    2. （执行）用 $\pi\left(\cdot|S^{\prime} ; \boldsymbol{\theta}\right)$ 得到动作 $A^{\prime}$
+    3. （估计回报） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
+    4. （策略改进）更新 $\theta$ 以减小 $-I q(S, A ; \mathbf{w}) \ln \pi(A|S ; \boldsymbol{\theta})\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I q(S, A ; \mathbf{w})$$\nabla \ln \pi(A|S ; \boldsymbol{\theta}))$
+    5. （更新价值）更新 $\mathbf{w}$ 以减小 $[U-q(S, A ; \mathbf{w})]^{2}\left(\right.$ 如 $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-q(S, A ; \mathbf{w})]$$\nabla q(S, A ; w))$
+    6. （更新累积折扣） $I \leftarrow \gamma I$
+    7. （更新状态） $S \leftarrow S^{\prime}, \quad A \leftarrow A^{\prime}$．
+
+***********************
+
+#### 6.1.2 优势执行者 / 评论者算法
+
+在基本执行者 / 评论者算法中引入基线函数 $B\left(S_{t}\right)=v\left(S_{t} ; \mathbf{w}\right)$ ，就会得到 $\Psi_{t}=\gamma^{t}\left[q\left(S_{t}, A_{t} ; \mathbf{w}\right)-\right.$
+$\left.v\left(S_{t} ; \mathbf{w}\right)\right]$ ，其中， $q\left(S_{t}, A_{t} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$ 是优势函数的估计．这样，我们就得到了优势执行者
+评论者算法．不过，如果采用 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$ 这样形式的优势函数估计值，我们就需搭建两个函数分别表示 $q(\mathbf{w})$ 和 $v(\mathbf{w})$ ．为了避免这样的麻烦，这里用了 $U_{t}=R_{t+1}+\gamma v\left(S_{t+1} ; w\right)$ 做目标，这样优势函数的估计就变为单步时序差分的形式 $R_{t+1}+\gamma v\left(S_{t+1} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$．
+
+如果优势执行者 / 评论者算法在执行过程中不是每一步都更新参数，而是在回合结束后用整个轨迹来进行更新，就可以把算法分为经验搜集和经验使用两个部分．这样的分隔可以让这个算法同时有很多执行者在同时执行．例如，让多个执行者同时分别收集很多经验，然后都用自己的那些经验得到一批经验所带来的梯度更新值．每个执行者在一定的时机更新参数，同时更新策略参数 $\boldsymbol{\theta}$ 和价值参数 $\mathbf{w}$ ．每个执行者的更新是异步的．所以，这样的并行算法称为**异步优势执行者 / 评论者算法**（ Asynchronous Advantage Actor-Critic, $\mathrm{A} 3 \mathrm{C}$ )．异步优势执行者 / 评论者算法中的自益部分，不仅可以采用单步时序差分，也可以使用多步时序差分．另外，还可以对函数参数的访问进行控制，使得所有执行者统一更新参数．这样的并行算法称为**优势执行者 / 评论者算法**（Advantage Actor-Critic, $\mathrm{A} 2 \mathrm{C}$ )．算法 $8-3$ 给出了异步优势执行者 /$评论者算法．异步优势执行者 $/$ 评论者算法可以有许多执行者 (或称多个线程 )，所以除了有全局的价值参数 $\mathbf{w}$ 和策略参数 $\boldsymbol{\theta}$ 外，每个线程还可能有自己维护的价值参数 $\mathbf{w}^{\prime}$ 和 $\boldsymbol{\theta}^{\prime}$ ．执行者执行时，先从全局同步参数，然后再自己学习，最后统一同步全局参数．
+
+>**算法 6-2**： $\quad$ 优势执行者 / 评论者算法
+***********************
+
+输入：环境（无数学描述）  
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：优化器（隐含学习率 $\left.\alpha^{(\theta)}, \alpha^{(\mathbf{w})}\right)$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （初始化） $\boldsymbol{\theta} \leftarrow$ 任意值， $\mathbf{w} \leftarrow$ 任意值．
+2. （带自益的策略更新）对每个回合执行以下操作：  
+ 2.1 （初始化累积折扣） $I \leftarrow 1$  
+ 2.2 （决定初始状态）选择状态 $S$  
+ 2.3 如果回合未结束，执行以下操作：
+    1. （采样）用 $\pi(\cdot|S ; \theta)$ 得到动作 $A$
+    2. （执行）执行动作 $A$ ，得到奖励 $R$ 和观测 $S^{\prime}$
+    3. （估计回报） $U \leftarrow R+\gamma v\left(S^{\prime} ; \mathbf{w}\right)$
+    4. （策略改进）更新 $\boldsymbol{\theta}$ 以减小 $-I[U-v(S ; \mathbf{w})] \ln \pi(A|S ; \theta)\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I[U-v(S ; \mathbf{w})]\nabla \ln \pi(A|S ; \theta))$
+    5. （更新价值）更新 $\mathbf{w}$ 以减小 $[U-v(S ; \mathbf{w})]^{2}\left(\right.$ 如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-v(S ; \mathbf{w})] \nabla v(S ; \mathbf{w})\right)$
+    6. （更新累积折扣） $I \leftarrow \gamma I$
+    7. （更新状态）$S\leftarrow S^\prime$．
+
+***********************
+
+>**算法 6-3**：$\quad$ 异步优势执行者 / 评论者算法 (演示某个线程的行为)
+***********************
+
+输入：环境（无数学描述）  
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：优化器（隐含学习率 $\left.\alpha^{(\theta)}, \alpha^{(\mathbf{w})}\right)$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数
+
+1. （同步全局参数） $\boldsymbol{\theta}^{\prime} \leftarrow \boldsymbol{\theta}, \mathbf{w}^{\prime} \leftarrow \mathbf{w}$
+2. 逐回合执行以下过程：  
+ 2.1 用策略 $\pi\left(\boldsymbol{\theta}^{\prime}\right)$ 生成轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, A_{1}, R_{1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}$ ，直到回合结束或执行步数达
+到上限 $T$  
+ 2.2 为梯度计算初始化：
+    - （初始化目标 $U_{T}$）若 $S_{T}$ 是终止状态，则 $U \leftarrow 0$ ；否则 $U \leftarrow v\left(S_{T} ; \mathbf{w}^{\prime}\right)$
+    - （初始化梯度）$\mathbf{g}^{(\theta)} \leftarrow \mathbf{0}, \mathbf{g}^{(\mathbf{w})} \leftarrow \mathbf{0}$  
+ 2.3 （异步计算梯度）对 $t=T-1, T-2, \ldots, 0$ ，执行以下内容：
+    - （估计目标）计算 $U \leftarrow \gamma U+R_{t+1}$
+    - （估计策略梯度方向）$\mathbf{g}^{(\theta)} \leftarrow \mathbf{g}^{(\theta)}+\left[U-v\left(S_{t} ; \mathbf{w}^{\prime}\right)\right] \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}^{\prime}\right)$
+    - （估计价值梯度方向） $\mathbf{g}^{(w)} \leftarrow \mathbf{g}^{(\mathbf{w})}+\left[U-v\left(S_{t} ; \mathbf{w}^{\prime}\right)\right] \nabla v\left(S_{t} ; \mathbf{w}^{\prime}\right)$
+3. （同步更新）更新全局参数  
+ 3.1 （策略更新）用梯度方向 $\mathbf{g}^{(\theta)}$ 更新策略参数 $\boldsymbol{\theta}\left(\right.$ 如 $\left.\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \mathbf{g}^{(\mathbf{\theta})}\right)$  
+ 3.2 （价值更新）用梯度方向 $\mathbf{g}^{(\mathbf{w})}$ 更新价值参数 $\mathbf{w}\left(\right.$ 如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})} \mathbf{g}^{(\mathbf{w})}\right)$．
+
+***********************
+
+#### 6.1.3 带资格迹的执行者 / 评论者方法
+
+执行者 / 评论者算法引入了自益，那么它也就可以引入资格迹．算法 6-4 给出了带资格迹的优势执行者 / 评论者算法．这个算法里有两个资格迹 $\mathbf{z}^{(0)}$ 和 $\mathbf{z}^{(\mathbf{w})}$ ，它们分别与策略参数 $\theta$ 和价值参数 $\mathbf{w}$ 对应，并可以分别有自己的 $\lambda^{(\theta)}$ 和 $\lambda^{(\mathbf{w})}$ ．具体而言， $\mathbf{z}^{(\mathbf{w})}$ 与价值参数 $\mathbf{w}$ 对应，运用梯度为 $\nabla v(S ; \mathbf{w})$ ，参数为 $\lambda^{(\mathbf{w})}$ 的累积迹； $\mathbf{z}^{(\mathbf{\theta})}$ 与策略参数 $\boldsymbol{\theta}$ 对应，运用的梯度是 $\nabla \ln \pi(A|S ; \mathbf{w})$ 参数为 $\lambda^{(\theta)}$ 的累积迹，在运用中可以将折扣 $\gamma^{t}$ 整合到资格迹中．
+
+>**算法 6-4**：$\quad$ 带资格迹的优势执行者 / 评论者算法
+***********************
+输入：环境（无数学描述）  
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：资格迹参数 $\lambda^{(\theta)}, \lambda^{(\mathbf{w})}$ ，学习率 $\alpha^{(0)}, \alpha^{(\mathbf{w})}$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （初始化） $\boldsymbol{\theta} \leftarrow$ 任意值， $\mathbf{w} \leftarrow$ 任意值．
+2. （带自益的策略更新）对每个回合执行以下操作：  
+ 2.1 （初始化资格迹和累积折扣） $\mathbf{z}^{(\theta)} \leftarrow \mathbf{0}, \mathbf{z}^{(\mathbf{w})} \leftarrow \mathbf{0}, I \leftarrow 1$  
+ 2.2 （决定初始状态）选择状态 $S$  
+ 2.3 如果回合未结束，执行以下操作：
+    1. （采样）用 $\pi(\cdot|S ；\boldsymbol{\theta})$ 得到动作 $A$
+    2. （执行）执行动作 $A$ ，得到奖励 $R$ 和观测 $S^{\prime}$
+    3. （估计回报） $U \leftarrow R+\gamma v\left(S^{\prime} ; \mathbf{w}\right)$
+    4. （更新策略资格迹） $\mathbf{z}^{(\theta)} \leftarrow \gamma \lambda^{(\theta)} \mathbf{z}^{(\theta)}+I \nabla \ln \pi(A|S ; \mathbf{w})$
+    5. （策略改进） $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(0)}[U-v(S ; \mathbf{w})] \mathbf{z}^{(\theta)}$
+    6. （更新价值资格迹） $\mathbf{z}^{(\mathbf{w})} \leftarrow \gamma \lambda^{(\mathbf{w})} \mathbf{z}^{(\mathbf{w})}+\nabla v(S ; \mathbf{w})$
+    7. （更新价值） $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})}[U-v(S ; \mathbf{w})] \mathbf{z}^{(\mathbf{w})}$
+    8. （更新累积折扣） $I \leftarrow \gamma I$
+    9. （更新状态） $S \leftarrow S^{\prime}$．
+
+***********************
+
+### 6.2 基于代理优势的同策算法
+
+本节介绍面向代理优势的执行者 / 评论者算法．这些算法在迭代的过程中并没有直接优化期望目标，而是试图优化期望目标近似一代理优势．在很多问题上，这些算法会比简单的执行者 / 评论者算法得到更好的性能．
+
+#### 6.2.1 代理优势
+
+考虑采用迭代的方法更新策略 $\pi(\boldsymbol{\theta})$ ．在某次迭代后，得到了策略 $\pi\left(\boldsymbol{\theta}_{k}\right)$ ．接下来我们希望得到一个更好的策略 $\pi(\boldsymbol{\theta})$ ．Kakade 等在文章 《 Approximately optimal approximate reinforcement learning 》中证明了策略 $\pi(\boldsymbol{\theta})$ 和策略 $\pi\left(\boldsymbol{\theta}_{k}\right)$ 的期望回报满足**性能差别引理** (Performance Difference Lemma):
+$$
+\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}_{\pi\left(\theta_{k}\right)}\left[G_{0}\right]+\mathrm{E}_{\pi(\theta)}\left[\sum_{t=0}^{+\infty} \gamma^{t} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]
+$$
+（证明：
+$$
+\begin{array}{l}
+\mathrm{E}_{\pi(\theta)}\left[\sum_{t=0}^{+\infty} \gamma^{t} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right] \\
+\quad=\mathrm{E}_{\pi(0)}\left[\sum_{t=0}^{+\infty} \gamma^{t}\left(R_{t+1}+\gamma v_{\pi\left(\theta_{k}\right)}\left(S_{t+1}\right)-v_{\pi\left(\theta_{k}\right)}\left(S_{t}\right)\right)\right] \\
+\quad=\mathrm{E}_{\pi(0)}\left[-v_{\pi\left(\theta_{k}\right)}\left(S_{0}\right)+\sum_{t=0}^{+\infty} \gamma^{t} R_{t+1}\right] \\
+\quad=-\mathrm{E}_{S_{0}}\left[v_{\pi\left(\theta_{k}\right)}\left(S_{0}\right)\right]+\mathrm{E}_{\pi(\theta)}\left[\sum_{t=0}^{+\infty} \gamma^{t} R_{t+1}\right] \\
+\quad=-\mathrm{E}_{\pi\left(\theta_{k}\right)}\left[G_{0}\right]+\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]
+\end{array}
+$$
+得证．）
+
+所以，要最大化 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ ，就是要最大化优势的期望 $\mathrm{E}_{\pi(\theta)}\left[\sum_{t=0}^{+\infty} \gamma^{t} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]$ ．这个期望是对含参策略而言的．要优化这样的期望，可以利用以下形式的重采样，将其中对 $A_{t} \sim \pi(\boldsymbol{\theta})$ 求期望转化为对 $A_{t} \sim \pi\left(\boldsymbol{\theta}_{k}\right)$ 求期望：
+$$
+\mathrm{E}_{S_{t}, A_{t}\sim\pi(\theta)}\left[a_{\pi_{k}}\left(S_{t}, A_{t}\right)\right]=\mathrm{E}_{S_{t}\sim\pi(\theta), \mathcal{A}_t \sim \pi\left(\theta_{k}\right)}\left[\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]
+$$
+但是，对 $S_{t} \sim \pi(\boldsymbol{\theta})$ 求期望无法进一步转化．**代理优势**（ surrogate advantage）就是在上述重采样的基础上，将对 $S_{t} \sim \pi(\boldsymbol{\theta})$ 求期望近似为对 $S_{t} \sim \pi\left(\boldsymbol{\theta}_{k}\right)$ 求期望：
+$$
+\mathrm{E}_{S_{t}, A_{t} \sim \pi(\theta)}\left[a_{\pi_{k}}\left(S_{t}, A_{t}\right)\right] \approx \mathrm{E}_{S_{t}, A_{t}\sim \pi\left(\theta_{k}\right)}\left[\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]
+$$
+这样得到了 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ 的近似表达式 $l(\boldsymbol{\theta})$ ，其中
+$$
+l(\boldsymbol{\theta})=\mathrm{E}_{\pi\left(\theta_{k}\right)}\left[G_{0}\right]+\mathrm{E}_{S_{t}, \mathcal{A}_t \sim \pi\left(\theta_{k}\right)}\left[\sum_{t=0}^{+\infty} \gamma^{t} \frac{\pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)}{\pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]
+$$
+可以证明， $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ 和 $l(\boldsymbol{\theta})$ 在 $\boldsymbol{\theta}=\boldsymbol{\theta}_{k}$ 处有相同的值 $\mathrm{E}_{\pi\left(\theta_{k}\right)}\left[G_{0}\right]$ 和梯度．
+
+虽然 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ 没有直接的表达式而很难直接优化，但是只要沿着它的梯度方向改进策略参数，就有机会增大它．由于 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ 和 $l(\boldsymbol{\theta})$ 在 $\boldsymbol{\theta}=\boldsymbol{\theta}_{k}$ 处有着相同的值和梯度方向， $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ 和代理优势有着相同的梯度方向．所以，沿着
+$$
+\mathrm{E}_{S_{t}, A_t\sim \pi\left(\theta_{k}\right)}\left[\sum_{t=0}^{+\infty} \gamma^{t} \frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{n\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right]
+$$
+的梯度方向就有机会改进 $\mathrm{E}_{\pi(\theta)}\left[G_{0}\right]$ ．据此，我们可以得到以下结论：通过优化代理优势，有希望找到更好的策略．
+
+#### 6.2.2 邻近策略优化
+
+我们已经知道代理优势与真实的目标相比，在 $\theta=\theta_{k}$ 处有相同的值和梯度．但是，如果 $\theta$ 和 $\theta_{k}$ 差别较远，则近似就不再成立．所以针对代理优势的优化不能离原有的策略太远．基于这一思想，J. Schulman 等在文章 《 Proximal policy optimization algorithms 》中提出了**邻近策略优化** (Proximal Policy Optimization) 算法，将优化目标设计为
+$$
+\mathrm{E}_{\pi\left(\theta_{k}\right)}\left[\min \left(\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right), a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)+\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|\right)\right]
+$$
+其中 $\varepsilon \in(0,1)$ 是指定的参数．采用这样的优化目标后，优化目标至多比 $a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{1}\right)$ 大 $\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|$ ，所以优化问题就没有动力让代理优势 $\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{2}\right)$ 变得非常大，可以避免迭代后的策略与迭代前的策略差距过大．
+
+算法 6-5 给出了邻近策略优化算法的简化版本．
+
+>**算法 6-5**： $\quad$ 邻近策略优化算法 (简化版本 )
+***********************
+
+输入：环境（无数学描述）  
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：策略更新时目标的限制参数 $\varepsilon(\varepsilon>0)$ ，优化器，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （初始化） $\boldsymbol{\theta} \leftarrow$ 任意值， $\mathbf{w} \leftarrow$ 任意值
+2. （时序差分更新）对每个回合执行以下操作：  
+ 2.1 用策略 $\pi(\boldsymbol{\theta})$ 生成轨迹  
+ 2.2 用生成的轨迹由 $\mathbf{w}$ 确定的价值函数估计优势函数 $\left(\right.$ 如 $a\left(S_{t}, A_{t}\right) \leftarrow \sum_{\tau=t}^{T-1}(\gamma \lambda)^{\tau-t}\left[U_{\tau: \tau+1}^{(v)}-\right.\left.\left.v\left(S_{\tau} ; \mathbf{w}\right)\right]\right)$  
+ 2.3 （策略更新）更新 $\theta$ 以增大 $\min \left(\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right), a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)+\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|\right)$  
+ 2.4 （价值更新）更新 $\mathbf{w}$ 以减小价值函数的误差（如最小化 $\left.\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}\right)$
+
+***********************
+
+在实际应用中，常常加人经验回放．具体的方法是，每次更新策略参数 $\boldsymbol{\theta}$ 和价值参数 $\mathrm{w}$ 前得到多个轨迹，为这些轨迹的每一步估计优势和价值目标，并存储在经验库 $\mathcal{D}$ 中．接着多次执行以下操作：从经验库 $\mathcal{D}$ 中抽取一批经验 $\mathcal{B}$ ，并利用这批经验回放并学习，即从经验库中随机抽取一批经验并用这批经验更新策略参数和价值参数．
+
+>注意：邻近策略优化算法在学习过程中使用的经验都是当前策略产生的经验，所以使用了经验回放的邻近策略优化依然是同策学习算法．
+
+### 6.3 信任域算法
+
+**信任域方法**（Trust Region Method, TRM）是求解非线性优化的常用方法，它将一个复杂的优化问题近似为简单的信任域子问题再进行求解．
+
+本节将介绍三种同策执行者 / 评论者算法：
+
+- 自然策略梯度算法
+- 信任域策略优化算法
+- Kronecker 因子信任域执行者 / 评论者算法
+
+这三个算法十分接近，它们都是以试图通过优化代理优势，迭代更新策略参数，进而找到最优策略的估计．在优化的过程中，也需要让新的策略和旧的策略不能相差太远．和上节介绍的邻近策略优化相比，它们在代理优势的基础上可以进一步引入信任域，要求新的策略在一个信任域内．本节将介绍信任域的定义（包括用来定义信任域的 $\mathrm{KL}$ 散度的定义），再介绍如何利用信任域实现这些算法．
+
+#### 6.3.1 KL 散度
+
+我们先来看 $\mathrm{KL}$ 散度的定义．回顾重要性采样的章节，我们知道，如果两个分布 $p(x)(x \in \mathcal{X})$ 和 $q(x)(x \in \mathcal{X})$ ，满足对于任意的 $p(x)>0$ ，均有 $q(x)>0$ ，则称分布 $p$ 对 分布 $q$ 绝对连续，记为 $p \ll q$ ．在这种情况下，我们可以定义从分布 $q$ 到分布 $p$ 的 KL 散度 (Kullback-Leibler divergence)：
+$$
+d_{\mathrm{KL}}(p \| q)=\mathrm{E}_{X \sim p}\left[\ln \frac{p(X)}{q(X)}\right]
+$$
+当$p$ 和 $q$ 是离散分布时，
+$$
+d_{\mathrm{KL}}(p \| q)=\sum_{x} p(x) \ln \frac{p(x)}{q(x)}
+$$
+当 $p$ 和 $q$ 是连续分布时，
+$$
+d_{\mathrm{KL}}(p \| q)=\int_{x} p(x) \ln \frac{p(x)}{q(x)} \mathrm{d} x
+$$
+$\mathrm{KL}$ 散度有个性质：相同分布的 $\mathrm{KL}$ 散度为 0 ，即 $d_{\mathrm{KL}}(p \| p)=0$ ．
+
+TODO:信任域A-C算法
+
+#### 重要性采样异策执行者 / 评论者算法
+
+执行者 / 评论者算法可以和重要性采样结合，得到异策执行者 / 评论者算法．本节介绍基于重要性采样的异策执行者 / 评论者算法．
+
+#### 6.4.1 基本的异策算法
+
+本节介绍基于重要性采样的**异策的执行者/评论者算法**（Off-Policy Actor-Critic, OffPAC )．
+
+用 $b(\cdot|\cdot)$ 表示行为策略，则梯度方向可由 $\mathrm{E}_{\pi(\theta)}\left[\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 变为 $\mathrm{E}_{b}\left[\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{b\left(A_{t}|S_{t}\right)}\right.\left.\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}_{b}\left[\frac{1}{b\left(A_{t}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ ．这时，更新策略参数 $\boldsymbol{\theta}$ 时就应该试图减小
+$-\frac{1}{b\left(A_{1}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \theta\right)$ ．据此，可以得到异策执行者 / 评论者算法，见算法 6-10．
+
+>**算法 8-10**：$\quad$ 异策动作价值执行者 / 评论者算法
+***********************
+
+输入：环境（无数学描述）  
+输出：最优策略的估计 $\pi(\boldsymbol{\theta})$  
+参数：优化器（隐含学习率 $\left.\alpha^{(\theta)}, \alpha^{(\mathbf{w})}\right)$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （初始化） $\boldsymbol{\theta \leftarrow}$ 任意值， $\boldsymbol{W \leftarrow}$ 任意值
+2. （带自益的策略更新）对每个回合执行以下操作：  
+ 2.1 （初始化累积折扣） $I \leftarrow 1$  
+ 2.2 （初始化状态动作对）选择状态 $S$ ，用行为策略 $b(.|S)$ 得到动作 $A$  
+ 2.3 如果回合未结束，执行以下操作：
+    1. （采样）根据状态 $S$ 和动作 $A$ 得到采样 $R$ 和下一状态 $S^{\prime}$
+    2. （执行）用 $b\left(\cdot|S^{\prime}\right)$ 得到动作 $A^{\prime}$
+    3. （估计回报） $U \leftarrow R+\gamma q\left(S^{\prime}, A^{\prime} ; \mathbf{w}\right)$
+    4. （策略改进）更新 $\theta$ 以减小 $-\frac{1}{b(A|S)} I q(S, A ; \mathbf{w}) \pi(A|S ; \theta) \quad\left(\right.$ 如 $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} I \frac{1}{b(A|S)}q(S, A ; \mathbf{w}) \nabla \pi(A|S ; \boldsymbol{\theta}))$
+    5. （更新价值）更新 $\mathbf{w}$ 以减小 $\frac{\pi(A|S ; \boldsymbol{\theta})}{b(A|S)}[U-q(S, A ; \mathbf{w})]^{2}\left(\right.$ 如 $\left.\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(w)} \frac{\pi(A|S ; \boldsymbol{\theta})}{b(A|S)}\right)[U-q(S, A ; \mathbf{w})] \nabla q(S, A ; \mathbf{w})$
+    6. （更新累积折扣）$I\leftarrow\gamma I$
+    7. （更新状态） $S \leftarrow S^{\prime}, A \leftarrow A^{\prime}$
+
+***********************
+
+#### 6.4.2 带经驳回放的异策算法
+
+本节介绍 $\mathrm{Z} .$ Wang 等在文章 《 Sample efficient actor-critic with experience replay》中提出的**带经验回放的执行者 / 评论者算法** ( Actor-Critic with Experiment Replay, $\mathrm{ACER})$ ．如果说 $6.4.1$ 节介绍的基本异策执行者 / 评论者算法是 $6.1.1$ 节介绍的基本同策执行者 / 评论者算法的异策版本，那么本节介绍的带经验回放的异策执行者 / 评论者算法就相当于 $6.1.2$ 节介绍的 $\mathrm{A} 3 \mathrm{C}$ 算法的异策版本．它同样可以支持多个线程的异步学习：每个线程在执行前先同步全局参数，然后独立执行和学习，再利用学到的梯度方向进行全局更新．
+
+6.1.2 节中介绍的执行者 / 评论者算法是基于整个轨迹进行更新的．对于引入行为策略和重采样后，对于目标 $U_{t}$ 的重采样系数变为 $\prod_{\tau=0}^{t} \rho_{\tau}$, 其中 $\rho_{\tau}=\frac{\pi\left(A_{\tau}|S_{\tau} ; \theta\right)}{b\left(A_{\tau}|S_{\tau}\right)}$ ．在这个表达式中，每个 $\rho_{\tau}$ 都有比较大的方差，最终乘积得到的方差会特别大．一种限制方差的方法是控制重采样比例的范围，例如给定一个常数 $c$ ，将重采样比例截断为 $\min \left\{\rho_{\tau}, c\right\}$ ．但是，如果直接将梯度方向中的重采样系数进行截断（例如从 $\mathrm{E}_{b}\left[\rho_{t} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 修改为
+$\mathrm{E}_{b}\left[\min \left\{\rho_{t}, c\right\} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ ），会带来偏差．这时候我们可以再加一项来弥补这个偏差．利用恒等式 $\rho=\min \{\rho, c\}+\max \{\rho-c, 0\}$ ，我们可以把梯度 $\mathrm{E}_{b}\left[\rho_{t} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 拆成以下两项:
+$\mathrm{E}_{b}\left[\min \left\{\rho_{t}, c\right\} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]:$ 期望针对行为策略 $b$ ，此项方差是可控的；
+$\mathrm{E}_{b}\left[\max \left\{\rho_{t}-c, 0\right\} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 即 $\mathrm{E}_{\pi(\theta)}\left[\max \left\{1-c / \rho_{t}, 0\right\} \Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]:$ 采用针对原有目标策略 $\pi(\boldsymbol{\theta})$ 的期望后， $\max \left\{1-c / \rho_{t}, 0\right\}$ 也是有界的 (即 $\max \left\{1-c / \rho_{t}, 0\right\} \leqslant 1$ )．
+
+采用这样的拆分后，两项的方差都是可控的．但是，这两项中其中一项针对的是行为策略，另外一项针对的是原策略，这就要求在执行过程中兼顾这两种策略．
+
+得到梯度方向后，我们希望对这个梯度方向做修正，以免超出范围．为此，用 $\mathrm{KL}$ 散度增加了约束。记在迭代过程中策略参数的指数滑动平均值为 $\theta^{\mathrm{EMA}}$ ，对应的平均策略为 $\pi\left(\mathbf{\theta}^{\mathrm{EMA}}\right)$ ．我
+们可以希望迭代得到的新策略参数不要与这个平均策略 $\pi\left(\mathbf{\theta}^{\mathrm{EMA}}\right)$ 参数差别太大．所以，可以限定这两个策略在当前状态 $S_{t}$ 下的动作分布不要差别太大．考虑到 KL 散度可以刻画两个分布直接的差别，所以可以限定新得到的梯度方向（记为 $\mathbf{z}_{t}$ ) 与 $\nabla_{\theta} d_{\mathrm{KL}}\left(\pi\left(\cdot|S_{t} ; \boldsymbol{\theta}^{\mathrm{EMA}}\right) \| \pi\left(\cdot|S_{t} ; \boldsymbol{\theta}\right)\right)$ 的内积不要太大．值得一提的是， $\nabla_{\theta} d_{\mathrm{KL}}\left(\pi\left(\cdot|S_{t} ; \theta^{\mathrm{EMA}}\right) \| \pi\left(\cdot|S_{t} ; \boldsymbol{\theta}\right)\right)$ 实际上有和重采样比例类似的形式：
+$$
+\begin{aligned}
+\nabla_{\theta} & d_{\mathrm{KL}}\left(\pi\left(\cdot|S_{t} ; \theta^{\mathrm{EMA}}\right) \| \pi\left(\cdot|S_{t} ; \theta\right)\right) \\
+&=\nabla_{\theta} \sum_{a} \pi\left(a|S_{t} ; \theta^{\mathrm{EMA}}\right) \ln \frac{\pi\left(a|S_{t} ; \theta^{\mathrm{EMA}}\right)}{\pi\left(a|S_{t} ; \theta\right)} \\
+&=-\nabla_{\theta} \sum_{a} \pi\left(a|S_{t} ; \theta^{\mathrm{EMA}}\right) \ln \pi\left(a|S_{t} ; \boldsymbol{\theta}\right) \\
+&=-\sum_{a} \frac{\pi\left(a|S_{t} ; \theta^{\mathrm{EMA}}\right)}{\pi\left(a|S_{t} ; \theta\right)} \nabla_{\theta} \pi\left(a|S_{t} ; \boldsymbol{\theta}\right)
+\end{aligned}
+$$
+至此，我们可以得到一个确定新的梯度方向的优化问题．记新的梯度方向为 $\mathbf{z}_{t}$ ，定义
+$$
+\begin{array}{l}
+\mathbf{g}_{t}=\min \left\{\rho_{t}, c\right\}\left(U_{t}-v\left(S_{t} ; \mathbf{w}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right) \\
+\quad+E_{A_t \sim \pi(\theta)}\left[\max \left\{1-\frac{\rho_{t}}{c}\right\}\left(q\left(S_{t}, A_{t} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right] \\
+\mathbf{k}_{t}=\nabla_{\theta} d_{\mathrm{KL}}\left(\pi\left(\cdot|S_{t} ; \boldsymbol{\theta}^{\mathrm{EMA}}\right) \| \pi\left(\cdot|S_{t} ; \boldsymbol{\theta}\right)\right)
+\end{array}
+$$
+我们一方面希望新的梯度方向 $\mathbf{z}_{t}$ 要和 $\mathbf{g}_{t}$ 尽量接近，另外一方面要满足 $\mathbf{k}_{t}^{\mathrm{T}}\mathbf{z}_t$ ，不超过一个给定的参数 $\delta$ ．这样这个优化问题为
+$$
+\begin{array}{ll}
+\text { minimize } & \frac{1}{2}\left\|\mathbf{g}_{t}-\mathbf{z}\right\|_{2}^{2} \\
+\text { over } & \mathbf{z} \\
+\text { s.t. } & \mathbf{k}_{t}^{\mathrm{T}} \mathbf{z} \leqslant \delta ．
+\end{array}
+$$
+接下来求解这个优化问题．使用 Lagrange 乘子法，构造函数：
+$$
+l(\mathbf{z}, \lambda)=\frac{1}{2}\left\|\mathbf{g}_{t}-\mathbf{z}\right\|_{2}^{2}+\lambda\left(\mathbf{k}_{t}^{\mathrm{T}} \mathbf{z}-\delta\right)
+$$
+将前式代人后式可得 $\lambda_{t}=\frac{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{g}_{t}-\delta}{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{k}_{t}}$ ．由于 Lagrange 乘子应大等于 0 ，所以，Lagrange 乘子应为 $\max \left\{\frac{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{g}_{t}-\delta}{\mathbf{k}_{t}^{T} \mathbf{k}_{t}}, 0\right\}$ ，优化问题的最优解为
+$$
+\mathbf{z}_{t}=\mathbf{g}_{t}-\max \left\{\frac{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{g}_{t}-\delta}{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{k}_{t}}, 0\right\} \mathbf{k}_{t}
+$$
+这个方向才是我们真正要用的梯度方向．综合以上分析，我们可以得到带经验回放的执行者 / 评论者算法的一个简化版本．这个算法可以有一个回放因子，可以控制每次运行得到的经验可以回放多少次．算法 6-11 给出了经验回放的线程的算法．对于经验回放的线程所回放的经验是从其他线程已经执行过的线程生成并存储的，这个过程在算法 6-11 中没有展示，但是是这个算法必需的．在存储和回放的时候，不仅要存储和回放状态 $S_{t}$, 动作 $A_{1}$ 、奖励 $R_{t+1}$ 等，还需要存储和回放在状态 $S_{t}$ 产生动作 $A_{1}$ 的概率 $b\left(A_{t}|S_{t}\right)$ ．有了这个概率值，才能计算重采样系数．在价值网络的设计方面，只维护动作价值网络．在需要状态价值的估计时，由动作价值网络计算得到．
+
+>**算法 6-11**：$\quad$ 带经验回放的执行者 / 评
+论者算法 (异策简化版本)
+***********************
+
+参数: 学习率 $\alpha^{(\theta)}, \alpha^{(\mathrm{w})}$ ，指数滑动平均系数 $\alpha^{\mathrm{EMA}}$ ，重采样因子截断系数 $c$ ，折扣因子 $\gamma$ ，控制回合数和回合内步数的参数．
+
+1. （同步全局参数） $\boldsymbol{\theta}^{\prime} \leftarrow \boldsymbol{\theta}, \quad \mathbf{w}^{\prime} \leftarrow \mathbf{w}$
+2. （经验回放）回放存储的经验轨迹 $S_{0}, A_{0}, R_{1}, S_{1}, \ldots, S_{T-1}, A_{T-1}, R_{T}, S_{T}$ ，以及经验对应的行为策略概率 $b\left(A_{t}|S_{t}\right)(t=0,1, \ldots)$
+3. 梯度估计  
+ 3.1 为梯度计算初始化:
+    1. （初始化目标 $U_{T}$ ）若 $S_{T}$ 是终止状态，则 $U \leftarrow 0$ ；否则 $U \leftarrow \sum_{a} \pi\left(a|S_{t} ; \boldsymbol{\theta}^{\prime}\right)q\left(S_{t}, a ; \mathbf{w}^{\prime}\right)$
+    2. （初始化梯度） $\mathrm{g}^{(\mathrm{w})} \leftarrow \mathbf{0}, \mathrm{g}^{(0)} \leftarrow \mathbf{0}$  
+ 3.2 （异步计算梯度） 对 $t=T-1, T-2, \ldots, 0$ ，执行以下内容:
+    - （估计目标）计算 $U \leftarrow \gamma U+R_{t+1}$
+    - （估计价值梯度方向） $\mathbf{g}^{(\mathbf{w})} \leftarrow \mathbf{g}^{(\mathbf{w})}+\left[U-q\left(S_{t}, A_{t} ; \mathbf{w}^{\prime}\right)\right] \nabla q\left(S_{t}, A_{t} ; \mathbf{w}^{\prime}\right)$
+    - （估计策略梯度方向）计算动作价值 $V \leftarrow \sum_{a} \pi\left(a|S_{t} ; \boldsymbol{\theta}^{\prime}\right) q\left(S_{t}, a ; \mathbf{w}^{\prime}\right)$ ，重采样系数 $\rho \leftarrow \frac{\pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}^{\prime}\right)}{b\left(A_{t}|S_{t}\right)}, \quad$ 以及 $\mathbf{g}, \quad \mathbf{k} \leftarrow \nabla_{\mathbf{\theta}} d_{\mathrm{KL}}\left(\pi\left(\cdot|S_{t} ; \boldsymbol{\theta}^{\mathrm{EMA}}\right) \| \pi\left(\cdot|S_{t} ; \boldsymbol{\theta}^{\prime}\right)\right), \quad \mathbf{z} \leftarrow \mathbf{g}-\max \left\{\frac{\mathbf{k}^{\mathrm{T}} \mathbf{g}-\delta}{\mathbf{k}^{\mathrm{T}} \mathbf{k}}, 0\right\} \mathbf{k} .\mathbf{g}^{(\theta)} \leftarrow \mathbf{g}^{(\theta)}+\mathbf{z}$
+    - （更新回溯目标） $U \leftarrow \min \{\rho, 1\}\left[U-q\left(S_{t}, A_{t} ; \mathbf{w}^{\prime}\right)\right]+V$
+4. （同步更新）更新全局参数．  
+ 4.1 （价值更新） $\mathbf{w} \leftarrow \mathbf{w}+\alpha^{(\mathbf{w})} \mathbf{g}^{(\mathbf{w})}$  
+ 4.2 （策略更新） $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha^{(\theta)} \mathbf{g}^{(\theta)}$  
+ 4.3 （更新平均策略） $\theta^{\mathrm{EMA}} \leftarrow\left(1-\alpha^{\mathrm{EMA}}\right) \theta^{\mathrm{EMA}}+\alpha^{\mathrm{EMA}} \boldsymbol{\theta}$
+
+***********************
+
+TODO:柔性A-C
