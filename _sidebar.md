@@ -10,7 +10,7 @@
   - [4.3 记忆神经网络](nn/memory.md)
   - [4.4 图神经网络](nn/graph.md)  
   - [4.5 生成对抗网络](nn/GAN.md)
-- [5. 强化学习](DRL/RL.md)
-- [6. 深度强化学习(DRL)](DRL/DRL)
+- [5. 强化学习基础知识](DRL/RL.md)
+- [6. 深度强化学习(DRL)](DRL/DRL.md)
 - 7\. 杂记
   - [7.1 随机波动率](notes/sv.md)
