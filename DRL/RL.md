@@ -800,7 +800,7 @@ $0, a \in \mathcal{A}, i \in\{0,1\}$
     2. （采样）执行动作 $A$ ，观测得到奖励 $R$ 和新状态 $S^{\prime}$
     3. （随机选择更新 $q^{(0)}$ 或 $q^{(1)}$）以等概率选择 $q^{(0)}$ 或 $q^{(1)}$ 中的一个动作价值函数作为更新对象，记选择的是 $q^{(i)}, i \in\{0,1\}$
     4. （用改进后的策略更新回报的估计) $U\leftarrow R+\gamma q^{(1-i)}\left(S^{\prime}, \arg \max _{a} q^{(i)}\left(S^{\prime}, a\right)\right)$
-    5. （更新动作价值）更新 $q^{(i)}(S, A)$ 以减小 $\left[U-q^{(i)}(S, A)\right]^{2}\left(\right.$ 如 $q^{(i)}(S, A) \leftarrow q^{(i)}(S, A)+$$\left.\alpha\left[U-q^{(i)}(S, A)\right]\right)$
+    5. （更新动作价值）更新 $q^{(i)}(S, A)$ 以减小 $\left[U-q^{(i)}(S, A)\right]^{2}\left(\right.$ 如 $q^{(i)}(S, A) \leftarrow q^{(i)}(S, A)+\left.\alpha\left[U-q^{(i)}(S, A)\right]\right)$
     6. $S \leftarrow S^{\prime}$
 
 ***********************
