@@ -503,10 +503,10 @@ $$
 \begin{aligned}
 q_{\pi}(s, a) &=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{t}=a\right] \\
 &=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma G_{t+1}|S_{t}=S, A_{t}=a\right] \\
-&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=s, A_{1}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
+&=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=s, A_{t}=a\right], \quad s \in \mathcal{S}, a \in \mathcal{A}(s)
 \end{aligned}
 $$
-在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{1}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
+在上一章的回合更新学习中，我们依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[G_{t}|S_{t}=s, A_{t}=a\right]$ ，用 Monte Carlo 方法来估计价值函数．为了得到回报样本，我们要从状态动作对 $(s, a)$ 出发一直采样到回合结束．单步时序差分更新将依据 $q_{\pi}(s, a)=\mathrm{E}_{\pi}\left[R_{t+1}+\gamma q_{\pi}\left(S_{t+1}, A_{t+1}\right)|S_{t}=S, A,=a\right]$ ，只需要采样一步，进而用 $U_{t}=R_{t+1}+\gamma q_{\pi}\left(S_{t+1},\cdot \right)$ ，来估计回报样本的值．为了与由奖励直接计算得到的无偏回报样本 $G_{t}$ 进行区别，本书用字母 $U_{t}$ 表示使用自益得到的有偏回报样本．
 
 基于以上分析，我们可以定义时序差分目标．时序差分目标可以针对动作价值定义，也可以针对状态价值定义．对于动作价值，其单步时序差分目标定义为
 $$
@@ -781,9 +781,9 @@ $$
 我们来看一个最大化偏差的例子．下所示的回合制任务中，Markov决策过程的状态空间为 $\mathcal{S}=\left\{s_{\text{开始}}, S_{\text{中间}}\right\}$ ，回合开始时总是处在 $s_{\text {开始 }}$ 状态，可以选择的动作空间 $\mathcal{A}\left(s_{\text{开始}}\right)=\left\{a_{\text {去中间 }}, a_{\text {去终止 }}\right\}$ ．如果选择动作 $a_{\text {去中间 }}$ ，则可以到达状态 $s_{\text {中间 }}$ ，该步奖励为 0 ；如果选择动作 $s_{\text {去终止 }}$ ，则可以达到终止状态并获得奖励 $+1$ ．从状态 $s_{\text {中间 }}$ 出发，有很多可选的动作（例如有 1000 个可选的动作），但是这些动作都指向终止状态，并且奖励都服从均值为 0 、方差为 100 的正态分布．从理论上说，这个例子的最优价值函数为: $v_{*}\left(s_{\text {中间 }}\right)=q_{*}\left(S_{\text {中间 }}, \cdot\right)=0$ ，$v_{*}\left(S_{\text {开始 }}\right)=q_{*}\left(S_{\text {开始 }}, a_{\text {去终止 }}\right)=1$ ，最优策略应当是 $\pi_{*}\left(S_{\text {开始 }}\right)=a_{\text {去终止 }}$ ．但是，如果采用 Q 学习，在中间过程中会走一些弯路：在学习过程中，从 $s_{\text {中间 }}$ 出发的某些动作会采样到比较大的奖励值，从而导致 $\max _{a \in \mathcal{A}\left(s_{\text {中苗 }}\right)} q\left(S_{\text {中伺 }}, a\right)$ 会比较大，使得从 $s_{\text {开始更倾向于选择 }} a_{\text {去中间}}$ ．这样的错误需要大量的数据才能纠正．为了解决这一问题，**双重 Q 学习** ( Double Q Learning）算法使用两个独立的动作价值估计值 $q^{(0)}(\cdot, \cdot)$ 和 $q^{(1)}(\cdot, \cdot)$ ，用 $q^{(0)}\left(S_{t+1}, \arg \max _{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 或 $q^{(1)}\left(S_{t+1}, \arg \max _{a} q^{(0)}\left(S_{t+1}, a\right)\right)$ 来 代替 Q 学习中的 $\max _{a} q\left(S_{t+1}, a\right)$ ．由于 $q^{(0)}$ 和 $q^{(1)}$ 是相互独立的估计，所以 $\mathrm{E}\left[q^{(0)}\left(S_{t+1}, A^{*}\right)\right]=q\left(S_{t+1}, A^{*}\right)$ ，其中 $A^{*}=\arg \max _{a} q^{(1)}\left(S_{t+1}, a\right)$ ，这样就消除了偏差．在双重学习的过程中， $q^{(0)}$ 和 $q^{(1)}$ 都需要逐渐更新．所以，每步学习可以等概率选择以下两个更新 中的任意一个：
 
 - 使用 $U_{t}^{(0)}=R_{t+1}+\gamma q^{(1)}\left(S_{t+1}, \arg \max_{a} q^{(0)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{t}\right), \quad$ 以减小 $U_{t}^{(0)}$ 和
-$q^{(0)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{t}\right)\right]^{2}$ ，或采用 $q^{(0)}\left(S_{t}, A_{t}\right) \leftarrow$
+$q^{(0)}\left(S_{t}, A_{t}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{t}\right)\right]^{2}$ ，或采用 $q^{(0)}\left(S_{t}, A_{t}\right) \leftarrow$
 $q^{(0)}\left(S_{t}, A_{t}\right)+\alpha\left[U_{t}^{(0)}-q^{(0)}\left(S_{t}, A_{t}\right)\right]$ 更新 $)$
-- 使用 $U_{t}^{(1)}=R_{t+1}+\gamma q^{(0)}\left(S_{t+1}, \arg \max_{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{t}\right)$ ，以减小 $U_{t}^{(1)}$ 和 $q^{(1)}\left(S_{t}, A_{1}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{2}\right)\right]^{2}$ ，或采用 $q^{(1)}\left(S_{t}, A_{t}\right) \leftarrow q^{(1)}\left(S_{t}, A_{t}\right)+$
+- 使用 $U_{t}^{(1)}=R_{t+1}+\gamma q^{(0)}\left(S_{t+1}, \arg \max_{a} q^{(1)}\left(S_{t+1}, a\right)\right)$ 来更新 $\left(S_{t}, A_{t}\right)$ ，以减小 $U_{t}^{(1)}$ 和 $q^{(1)}\left(S_{t}, A_{t}\right)$ 之间的差别 (例如设定损失为 $\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{2}\right)\right]^{2}$ ，或采用 $q^{(1)}\left(S_{t}, A_{t}\right) \leftarrow q^{(1)}\left(S_{t}, A_{t}\right)+$
 $\alpha\left[U_{t}^{(1)}-q^{(1)}\left(S_{t}, A_{t}\right)\right]$ 更新 $)_{0}$
 
 算法 3-9 给出了双重 Q 学习求解最优策略的算法．这个算法中最终输出的动作价值函数是 $q^{(0)}$ 和 $q^{(1)}$ 的平均值，即 $\frac{1}{2}\left(q^{(0)}+q^{(1)}\right)$ ．在算法的中间步骤，我们用这两个估计的和 $q^{(0)}+q^{(1)}$ 来代替平均值 $\frac{1}{2}\left(q^{(0)}+q^{(1)}\right)$ ，在略微简化的计算下也可以达到相同的效果．
@@ -843,7 +843,7 @@ e_{t}(s, a)=\left\{\begin{array}{ll}
 \gamma \lambda e_{t-1}(s, a), & \text { 其他 }
 \end{array}\right.
 $$
-其中 $\beta \in[0,1]$ 是事先给定的参数．资格迹的表达式应该这么理解：对于历史上的某个状念动作对 $\left(S_{\tau}, A_{\tau}\right)$ ，距离第 $t$ 步间隔了 $t-\tau$ 步， $U_{\tau:t}$ 在 $\lambda$ 回报 $U_{\tau}^{\lambda}$ 中的权重为 $(1-\lambda) \lambda^{t-\tau-1}$ ，并且 $U_{\tau :t}=R_{\tau+1}+\cdots+\gamma^{t-\tau-1} U_{t-1:t}$ ，所以 $U_{t-1:t}$ 是以 $(1-\lambda)(\lambda \gamma)^{t-\tau-1}$ 的比率折算到 $U_{\tau}^{\lambda}$ 中．间隔的步数每增加一步，原先的资格迹大致需要衰减为 $\gamma \lambda$ 倍．对当前最新出现的状态动作对 $\left(S_{t}, A_{1}\right)$ ，大的更新权重则要进行某种强化．强化的强度 $\beta$ 常有以下取值：
+其中 $\beta \in[0,1]$ 是事先给定的参数．资格迹的表达式应该这么理解：对于历史上的某个状念动作对 $\left(S_{\tau}, A_{\tau}\right)$ ，距离第 $t$ 步间隔了 $t-\tau$ 步， $U_{\tau:t}$ 在 $\lambda$ 回报 $U_{\tau}^{\lambda}$ 中的权重为 $(1-\lambda) \lambda^{t-\tau-1}$ ，并且 $U_{\tau :t}=R_{\tau+1}+\cdots+\gamma^{t-\tau-1} U_{t-1:t}$ ，所以 $U_{t-1:t}$ 是以 $(1-\lambda)(\lambda \gamma)^{t-\tau-1}$ 的比率折算到 $U_{\tau}^{\lambda}$ 中．间隔的步数每增加一步，原先的资格迹大致需要衰减为 $\gamma \lambda$ 倍．对当前最新出现的状态动作对 $\left(S_{t}, A_{t}\right)$ ，大的更新权重则要进行某种强化．强化的强度 $\beta$ 常有以下取值：
 
 - $\beta=1$, 这时的资格迹称为**累积迹**（accumulating trace）
 - $\beta=1-\alpha$ （其中 $\alpha$ 是学习率）,这时的资格迹称为**荷兰迹**（dutch trace)
@@ -916,7 +916,7 @@ $\mathrm{TD}(\lambda)$ 算法与离线 $\lambda$ 回报算法相比，具有三�
 - $\mathrm{TD}(\lambda)$ 算法在每一步都更新价值估计，能够及时反映变化
 - $\mathrm{TD}(\lambda)$ 算法在每一步都有均匀的计算，而且计算量都较小
 
-#### 四． 函数近似方法
+## 四． 函数近似方法
 
 第 $3 \sim 5$ 章中介绍的有模型数值迭代算法、回合更新算法和时序差分更新算法，在每次更新价值函数时都只更新某个状态（或状态动作对）下的价值估计．但是，在有些任务中，状态和动作的数目非常大，甚至可能是无穷大，这时，不可能对所有的状态 (或状态动作对) 逐一进行更新．函数近似方法用参数化的模型来近似整个状态价值函数（或动作价值函数），并在每次学习时更新整个函数．这样，那些没有被访问过的状态（或状态动作对）的价值估计也能得到更新．本章将介绍函数近似方法的一般理论，包括策略评估和最优策略求解的一般理论．再介绍两种最常见的近似函数：线性函数和人工神经网络．后者将深度学习和强化学习相结合，称为深度 Q 学习，是第一个深度强化学习算法，也是目前的热门算法．
 
@@ -947,7 +947,7 @@ $\mathrm{TD}(\lambda)$ 算法与离线 $\lambda$ 回报算法相比，具有三�
 $$
 \mathbf{w} \leftarrow \mathbf{w}-\frac{1}{2} \alpha_{t} \nabla\left[G_{t}-q\left(S_{t}, A_{t} ; \mathbf{w}\right)\right]^{2}=\mathbf{w}+\alpha_{t}\left[G_{t}-q\left(S_{t}, A_t ; \mathbf{w}\right)\right] \nabla q\left(S_{t}, A_{t} ; \mathbf{w}\right)
 $$
-对于状态价值函数，也有类似的分析．定义每一步的损失为 $\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}$ ，整个回合的损失为 $\sum_{t=0}^{T}\left[G_{t}-v\left(S_{i} ; \mathbf{w}\right)\right]^{2}$ ．可以在自动梯度计算并更新参数的软件包中定义这个损失来更新参数 $\mathbf{w}$, 也可以用下式更新：
+对于状态价值函数，也有类似的分析．定义每一步的损失为 $\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}$ ，整个回合的损失为 $\sum_{t=0}^{T}\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}$ ．可以在自动梯度计算并更新参数的软件包中定义这个损失来更新参数 $\mathbf{w}$, 也可以用下式更新：
 $$
 \mathbf{w} \leftarrow \mathbf{w}-\frac{1}{2} \alpha_{t} \nabla\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right]^{2}=\mathbf{w}+\alpha_{t}\left[G_{t}-v\left(S_{t} ; \mathbf{w}\right)\right] \nabla v\left(S_{t} ; \mathbf{w}\right)
 $$
@@ -1343,7 +1343,7 @@ $$
  2.2 （初始化回报） $G \leftarrow 0$
  2.3 对 $t=T-1, T-2, \ldots, 0$ ，执行以下步骤：
     1. （更新回报） $G \leftarrow \gamma G+R_{t+1}$
-    2. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{\prime} G \ln \pi\left(A_{1}|S_{t} ; \boldsymbol{\theta}\right)\left(\text { 如 } \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \gamma^{t} G \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)$
+    2. （更新策略）更新 $\boldsymbol{\theta}$ 以减小 $-\gamma^{\prime} G \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\left(\text { 如 } \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\alpha \gamma^{t} G \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right)$
 
 ***********************
 
@@ -1628,7 +1628,7 @@ $$
 $$
 \mathrm{E}_{\pi\left(\theta_{k}\right)}\left[\min \left(\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right), a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)+\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|\right)\right]
 $$
-其中 $\varepsilon \in(0,1)$ 是指定的参数．采用这样的优化目标后，优化目标至多比 $a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{1}\right)$ 大 $\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|$ ，所以优化问题就没有动力让代理优势 $\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{2}\right)$ 变得非常大，可以避免迭代后的策略与迭代前的策略差距过大．
+其中 $\varepsilon \in(0,1)$ 是指定的参数．采用这样的优化目标后，优化目标至多比 $a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)$ 大 $\varepsilon\left|a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{t}\right)\right|$ ，所以优化问题就没有动力让代理优势 $\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{\pi\left(A_{t}|S_{t} ; \theta_{k}\right)} a_{\pi\left(\theta_{k}\right)}\left(S_{t}, A_{2}\right)$ 变得非常大，可以避免迭代后的策略与迭代前的策略差距过大．
 
 算法 6-5 给出了邻近策略优化算法的简化版本．
 
@@ -1691,7 +1691,7 @@ TODO:信任域A-C算法
 本节介绍基于重要性采样的**异策的执行者/评论者算法**（Off-Policy Actor-Critic, OffPAC )．
 
 用 $b(\cdot|\cdot)$ 表示行为策略，则梯度方向可由 $\mathrm{E}_{\pi(\theta)}\left[\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 变为 $\mathrm{E}_{b}\left[\frac{\pi\left(A_{t}|S_{t} ; \theta\right)}{b\left(A_{t}|S_{t}\right)}\right.\left.\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]=\mathrm{E}_{b}\left[\frac{1}{b\left(A_{t}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ ．这时，更新策略参数 $\boldsymbol{\theta}$ 时就应该试图减小
-$-\frac{1}{b\left(A_{1}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \theta\right)$ ．据此，可以得到异策执行者 / 评论者算法，见算法 6-10．
+$-\frac{1}{b\left(A_{t}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \theta\right)$ ．据此，可以得到异策执行者 / 评论者算法，见算法 6-10．
 
 >**算法 8-10**：$\quad$ 异策动作价值执行者 / 评论者算法
 ***********************
@@ -1760,7 +1760,7 @@ $$
 $$
 \mathbf{z}_{t}=\mathbf{g}_{t}-\max \left\{\frac{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{g}_{t}-\delta}{\mathbf{k}_{t}^{\mathrm{T}} \mathbf{k}_{t}}, 0\right\} \mathbf{k}_{t}
 $$
-这个方向才是我们真正要用的梯度方向．综合以上分析，我们可以得到带经验回放的执行者 / 评论者算法的一个简化版本．这个算法可以有一个回放因子，可以控制每次运行得到的经验可以回放多少次．算法 6-11 给出了经验回放的线程的算法．对于经验回放的线程所回放的经验是从其他线程已经执行过的线程生成并存储的，这个过程在算法 6-11 中没有展示，但是是这个算法必需的．在存储和回放的时候，不仅要存储和回放状态 $S_{t}$, 动作 $A_{1}$ 、奖励 $R_{t+1}$ 等，还需要存储和回放在状态 $S_{t}$ 产生动作 $A_{1}$ 的概率 $b\left(A_{t}|S_{t}\right)$ ．有了这个概率值，才能计算重采样系数．在价值网络的设计方面，只维护动作价值网络．在需要状态价值的估计时，由动作价值网络计算得到．
+这个方向才是我们真正要用的梯度方向．综合以上分析，我们可以得到带经验回放的执行者 / 评论者算法的一个简化版本．这个算法可以有一个回放因子，可以控制每次运行得到的经验可以回放多少次．算法 6-11 给出了经验回放的线程的算法．对于经验回放的线程所回放的经验是从其他线程已经执行过的线程生成并存储的，这个过程在算法 6-11 中没有展示，但是是这个算法必需的．在存储和回放的时候，不仅要存储和回放状态 $S_{t}$, 动作 $A_{t}$ 、奖励 $R_{t+1}$ 等，还需要存储和回放在状态 $S_{t}$ 产生动作 $A_{t}$ 的概率 $b\left(A_{t}|S_{t}\right)$ ．有了这个概率值，才能计算重采样系数．在价值网络的设计方面，只维护动作价值网络．在需要状态价值的估计时，由动作价值网络计算得到．
 
 >**算法 6-11**：$\quad$ 带经验回放的执行者 / 评
 论者算法 (异策简化版本)
@@ -1888,7 +1888,7 @@ $$
 $$
 \boldsymbol{\theta} \leftarrow \boldsymbol{\theta}+\gamma^{t} \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{a} q\left(S_{t}, a ; \mathbf{w}\right)\right]_{a=\pi\left(S_{t} ; \theta\right)}
 $$
-算法 7-1 给出了基本的同策确定性执行者 / 评论者算法．对于同策的算法，必须进行探索．连续性动作空间的确定性算法将每个状态都映射到一个确定的动作上，需要在动作空间添加扰动实现探索．具体而言，在状态 $S_{t}$ 下确定性策略 $\pi(\boldsymbol{\theta})$ 指定的动作为 $\pi\left(S_{i} ; \theta\right)$ ，则在同策算法中使用的动作可以具有 $\pi\left(S_{t} ; \boldsymbol{\theta}\right)+N_{t}$ 的形式，其中 $N_{t}$ 是扰动量．在动作空间无界的情况下（即没有限制动作有最大值和最小值)，常常假设扰动量 $N_{t}$ 满足正态分布．在动作空间有界的情况下，可以用 clip 函数进一步限制加扰动后的范围（如 $\operatorname{clip}\left(\pi\left(S_{t} ; \theta\right)+N_{t}, A_{\text {low }}, A_{\text {tigh }}\right)$ ，其中 $A_{\text {low }}$ 和 $A_{\text {high }}$ 是动作的最小取值和最大取值)，或用 sigmoid 函数将对加扰动后的动作变换到合适的区间里 $\left(\right.$ 如 $\left.A_{\text {low }}+\left(A_{\text {righ }}-A_{\text {low }}\right) \operatorname{expit}\left(\pi\left(S_{t} ; \theta\right)+N_{t}\right)\right)$．
+算法 7-1 给出了基本的同策确定性执行者 / 评论者算法．对于同策的算法，必须进行探索．连续性动作空间的确定性算法将每个状态都映射到一个确定的动作上，需要在动作空间添加扰动实现探索．具体而言，在状态 $S_{t}$ 下确定性策略 $\pi(\boldsymbol{\theta})$ 指定的动作为 $\pi\left(S_{t} ; \theta\right)$ ，则在同策算法中使用的动作可以具有 $\pi\left(S_{t} ; \boldsymbol{\theta}\right)+N_{t}$ 的形式，其中 $N_{t}$ 是扰动量．在动作空间无界的情况下（即没有限制动作有最大值和最小值)，常常假设扰动量 $N_{t}$ 满足正态分布．在动作空间有界的情况下，可以用 clip 函数进一步限制加扰动后的范围（如 $\operatorname{clip}\left(\pi\left(S_{t} ; \theta\right)+N_{t}, A_{\text {low }}, A_{\text {tigh }}\right)$ ，其中 $A_{\text {low }}$ 和 $A_{\text {high }}$ 是动作的最小取值和最大取值)，或用 sigmoid 函数将对加扰动后的动作变换到合适的区间里 $\left(\right.$ 如 $\left.A_{\text {low }}+\left(A_{\text {righ }}-A_{\text {low }}\right) \operatorname{expit}\left(\pi\left(S_{t} ; \theta\right)+N_{t}\right)\right)$．
 
 >**算法 7-1**：$\quad$ 基本的同策确定性执行者 / 评论者算法
 ***********************
