@@ -1223,7 +1223,7 @@ $$
 
 本节介绍这两部分内容．
 
-### 7.1.1 函数近似与动作偏好
+### 5.1.1 函数近似与动作偏好
 
 用函数近似方法估计最优策略 $\pi_*(a|s)$ 的基本思想是用含参函数 $\pi(a|s ; \theta)$ 来近似最优策略．由于任意策略 $\pi$ 都需要满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a|s)=1$ ，我们也希望 $\pi(a|s ; \theta)$ 满足对于任意的状态 $s \in \mathcal{S}$ ，均有 $\sum_{a} \pi(a|s ; \theta)=1$ ．为此引入动作偏好函数（action preference function） $h(s, a ; \theta)$ ，其 softmax 的值为 $\pi(a|s ; \theta)$ ，即
 $$
@@ -1234,7 +1234,7 @@ $$
 
 动作偏好函数可以具有线性组合、人工神经网络等多种形式．在确定动作偏好的形式中，只需要再确定参数 $\theta$ 的值，就可以确定整个最优状态估计．参数 $\boldsymbol{\theta}$ 的值常通过基于梯度的迭代算法更新，所以，动作偏好函数往往需要对参数 $\boldsymbol{\theta}$ 可导．
 
-### 7.1.2 策略梯度定理
+### 5.1.2 策略梯度定理
 
 策略梯度定理给出了期望回报和策略梯度之间的关系，是策略梯度方法的基础．本节学习策略梯度定理．
 
@@ -1310,11 +1310,11 @@ $$
 $$
 得证．
 
-### 7.2 同策回合更新策略梯度算法
+### 5.2 同策回合更新策略梯度算法
 
 策略梯度定理告诉我们，沿着 $\nabla E_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方向改变策略参数 $\theta$ 的值，就有机会增加期望回报．基于这一结论，可以设计策略梯度算法．本节考虑同策更新算法
 
-#### 7.2.1 简单的策略梯度算法
+#### 5.2.1 简单的策略梯度算法
 
 在每一个回合结束后，我们可以就回合中的每一步用形如
 $$
@@ -1347,7 +1347,7 @@ $$
 
 ***********************
 
-### 7.2.2 带基线的简单策略梯度算法
+### 5.2.2 带基线的简单策略梯度算法
 
 本节介绍简单的策略梯度算法的一种改进一带基线的简单的策略梯度算法（REINFOCE with baselines)．为了降低学习过程中的方差，可以引人基线函数 $B(s)(s \in \mathcal{S})$ ．基线函数 $B$ 可以是任意随机函数或确定函数，它可以与状态 $s$ 有关，但是不能和动作 $a$ 有关．满足这样的条件后，基线函数 $B$ 自然会满足
 $$
@@ -1379,7 +1379,7 @@ $\left.\left(A_{t}|S_{t} ; \theta\right)\right]$
 
 一个能有效降低方差的基线是状态价值函数的估计．算法 5-2 给出了用状态价值函数的估计作为基线的算法．这个算法有两套参数 $\boldsymbol{\theta}$ 和 $\mathbf{w}$ ，分别是最优策略估计和最优状态价值函数估计的参数．每次迭代时，它们都以各自的学习算法进行学习．算法 5-2 采用了随机梯度下降法来更新这两套参数（事实上也可以用其他算法)，在更新过程中都用到了 $G-v\left(S_{t} ; \mathbf{w}\right)$ ，可以在更新前预先计算以减小计算量．
 
->**算法 7-2**：$\quad$ 带基线的简单策略梯度算法求解最优策略
+>**算法 5-2**：$\quad$ 带基线的简单策略梯度算法求解最优策略
 ***********************
 
 输入：环境（无数学描述）  
@@ -1398,7 +1398,6 @@ $\left.\left(A_{t}|S_{t} ; \theta\right)\right]$
 ***********************
 
 接下来，我们来分析什么样的基线函数能最大程度地减小方差．考虑 $\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方差为
-接下来，我们来分析什么样的基线函数能最大程度地减小方差。考虑 $\mathrm{E}\left[\gamma^{\prime}\left(G_{t}-B\left(S_{t}\right)\right)\right.$ $\left.\nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]$ 的方差为
 $$
 \mathrm{E}\left[\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]^{2}\right]-\left[\mathrm{E}\left[\gamma^{t}\left(G_{t}-B\left(S_{t}\right)\right) \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right]\right]^{2}
 $$
@@ -1418,7 +1417,7 @@ $$
 
 值得一提的是，当策略参数和价值参数同时需要学习的时候，算法的收敛性需要通过双时间轴 Robbins-Monro 算法（two timescale Robbins-Monro algorithm）来分析．
 
-### 7.3 异策回合更新策略梯度算法
+### 5.3 异策回合更新策略梯度算法
 
 在简单的策略梯度算法的基础上引入重要性采样，可以得到对应的异策算法．记行为策略为 $b(a|s)$ ，有
 $$
@@ -1434,7 +1433,7 @@ E_{\pi(\theta)}\left[\gamma^{t} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsym
 $$
 所以，采用重要性采样的离线算法，只需要把用在线策略采样得到的梯度方向 $\gamma^{\prime} G_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \theta\right)$ 改为用行为策略 $b$ 采样得到的梯度方向 $\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \nabla \pi\left(A_{t}|S_{t} ; \theta\right)$ 即可．这就意味着，在更新参数 $\boldsymbol{\theta}$ 时可以试图增大 $\frac{1}{b\left(A_{t}|S_{t}\right)} \gamma^{t} G_{t} \pi\left(A_{t}|S_{t} ; \theta\right)$ ．
 
->**算法7-3**：$\quad$ 重要性采样简单策略梯度求解最优策略
+>**算法5-3**：$\quad$ 重要性采样简单策略梯度求解最优策略
 ***********************
 
 1. （初始化） $\boldsymbol{\theta \leftarrow}$任意值
@@ -1459,7 +1458,7 @@ $\left.\Psi_{t} \ln \pi\left(A_{t}|S_{t} ; \theta\right)\right)$ ，其中 $\Psi
 
 本章介绍带自益的策略梯度算法．这类算法将策略梯度和自益结合了起来：一方面，用一个含参函数近似价值函数，然后利用这个价值函数的近似值来估计回报值；另一方面，利用估计得到的回报值估计策略梯度，进而更新策略参数．这两方面又常常被称为**评论者** (critic) 和**执行者**（actor）．所以，带自益的策略梯度算法被称为**执行者 / 评论者算法**（actorcritic algorithm)．
 
-### 8.1 执行者 / 评论者算法
+### 6.1 执行者 / 评论者算法
 
 同样用含参函数 $h(s, a ; \theta)$ 表示偏好，用其 $\operatorname{softmax}$ 运算的结果 $\pi(a|s ; \boldsymbol{\theta})$ 来近似最优策略．在更新参数 $\boldsymbol{\theta}$ 时，执行者 / 评论者算法依然也是根据策略梯度定理，取 $\mathrm{E}\left[\Psi_{t} \nabla \ln \pi\left(A_{t}|S_{t} ; \boldsymbol{\theta}\right)\right]$ 为梯度方向迭代更新．其中， $\Psi_{t}=\gamma^{t}\left(G_{t}-B(s)\right)\mathrm{J} .$ Schulman 等在文章《 High-dimensional continuous control using generalized advantage estimation 》中指出， $\Psi_{t}$ 并不拘泥于以上形式． $\Psi_{t}$ 可以是以下几种形式：
 
@@ -1505,7 +1504,7 @@ $\Psi_{t}=\gamma^{t} q_{\pi}\left(S_{t}, A_{t}\right)$ ，相当于用 $q_{\pi}\
 $\left.v\left(S_{t} ; \mathbf{w}\right)\right]$ ，其中， $q\left(S_{t}, A_{t} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$ 是优势函数的估计．这样，我们就得到了优势执行者
 评论者算法．不过，如果采用 $q\left(S_{t}, A_{t} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$ 这样形式的优势函数估计值，我们就需搭建两个函数分别表示 $q(\mathbf{w})$ 和 $v(\mathbf{w})$ ．为了避免这样的麻烦，这里用了 $U_{t}=R_{t+1}+\gamma v\left(S_{t+1} ; w\right)$ 做目标，这样优势函数的估计就变为单步时序差分的形式 $R_{t+1}+\gamma v\left(S_{t+1} ; \mathbf{w}\right)-v\left(S_{t} ; \mathbf{w}\right)$．
 
-如果优势执行者 / 评论者算法在执行过程中不是每一步都更新参数，而是在回合结束后用整个轨迹来进行更新，就可以把算法分为经验搜集和经验使用两个部分．这样的分隔可以让这个算法同时有很多执行者在同时执行．例如，让多个执行者同时分别收集很多经验，然后都用自己的那些经验得到一批经验所带来的梯度更新值．每个执行者在一定的时机更新参数，同时更新策略参数 $\boldsymbol{\theta}$ 和价值参数 $\mathbf{w}$ ．每个执行者的更新是异步的．所以，这样的并行算法称为**异步优势执行者 / 评论者算法**（ Asynchronous Advantage Actor-Critic, $\mathrm{A} 3 \mathrm{C}$ )．异步优势执行者 / 评论者算法中的自益部分，不仅可以采用单步时序差分，也可以使用多步时序差分．另外，还可以对函数参数的访问进行控制，使得所有执行者统一更新参数．这样的并行算法称为**优势执行者 / 评论者算法**（Advantage Actor-Critic, $\mathrm{A} 2 \mathrm{C}$ )．算法 $8-3$ 给出了异步优势执行者 / 评论者算法．异步优势执行者 / 评论者算法可以有许多执行者 (或称多个线程 )，所以除了有全局的价值参数 $\mathbf{w}$ 和策略参数 $\boldsymbol{\theta}$ 外，每个线程还可能有自己维护的价值参数 $\mathbf{w}^{\prime}$ 和 $\boldsymbol{\theta}^{\prime}$ ．执行者执行时，先从全局同步参数，然后再自己学习，最后统一同步全局参数．
+如果优势执行者 / 评论者算法在执行过程中不是每一步都更新参数，而是在回合结束后用整个轨迹来进行更新，就可以把算法分为经验搜集和经验使用两个部分．这样的分隔可以让这个算法同时有很多执行者在同时执行．例如，让多个执行者同时分别收集很多经验，然后都用自己的那些经验得到一批经验所带来的梯度更新值．每个执行者在一定的时机更新参数，同时更新策略参数 $\boldsymbol{\theta}$ 和价值参数 $\mathbf{w}$ ．每个执行者的更新是异步的．所以，这样的并行算法称为**异步优势执行者 / 评论者算法**（ Asynchronous Advantage Actor-Critic, $\mathrm{A} 3 \mathrm{C}$ )．异步优势执行者 / 评论者算法中的自益部分，不仅可以采用单步时序差分，也可以使用多步时序差分．另外，还可以对函数参数的访问进行控制，使得所有执行者统一更新参数．这样的并行算法称为**优势执行者 / 评论者算法**（Advantage Actor-Critic, $\mathrm{A} 2 \mathrm{C}$ )．算法 $6-3$ 给出了异步优势执行者 / 评论者算法．异步优势执行者 / 评论者算法可以有许多执行者 (或称多个线程 )，所以除了有全局的价值参数 $\mathbf{w}$ 和策略参数 $\boldsymbol{\theta}$ 外，每个线程还可能有自己维护的价值参数 $\mathbf{w}^{\prime}$ 和 $\boldsymbol{\theta}^{\prime}$ ．执行者执行时，先从全局同步参数，然后再自己学习，最后统一同步全局参数．
 
 >**算法 6-2**： $\quad$ 优势执行者 / 评论者算法
 ***********************
@@ -1715,7 +1714,7 @@ $-\frac{1}{b\left(A_{t}|S_{t}\right)} \Psi_{t} \nabla \pi\left(A_{t}|S_{t} ; \th
 
 ***********************
 
-#### 6.4.2 带经驳回放的异策算法
+#### 6.4.2 带经验回放的异策算法
 
 本节介绍 $\mathrm{Z} .$ Wang 等在文章 《 Sample efficient actor-critic with experience replay》中提出的**带经验回放的执行者 / 评论者算法** ( Actor-Critic with Experiment Replay, $\mathrm{ACER})$ ．如果说 $6.4.1$ 节介绍的基本异策执行者 / 评论者算法是 $6.1.1$ 节介绍的基本同策执行者 / 评论者算法的异策版本，那么本节介绍的带经验回放的异策执行者 / 评论者算法就相当于 $6.1.2$ 节介绍的 $\mathrm{A} 3 \mathrm{C}$ 算法的异策版本．它同样可以支持多个线程的异步学习：每个线程在执行前先同步全局参数，然后独立执行和学习，再利用学到的梯度方向进行全局更新．
 
@@ -1789,6 +1788,9 @@ $$
 TODO:柔性A-C
 
 ## 七． 连续动作空间的确定性策略
+简单易懂：[b站搬运ShuSenWang教程](https://www.bilibili.com/video/BV1rv41167yx?t=53)  
+
+>**如何理解**：两个网络：策略网络与价值函数网络( $q$ 函数 ) ，$t$ 时刻，先利用策略时序差分地更新价值函数，再更新策略网络，策略网络的梯度下降想法是：参数朝着使 $q$ 函数增大的方向走，即 $q$ 函数关于策略网络的参数求梯度，所以最后推得的关系式策略网络的更新式形式为连式法则的样子 $\nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{\alpha} q_{\pi(\theta)}\left(S_{t}, a\right)\right]_{a=\pi\left(S_{t} ; \theta\right)}\right]$．
 
 本章介绍在连续动作空间里的确定性执行者 / 评论者算法．在连续的动作空间中，动作的个数是无穷大的．如果采用常规方法，需要计算 $\max _{a} q(s, a ; \boldsymbol{\theta})$ ．而对于无穷多的动作，最大值往往很难求得．为此，D. Silver 等人在文章《 Deterministic Policy Gradient Algorithms 》中提出了确定性策略的方法，来处理连续动作空间情况．本章将针对连续动作空间，推导出确定性策略的策略梯度定理，并据此给出确定性执行者 / 评论者算法．
 
