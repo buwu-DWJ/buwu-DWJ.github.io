@@ -546,4 +546,130 @@ $$
 
 ## 4.4 几种典型的卷积神经网络
 
+### 4.4.1 LeNet-5
+
+### 4.4.2 AlexNet
+
+### 4.4.3 Inception网络
+
+### 4.4.4 残差网络
+
+**残差网络** ( Residual Network, ResNet ) 通过给非线性的卷积层增加**直连边** ( Shortcut Connection ) ( 也称为**残差连接** ( Residual Connection ) ) 的方式来提高信息的传播效率．
+
+假设在一个深度网络中，我们期望一个非线性单元 (可以为一层或多层的卷积层 $) f(x ; \theta)$ 去逼近一个目标函数为 $h(\boldsymbol{x})$ ．如果将目标函数拆分成两部分 : **恒等函数** ( Identity Function ) $\boldsymbol{x}$ 和**残差函数** ( Residue Function) $h(\boldsymbol{x})-\boldsymbol{x}$.
+$$
+h(\boldsymbol{x})= \underbrace{\boldsymbol{x}}_{\text { 恒等函数 }}+\underbrace{(h(\boldsymbol{x})-\boldsymbol{x})}_{\text {残差函数 }} .
+$$
+根据通用近似定理，一个由神经网络构成的非线性单元有足够的能力来近似逼近原始目标函数或残差函数,但实际中后者更容易学习 [He et al., 2016]．因此，原来的优化问题可以转换为：让非线性单元 $f(\boldsymbol{x} ; \theta)$ 去近似残差函数 $h(\boldsymbol{x})-\boldsymbol{x}$, 并用 $f(\boldsymbol{x} ; \theta)+\boldsymbol{x}$ 去逼近 $h(\boldsymbol{x})$．
+
+下图给出了一个典型的残差单元示例．残差单元由多个级联的 ( 等宽 ) 卷积层和一个跨层的直连边组成，再经过 ReLU 激活后得到输出．
+
+![24](img/24.PNG)
+
+残差网络就是将很多个**残差单元**串联起来构成的一个非常深的网络.和残差网络类似的还有 Highway Network[Srivastava et al., 2015].
+
 ## 4.5 其他卷积方式
+
+在第4.1.3节中介绍了一些卷积的变种，可以通过步长和零填充来进行不同的卷积操作．本节介绍一些其他的卷积方式．
+
+### 4.5.1 转置卷积
+
+我们一般可以通过卷积操作来实现高维特征到低维特征的转换．比如在一维卷积中，一个 5 维的输入特征，经过一个大小为 3 的卷积核，其输出为 3 维特征．如果设置步长大于 1 ，可以进一步降低输出特征的维数．但在一些任务中，我们需要将低维特征映射到高维特征，并且依然希望通过卷积操作来实现．
+
+假设有一个高维向量为 $x \in \mathbb{R}^{d}$ 和一个低维向量为 $z \in \mathbb{R}^{p}, p<d$ ．如果用**仿射变换** ( Affine Transformation ) 来实现高维到低维的映射，
+$$
+z=W x
+$$
+其中 $W \in \mathbb{R}^{p \times d}$ 为转换矩阵．我们可以很容易地通过转置 $\boldsymbol{W}$ 来实现低维到高维的反向映射，即
+$$
+\boldsymbol{x}=\boldsymbol{W}^{\top} \boldsymbol{z}
+$$
+需要说明的是，上两式并不是逆运算，两个映射只是形式上 的**转置**关系．
+
+在全连接网络中，忽略激活函数，前向计算和反向传播就是一种转置关系．比如前向计算时，第 $l+1$ 层的净输入为 $z^{(l+1)}=\boldsymbol{W}^{(l+1)} \boldsymbol{z}^{(l)}$ ，反向传播时，第 $l$ 层的误差项为 $\delta^{(l)}=\left(\boldsymbol{W}^{(l+1)}\right)^{\top} \delta^{(l+1)}$．
+
+卷积操作也可以写为仿射变换的形式．假设一个 5 维向量 $\boldsymbol{x}$ ，经过大小为 3 的卷积核 $\boldsymbol{w}=\left[w_{1}, w_{2}, w_{3}\right]^{\top}$ 进行卷积，得到 3 维向量 $z$ ．卷积操作可以写为
+$$
+\begin{aligned}
+z &=\boldsymbol{w} \otimes \boldsymbol{x} \\
+&=\left[\begin{array}{lllll}
+w_{1} & w_{2} & w_{3} & 0 & 0 \\
+0 & w_{1} & w_{2} & w_{3} & 0 \\
+0 & 0 & w_{1} & w_{2} & w_{3}
+\end{array}\right] \boldsymbol{x} \\
+&=\boldsymbol{C x}
+\end{aligned}
+$$
+其中 $C$ 是一个稀疏矩阵，其非零元素来自于卷积核 $\boldsymbol{w}$ 中的元素．
+
+如果要实现 3 维向量 $z$ 到 5 维向量 $x$ 的映射，可以通过仿射矩阵的转置来实现，即
+$$
+\begin{aligned}
+\boldsymbol{x} &=\boldsymbol{C}^{\top} \boldsymbol{z} \\
+&=\left[\begin{array}{lll}
+w_{1} & 0 & 0 \\
+w_{2} & w_{1} & 0 \\
+w_{3} & w_{2} & w_{1} \\
+0 & w_{3} & w_{2} \\
+0 & 0 & w_{3}
+\end{array}\right] z \\
+&=\operatorname{rot} 180(\boldsymbol{w}) \tilde{\otimes} \boldsymbol{z},
+\end{aligned}
+$$
+其中 $\operatorname{rot} 180(\cdot)$ 表示旋转 180 度．
+
+可以看出，从仿射变换的角度来看两个卷积操作
+$z=\boldsymbol{w} \otimes \boldsymbol{x}$ 和 $\boldsymbol{x}=\operatorname{rot} 180(\boldsymbol{w}) \tilde{\otimes} z$ 也是形式上的转置关系．因此，我们将低维特征映射到高维特征的卷积操作称为**转置卷积** ( Transposed Convolution ) [Dumoulin
+et al., 2016]，也称为**反卷积** ( Deconvolution ) [Zeiler et al., 2011]．
+
+在卷积网络中，卷积层的前向计算和反向传播也是一种转置关系．
+
+对一个 $M$ 维的向量 $\boldsymbol{z}$ ，和大小为 $K$ 的卷积核，如果希望通过卷积操作来映射到更高维的向量，只需要对向量 $\boldsymbol{z}$ 进行两端补零 $P=K-1$ ，然后进行卷积，可以得到 $M+K-1$ 维的向量．
+
+转置卷积同样适用于二维卷积．下图给出了一个步长 $S=1$ ，无零填充 $P=0$ 的二维卷积和其对应的转置卷积．
+
+![25](img/25.PNG)
+
+**微步卷积** $\quad$ 我们可以通过增加卷积操作的步长 $S>1$ 来实现对输入特征的**下采样**操作，大幅降低特征维数．同样，我们也可以通过减少转置卷积的步长 $S<1$
+来实现上采样操作，大幅提高特征维数．步长 $S<1$ 的转置卷积也称为**微步卷积** ( Fractionally-Strided Convolution ) [Long et al., 2015]．为了实现微步卷积，我们可以在输入特征之间插入 0 来间接地使得步长变小．
+
+如果卷积操作的步长为 $S>1$ ，希望其对应的转置卷积的步长为 $\frac{1}{S}$ ，需要在输入特征之间插入 $S-1$ 个 0 来使得其移动的速度变慢．
+
+以一维转置卷积为例, 对一个 $M$ 维的向量 $\boldsymbol{z}$ ，和大小为 $K$ 的卷积核，通过对向量 $\boldsymbol{z}$ 进行两端补零 $P=K-1$ ，并且在每两个向量元素之间插入 $D$ 个 0 ，然后进行步长为 1 的卷积，可以得到 $(D+1) \times(M-1)+K$ 维的向量．
+
+下图给出了一个步长 $S=2$ ，无零填充 $P=0$ 的二维卷积和其对应的转置卷积．
+
+![26](img/26.PNG)
+
+### 4.5.2 空洞卷积
+
+对于一个卷积层，如果希望增加输出单元的感受野，一般可以通过三种方式实现: 1 ）增加卷积核的大小; 2 ) 增加层数，比如两层 $3 \times 3$ 的卷积可以近似一层
+$5 \times 5$ 卷积的效果 ; 3 ) 在卷积之前进行汇聚操作．前两种方式会增加参数数量，而第三种方式会丢失一些信息．
+
+**空洞卷积**（Atrous Convolution ) 是一种不增加参数数量，同时增加输出单元感受野的一种方法，也称为**膨胀卷积** ( Dilated Convolution ) [Chen et al.
+2018; Yu et al., 2015$]$.
+
+空洞卷积通过给卷积核插入 “空洞”来变相地增加其大小．如果在卷积核的每两个元素之间插入 $D-1$ 个空洞，卷积核的有效大小为
+$$
+K^{\prime}=K+(K-1) \times(D-1)
+$$
+其中 $D$ 称为**膨胀率** ( Dilation Rate )．当 $D=1$ 时卷积核为普通的卷积核．
+
+下图给出了空洞卷积的示例．
+
+![27](img/27.PNG)
+
+## 4.6 总结和深入阅读
+
+卷积神经网络是受生物学上感受野机制启发而提出的．1959 年，[Hubel et al., 1959] 发现在猫的初级视觉皮层中存在两种细胞：简单细胞和复杂细胞．这两种细胞承担不同层次的视觉感知功能 [Hubel et al., 1962]．简单细胞的感受野是狭长型的，每个简单细胞只对感受野中特定角度 ( orientation ) 的光带敏感，而复杂细胞对于感受野中以特定方向 ( direction ) 移动的某种角度 ( ori-
+entation ) 的光带敏感．受此启发，福岛邦彦 ( Kunihiko Fukushima ) 提出了一种带卷积和子采样操作的多层神经网络：新知机 ( Neocognitron ) [Fukushima, 1980]．但当时还没有反向传播算法，新知机采用了无监督学习的方式来训练．[LeCun et al., 1989 ] 将反向传播算法引入了卷积神经网络，并在手写体数字识别上取得了很大的成功 [LeCun et al., 1998]．
+
+AlexNet[Krizhevsky et al., 2012 ] 是第一个现代深度卷积网络模型，可以说是深度学习技术在图像分类上真正突破的开端． AlexNet 不用预训练和逐层训练，首次使用了很多现代深度网络的技术，比如使用 GPU 进行并行训练，采用了
+ReLU作为非线性激活函数，使用 Dropout 防止过拟合，使用数据增强来提高模型准确率等．这些技术极大地推动了端到端的深度学习模型的发展．
+
+在 AlexNet 之后，出现了很多优秀的卷积网络，比如 VGG 网络 [Simonyan et al., 2014]、Inception v1,v2, v4 网络 [Szegedy et al., 2015, 2016, 2017] 、残差网
+络 [He et al., 2016] 等．
+
+目前，卷积神经网络已经成为计算机视觉领域的主流模型．通过引入跨层的直连边，可以训练上百层乃至上千层的卷积网络．随着网络层数的增加，卷积层越来越多地使用 $1 \times 1$ 和 $3 \times 3$ 大小的小卷积核，也出现了一些不规则的卷积操作，比如空洞卷积 [Chen et al., 2018; Yu et al., 2015] 可变形卷积 [Dai et al., 2017] 等．网络结构也逐渐趋向于**全卷积网络** ( Fully Convolutional Network, FCN ) [Long et al., 2015]，减少汇聚层和全连接层的作用．
+
+各种卷积操作的可视化示例可以参考 [Dumoulin et al., 2016]．
