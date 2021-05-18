@@ -345,7 +345,7 @@ $$
 
 如果将深度定义为网络中信息传递路径长度的话，循环神经网络可以看作既“深”又“浅”的网络．一方面来说，如果我们把循环网络按时间展开，长时间间隔的状态之间的路径很长，循环网络可以看作一个非常深的网络．从另一方面来说，如果同一时刻网络输入到输出之间的路径 $\boldsymbol{x}_{t} \rightarrow \boldsymbol{y}_{t}$ ，这个网络是非常浅的．
 
-因此，我们可以增加循环神经网络的深度从而增强循环神经网络的能力．增加循环神经网络的深度主要是增加同一时刻网络输入到输出之间的路径 $\boldsymbol{x}_{t}\rightarrowy_{t}$ ，比如增加隐状态到输出 $\boldsymbol{h}_{t} \rightarrow \boldsymbol{y}_{t}$ ，以及输入到隐状态 $\boldsymbol{x}_{t} \rightarrow \boldsymbol{h}_{t}$ 之间的路径的
+因此，我们可以增加循环神经网络的深度从而增强循环神经网络的能力．增加循环神经网络的深度主要是增加同一时刻网络输入到输出之间的路径 $\boldsymbol{x}_{t}\rightarrow y_{t}$ ，比如增加隐状态到输出 $\boldsymbol{h}_{t} \rightarrow \boldsymbol{y}_{t}$ ，以及输入到隐状态 $\boldsymbol{x}_{t} \rightarrow \boldsymbol{h}_{t}$ 之间的路径的
 深度．
 
 ### 6.1 堆叠循环神经网络
