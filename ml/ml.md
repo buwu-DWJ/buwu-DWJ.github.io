@@ -2027,3 +2027,32 @@ $$
 L(y,f(x;\theta)) = -\log f_y(x;\theta),
 $$
 其中 $f_y(x;\theta)$ 可以看作真实类别 $y$ 的似然函数．因此，交叉熵损失函数也就是**负对数似然函数**（Negative Log-Likelihood）．
+
+#### 交叉熵最小值证明
+
+$H(p, q)=-\sum_{i} p_{i} \ln q_{i}$ 为什么当 $p$ 与 $q$ 的分布一致时, $H(p, q)$ 有最小值:
+
+证明如下:
+$$
+H(p, p)-H(p, q)=\sum_{i} p_{i} \ln q_{i}-\sum_{i} p_{i} \ln p_{i}=\sum_{i} p_{i} \ln \frac{q_{i}}{p_{i}}
+$$
+因为 $\ln (x)$ 为定义域上的凸函数
+根据琴生不等式有
+$$
+a_{1} \ln \left(x_{1}\right)+a_{2} \ln \left(x_{2}\right)+a_{3} \ln \left(x_{3}\right)+\ldots+a_{n} \ln \left(x_{n}\right)<=\ln \left(a_{1} x_{1}+a_{2} x_{2}+\ldots+a_{n} x_{n}\right)
+$$
+其中$\left(\sum_{i} a_{i}=1\right)$
+
+将 $\sum_{i} p_{i} \ln \frac{q_{i}}{p_{i}}$ 代入则有:
+$$
+\begin{aligned}
+p_{1} l n\left(\frac{p_{1}}{q_{1}}\right)+p_{2} \ln \left(\frac{p_{2}}{q_{2}}\right)+\ldots+p_{n} \ln \left(\frac{p_{n}}{q_{n}}\right)&\leq\ln \left(p_{1} \frac{q_{1}}{p_{1}}+p_{2} \frac{q_{2}}{p_{2}}+\ldots+p_{n} \frac{q_{n}}{p_{n}}\right)\\
+\sum_{i} p_{i} \ln \frac{q_{i}}{p_{i}}&\leq \ln \left(q_{1}+q_{2}+\ldots+q_{n}\right)\\
+&=0
+\end{aligned}
+$$
+所以
+$$
+H(p, p)-H(p, q)<=0
+$$
+当 $p=q$ 时, 等号成立.
