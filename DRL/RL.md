@@ -1788,6 +1788,7 @@ $$
 TODO:柔性A-C
 
 ## 七． 连续动作空间的确定性策略
+
 简单易懂：[b站搬运ShuSenWang教程](https://www.bilibili.com/video/BV1rv41167yx?t=53)  
 
 >**如何理解**：两个网络：策略网络与价值函数网络( $q$ 函数 ) ，$t$ 时刻，先利用策略时序差分地更新价值函数，再更新策略网络，策略网络的梯度下降想法是：参数朝着使 $q$ 函数增大的方向走，即 $q$ 函数关于策略网络的参数求梯度，所以最后推得的关系式策略网络的更新式形式为连式法则的样子 $\nabla \mathrm{E}_{\pi(\theta)}\left[G_{0}\right]=\mathrm{E}\left[\sum_{t=0}^{+\infty} \gamma^{t} \nabla \pi\left(S_{t} ; \boldsymbol{\theta}\right)\left[\nabla_{\alpha} q_{\pi(\theta)}\left(S_{t}, a\right)\right]_{a=\pi\left(S_{t} ; \theta\right)}\right]$．
