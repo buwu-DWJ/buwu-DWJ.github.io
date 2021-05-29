@@ -673,3 +673,54 @@ for 循环时使用 enumerate 可返回两个参数，前一个是 index ，第�
 ```python
 for idx,step in enumerate(range(10))
 ```
+
+## 3. Pandas
+
+Series([1, 2, 3, 4], index=[a, b, c, d])  
+查缺失数据 .isnull(), .notnull(), 返回同结构的布尔值  
+Series对象本身及其索引有个 name 属性
+
+```python
+a = pd.Series([1 ,2 ,3 ,4], index=['a', 'b', 'c', 'd'])  
+a.name = 'series'
+```
+
+将序列作为 DataFrame 的一列时，name属性就变为那一列的列名
+
+DataFrame
+
+```python
+data = np.ones([3,4])
+d = pd.DataFrame(data, index=['a','b','c'], columns=['a','b','c','d'])
+```
+
+.head() 取前五行，.tail()  
+.del() 删除某一列，.drop()删除指定轴上某些项  
+.append() .difference() .intersection() .union()
+
+索引 用标签名 data.loc['a',['c','d']] 不用标签名 data.iloc[2,[2,3]]  
+
+常用方法 .cumsum() .cumprod() .diff() .pct_change()
+
+**换指定列名** d=d.rename( index={1:'new'}, columns={'a':'shit'} )
+
+## 4. matplotlib
+
+```python
+import matplotlib.pyplot as plt
+
+data1 = np.linspace(1,200,2000)
+data2 = np.random.randn(2000)
+fig = plt.figure()
+ax1 = fig.add_subplot(2,2,1)
+plt.plot(data1, label='first')
+plt.plot(data2,'.', label='second')
+ax1.set_xticks([1,2,40])
+ax1.legend(loc='best')
+ax1.set_title('first plot')
+ax1.set_xlabel('index')
+ax2 = fig.add_subplot(2,2,2)
+```
+
+'-'实线 '--'短划线 '-.'点划线 ':'虚线 '.'点 'v'倒三角 等  
+color参数 'b'蓝 'g'绿 'r'红 'c'青 'm'品红 'y'黄 'k'黑 'w'白

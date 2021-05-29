@@ -28,6 +28,8 @@ RL在金融中主要有以下三个应用方向：
 
 >**市场摩擦**(market frictions)：指金融资产在交易中存在的难度，如手续费(transaction costs)、买卖价差(bid/ask spread)、流动性约束(liquidity constraints)等．
 
+本文中的对冲的对象是对冲掉**一些衍生品的投资组合**．
+
 把 trading decision 建模成一个网络，特征不仅仅有价格，还有交易信号，新闻分析(news analytics)，过去对冲决策等等．
 
 算法是完全 model-free，不依赖对应市场的动力．我们只需确定下来市场的状态生成(scenario generator)，损失函数，市场摩擦和交易行为(trading instruments)．所以此方法 lends itself to a **statistically driven market dynamics**，我们不需要像传统方法那样计算单个衍生品的希腊值，应将建模的精力花在实现真实的市场动力和样本外表现．
