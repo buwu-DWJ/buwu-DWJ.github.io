@@ -13,4 +13,5 @@
 - [6. 深度强化学习(DRL)](DRL/DRL.md)
 - 7\. 杂记
   - [7.1 随机波动率](notes/sv.md)
-  - [7.2 RLz在金融中应用](DRL/fin.md)
+  - [7.2 RL在金融中应用](DRL/fin.md)
+  - [7.3 Rough Volatiity](notes/rough.md)
