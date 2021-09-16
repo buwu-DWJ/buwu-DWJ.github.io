@@ -221,3 +221,40 @@ RSV 可定义为一族连续路径的随机波动率模型，其瞬时波动率�
 - **one-step approach** : 直接学习从隐含波动率曲面到模型参数的映射，
 - **two-step approach** : 第一步学习从模型参数到期权价格的映射，然后根据实际市场价格校准模型．又分为 **point-wise approach** 和 **grid-wise approach**，前者将行权价和到期日作为输入，后者事先设定好这两项．
 
+two-step approach 相比之下的好处
+
+- First, evaluations of $\phi_{NN}$ amount to **cheap and almost instantaneous forward** runs of a pre-trained network. Second, automatic differentiation of $\phi_{NN}$ with respect to the model parameters returns **fast and accurate** approximations of the Jacobians needed for the LM calibration routine. Used together, they allow for the efficient calibration of any (rough) stochastic volatility model including rough Bergomi.
+- The two-step approach also has **overwhelming risk management benefits**. Firstly, we can understand and interpret the output of our neural network and therefore test the output as a function of model parameters against traditional numerical methods. (Indeed, the output values correspond to option prices in the model under consideration.) The second overwhelming advantage is that **existing risk management libraries of models remain valid** with minimal modification. The neural network is only used as a computational enhancement of models, and therefore, the knowledge and intuition gathered in many years of experience with traditional models remains useful.
+• The training becomes **more robust** (with respect to generalisation errors on unseen data).Additionally, the **trained network is independent from market data**, and, in particular, from changing market environments.
+• We can train the network to **synthetic data** – model prices or implied volatilities computed by any adequate numerical method. In particular, we can easily provide as large training sets as desired.
+
+## 模型校准概述
+
+校准（calibration）意思是调整模型参数以使得模型曲面符合由欧式期权通过BS公式计算出的经验隐含波动率曲面．
+
+假设模型有一个参数集 $\Theta$ 决定， i.e.，由 $\theta \in \Theta$．进一步，我们假设期权由参数集 $\zeta \in Z$ 决定．E.g.，对看涨看跌期权我们有 $\zeta=(T, k)$，分别为到期日和 log-moneyness．有些参数由市场观测得到，如现价、利率等，不在校准过程中．定价映射为
+$$
+(\theta, \zeta) \mapsto P(\theta, \zeta)
+$$
+带参数 $\theta$ 的模型中带参数 $\zeta$ 的期权的价格．我们通过 $\mathcal{P}(\zeta)$ 给定了有限子集 $\zeta \in Z^{\prime} \subset Z$ 以及所有可能的期权参数对应的期权价格．**校准**是决定模型参数以使模型价格 $(P(\theta, \zeta))_{\zeta \in Z^{\prime}}$ 和市场价格 $(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}$ 在给定距离度量下最小，i.e.:
+$$
+\widehat{\theta}=\underset{\theta \in \Theta}{\operatorname{argmin}} \delta\left((P(\theta, \zeta))_{\zeta \in Z^{\prime}},(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}\right).
+$$
+
+事实上，最常用的 $\delta$ 是加权最小二乘：
+$$
+\widehat{\theta}=\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{\zeta \in Z^{\prime}} w_{\zeta}(P(\theta, \zeta)-\mathcal{P}(\zeta))^{2}
+$$
+这里的权重 $w_{\zeta}$ 反映了 $\zeta$ 对应期权的重要性以及 $\mathcal{P}(\zeta)$ 的可靠性．例如可以选择 bid-ask spread 的倒数．
+
+只要模型参数比 $\left|Z^{\prime}\right|$ 少，
+
+As long as the number of model parameters is smaller than the number  of calibration instruments, the calibration problem is an example of an overdetermined non-linear least squares problem, usually solved numerically using iterative solvers such as the de-facto standard LevenbergMarquardt (LM) algorithm $[43,44]$. Let $\boldsymbol{J}=\boldsymbol{J}(\theta)$ denote the Jacobian of the map $\theta \mapsto\left(P(\theta, \zeta)_{\zeta \in Z^{\prime}}\right.$ and let
+$$
+\boldsymbol{R}(\theta):=(P(\theta, \zeta)-\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}
+$$
+denote the residual, then the Levenberg-Marquart algorithm iteratively computes increments $\Delta \theta_{k}:=$ $\theta_{k+1}-\theta_{k}$ by solving
+$$
+\left[\boldsymbol{J}\left(\mu_{k}\right)^{T} \boldsymbol{W} \boldsymbol{J}\left(\mu_{k}\right)+\lambda \boldsymbol{I}\right] \Delta \theta_{k}=\boldsymbol{J}\left(\mu_{k}\right)^{T} \boldsymbol{W} \boldsymbol{R}\left(\mu_{k}\right)
+$$
+where $\boldsymbol{I}$ denotes the identity matrix, $\boldsymbol{W}=\operatorname{diag}\left(w_{\zeta}\right)$, and $\lambda \in \mathbb{R}$.
