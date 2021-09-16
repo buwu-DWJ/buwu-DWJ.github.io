@@ -197,7 +197,7 @@ $$
 
 模型 7 是 non-Markovian 因为 $v_{t}: \mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid \mathcal{F}_{t}\right] \neq$ $\mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid v_{t}\right]$ ，但对于无限维的状态空间是 Markovian 的 $\mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid \mathcal{F}_{t}\right]=\xi_{t}(u)$．
 
-## on deep calibration of rough sv model
+## ※on deep calibration of rough sv model※
 
 ![1](pics/1.PNG)
 
@@ -228,7 +228,7 @@ two-step approach 相比之下的好处
 • The training becomes **more robust** (with respect to generalisation errors on unseen data).Additionally, the **trained network is independent from market data**, and, in particular, from changing market environments.
 • We can train the network to **synthetic data** – model prices or implied volatilities computed by any adequate numerical method. In particular, we can easily provide as large training sets as desired.
 
-## 模型校准概述
+### 模型校准概述（未使用神经网络）
 
 校准（calibration）意思是调整模型参数以使得模型曲面符合由欧式期权通过BS公式计算出的经验隐含波动率曲面．
 
@@ -247,14 +247,48 @@ $$
 $$
 这里的权重 $w_{\zeta}$ 反映了 $\zeta$ 对应期权的重要性以及 $\mathcal{P}(\zeta)$ 的可靠性．例如可以选择 bid-ask spread 的倒数．
 
-只要模型参数比 $\left|Z^{\prime}\right|$ 少，
+只要模型参数比 $\left|Z^{\prime}\right|$ 少，此时就是超定(overdetermined)的非线性最小二乘问题，通常采用数值迭代的方法解决，如 Levenberg-Marquardt（LM）算法．
 
-As long as the number of model parameters is smaller than the number  of calibration instruments, the calibration problem is an example of an overdetermined non-linear least squares problem, usually solved numerically using iterative solvers such as the de-facto standard LevenbergMarquardt (LM) algorithm $[43,44]$. Let $\boldsymbol{J}=\boldsymbol{J}(\theta)$ denote the Jacobian of the map $\theta \mapsto\left(P(\theta, \zeta)_{\zeta \in Z^{\prime}}\right.$ and let
+**rBergomi** ：表示为 $\mathcal{M}^{\text {rBergomi }}\left(\Theta^{\text {rBergomi }}\right)$ ，参数 $\theta=\left(\xi_{0}, \eta, \rho, H\right) \in \Theta^{\text {rBergomi }}$ ，例如可以设为
 $$
-\boldsymbol{R}(\theta):=(P(\theta, \zeta)-\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}
+\left.\Theta^{\mathrm{rBergomi}}=\mathbb{R}_{>0} \times \mathbb{R}_{>0} \times[-1,1] \times\right] 0,1 / 2[
 $$
-denote the residual, then the Levenberg-Marquart algorithm iteratively computes increments $\Delta \theta_{k}:=$ $\theta_{k+1}-\theta_{k}$ by solving
+模型基于如下系统
 $$
-\left[\boldsymbol{J}\left(\mu_{k}\right)^{T} \boldsymbol{W} \boldsymbol{J}\left(\mu_{k}\right)+\lambda \boldsymbol{I}\right] \Delta \theta_{k}=\boldsymbol{J}\left(\mu_{k}\right)^{T} \boldsymbol{W} \boldsymbol{R}\left(\mu_{k}\right)
+\begin{aligned}
+d X_{t} &=-\frac{1}{2} V_{t} d t+\sqrt{V_{t}} d W_{t}, \quad \text { for } t>0, \quad X_{0}=0 \\
+V_{t} &=\xi_{0}(t) \mathcal{E}\left(\sqrt{2 H} \eta \int_{0}^{t}(t-s)^{H-1 / 2} d Z_{s}\right), \quad \text { for } t>0, \quad V_{0}=v_{0}>0
+\end{aligned}
 $$
-where $\boldsymbol{I}$ denotes the identity matrix, $\boldsymbol{W}=\operatorname{diag}\left(w_{\zeta}\right)$, and $\lambda \in \mathbb{R}$.
+其中 $H$ 是 Hurst 系数，$\eta>0$，$\mathcal{E}(\cdot)$ 是 Wick exponential，$\xi_{0}(\cdot)>0$ 表示初始forward variance curve， $W$ 和 $Z$ 是以 $\rho \in[-1,1]$ 相关的布朗运动．
+
+### 深度校准
+
+#### one-step approach
+
+直接学习校准过程，即将模型参数视作市场价格（隐含波动率）的函数，i.e.
+$$
+\Pi^{-1}:(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}} \mapsto \widehat{\theta}
+$$
+更具体地，训练神经网络基于标签数据 $\left(x_{i}, y_{i}\right)，i=1， \ldots, N$，
+$$
+x_{i}=(\mathcal{P}(\zeta))_{\zeta \in Z_{i}^{\prime}}
+$$
+第 $t_{i}$ 天及其对应标签
+$$
+y_{i}=\widehat{\theta}_{i}
+$$
+一大缺点是缺乏对函数 $\Pi^{-1}$ 的控制，难以保证学习效果．
+
+#### two-step approach
+
+首先学习定价映射，将模型参数映射为市场价格（或隐含波动率），然后使用标准校准方法进行校准．我们用 $\widetilde{P}(\theta, \zeta) \approx P(\theta, \zeta)$ 表示 $\widetilde{P}$ 是 $P$ 的通过神经网络得到的近似．然后第二步我们进行校准
+$$
+\widehat{\theta}=\underset{\theta \in \Theta}{\operatorname{argmin}} \delta\left((\widetilde{P}(\theta, \zeta))_{\zeta \in Z^{\prime}},(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}\right)
+$$
+
+两步方法相较而言最大的好处如下：
+
+- 神经网络只负责期权定价，所以能用人工数据来训练．
+- 自然地将误差分为定价误差和模型误差．神经网络表现和模型对市场适应性做出的调整独立．
+
