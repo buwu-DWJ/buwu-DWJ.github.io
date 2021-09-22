@@ -199,6 +199,10 @@ $$
 
 ## ※on deep calibration of rough sv model※
 
+### 一．介绍
+
+[Bayer C, Horvath B, Muguruza A, et al. On deep calibration of (rough) stochastic volatility models[J]. arXiv preprint arXiv:1908.08806, 2019.](https://arxiv.org/abs/1908.08806)
+
 ![1](pics/1.PNG)
 
 从隐含波动率按 moneyness 和 maturity 的变化可以观察到存在着著名的 smiles 和 at-the-money(ATM) skews 现象，与 BS 公式相悖．特别的，Bayer, Friz, and Gatheral 经验性地表明 ATM skew 符合如下形式：
@@ -228,7 +232,7 @@ two-step approach 相比之下的好处
 • The training becomes **more robust** (with respect to generalisation errors on unseen data).Additionally, the **trained network is independent from market data**, and, in particular, from changing market environments.
 • We can train the network to **synthetic data** – model prices or implied volatilities computed by any adequate numerical method. In particular, we can easily provide as large training sets as desired.
 
-### 模型校准概述（未使用神经网络）
+### 二．模型校准概述（未使用神经网络）
 
 校准（calibration）意思是调整模型参数以使得模型曲面符合由欧式期权通过BS公式计算出的经验隐含波动率曲面．
 
@@ -262,9 +266,9 @@ V_{t} &=\xi_{0}(t) \mathcal{E}\left(\sqrt{2 H} \eta \int_{0}^{t}(t-s)^{H-1 / 2} 
 $$
 其中 $H$ 是 Hurst 系数，$\eta>0$，$\mathcal{E}(\cdot)$ 是 Wick exponential，$\xi_{0}(\cdot)>0$ 表示初始forward variance curve， $W$ 和 $Z$ 是以 $\rho \in[-1,1]$ 相关的布朗运动．
 
-### 深度校准
+### 三．深度校准
 
-#### one-step approach
+#### 3.1 one-step approach
 
 直接学习校准过程，即将模型参数视作市场价格（隐含波动率）的函数，i.e.
 $$
@@ -280,11 +284,11 @@ y_{i}=\widehat{\theta}_{i}
 $$
 一大缺点是缺乏对函数 $\Pi^{-1}$ 的控制，难以保证学习效果．
 
-#### two-step approach
+#### 3.2 two-step approach
 
 首先学习定价映射，将模型参数映射为市场价格（或隐含波动率），然后使用标准校准方法进行校准．我们用 $\widetilde{P}(\theta, \zeta) \approx P(\theta, \zeta)$ 表示 $\widetilde{P}$ 是 $P$ 的通过神经网络得到的近似．然后第二步我们进行校准
 $$
-\widehat{\theta}=\underset{\theta \in \Theta}{\operatorname{argmin}} \delta\left((\widetilde{P}(\theta, \zeta))_{\zeta \in Z^{\prime}},(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}\right)
+\widehat{\theta}=\underset{\theta \in \Theta}{\operatorname{argmin}} \delta\left((\widetilde{P}(\theta, \zeta))_{\zeta \in Z^{\prime}},(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}}\right)\tag{2}
 $$
 
 两步方法相较而言最大的好处如下：
@@ -292,4 +296,80 @@ $$
 - 神经网络只负责期权定价，所以能用人工数据来训练．
 - 自然地将误差分为定价误差和模型误差．神经网络表现和模型对市场适应性做出的调整独立．
 
-![2](pics/Page1.png)
+##### 3.2.1 two-step approach: 逐点训练（pointwise）和给予网格(grid-based)训练
+
+In this section, we examine its advantages and present an analysis of the objective function with the goal to enhance learning performance. Within this framework, the pointwise approach has the ability to asses the quality of $\widetilde{P}$ using Monte Carlo or PDE methods, and indeed it is superior training in terms of robustness.
+
+##### Pointwise learning
+
+**step 1**:学习映射 $\widetilde{P}(\theta, T, k)=\widetilde{\sigma}^{\mathcal{M}(\theta)}(T, k)$ 即上述（2）式令 $\zeta=(T, k)$．在标准化期权（vanilla option，$(\zeta=(T, k))$）情况下，我们可以直接学习隐含波动率映射 $\operatorname{map} \tilde{\sigma}^{\mathcal{M}(\theta)}(T, k)$，而不是期权定价的映射 $\widetilde{P}(\theta, T, k)$．用 $F(w ; \theta, \zeta)$ 表示神经网络，最优化问题如下：
+$$
+\widehat{\omega}:=\underset{w \in \mathbb{R}^{n}}{\operatorname{argmin}} \sum_{i=1}^{N_{\text {Train }}} \eta_{i}\left(\widetilde{F}\left(w ; \theta_{i}, T_{i}, k_{i}\right)-\widetilde{\sigma}^{\mathcal{M}}\left(\theta_{i}, T_{i}, k_{i}\right)\right)^{2}
+$$
+
+**Step 2**: 解决经典的模型校准步骤：
+$$
+\widehat{\theta}:=\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{j=1}^{m} \beta_{j}\left(\widetilde{\sigma}^{\mathcal{M}(\theta)}\left(\theta, T_{j}, k_{j}\right)-\sigma_{\mathrm{BS}}^{\mathrm{MKT}}\left(k_{j}, T_{j}\right)\right)^{2}
+$$
+
+这里 $\widetilde{P}(\theta, T, k)$ 或者 $\widetilde{\sigma}^{\mathcal{M}(\theta)}(T, k)$ 被替换成 step1 中的近似网络 $\widetilde{F}(\widehat{\omega} ; \theta, T, k)$ ．
+
+第一步中，关键在于训练数据和网络结构的选择．训练数据在于选择
+$\theta$ 和 $\zeta$ $(=(T, k)$ 的‘先验’的、有实际意义的分布．
+
+##### Implicit \& grid-based learning
+
+用 $\Delta:=\left\{k_{i}, T_{j}\right\}_{i=1, j=1}^{n,} m_{i=1}$ 记关于到期日和行权价的网格．则
+
+**step 1**：学习映射 $\widetilde{F}(\theta)=\left\{\sigma_{B S}^{\mathcal{M}(\theta)}\left(T_{i}, k_{j}\right)\right\}_{i=1, j=1}^{n,m}$，输入是 $\theta \in \Theta$，输出是 $\left\{\sigma_{\mathrm{BS}}^{\mathcal{M}(\theta)}\left(T_{i}, k_{j}\right)\right\}_{i=1, j=1}^{n, m}$ 这样的  $n \times m$ 网格．$\widetilde{F}$ 取值在 $\mathbb{R}^{L}$ 中，其中 $L=$ strikes $\times$ maturities $=n m .$最优化问题变为如下：
+$$
+\widehat{\omega}:=\underset{w \in \mathbb{R}^{n}}{\operatorname{argmin}} \sum_{i=1}^{N_{\text {Train }}^{\text {reduced }}} \sum_{j=1}^{L} \eta_{j}\left(\widetilde{F}\left(\theta_{i}\right)_{j}-\sigma^{\mathcal{M}}\left(\theta_{i}, T_{j}, k_{j}\right)\right)^{2}
+$$
+其中 $N_{\text {Train }}=N_{\text {Train }}^{\text {reduced }} \times L$．
+**Step 2**:
+$$
+\widehat{\theta}:=\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{i=1}^{L} \beta_{j}\left(\widetilde{F}(\theta)_{i}-\sigma_{\mathrm{BS}}^{\mathrm{MKT}}\left(T_{i}, k_{i}\right)\right)^{2}
+$$
+
+这里期权的参数 $\zeta=(T, k)$ 是固定了的，不再是学习的一部分．
+
+##### 3.2.2 pointwise versus grid-based
+
+- 最大的不同在于 grid-based 在遇到不在网格上的 T,K 时需要手动插值
+- grid-based 方法自然地有 reduction of variance ，
+- pointwise 中对样本符合实际金融数据的操作更简单，改变采样的分布．而 grid-wise 则是通过改变权重或者网格密度．
+- grid-based 方法可以看做是一种降低维度的操作，将输入的维度转移到了输出的维度．
+
+### 四．Pratical implementation
+
+#### 4.1 网络结构与训练
+
+1. 隐藏层为 3 层的全连接前馈神经网络，每层 30 个结点
+2. 输入维度记 $=n$
+3. 输出维度为 $=11\times 8$
+4. 总共有 $(n+1) \times 30+3 \times(1+30) \times 30+(30+1) \times 88=30 n+5548$ 个参数．
+5. 激活函数选择 Elu， $\sigma_{\text {Elu }}=\alpha\left(e^{x}-1\right)$，梯度下降选择 Adam．
+
+#### 4.2 校准
+
+使用第二节中讲的 LM 算法．
+
+##### 4.2.1 校准的贝叶斯分析
+
+### 五．数值实验
+
+#### 5.1定价近似网络的速度和精确度
+
+## ※Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough）volatility models※
+
+[Horvath B, Muguruza A, Tomas M. Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models[J]. Quantitative Finance, 2021, 21(1): 11-27.
+](https://arxiv.org/abs/1901.09647)
+
+[Github 代码](https://github.com/amuguruza/NN-StochVol-Calibrations)
+
+## fBm的 Monte-Carlo 模拟
+
+[Horvath B, Jacquier A J, Muguruza A. Functional central limit theorems for rough volatility[J]. Available at SSRN 3078743, 2017.](https://arxiv.org/abs/1711.03078)
+
+[Github 代码](https://github.com/amuguruza/RoughFCLT)
+
