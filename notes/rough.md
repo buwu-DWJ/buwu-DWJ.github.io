@@ -282,7 +282,6 @@ $$
 $$
 y_{i}=\widehat{\theta}_{i}
 $$
-一大缺点是缺乏对函数 $\Pi^{-1}$ 的控制，难以保证学习效果．
 
 #### 3.2 two-step approach
 
@@ -294,9 +293,9 @@ $$
 两步方法相较而言最大的好处如下：
 
 - 神经网络只负责期权定价，所以能用人工数据来训练．
-- 自然地将误差分为定价误差和模型误差．神经网络表现和模型对市场适应性做出的调整独立．
+- 自然地将误差分为定价误差和模型误差．神经网络表现和模型对市场适应性做出的调整相互独立．
 
-##### 3.2.1 two-step approach: 逐点训练（pointwise）和给予网格(grid-based)训练
+##### 3.2.1 two-step approach: 逐点训练（pointwise）和基于网格(grid-based)训练
 
 In this section, we examine its advantages and present an analysis of the objective function with the goal to enhance learning performance. Within this framework, the pointwise approach has the ability to asses the quality of $\widetilde{P}$ using Monte Carlo or PDE methods, and indeed it is superior training in terms of robustness.
 
@@ -352,9 +351,7 @@ $$
 
 #### 4.2 校准
 
-使用第二节中讲的 LM 算法．
-
-##### 4.2.1 校准的贝叶斯分析
+使用第二节中讲的 LM 等算法．
 
 ### 五．数值实验
 
@@ -373,3 +370,74 @@ $$
 
 [Github 代码](https://github.com/amuguruza/RoughFCLT)
 
+## ※使用GAN对LSV模型的校准※
+
+[Cuchiero C, Khosrawi W, Teichmann J. A generative adversarial network approach to calibration of local stochastic volatility models[J]. Risks, 2020, 8(4): 101.](https://www.mdpi.com/2227-9091/8/4/101)
+
+### 数值实验流程
+
+实际使用的 **SABR-LSV** 模型如下
+$$
+\begin{aligned}
+d S_{t} &=S_{t} L\left(t, S_{t}\right) \alpha_{t} d W_{t} \\
+d \alpha_{t} &=\nu \alpha_{t} d B_{t} \\
+d\langle W, B\rangle_{t} &=\varrho d t
+\end{aligned}
+$$
+参数为 $\nu \in \mathbb{R}, \varrho \in[-1,1]$，初值有 $\alpha_{0}>0, S_{0}>0$．$B$ 和 $W$ 是两个相关的布朗运动．
+
+Remark：一般使用的是关于 $S$ 的对数价格 $X:=\log S$．故模型变也可写为：
+$$
+\begin{aligned}
+d X_{t} &=\alpha_{t} L\left(t, X_{t}\right) d W_{t}-\frac{1}{2} \alpha_{t}^{2} L^{2}\left(t, X_{t}\right) d t \\
+d \alpha_{t} &=\nu \alpha_{t} d B_{t} \\
+d\langle W, B\rangle_{t} &=\varrho d t
+\end{aligned}
+$$
+注意到 $\alpha$ 是一个几何布朗运动，也就是说它有解析表达：
+$$
+\alpha_{t}=\alpha_{0} \exp \left(-\frac{\nu^{2}}{2} t+\nu B_{t}\right)
+$$
+
+#### 生成样本
+
+在已有文献中，有推荐的局部波动率函数族 $\widetilde{a}_{\xi}$ 如下：
+$$
+\xi=\left(p_{1}, p_{2}, \sigma_{0}, \sigma_{1}, \sigma_{2}\right)
+$$
+其中 $p_{0}=1-\left(p_{1}+p_{2}\right)$ 且参数满足如下约束：
+$$
+\sigma_{0}, \sigma_{1}, \sigma_{2}, p_{1}, p_{2}>0 \text { and } p_{1}+p_{2} \leq 1．
+$$
+令 $k(t, x, \sigma)=\exp \left(-x^{2} /\left(2 t \sigma^{2}\right)-t \sigma^{2} / 8\right)$，$\widetilde{a}_{\xi}$ 如下定义：
+$$
+\widetilde{a}_{\xi}^{2}(t, x)=\frac{\sum_{i=0}^{2} p_{i} \sigma_{i} k\left(t, x, \sigma_{i}\right)}{\sum_{i=0}^{2}\left(p_{i} / \sigma_{i}\right) k\left(t, x, \sigma_{i}\right)}
+$$
+文中作者修改为：
+$$
+a_{\xi}^{2}(t, x)=\frac{1}{4} \times \min \left(2,\left|\frac{\left(\sum_{i=0}^{2} p_{i} \sigma_{i} k\left(t, x, \sigma_{i}\right)+\Lambda(t, x)\right)\left(1-0.6 \times \mathbb{1}_{(t>0.1)}\right)}{\sum_{i=0}^{2}\left(p_{i} / \sigma_{i}\right) k\left(t, x, \sigma_{i}\right)+0.01}\right|\right)
+$$
+其中
+$$
+\Lambda(t, x):=\left(\frac{\mathbb{1}_{(t \leq 0.1)}}{1+0.1 t}\right)^{\lambda_{2}} \min \left\{\left(\gamma_{1}\left(x-\beta_{1}\right)_{+}+\gamma_{2}\left(-x-\beta_{2}\right)_{+}\right)^{\kappa}, \lambda_{1}\right\}
+$$
+注意到 $a_{\xi}^{2}$ 与 $t$ 有关．所以在做 Monte Carlo 模拟时，我们将 $a_{\xi}^{2}(0, x)$ 替换为 $a_{\xi}^{2}\left(\Delta_{t}, x\right)$，$\Delta_{t}$ 是 Monte Carlo 模拟的时间间隔．
+What is left to be specified are the parameters
+$$
+\xi=\left(p_{1}, p_{2}, \sigma_{0}, \sigma_{1}, \sigma_{2}\right)
+$$
+模型变为：
+$$
+d X_{t}=-\frac{1}{2} a_{\xi}^{2}\left(t, X_{t}\right) d t+a_{\xi}\left(t, X_{t}\right) d W_{t}\tag{1}
+$$
+上式是用来生成人工市场价格样本的．
+
+所以我们实际的做法是随机对 $a_{\xi}$ 中的 $\xi$ 采样再根据 (1) 计算出价格，然后对 SABR-LSV 模型进行校准，i.e. 寻找使模型符合上述价格的参数 $\nu，\varrho$，$\alpha_{0}$ 以及 $L$．
+
+到期日 $T_{1}<\cdots<T_{n}$，每个到期日 $T_{i}$ 对应行权价为 $K_{i j}, j \in\left\{1, \ldots, J_{i}\right\}$．用 Monte-Carlo 模拟以 $\Delta_{t}=1 / 100$ 间隔计算价格．
+
+具体如下：
+
+- 在 $m=1, \ldots, 200$ 下对 $\xi_{m}$ 以给定分布进行模拟．
+- 对每个 $m$，根据（1）式计算 $T_{i}$ and strikes $K_{i j}$ for $i=1, \ldots, n=4$ and $j=1, \ldots, 20$ 对应的欧式期权的价格．每个 $m$ 分别使用不同的 $10^{7}$ 条布朗运动轨道．
+- 保存这些价格数据
