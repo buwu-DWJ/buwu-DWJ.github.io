@@ -195,7 +195,7 @@ $$
 
 是如下两项的乘积： $\mathbb{E}^{\mathbb{P}}\left[v_{u} \mid \mathcal{F}_{t}\right]$ 依赖于驱动布朗运动的历史；另一项依赖于风险价格 $\lambda(s)$.
 
-模型 7 是 non-Markovian 因为 $v_{t}: \mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid \mathcal{F}_{t}\right] \neq$ $\mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid v_{t}\right]$ ，但对于无限维的状态空间是 Markovian 的 $\mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid \mathcal{F}_{t}\right]=\xi_{t}(u)$．
+模型 7 是 non-Markovian 因为 $v_{t}: \mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid \mathcal{F}_{t}\right] \neq$ $\mathbb{E}^{\mathbb{Q}}\left[v_{u} \mid v_{t}\right]$．
 
 ## ※on deep calibration of rough sv model※
 
@@ -386,7 +386,7 @@ d\langle W, B\rangle_{t} &=\varrho d t
 $$
 参数为 $\nu \in \mathbb{R}, \varrho \in[-1,1]$，初值有 $\alpha_{0}>0, S_{0}>0$．$B$ 和 $W$ 是两个相关的布朗运动．
 
-Remark：一般使用的是关于 $S$ 的对数价格 $X:=\log S$．故模型变也可写为：
+Remark：一般使用的是关于 $S$ 的对数价格 $X:=\log S$．故模型也可写为：
 $$
 \begin{aligned}
 d X_{t} &=\alpha_{t} L\left(t, X_{t}\right) d W_{t}-\frac{1}{2} \alpha_{t}^{2} L^{2}\left(t, X_{t}\right) d t \\
@@ -394,7 +394,7 @@ d \alpha_{t} &=\nu \alpha_{t} d B_{t} \\
 d\langle W, B\rangle_{t} &=\varrho d t
 \end{aligned}
 $$
-注意到 $\alpha$ 是一个几何布朗运动，也就是说它有解析表达：
+注意到 $\alpha$ 是一个几何布朗运动，也就是说它有表达式：
 $$
 \alpha_{t}=\alpha_{0} \exp \left(-\frac{\nu^{2}}{2} t+\nu B_{t}\right)
 $$
