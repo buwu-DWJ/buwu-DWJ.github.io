@@ -1,3 +1,5 @@
 # 天下布武
-## 文杰专属的嗷！
-![](buwu.jpg)
+
+## The owl of Minerva spreads its wings only with the falling of the dusk
+
+![1](buwu.jpg)
