@@ -225,13 +225,6 @@ RSV 可定义为一族连续路径的随机波动率模型，其瞬时波动率�
 - **one-step approach** : 直接学习从隐含波动率曲面到模型参数的映射，
 - **two-step approach** : 第一步学习从模型参数到期权价格的映射，然后根据实际市场价格校准模型．又分为 **point-wise approach** 和 **grid-wise approach**，前者将行权价和到期日作为输入，后者事先设定好这两项．
 
-two-step approach 相比之下的好处
-
-- First, evaluations of $\phi_{NN}$ amount to **cheap and almost instantaneous forward** runs of a pre-trained network. Second, automatic differentiation of $\phi_{NN}$ with respect to the model parameters returns **fast and accurate** approximations of the Jacobians needed for the LM calibration routine. Used together, they allow for the efficient calibration of any (rough) stochastic volatility model including rough Bergomi.
-- The two-step approach also has **overwhelming risk management benefits**. Firstly, we can understand and interpret the output of our neural network and therefore test the output as a function of model parameters against traditional numerical methods. (Indeed, the output values correspond to option prices in the model under consideration.) The second overwhelming advantage is that **existing risk management libraries of models remain valid** with minimal modification. The neural network is only used as a computational enhancement of models, and therefore, the knowledge and intuition gathered in many years of experience with traditional models remains useful.
-• The training becomes **more robust** (with respect to generalisation errors on unseen data).Additionally, the **trained network is independent from market data**, and, in particular, from changing market environments.
-• We can train the network to **synthetic data** – model prices or implied volatilities computed by any adequate numerical method. In particular, we can easily provide as large training sets as desired.
-
 ### 二．模型校准概述（未使用神经网络）
 
 校准（calibration）意思是调整模型参数以使得模型曲面符合由欧式期权通过BS公式计算出的经验隐含波动率曲面．
@@ -270,6 +263,8 @@ $$
 
 #### 3.1 one-step approach
 
+[Hernandez A. Model calibration with neural networks[J]. Available at SSRN 2812140, 2016.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2812140)
+
 直接学习校准过程，即将模型参数视作市场价格（隐含波动率）的函数，i.e.
 $$
 \Pi^{-1}:(\mathcal{P}(\zeta))_{\zeta \in Z^{\prime}} \mapsto \widehat{\theta}
@@ -278,7 +273,7 @@ $$
 $$
 x_{i}=(\mathcal{P}(\zeta))_{\zeta \in Z_{i}^{\prime}}
 $$
-第 $t_{i}$ 天及其对应标签
+及其对应标签
 $$
 y_{i}=\widehat{\theta}_{i}
 $$
@@ -336,7 +331,7 @@ $$
 
 - 最大的不同在于 grid-based 在遇到不在网格上的 T,K 时需要手动插值
 - grid-based 方法自然地有 reduction of variance ，
-- pointwise 中对样本符合实际金融数据的操作更简单，改变采样的分布．而 grid-wise 则是通过改变权重或者网格密度．
+- pointwise 中对使样本符合实际金融数据的操作更简单，改变采样的分布．而 grid-wise 则是通过改变权重或者网格密度．
 - grid-based 方法可以看做是一种降低维度的操作，将输入的维度转移到了输出的维度．
 
 ### 四．Pratical implementation
@@ -450,7 +445,7 @@ $$
 
 例如，我们可以假设当前 $\{\sigma^{T,K}_{market}=a\sigma^{T,K}_{Heston}+b\sigma^{T,K}_{rough}\}_{T,K}$，其中 $a+b=1，a\geq0，b\geq0$．
 
-### 大致做法：
+### 大致做法
 
 **记号**：分别以 $\xi_1$、$\xi_2$ 记 Heston 和 rough 模型的参数集，以 $N_1$、$N_2$ 记该两者通过神经网络训练得到的从模型参数到市场价格（隐含波动率）的映射，$a$、$b$ 为前述凸组合系数．
 
