@@ -382,4 +382,4 @@ $$
 $$
 其中 $J$ 是期权的数目， $\pi_{j}^{\bmod}$ 和 $\pi_{j}^{\mathrm{mkt}}$ 是模型与市场分别的价格．  
 
-对固定的 $\gamma$ ， $\ell^{\gamma}$ 是非线性非负凸函数满足 $\ell^{\gamma}(0) = 0$ 且 $\ell^{\gamma}(x)>0$ 对 $x\neq 0$ ，衡量模型和市场价的距离．$w_{j}^{\gamma}$ 某种权重，本文采用vega type．参数 $\gamma$ 扮演了**对抗**（adversarial）的部分，注意到 $\ell^{\gamma}$ 和 $w_{j}^{\gamma}$ 都受 $\gamma$ 控制．  
+对固定的 $\gamma$ ， $\ell^{\gamma}$ 是非线性非负凸函数满足 $\ell^{\gamma}(0) = 0$ 且 $\ell^{\gamma}(x)>0$ 对 $x\neq 0$ ，衡量模型和市场价的距离．$w_{j}^{\gamma}$ 某种权重，参数 $\gamma$ 扮演了**对抗**（adversarial）的部分，注意到 $\ell^{\gamma}$ 和 $w_{j}^{\gamma}$ 都受 $\gamma$ 控制．  
