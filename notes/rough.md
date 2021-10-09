@@ -456,7 +456,7 @@ $$
 
 #### 2.2 Hedging Strategies as Neural Networks-Deep Hedging
 
-在对冲产品数变高等情况下时，可以将对冲策略用神经网络参数化．令期权的支付是对冲产品最终价值的函数，i.e.，$C=g\left(Z_{T}\right)$．在**马尔科夫模型**中，可以用函数表示对冲策略：
+在对冲产品数很多等情况下时，可以将对冲策略用神经网络参数化．令期权的支付是对冲产品最终价值的函数，i.e.，$C=g\left(Z_{T}\right)$．在**马尔科夫模型**中，可以用函数表示对冲策略：
 $$
 h: \mathbb{R}_{+} \times \mathbb{R}^{r} \rightarrow \mathbb{R}^{r}, h_{t}=h(t, z)
 $$
@@ -480,6 +480,7 @@ i.e.，我们可以把梯度移到随机积分中．为此，我们要使用下�
 
 **定理 2.1**：$\forall\varepsilon \geq 0$，令 $Z^{\varepsilon}$ 是
 
+<div id="2_1"></div>
 
 Theorem 2.1. For ling, let $Z^{\varepsilon}$ be a solution of a stochastic differential equation as described in Theorem $A .3$ with drivers $Y=\left(Y^{1}, \ldots, Y^{d}\right)$, functionally Lipschitz operators $F_{j}^{\varepsilon, i}, i=1, \ldots, r$, $j=1, \ldots, d$ and a process $\left(J^{\varepsilon, 1}, \ldots J^{\varepsilon, r}\right)$, which is here for all $\varepsilon \geq 0$ simply $J 1_{\{t=0\}}(t)$ for some constant vector $J \in \mathbb{R}^{r}=J$, i.e.
 $$
@@ -490,15 +491,8 @@ $$
 \lim _{\varepsilon \rightarrow 0}\left(f^{\varepsilon} \bullet Z^{\varepsilon}\right)=\left(f^{0} \bullet Z^{0}\right)
 $$
 holds true.
-Proof. Consider the extended system
-$$
-d\left(f^{\varepsilon} \bullet Z^{\varepsilon}\right)=\sum_{j=1}^{d} f^{\varepsilon}\left(t-, Z_{t-}^{\varepsilon}\right) F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
-$$
-and
-$$
-d Z_{t}^{\varepsilon, i}=\sum_{j=1}^{d} F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
-$$
-where we obtain existence, uniqueness and stability for the second equation by Theorem A.3, and from where we obtain ucp convergence of the integrand of the first equation: since stochastic integration is continuous with respect to the ucp topology we obtain the result.
+
+[证明过程](#proof_2_1)
 
 **推论 2.2**：$\forall\varepsilon>0$，令 $Z^{\varepsilon}$ 为对冲产品过程 $Z \equiv Z^{0}$ 的离散，使得定理 2.1 中的条件都满足．对应的对冲策略 $(t, z, \delta) \mapsto h^{\varepsilon}(t, z, \delta)$ 由神经网络 $\mathcal{N} \mathcal{N}_{r+1, r}$ 给出，其中网络的激活函数有界 $C^{1}$，且导数有界．那么
 (i) 随机积分在 $\delta_{0}$ 点关于 $\delta$  导数 $\nabla_{\delta}(h(\cdot, Z .-, \delta) \bullet Z)$ 满足
@@ -527,6 +521,8 @@ $$
 
 训练过程中，我们需要计算 LSV 过程关于 $\theta$ 的导数．以下结果可以看做 $\nabla_{\theta} S(\theta)$ 对应的链式法则．从附录 A 推导而来．
 
+<div id="3_1"></div>
+
 **定理 3.1**：令 $(t, s, \theta) \mapsto L(t, s, \theta)$ 为（3.1）形式，神经网络 $\left(s, \theta_{i}\right) \mapsto F^{i}\left(s, \theta_{i}\right)$ 有界且 $C^{1}$，导数有界且 Lipschitz 连续．则关于 $\theta$ 在 $\widehat{\theta}$ 点处的导数满足：
 $$
 \begin{aligned}
@@ -544,22 +540,105 @@ P_{t}=\mathcal{E}\left(\int_{0}^{t}\left(L\left(s, S_{s}(\widehat{\theta}), \wid
 $$
 $\mathcal{E}$ 表示随机指数（stochastic exponential）．
 
-[证明过程](#定理3.1证明)
-<div id="定理3.1"></div>
+[证明过程](#proof_3_1)
+<div id="3_1"></div>
 
-
-Proof. First note that Theorem A.2 implies the existence and uniqueness of
+*Remark $3.2$*
+(i) 只看存在唯一性的话，
 $$
 d S_{t}(\theta)=S_{t}(\theta) L\left(t, S_{t}(\theta), \theta\right) \alpha_{t} d W_{t}
 $$
-for every $\theta$. Here, the driving process is one-dimensional and given by $Y=\int_{0}^{*} \alpha_{s} d W_{s} .$ Indeed, according to Remark A.4, if $(t, s) \mapsto L(t, s, \theta)$ is bounded, càdlàg in $t$ and Lipschitz in $s$ with a Lipschitz constant independent of $t, S . \mapsto S \cdot(\theta) L(\cdot, S \cdot(\theta), \theta)$ is functionally Lipschitz and Theorem A.2 implies the assertion. These conditions are implied by the form of $L(t, s, \theta)$ and the conditions on the neural networks $F^{i}$.
+$L(t, s, \theta)$ 为 (3.1) 形式，那么神经网络 $s \mapsto F^{i}\left(s, \theta_{i}\right)$ 有界以及 Lipschitz 足够了，$\forall i=1, \ldots, n$．
+(ii) 公式 (3.3) 可以用来倒向传播．
 
+定理 3.1 保证了导数过程的存在唯一性．这也保证了基于梯度搜索的学习算法的建立．
 
+下面叙述如何具体优化．为了记号方便，省略权重 $w$ 和损失函数 $\ell$ 对应的参数 $\gamma$．对每个到期日 $T_{i}$，我们假定有 $J_{i}$ 个期权，行权价为 $K_{i j}, j \in\left\{1, \ldots, J_{i}\right\}$．对第 $i$ 个到期日，校准函数的形式为
+$$
+\underset{\theta_{i} \in \Theta_{i}}{\operatorname{argmin}} \sum_{j=1}^{J_{i}} w_{i j} \ell\left(\pi_{i j}^{\bmod }\left(\theta_{i}\right)-\pi_{i j}^{\mathrm{mkt}}\right), \quad i \in\{1, \ldots, n\}\tag{3.5}
+$$
+回忆 $\pi_{i j}^{\bmod }\left(\theta_{i}\right)$ 指的是对应到期日 $T_{i}$ 和行权价 $K_{i j}$ 的模型期权价格．$\ell: \mathbb{R} \rightarrow \mathbb{R}_{+}$ 是某个非负非线性凸的损失函数满足 $\ell(0)=0，\ell(x)>0$ 对 $x \neq 0$．$w_{i j}$ 是权重．
 
+我们通过迭代地计算最优化问题（3.5），从 $T_{1}$ 和 $\theta_{1}$ 出发，计算 $\pi_{2 j}^{\bmod }\left(\theta_{2}\right)$，然后解决对应 $T_{2}$ 的（3.5）．为了简便记号，去掉 $i$ ，考虑一般的到期日 $T>0$ ，(3.5)变为
+$$
+\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{j=1}^{J} w_{j} \ell\left(\pi_{j}^{\bmod }(\theta)-\pi_{j}^{\mathrm{mkt}}\right)
+$$
+模型价格由下式给出
+$$
+\pi_{j}^{\bmod }(\theta)=\mathbb{E}\left[\left(S_{T}(\theta)-K_{j}\right)^{+}\right]\tag{3.6}
+$$
+我们有 $\pi_{j}^{\bmod }(\theta)-\pi_{j}^{\mathrm{mkt}}=\mathbb{E}\left[Q_{j}(\theta)\right]$ ，其中
+$$
+Q_{j}(\theta)(\omega):=\left(S_{T}(\theta)(\omega)-K_{j}\right)^{+}-\pi_{j}^{\mathrm{mkt}}\tag{3.7}
+$$
+那么校准问题变为寻找最小的
+$$
+f(\theta):=\sum_{j=1}^{J} w_{j} \ell\left(\mathbb{E}\left[Q_{j}(\theta)\right]\right)\tag{3.8}
+$$
+因为 $\ell$ 是非线性函数，不是 B.1 中的期望形式，标准的随机梯度下降方法不能直接用．我们通过第二节中讲的对冲控制变量 (hedge control variates) 解决这个问题．
 
+#### 3.1 极小化校准方程
 
+考虑标准的对（3.8） $\mathbb{E}\left[Q_{j}(\theta)\right]$ 的 Monte-Carlo 模拟：
+$$
+f^{\mathrm{MC}}(\theta):=\sum_{j=1}^{J} w_{j} \ell\left(\frac{1}{N} \sum_{n=1}^{N} Q_{j}(\theta)\left(\omega_{n}\right)\right)\tag{3.9}
+$$
+对 i.i.d 的样本 $\left\{\omega_{1}, \ldots, \omega_{N}\right\} \in \Omega$ ．Monte-Carlo 误差以 $\frac{1}{\sqrt{N}}$ 递减．模拟次数 $N$ 必须很大 $\left(\approx 10^{8}\right)$ ．因为由于 $\ell$ 非线性，随机梯度下降不能直接使用，所以看起来要计算整个函数 $\widehat{f}(\theta)$ 的梯度来最小化（3.9）．但 $N \approx 10^{8}$ ，这一做法计算成本太大且不稳定，因为要计算 $10^{8}$ 项的和的导数．
 
-### 数值实验流程
+一个方便的做法是应用对冲控制变量来降低方差，可以将 Monte-Carlo 的样本数 $N$ 降为大约 $5 \times 10^{4}$ ．
+
+假定我们有 $r$ 个对冲产品（包含价格过程 $S$ ），用 $\left(Z_{t}\right)_{t \in[0, T]}$ 表示，为 $\mathbb{Q}$ 下的平方可积鞅，在 $\mathbb{R}^{r}$ 下取值．对 $j=1, \ldots, J$ ，策略 $h_{j}:[0, T] \times \mathbb{R}^{r} \rightarrow \mathbb{R}^{r}$ 使得 $h(\cdot, Z .) \in L^{2}(Z)$ ，$c$ 为常数，定义
+$$
+X_{j}(\theta)(\omega):=Q_{j}(\theta)(\omega)-c\left(h_{j}\left(\cdot, Z_{.-}(\theta)(\omega)\right) \bullet Z .(\theta)(\omega)\right)_{T}\tag{3.10}
+$$
+则校准函数（3.8）和（3.9）可以通过替换 $Q_{j}(\theta)(\omega)$ 为 $X_{j}(\theta)(\omega)$ 来定义，变为最小化
+$$
+\widehat{f}(\theta)\left(\omega_{1}, \ldots, \omega_{N}\right)=\sum_{j=1}^{J} w_{j} \ell\left(\frac{1}{N} \sum_{n=1}^{N} X_{j}(\theta)\left(\omega_{n}\right)\right)\tag{3.11}
+$$
+对此，我们应用如下梯度下降的变种：从初始猜测 $\theta^{(0)}$ 出发，迭代计算
+$$
+\theta^{(k+1)}=\theta^{(k)}-\eta_{k} G\left(\theta^{(k)}\right)\left(\omega_{1}^{(k)}, \ldots, \omega_{N}^{(k)}\right)\tag{3.12}
+$$
+对某个学习率 $\eta_{k}$ ，i.i.d 样本 $\left(\omega_{1}^{(k)}, \ldots, \omega_{N}^{(k)}\right)$ ．其中
+$$
+G\left(\theta^{(k)}\right)\left(\omega_{1}^{(k)}, \ldots, \omega_{N}^{(k)}\right)
+$$
+是基于梯度待确定的量，样本在每次迭代中可以一样，可以另取．本文中另取．
+
+最简单情形下，可以令
+$$
+G\left(\theta^{(k)}\right)\left(\omega_{1}^{(k)}, \ldots, \omega_{N}^{(k)}\right)=\nabla \widehat{f}(\theta)\left(\omega_{1}^{(k)}, \ldots, \omega_{N}^{(k)}\right)\tag{3.13}
+$$
+
+注意到（3.10）中随机积分项的导数计算通常是昂贵的．我们进行下述改造．令
+$$
+\begin{aligned}
+\omega^{N} &=\left(\omega_{1}, \ldots, \omega_{N}\right) \\
+Q_{j}^{N}(\theta)\left(\omega^{N}\right) &=\frac{1}{N} \sum_{n=1}^{N} Q_{j}(\theta)\left(\omega_{n}\right) \\
+Q^{N}(\theta)\left(\omega^{N}\right) &=\left(Q_{1}^{N}(\theta)\left(\omega^{N}\right), \ldots, Q_{J}^{N}(\theta)\left(\omega^{N}\right)\right)
+\end{aligned}
+$$
+定义 $\tilde{f}: \mathbb{R}^{J} \rightarrow \mathbb{R}$ ：
+$$
+\tilde{f}(x)=\sum_{j=1}^{J} w_{j} \ell\left(x_{j}\right)
+$$
+然后令
+$$
+G(\theta)\left(\omega^{N}\right)=D_{x}(\tilde{f})\left(X^{N}(\theta)\left(\omega^{N}\right)\right) D_{\theta}\left(Q^{N}\right)(\theta)\left(\omega^{N}\right)
+$$
+注意到基于倒向传播，这一项计算起来是很简单的．Moreover, leaving the stochastic integral away in the inner derivative is justified by its vanishing expectation. During the forward pass, the stochastic integral terms are included in the computation; however the contribution to the gradient (during the backward pass) is partly neglected, which can e.g. be implemented via the tensorflow stop_gradient function.
+
+关于对冲策略的选择，我们可以按照 2.2 节中的方法将其用神经网络参数化，并通过下式计算最优的权重 $\delta$ ：
+$$
+\underset{\delta \in \Delta}{\operatorname{argmin}} \frac{1}{N} \sum_{n=1}^{N} u\left(-X_{j}(\theta, \delta)\left(\omega_{n}\right)\right)
+$$
+对 i.i.d 样本 $\left\{\omega_{1}, \ldots, \omega_{N}\right\} \in \Omega$ 和损失函数 $u$ ．此处
+$$
+X_{j}(\theta, \delta)(\omega)=\left(S_{T}(\theta)(\omega)-K_{j}\right)^{+}-\left(h_{j}\left(\cdot, Z_{--}(\theta)(\omega), \delta\right) \bullet Z .(\theta)(\omega)\right)_{T}-\pi_{j}^{\mathrm{mkt}}
+$$
+这意味着迭代两个优化步骤，i.e.，优化（3.11）中的 $\theta$ （固定 $\delta$ ） 和（3.14）中的 $\delta$ （固定 $\theta$ ）．
+
+### 4. 数值实验流程
 
 实际使用的 **SABR-LSV** 模型如下
 $$
@@ -631,8 +710,7 @@ $$
 
 寻找最适合市场波动率曲面的“**复合**”模型，即假设市场波动率曲面实际是由**一些**波动率模型的**凸组合**决定的．
 
->回忆：波动率曲面即隐含波动率以 $T$：time to maturity 和 $\log(K/S_0)$：log-moneyness 为自变量构成的曲面,[链接](#demo)
-
+>回忆：波动率曲面即隐含波动率以 $T$：time to maturity 和 $\log(K/S_0)$：log-moneyness 为自变量构成的曲面．
 例如，我们可以假设当前 $\{\sigma^{T,K}_{market}=a\sigma^{T,K}_{Heston}+b\sigma^{T,K}_{rough}\}_{T,K}$，其中 $a+b=1，a\geq0，b\geq0$．
 
 ### 大致做法
@@ -647,11 +725,65 @@ $$
 
 ## 附录
 
-[定理3.1](#定理3.1)
-<div id="定理3.1证明"></div>
+[定理3.1](#3_1)
+<div id="proof_3_1"></div>
 
-Proof. First note that Theorem A.2 implies the existence and uniqueness of
+**证明：**
+
+首先定理 A.2 暗示了
 $$
 d S_{t}(\theta)=S_{t}(\theta) L\left(t, S_{t}(\theta), \theta\right) \alpha_{t} d W_{t}
 $$
-for every $\theta$. Here, the driving process is one-dimensional and given by $Y=\int_{0}^{*} \alpha_{s} d W_{s} .$ Indeed, according to Remark A.4, if $(t, s) \mapsto L(t, s, \theta)$ is bounded, càdlàg in $t$ and Lipschitz in $s$ with a Lipschitz constant independent of $t, S . \mapsto S \cdot(\theta) L(\cdot, S \cdot(\theta), \theta)$ is functionally Lipschitz and Theorem A.2 implies the assertion. These conditions are implied by the form of $L(t, s, \theta)$ and the conditions on the neural networks $F^{i}$.
+$\forall \theta$ 的解存在唯一性．这里驱动过程是一维的 $Y=\int_{0}^{*} \alpha_{s} d W_{s}$．事实上，若 $(t, s) \mapsto L(t, s, \theta)$ 有界，对 $t$ 左极右连，对 $s$ Lipschitz 连续以一个与 $t$ 无关的 Lipschitz 常数．$S\mapsto S \cdot(\theta) L(\cdot, S \cdot(\theta), \theta)$ 为 functionally Lipschitz，得到结论．这些条件由 $L(t, s, \theta)$ 的形式和 $F^{i}$ 的条件保证．
+
+为了证明导数过程的形式，我们对如下系统应用定理 A.3：
+$$
+d S_{t}(\widehat{\theta})=S_{t}(\widehat{\theta}) L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right) \alpha_{t} d W_{t}
+$$
+和
+$$
+d S_{t}(\widehat{\theta}+\varepsilon \theta)=S_{t}(\widehat{\theta}+\varepsilon \theta) L\left(t, S_{t}(\widehat{\theta}+\varepsilon \theta), \widehat{\theta}+\varepsilon \theta\right) \alpha_{t} d W_{t}
+$$
+以及
+$$
+\begin{aligned}
+d \frac{S_{t}(\widehat{\theta}+\varepsilon \theta)-S_{t}(\widehat{\theta})}{\varepsilon}=& \frac{S_{t}(\widehat{\theta}+\varepsilon \theta) L\left(t, S_{t}(\widehat{\theta}+\varepsilon \theta), \widehat{\theta}+\varepsilon \theta\right)-S_{t}(\widehat{\theta}) L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right)}{\varepsilon} \alpha_{t} d W_{t} \\
+=&\left(\frac{S_{t}(\widehat{\theta}+\varepsilon \theta)-S_{t}(\widehat{\theta})}{\varepsilon} L\left(t, S_{t}(\widehat{\theta}+\varepsilon \theta), \widehat{\theta}+\varepsilon \theta\right)\right.\\
+&\left.+S_{t}(\widehat{\theta}) \frac{L\left(t, S_{t}(\widehat{\theta}+\varepsilon \theta), \widehat{\theta}+\varepsilon \theta\right)-L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right)}{\varepsilon}\right) \alpha_{t} d W_{t}
+\end{aligned}
+$$
+在定理 A.3 中，$Z^{\varepsilon, 1}=S(\widehat{\theta}), Z^{\varepsilon, 2}=S(\widehat{\theta}+\varepsilon \theta), Z^{\varepsilon, 3}=\frac{S_{t}(\widehat{\theta}+\varepsilon \theta)-S_{t}(\widehat{\theta})}{\varepsilon}$．$F^{\varepsilon, 3}$ 为
+$$
+\begin{aligned}
+F^{\varepsilon, 3}\left(Z_{t}^{0}\right)=& Z_{t}^{0,3} L\left(t, Z_{t}^{0,2}, \widehat{\theta}+\varepsilon \theta\right)+Z_{t}^{0,1} \partial_{s} L\left(t, Z_{t}^{0,1}, \widehat{\theta}\right) Z_{t}^{0,3}+\mathcal{O}(\varepsilon) \\
+&+Z_{t}^{0,1} \frac{L\left(t, Z_{t}^{0,1}, \widehat{\theta}+\varepsilon \theta\right)-L\left(t, Z_{t}^{0,1}, \widehat{\theta}\right)}{\varepsilon}
+\end{aligned}\tag{3.4}
+$$
+ucp 收敛到
+$$
+F^{0,3}\left(Z_{t}^{0}\right)=Z_{t}^{0,3} L\left(t, Z_{t}^{0,2}, \widehat{\theta}\right)+Z_{t}^{0,1} \partial_{s} L\left(t, Z_{t}^{0,1}, \widehat{\theta}\right) Z_{t}^{0,3}+Z_{t}^{0,1} \nabla_{\theta} L\left(t, Z_{t}^{0,1}, \widehat{\theta}\right)
+$$
+事实上，$\forall t$，$\{s \mapsto L(t, s, \widehat{\theta}+\varepsilon \theta), \mid \varepsilon \in[0,1]\}$ 等度连续．因此，点点收敛暗示对 $s$ 的一致连续．This together with $L(t, s, \theta)$ being piecewise constant in $t$ yields:
+$$
+\lim _{\varepsilon \rightarrow 0} \sup _{(t, s)}|L(t, s, \widehat{\theta}+\varepsilon \theta)-L(t, s, \widehat{\theta})|=0
+$$
+whence ucp convergence of the first term in (3.4). The convergence of term two is clear. The one of term three follows again from the fact that the family $\left\{s \mapsto \nabla_{\theta} L(t, s, \widehat{\theta}+\varepsilon \theta) \mid \varepsilon \in[0,1]\right\}$ is equicontinuous, which is again a consequence of the form of the neural networks.
+
+By the assumptions on the derivatives, $F^{0,3}$ is functionally Lipschitz. Hence Theorem A.2 yields the existence of a unique solution to (3.2) and Theorem A.3 implies convergence.$\square$
+
+[定理2.1](#2_1)
+<div id="proof_2_1"></div>
+
+Proof. Consider the extended system
+$$
+d\left(f^{\varepsilon} \bullet Z^{\varepsilon}\right)=\sum_{j=1}^{d} f^{\varepsilon}\left(t-, Z_{t-}^{\varepsilon}\right) F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
+$$
+and
+$$
+d Z_{t}^{\varepsilon, i}=\sum_{j=1}^{d} F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
+$$
+where we obtain existence, uniqueness and stability for the second equation by Theorem A.3, and from where we obtain ucp convergence of the integrand of the first equation: since stochastic integration is continuous with respect to the ucp topology we obtain the result.
+
+
+
+
