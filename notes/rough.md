@@ -369,6 +369,196 @@ $$
 
 [Cuchiero C, Khosrawi W, Teichmann J. A generative adversarial network approach to calibration of local stochastic volatility models[J]. Risks, 2020, 8(4): 101.](https://www.mdpi.com/2227-9091/8/4/101)
 
+>This means parameterizing the model pool in a way which is accessible for machine learning techniques and interpreting the inverse problem as a training task of a generative network, whose quality is assessed by anadversary.We pursue this approach in the presentarticle  and  use  as  generative  models  so-called  neural  stochastic  differential  equations  (SDE),which just means to parameterize the drift and volatility of an Itˆo-SDE by neural networks.  
+
+### 1．介绍
+
+文中指的**neural SDE**即通过神经网络来对Ito-SDE的漂移项和波动率进行参数化．  
+这里考虑的某资产的折现后价格过程（discounted price process） $(S_t)_{t\geq 0}$ ：
+$$
+dS_t = S_t L(t,S_t)\alpha_t dW_t \tag{1.1}
+$$
+其中 $(\alpha_t)_{t\geq 0}$ 是某个 $\mathbb{R}$ 中取值的随机过程，$L(t,s)$ 称为**杠杆函数**（Leverage function）取决于 $t$ 和资产当前价格．  
+$L$ 的选取非常重要，需要很好地校准市场上观测到的隐含波动率．故 $L$ 需要满足如下条件：
+$$
+L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]}\tag{1.1} ,
+$$
+其中 $\sigma_{\text {Dup }}$ 指 **Dupire** 的local volatility function．注意到（1.1）是 $L$ 的隐式方程，因为 $\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]$ 中需要 $(S_t,\alpha_t)$ ．故此时 $(S_t)_{t\geq 0}$ 满足的SDE也成为了一个**McKean-Vlasov SDE**．  
+
+本文采用了 fully data-driven 方法，规避了其他计算 Dupire 局部波动率的方法中必须的对波动率曲面插值的做法，即此方法只需**离散数据**．  
+
+令 $T_0 = 0$ , $T_1<T_2<...<T_n$ 为不同期权的到期日．使用神经网络族 $F^i:\mathbb{R}\rightarrow \mathbb{R}$  将杠杆函数参数化，参数为 $\theta_i\in \Theta_i$ ，i.e.
+$$
+L(s,t,\theta) = 1+F^i(s,\theta_i)， t\in [T_{i-1},T_i)，i\in{1,...,n}．
+$$  
+
+于是有了neural SDE的生成模型组（generative model class），即使用带参数 $\theta$ 的神经网络来参数化漂移项 $\mu(·,·,\theta)$ 和波动率项 $\sigma(·,·,\theta)$ ，i.e.
+$$
+d X_{t}(\theta)=\mu\left(X_{t}(\theta), t, \theta\right) d t+\sigma\left(X_{t}(\theta), t, \theta\right) d W_{t}, \quad X_{0}(\theta)=x
+$$  
+本文中，没有漂移项，波动率项如下所示：
+$$
+\sigma\left(S_{t}(\theta), t, \theta\right)=S_{t}(\theta)\left(1+\sum_{i=1}^{n} F^{i}\left(S_{t}(\theta), \theta_{i}\right) 1_{\left[T_{i-1}, T_{i}\right)}(t)\right) \alpha_{t} .
+$$  
+
+依次对每个到期日，**参数优化**采用如下的校准法则：
+$$
+\inf _{\theta} \sup_{\gamma} \sum_{j=1}^{J} w_{j}^{\gamma} \ell^{\gamma}\left(\pi_{j}^{\bmod }(\theta)-\pi_{j}^{\mathrm{mkt}}\right)
+$$
+其中 $J$ 是期权的数目， $\pi_{j}^{\bmod}$ 和 $\pi_{j}^{\mathrm{mkt}}$ 是模型与市场分别的价格．  
+
+对固定的 $\gamma$ ， $\ell^{\gamma}$ 是非线性非负凸函数满足 $\ell^{\gamma}(0) = 0$ 且 $\ell^{\gamma}(x)>0$ 对 $x\neq 0$ ，衡量模型和市场价的距离．$w_{j}^{\gamma}$ 某种权重，参数 $\gamma$ 扮演了**对抗**（adversarial）的部分，注意到 $\ell^{\gamma}$ 和 $w_{j}^{\gamma}$ 都受 $\gamma$ 控制．本文中 $w_{j}^{\gamma}$ 采用的是 [Cont R, Ben Hamida S. Recovering volatility from option prices by evolutionary optimization[J]. 2004.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=546882)中的 *vega-type*．
+
+### 2.VARIANCE REDUCTION FOR PRICING AND CALIBRATION VIA HEDGING AND DEEP HEDGING
+
+介绍在蒙特卡洛定价和校准中利用对冲投资组合作为控制变量的方差缩减技术．在 LSV 校准中非常重要．
+
+考虑有限时域 $T>0$，已折现的市场中有 $r$ 个交易中的金融产品 $\left(Z_{t}\right)_{t \in[0, T]}$ ，它是在某个概率空间 $\left(\Omega,\left(\mathcal{F}_{t}\right)_{t \in[0, T]}, \mathcal{F}, \mathbb{Q}\right)$ 上在 $\mathbb{R}^{r}$ 中取值的随机变量． $\mathbb{Q}$ 是风险中性测度， $\left(\mathcal{F}_{t}\right)_{t \in[0, T]}$ 假设是右连续的．特别的，假设 $\left(Z_{t}\right)_{t \in[0, T]}$ 是有右连左极路径的 $r$ 维平方可积鞅．
+
+令 $C$ 是 $\mathcal{F}_{T}$ 可测的随机变量，表示表示某个欧式期权在到期日 $T>0$ 的支付．那么通常的对这个期权价格的 Monte Carlo 估计是：
+$$
+\pi=\frac{1}{N} \sum_{n=1}^{N} C_{n}．\tag{2.1}
+$$
+其中， $\left(C_{1}, \ldots, C_{N}\right)$ 是以分布 $C$，$N \in \mathbb{N}$  i.i.d 的．可以简单改造这个估计，加上关于 $Z$ 的随机积分．考虑一个策略 $\left(h_{t}\right)_{t \in[0, T]} \in L^{2}(Z)$ 和某个常数 $c$．用 $I=(h \bullet Z)_{T}$ 记关于 $Z$ 的随机积分，考虑如下估计：
+$$
+\widehat{\pi}=\frac{1}{N} \sum_{n=1}^{N}\left(C_{n}-c I_{n}\right)．\tag{2.2}
+$$
+其中， $\left(I_{1}, \ldots, I_{N}\right)$ 是以分布 $I$ i.i.d 的．则对于任意的 $\left(h_{t}\right)_{t \in[0, T]} \in L^{2}(Z)$ 和 $c$，这个估计仍是期权价格的无偏估计，因为随机积分的期望消失了．记
+$$
+H=\frac{1}{N} \sum_{n=1}^{N} I_{n}．
+$$
+则 $\widehat{\pi}$ 的方差为：
+$$
+\operatorname{Var}(\widehat{\pi})=\operatorname{Var}(\pi)+c^{2} \operatorname{Var}(H)-2 c \operatorname{Cov}(\pi, H)，
+$$
+在以下取法下达到最小
+$$
+c=\frac{\operatorname{Cov}(\pi, H)}{\operatorname{Var}(H)}．
+$$
+此时
+$$
+\operatorname{Var}(\widehat{\pi})=\left(1-\operatorname{Corr}^{2}(\pi, H)\right) \operatorname{Var}(\pi)．
+$$
+特别地，在沿路径完美对冲的情形下，$\pi=H$ a.s.，有 $\operatorname{Corr}(\pi, H)=1$ 和 $\operatorname{Var}(\widehat{\pi})=0$，此时
+$$
+\operatorname{Var}(\pi)=\operatorname{Var}(H)=\operatorname{Cov}(\pi, H)
+$$
+因此，找到一个好的近似对冲投资组合使得 $\operatorname{Corr}^{2}(\pi, H)$ 大是很重要的．
+
+#### 2.1 Black&Scholes Delta Hedge
+
+In many cases, of local stochastic volatility models as of form (1.1) and options depending only on the terminal value of the price process, a Delta hedge of the BlackâĂŞScholes model works well.
+
+令 $C=g\left(S_{T}\right)$ ， $\pi_{\mathrm{BS}}^{g}(t, T, s, \sigma)$ 是 BS 模型下 $t$ 时刻的价格．对冲策略为：
+$$
+h_{t}=\partial_{s} \pi_{\mathrm{BS}}^{g}\left(t, T, S_{t}, L\left(t, S_{t}\right) \alpha_{t}\right)
+$$
+
+#### 2.2 Hedging Strategies as Neural Networks-Deep Hedging
+
+在对冲产品数变高等情况下时，可以将对冲策略用神经网络参数化．令期权的支付是对冲产品最终价值的函数，i.e.，$C=g\left(Z_{T}\right)$．在**马尔科夫模型**中，可以用函数表示对冲策略：
+$$
+h: \mathbb{R}_{+} \times \mathbb{R}^{r} \rightarrow \mathbb{R}^{r}, h_{t}=h(t, z)
+$$
+对应这样一个神经网络：$(t, z) \mapsto h(t, z, \delta) \in \mathcal{N} \mathcal{N}_{r+1, r}$．$\delta$ 是网络参数．根据[Buehler H, Gonon L, Teichmann J, et al. Deep hedging[J]. Quantitative Finance, 2019, 19(8): 1271-1291.](https://www.tandfonline.com/doi/full/10.1080/14697688.2019.1571683) 给定 $\pi^{\mathrm{mkt}}$ 的最优对冲可以如下计算
+$$
+\inf _{\delta \in \Delta} \mathbb{E}\left[u\left(-C+\pi^{\mathrm{mkt}}+\left(h\left(\cdot, Z_{--}, \delta\right) \bullet Z \cdot\right)_{T}\right)\right]
+$$
+$u: \mathbb{R} \rightarrow \mathbb{R}_{+}$ 是凸的损失函数．
+
+为了解决这个最优问题，采用随机梯度下降，随机目标函数 $Q(\delta)(\omega)$ 为：
+$$
+Q(\delta)(\omega)=u\left(-C(\omega)+\pi^{\mathrm{mkt}}+\left(h\left(\cdot, Z_{.-}, \delta\right)(\omega) \bullet Z .(\omega)\right)_{T}\right)
+$$
+记最优的参数 $\delta^{*}$ 和最优对冲策略 $h\left(\cdot, \cdot, \delta^{*}\right)$ ．
+
+假定激活函数和凸损失函数是光滑的．下面要证明 $Q(\delta)$ 的梯度是：
+$$
+\nabla_{\delta} Q(\delta)(\omega)=u^{\prime}\left(-C(\omega)+\pi^{\mathrm{mkt}}+\left(h\left(\cdot, Z_{--}, \delta\right)(\omega) \bullet Z \cdot(\omega)\right)_{T}\right)\left(\nabla_{\delta} h\left(\cdot, Z_{.-}, \delta\right)(\omega) \bullet Z .(\omega)\right)_{T}
+$$
+i.e.，我们可以把梯度移到随机积分中．为此，我们要使用下述定理．
+
+**定理 2.1**：$\forall\varepsilon \geq 0$，令 $Z^{\varepsilon}$ 是
+
+
+Theorem 2.1. For ling, let $Z^{\varepsilon}$ be a solution of a stochastic differential equation as described in Theorem $A .3$ with drivers $Y=\left(Y^{1}, \ldots, Y^{d}\right)$, functionally Lipschitz operators $F_{j}^{\varepsilon, i}, i=1, \ldots, r$, $j=1, \ldots, d$ and a process $\left(J^{\varepsilon, 1}, \ldots J^{\varepsilon, r}\right)$, which is here for all $\varepsilon \geq 0$ simply $J 1_{\{t=0\}}(t)$ for some constant vector $J \in \mathbb{R}^{r}=J$, i.e.
+$$
+Z_{t}^{\varepsilon, i}=J^{i}+\sum_{j=1}^{d} \int_{0}^{t} F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{s-} d Y_{s}^{j}, \quad t \geq 0
+$$
+Let $(\varepsilon, t, z) \mapsto f^{\varepsilon}(t, z)$ be a map, such that the bounded càglàd process $f^{\varepsilon}:=f^{\varepsilon}\left(.-, Z_{.-}^{0}\right)$ converges $u c p$ to $f^{0}:=f^{0}\left(.-, Z_{.-}^{0}\right)$, then
+$$
+\lim _{\varepsilon \rightarrow 0}\left(f^{\varepsilon} \bullet Z^{\varepsilon}\right)=\left(f^{0} \bullet Z^{0}\right)
+$$
+holds true.
+Proof. Consider the extended system
+$$
+d\left(f^{\varepsilon} \bullet Z^{\varepsilon}\right)=\sum_{j=1}^{d} f^{\varepsilon}\left(t-, Z_{t-}^{\varepsilon}\right) F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
+$$
+and
+$$
+d Z_{t}^{\varepsilon, i}=\sum_{j=1}^{d} F_{j}^{\varepsilon, i}\left(Z^{\varepsilon}\right)_{t-} d Y_{t}^{j}
+$$
+where we obtain existence, uniqueness and stability for the second equation by Theorem A.3, and from where we obtain ucp convergence of the integrand of the first equation: since stochastic integration is continuous with respect to the ucp topology we obtain the result.
+
+**推论 2.2**：$\forall\varepsilon>0$，令 $Z^{\varepsilon}$ 为对冲产品过程 $Z \equiv Z^{0}$ 的离散，使得定理 2.1 中的条件都满足．对应的对冲策略 $(t, z, \delta) \mapsto h^{\varepsilon}(t, z, \delta)$ 由神经网络 $\mathcal{N} \mathcal{N}_{r+1, r}$ 给出，其中网络的激活函数有界 $C^{1}$，且导数有界．那么
+(i) 随机积分在 $\delta_{0}$ 点关于 $\delta$  导数 $\nabla_{\delta}(h(\cdot, Z .-, \delta) \bullet Z)$ 满足
+$$
+\nabla_{\delta}\left(h\left(\cdot, Z_{--}, \delta_{0}\right) \bullet Z\right)=\left(\nabla_{\delta} h\left(\cdot, Z_{-}, \delta_{0}\right) \bullet Z\right)
+$$
+(ii) 若当 $\varepsilon \rightarrow 0$ 时，$\nabla_{\delta} h^{\varepsilon}\left(\cdot, Z_{--}, \delta_{0}\right)$ ucp 收敛到 $\nabla_{\delta} h\left(\cdot, Z_{--}, \delta_{0}\right)$，则离散积分的方向导数，i.e. $\nabla_{\delta}\left(h^{\varepsilon}\left(\cdot, Z_{-}^{\varepsilon}, \delta_{0}\right) \bullet Z^{\varepsilon}\right)$ 随着离散刻度 $\varepsilon \rightarrow 0$ 收敛到
+$$
+\lim _{\varepsilon \rightarrow 0}\left(\nabla_{\delta} h^{\varepsilon}\left(\cdot, Z_{--}^{\varepsilon}, \delta_{0}\right) \bullet Z^{\varepsilon}\right)=\left(\nabla_{\delta} h\left(\cdot, Z_{\cdot-}, \delta_{0}\right) \bullet Z\right)
+$$
+> ucp means *uniform convergence on compacts in probability*,i.e.，if
+$$
+\mathbb{P}\left(\sup _{s<t}\left|X_{s}^{n}-X_{s}\right|>\epsilon\right) \rightarrow 0
+$$
+for all $\epsilon, t>0$. The notation $X^{n} \stackrel{\text { ucp }}{\longrightarrow} \mathrm{X}$ is sometimes used, and $X^{n}$ is said to converge ucp to $X$.
+
+### 3. LSV的校准
+
+考虑定义在某个概率空间 $\left(\Omega,\left(\mathcal{F}_{t}\right)_{t \in[0, T]}, \mathcal{F}, \mathbb{Q}\right)$ 上的（1.1）LSV模型，$\mathbb{Q}$ 是风险中性测度．假定随机过程 $\alpha$ 固定．**所以实际中我们可以先令 $L\equiv 1$ 来近似校准其他参数并固定他们**．
+
+主要目标是确定符合市场数据的杠杆函数 $L$，根据通用近似定理（universal approximation properties），对其参数化．令 $T_{0}=0，0<T_{1} \cdots<T_{n}=T$ 为欧式看涨期权的到期日．将 $L(t, s)$ 用如下神经网络近似
+$$
+L(t, s, \theta)=\left(1+\sum_{i=1}^{n} F^{i}\left(s, \theta_{i}\right) 1_{\left[T_{i-1}, T_{i}\right)}(t)\right)\tag{3.1}
+$$
+其中 $F^{i} \in \mathcal{N} \mathcal{N}_{1,1}$， $i=1, \ldots, n$．方便起见，通常省略 $\theta_{i} \in \Theta_{i}$．当我们写 $S_{t}(\theta)$ 时，$\theta$ 表示 $t$ 时刻前所有的参数 $\theta_{i}$． 
+
+训练过程中，我们需要计算 LSV 过程关于 $\theta$ 的导数．以下结果可以看做 $\nabla_{\theta} S(\theta)$ 对应的链式法则．从附录 A 推导而来．
+
+**定理 3.1**：令 $(t, s, \theta) \mapsto L(t, s, \theta)$ 为（3.1）形式，神经网络 $\left(s, \theta_{i}\right) \mapsto F^{i}\left(s, \theta_{i}\right)$ 有界且 $C^{1}$，导数有界且 Lipschitz 连续．则关于 $\theta$ 在 $\widehat{\theta}$ 点处的导数满足：
+$$
+\begin{aligned}
+d\left(\nabla_{\theta} S_{t}(\widehat{\theta})\right)=&\left(\nabla_{\theta} S_{t}(\widehat{\theta}) L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right)+S_{t}(\widehat{\theta}) \partial_{s} L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right) \nabla_{\theta} S_{t}(\widehat{\theta})\right.\\
+&\left.+S_{t}(\widehat{\theta}) \nabla_{\theta} L\left(t, S_{t}(\widehat{\theta}), \widehat{\theta}\right)\right) \alpha_{t} d W_{t}
+\end{aligned}\tag{3.2}
+$$
+初值为 0．这个可以通过常数变易来解，i.e.
+$$
+\nabla_{\theta} S_{t}(\widehat{\theta})=\int_{0}^{t} P_{t-s} S_{s}(\widehat{\theta}) \nabla_{\theta} L\left(s, S_{s}(\widehat{\theta}), \widehat{\theta}\right) \alpha_{s} d W_{s}\tag{3.3}
+$$
+其中
+$$
+P_{t}=\mathcal{E}\left(\int_{0}^{t}\left(L\left(s, S_{s}(\widehat{\theta}), \widehat{\theta}\right)+S_{s}(\widehat{\theta}) \nabla_{s} L\left(s, S_{s}(\widehat{\theta}), \widehat{\theta}\right)\right) \alpha_{s} d W_{s}\right)
+$$
+$\mathcal{E}$ 表示随机指数（stochastic exponential）．
+
+[证明过程](#定理3.1证明)
+<div id="定理3.1"></div>
+
+
+Proof. First note that Theorem A.2 implies the existence and uniqueness of
+$$
+d S_{t}(\theta)=S_{t}(\theta) L\left(t, S_{t}(\theta), \theta\right) \alpha_{t} d W_{t}
+$$
+for every $\theta$. Here, the driving process is one-dimensional and given by $Y=\int_{0}^{*} \alpha_{s} d W_{s} .$ Indeed, according to Remark A.4, if $(t, s) \mapsto L(t, s, \theta)$ is bounded, càdlàg in $t$ and Lipschitz in $s$ with a Lipschitz constant independent of $t, S . \mapsto S \cdot(\theta) L(\cdot, S \cdot(\theta), \theta)$ is functionally Lipschitz and Theorem A.2 implies the assertion. These conditions are implied by the form of $L(t, s, \theta)$ and the conditions on the neural networks $F^{i}$.
+
+
+
+
+
+
 ### 数值实验流程
 
 实际使用的 **SABR-LSV** 模型如下
@@ -437,11 +627,11 @@ $$
 - 对每个 $m$，根据（1）式计算 $T_{i}$ and strikes $K_{i j}$ for $i=1, \ldots, n=4$ and $j=1, \ldots, 20$ 对应的欧式期权的价格．每个 $m$ 分别使用不同的 $10^{7}$ 条布朗运动轨道．
 - 保存这些价格数据
 
-## $\dagger$准备做的工作$\dagger$
+## $\dagger$准备做的工作$\dagger$（弃案）
 
 寻找最适合市场波动率曲面的“**复合**”模型，即假设市场波动率曲面实际是由**一些**波动率模型的**凸组合**决定的．
 
->回忆：波动率曲面即隐含波动率以 $T$：time to maturity 和 $\log(K/S_0)$：log-moneyness 为自变量构成的曲面
+>回忆：波动率曲面即隐含波动率以 $T$：time to maturity 和 $\log(K/S_0)$：log-moneyness 为自变量构成的曲面,[链接](#demo)
 
 例如，我们可以假设当前 $\{\sigma^{T,K}_{market}=a\sigma^{T,K}_{Heston}+b\sigma^{T,K}_{rough}\}_{T,K}$，其中 $a+b=1，a\geq0，b\geq0$．
 
@@ -454,3 +644,14 @@ $$
 我们对两个模型的参数以及 $a,b$ 分别均匀采样，然后根据两者的模型分别模拟出不同凸组合下两者的复合波动率曲面，*但要注意的是两者采用同一个参数 $\rho$（即两个标准布朗运动的相关系数）并且一个凸组合下两模型使用同一条 Monte-Carlo 轨道*．这时，忽略掉模型的参数，我们有了带有 $\{a,b\}$ 标签的许多波动率曲面样本，我们利用前述 grid-based 的方法通过神经网络**学习从波动率曲面到凸组合系数的映射**．
 
 知道了 $a,b$ 后，如何校准出两个模型分别的参数？
+
+## 附录
+
+[定理3.1](#定理3.1)
+<div id="定理3.1证明"></div>
+
+Proof. First note that Theorem A.2 implies the existence and uniqueness of
+$$
+d S_{t}(\theta)=S_{t}(\theta) L\left(t, S_{t}(\theta), \theta\right) \alpha_{t} d W_{t}
+$$
+for every $\theta$. Here, the driving process is one-dimensional and given by $Y=\int_{0}^{*} \alpha_{s} d W_{s} .$ Indeed, according to Remark A.4, if $(t, s) \mapsto L(t, s, \theta)$ is bounded, càdlàg in $t$ and Lipschitz in $s$ with a Lipschitz constant independent of $t, S . \mapsto S \cdot(\theta) L(\cdot, S \cdot(\theta), \theta)$ is functionally Lipschitz and Theorem A.2 implies the assertion. These conditions are implied by the form of $L(t, s, \theta)$ and the conditions on the neural networks $F^{i}$.
