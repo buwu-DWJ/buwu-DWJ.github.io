@@ -495,17 +495,19 @@ holds true.
 [证明过程](#proof_2_1)
 
 **推论 2.2**：$\forall\varepsilon>0$，令 $Z^{\varepsilon}$ 为对冲产品过程 $Z \equiv Z^{0}$ 的离散，使得定理 2.1 中的条件都满足．对应的对冲策略 $(t, z, \delta) \mapsto h^{\varepsilon}(t, z, \delta)$ 由神经网络 $\mathcal{N} \mathcal{N}_{r+1, r}$ 给出，其中网络的激活函数有界 $C^{1}$，且导数有界．那么
+
 (i) 随机积分在 $\delta_{0}$ 点关于 $\delta$  导数 $\nabla_{\delta}(h(\cdot, Z .-, \delta) \bullet Z)$ 满足
 $$
 \nabla_{\delta}\left(h\left(\cdot, Z_{--}, \delta_{0}\right) \bullet Z\right)=\left(\nabla_{\delta} h\left(\cdot, Z_{-}, \delta_{0}\right) \bullet Z\right)
 $$
+
 (ii) 若当 $\varepsilon \rightarrow 0$ 时，$\nabla_{\delta} h^{\varepsilon}\left(\cdot, Z_{--}, \delta_{0}\right)$ ucp 收敛到 $\nabla_{\delta} h\left(\cdot, Z_{--}, \delta_{0}\right)$，则离散积分的方向导数，i.e. $\nabla_{\delta}\left(h^{\varepsilon}\left(\cdot, Z_{-}^{\varepsilon}, \delta_{0}\right) \bullet Z^{\varepsilon}\right)$ 随着离散刻度 $\varepsilon \rightarrow 0$ 收敛到
 $$
 \lim _{\varepsilon \rightarrow 0}\left(\nabla_{\delta} h^{\varepsilon}\left(\cdot, Z_{--}^{\varepsilon}, \delta_{0}\right) \bullet Z^{\varepsilon}\right)=\left(\nabla_{\delta} h\left(\cdot, Z_{\cdot-}, \delta_{0}\right) \bullet Z\right)
 $$
 > ucp means *uniform convergence on compacts in probability*,i.e.，if
 $$
-\mathbb{P}\left(\sup _{s<t}\left|X_{s}^{n}-X_{s}\right|>\epsilon\right) \rightarrow 0
+\mathbb{P}\left(\sup_{s<t}\left|X_{s}^{n}-X_{s}\right|>\epsilon\right) \rightarrow 0
 $$
 for all $\epsilon, t>0$. The notation $X^{n} \stackrel{\text { ucp }}{\longrightarrow} \mathrm{X}$ is sometimes used, and $X^{n}$ is said to converge ucp to $X$.
 
@@ -544,11 +546,13 @@ $\mathcal{E}$ 表示随机指数（stochastic exponential）．
 <div id="3_1"></div>
 
 *Remark $3.2$*
+
 (i) 只看存在唯一性的话，
 $$
 d S_{t}(\theta)=S_{t}(\theta) L\left(t, S_{t}(\theta), \theta\right) \alpha_{t} d W_{t}
 $$
 $L(t, s, \theta)$ 为 (3.1) 形式，那么神经网络 $s \mapsto F^{i}\left(s, \theta_{i}\right)$ 有界以及 Lipschitz 足够了，$\forall i=1, \ldots, n$．
+
 (ii) 公式 (3.3) 可以用来倒向传播．
 
 定理 3.1 保证了导数过程的存在唯一性．这也保证了基于梯度搜索的学习算法的建立．
@@ -723,6 +727,154 @@ $$
 
 知道了 $a,b$ 后，如何校准出两个模型分别的参数？
 
+## $\dagger$LSV-ROUGH 模型的校准$\dagger$
+
+模型：
+$$
+\begin{aligned}
+d S_{t} &=S_{t} L\left(t, S_{t}\right)\sqrt{V_t} d W_{t} \\
+V_{t} &=\xi_{0}(t) \mathcal{E}\left(\sqrt{2 H} \eta \int_{0}^{t}(t-s)^{H-1 / 2} d Z_{s}\right), \quad \text { for } t>0, \quad V_{0}=v_{0}>0\\
+d\langle W, B\rangle_{t} &=\varrho dt
+\end{aligned}\tag{1.1}
+$$
+
+杠杆函数：$L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]}$
+
+**主要共有两个神经网络**，一个负责 Rough 的部分，一个负责 LSV 的部分．
+
+一方面，Rough 部分的网络对应的即 Bayer 提出的 two-step 校准方法，即如下模型 （（1.1）中 $L \equiv 1$ 时）： 
+$$
+\begin{aligned}
+d S_{t} &=S_{t} \sqrt{V_t} d W_{t} \\
+V_{t} &=\xi_{0}(t) \mathcal{E}\left(\sqrt{2 H} \eta \int_{0}^{t}(t-s)^{H-1 / 2} d Z_{s}\right), \quad \text { for } t>0, \quad V_{0}=v_{0}>0\\
+d\langle W, B\rangle_{t} &=\varrho dt
+\end{aligned}\tag{1.1}
+$$
+对应的从模型参数到模型对应价格的映射的网络．只需用人工模拟数据训练一次后，网络就固定住了，在校准等步骤中是不会再变动的．
+
+>**回忆**：用 $\Delta:=\left\{k_{i}, T_{j}\right\}_{i=1, j=1}^{n,} m_{i=1}$ 记关于到期日和行权价的网格．则
+**step 1**：学习映射 $\widetilde{F}(\theta)=\left\{\sigma_{B S}^{\mathcal{M}(\theta)}\left(T_{i}, k_{j}\right)\right\}_{i=1, j=1}^{n,m}$，输入是 $\theta \in \Theta$，输出是 $\left\{\sigma_{\mathrm{BS}}^{\mathcal{M}(\theta)}\left(T_{i}, k_{j}\right)\right\}_{i=1, j=1}^{n, m}$ 这样的  $n \times m$ 网格．$\widetilde{F}$ 取值在 $\mathbb{R}^{L}$ 中，其中 $L=$ strikes $\times$ maturities $=n m .$最优化问题变为如下：
+$$
+\widehat{\omega}:=\underset{w \in \mathbb{R}^{n}}{\operatorname{argmin}} \sum_{i=1}^{N_{\text {Train }}^{\text {reduced }}} \sum_{j=1}^{L} \eta_{j}\left(\widetilde{F}\left(\theta_{i}\right)_{j}-\sigma^{\mathcal{M}}\left(\theta_{i}, T_{j}, k_{j}\right)\right)^{2}
+$$
+其中 $N_{\text {Train }}=N_{\text {Train }}^{\text {reduced }} \times L$．
+**Step 2**:
+$$
+\widehat{\theta}:=\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{i=1}^{L} \beta_{j}\left(\widetilde{F}(\theta)_{i}-\sigma_{\mathrm{BS}}^{\mathrm{MKT}}\left(T_{i}, k_{i}\right)\right)^{2}
+$$
+
+另一方面，我们将 $L\left(t, S_{t}\right)$ 这个函数用网络近似，这个网络中的参数是随着校准不断变动的．具体地，令 $T_{0}=0，0<T_{1} \cdots<T_{n}=T$ 为欧式看涨期权的到期日．将 $L(t, s)$ 用如下神经网络近似
+$$
+L(t, s, \theta)=\left(1+\sum_{i=1}^{n} F^{i}\left(s, \theta_{i}\right) 1_{\left[T_{i-1}, T_{i}\right)}(t)\right)\tag{1.2}
+$$
+其中 $F^{i} \in \mathcal{N} \mathcal{N}_{1,1}$， $i=1, \ldots, n$．
+
+为了记号方便，省略权重 $w$ 和损失函数 $\ell$ 对应的参数 $\gamma$．对每个到期日 $T_{i}$，我们假定有 $J_{i}$ 个期权，行权价为 $K_{i j}, j \in\left\{1, \ldots, J_{i}\right\}$．对第 $i$ 个到期日，校准函数的形式为
+$$
+\underset{\theta_{i} \in \Theta_{i}}{\operatorname{argmin}} \sum_{j=1}^{J_{i}} w_{i j} \ell\left(\pi_{i j}^{\bmod }\left(\theta_{i}\right)-\pi_{i j}^{\mathrm{mkt}}\right), \quad i \in\{1, \ldots, n\}\tag{1.3}
+$$
+回忆 $\pi_{i j}^{\bmod }\left(\theta_{i}\right)$ 指的是对应到期日 $T_{i}$ 和行权价 $K_{i j}$ 的模型期权价格．$\ell: \mathbb{R} \rightarrow \mathbb{R}_{+}$ 是某个非负非线性凸的损失函数满足 $\ell(0)=0，\ell(x)>0$ 对 $x \neq 0$．$w_{i j}$ 是权重．
+
+我们通过迭代地计算最优化问题（1.3），从 $T_{1}$ 和 $\theta_{1}$ 出发，计算 $\pi_{2 j}^{\bmod }\left(\theta_{2}\right)$，然后解决对应 $T_{2}$ 的（1.3）．为了简便记号，去掉 $i$ ，考虑一般的到期日 $T>0$ ，(1.3)变为
+$$
+\underset{\theta \in \Theta}{\operatorname{argmin}} \sum_{j=1}^{J} w_{j} \ell\left(\pi_{j}^{\bmod }(\theta)-\pi_{j}^{\mathrm{mkt}}\right)
+$$
+模型价格由下式给出
+$$
+\pi_{j}^{\bmod }(\theta)=\mathbb{E}\left[\left(S_{T}(\theta)-K_{j}\right)^{+}\right]\tag{1.4}
+$$
+我们有 $\pi_{j}^{\bmod }(\theta)-\pi_{j}^{\mathrm{mkt}}=\mathbb{E}\left[Q_{j}(\theta)\right]$ ，其中
+$$
+Q_{j}(\theta)(\omega):=\left(S_{T}(\theta)(\omega)-K_{j}\right)^{+}-\pi_{j}^{\mathrm{mkt}}\tag{1.5}
+$$
+那么校准问题变为寻找最小的
+$$
+f(\theta):=\sum_{j=1}^{J} w_{j} \ell\left(\mathbb{E}\left[Q_{j}(\theta)\right]\right)\tag{1.6}
+$$
+我们通过第二节中讲的对冲控制变量 (hedge control variates) 解决这个问题．
+
+考虑标准的对（3.8） $\mathbb{E}\left[Q_{j}(\theta)\right]$ 的 Monte-Carlo 模拟：
+$$
+f^{\mathrm{MC}}(\theta):=\sum_{j=1}^{J} w_{j} \ell\left(\frac{1}{N} \sum_{n=1}^{N} Q_{j}(\theta)\left(\omega_{n}\right)\right)\tag{1.7}
+$$
+对 i.i.d 的样本 $\left\{\omega_{1}, \ldots, \omega_{N}\right\} \in \Omega$ ．Monte-Carlo 误差以 $\frac{1}{\sqrt{N}}$ 递减．模拟次数 $N$ 必须很大 $\left(\approx 10^{8}\right)$ ．因为由于 $\ell$ 非线性，随机梯度下降不能直接使用，所以看起来要计算整个函数 $\widehat{f}(\theta)$ 的梯度来最小化（3.9）．但 $N \approx 10^{8}$ ，这一做法计算成本太大且不稳定，因为要计算 $10^{8}$ 项的和的导数．
+
+一个方便的做法是应用对冲控制变量来降低方差，可以将 Monte-Carlo 的样本数 $N$ 降为大约 $5 \times 10^{4}$ ．
+
+假定我们有 $r$ 个对冲产品（包含价格过程 $S$ ），用 $\left(Z_{t}\right)_{t \in[0, T]}$ 表示，为 $\mathbb{Q}$ 下的平方可积鞅，在 $\mathbb{R}^{r}$ 下取值．对 $j=1, \ldots, J$ ，策略 $h_{j}:[0, T] \times \mathbb{R}^{r} \rightarrow \mathbb{R}^{r}$ 使得 $h(\cdot, Z .) \in L^{2}(Z)$ ，$c$ 为常数，定义
+$$
+X_{j}(\theta)(\omega):=Q_{j}(\theta)(\omega)-c\left(h_{j}\left(\cdot, Z_{.-}(\theta)(\omega)\right) \bullet Z .(\theta)(\omega)\right)_{T}\tag{1.8}
+$$
+则校准函数（3.8）和（3.9）可以通过替换 $Q_{j}(\theta)(\omega)$ 为 $X_{j}(\theta)(\omega)$ 来定义，变为最小化
+$$
+\widehat{f}(\theta)\left(\omega_{1}, \ldots, \omega_{N}\right)=\sum_{j=1}^{J} w_{j} \ell\left(\frac{1}{N} \sum_{n=1}^{N} X_{j}(\theta)\left(\omega_{n}\right)\right)\tag{1.9}
+$$
+
+-----------------------
+
+### 算法1：模型的校准步骤
+
+1. *\# 初始化网络参数*
+
+2. $\quad initialize\quad \theta_{1}, \ldots, \theta_{4}$
+
+3. *\# 定义初始模拟轨道数和初始步骤值*
+
+4. $\quad N, \quad k=500,\quad 1$
+
+5. *\# 定义时间离散间隔和误差容忍度*
+
+6. $\quad \Delta_{t},\quad tol=0.01,\quad 0.001$
+
+7. $\quad \bm{for} \quad i=1, \ldots, 4$:
+
+8. $\qquad nextslice = False$
+
+9. *$\qquad$\# 计算此次切片的初始正规化权重*
+
+10. $\qquad w_{j}=\tilde{w}_{j} / \sum_{l=1}^{20} \tilde{w}_{l}$
+
+11. $\qquad \bm{while}\quad nextslice==False$
+
+12. $\quad \qquad do:$
+
+13. $\qquad \qquad 模拟 N 条模型到T_i时刻的轨道，计算支付$
+
+14. $\qquad \quad do:$
+
+15. $\qquad \qquad 计算这些轨道对应的到 T_i 时刻的对冲的随机积分$
+
+16. $\qquad \quad do:$
+
+17. $\qquad \qquad 计算(1.9)式的校准函数$
+
+18. $\qquad \quad do:$
+
+19. $\qquad \qquad 进行一步优化\ \theta_{i}^{(k-1)}\ 到\ \theta_{i}^{(k)}$
+
+20. $\qquad \quad do:$
+
+21. $\qquad \qquad 利用算法\ 2\ 更新参数 N，nextslice 并计算模型价格 \pi_{model}$
+
+22. $\qquad \quad do:$
+
+23. $\qquad \qquad k=k+1$
+
+### 算法2：超参的更新
+
+
+
+-----------------------
+
+
+
+
+
+
+
+
+
+
 ## 附录
 
 [定理3.1](#3_1)
@@ -765,7 +917,7 @@ F^{0,3}\left(Z_{t}^{0}\right)=Z_{t}^{0,3} L\left(t, Z_{t}^{0,2}, \widehat{\theta
 $$
 事实上，$\forall t$，$\{s \mapsto L(t, s, \widehat{\theta}+\varepsilon \theta), \mid \varepsilon \in[0,1]\}$ 等度连续．因此，点点收敛暗示对 $s$ 的一致连续．This together with $L(t, s, \theta)$ being piecewise constant in $t$ yields:
 $$
-\lim _{\varepsilon \rightarrow 0} \sup _{(t, s)}|L(t, s, \widehat{\theta}+\varepsilon \theta)-L(t, s, \widehat{\theta})|=0
+\lim _{\varepsilon \rightarrow 0} \sup_{(t, s)}|L(t, s, \widehat{\theta}+\varepsilon \theta)-L(t, s, \widehat{\theta})|=0
 $$
 whence ucp convergence of the first term in (3.4). The convergence of term two is clear. The one of term three follows again from the fact that the family $\left\{s \mapsto \nabla_{\theta} L(t, s, \widehat{\theta}+\varepsilon \theta) \mid \varepsilon \in[0,1]\right\}$ is equicontinuous, which is again a consequence of the form of the neural networks.
 
@@ -784,6 +936,20 @@ d Z_{t}^{\varepsilon, i}=\sum_{j=1}^{d} F_{j}^{\varepsilon, i}\left(Z^{\varepsil
 $$
 where we obtain existence, uniqueness and stability for the second equation by Theorem A.3, and from where we obtain ucp convergence of the integrand of the first equation: since stochastic integration is continuous with respect to the ucp topology we obtain the result.
 
+## 文献
 
-
-
+1. 首次在波动率校准中运用神经网络
+[Hernandez A. Model calibration with neural networks[J]. Available at SSRN 2812140, 2016.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2812140)
+2. rough波动率模型的神经网络校准
+[Bayer C, Horvath B, Muguruza A, et al. On deep calibration of (rough) stochastic volatility models[J]. arXiv preprint arXiv:1908.08806, 2019.](https://arxiv.org/abs/1908.08806)
+[Horvath B, Muguruza A, Tomas M. Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models[J]. Quantitative Finance, 2021, 21(1): 11-27.
+](https://arxiv.org/abs/1901.09647)
+[Github 代码](https://github.com/amuguruza/RoughFCLT)
+3. LSV模型GAN校准
+[Cuchiero C, Khosrawi W, Teichmann J. A generative adversarial network approach to calibration of local stochastic volatility models[J]. Risks, 2020, 8(4): 101.](https://www.mdpi.com/2227-9091/8/4/101)
+[Github 代码](https://github.com/wahido/neural_locVol)
+4. 损失函数中不同期权权重取法
+[Cont R, Ben Hamida S. Recovering volatility from option prices by evolutionary optimization[J]. 2004.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=546882)
+5. fBm的MC模拟
+[Horvath B, Jacquier A J, Muguruza A. Functional central limit theorems for rough volatility[J]. Available at SSRN 3078743, 2017.](https://arxiv.org/abs/1711.03078)
+[Github 代码](https://github.com/amuguruza/RoughFCLT)
