@@ -112,7 +112,7 @@ $$
 $$
 \mathbb{E}^{\mathbb{P}}\left[v_{u} \mid \mathcal{F}_{t}\right]=v_{t} \exp \left\{2 v C_{H} Z_{t}(u)+\frac{1}{2} \eta^{2} \mathbb{E}\left|\tilde{W}_{t}^{\mathbb{P}}(u)\right|^{2}\right\}
 $$
-所以，由 Wick expenential
+结合 Wick expenential
 $$
 \begin{aligned}
 v_{u} &=v_{t} \exp \left\{\eta \tilde{W}_{t}^{\mathbb{P}}(u)+2 \nu C_{H} Z_{t}(u)\right\} \\
@@ -361,7 +361,335 @@ $$
 
 ## fBm的 Monte-Carlo 模拟
 
+### 1.理论基础
+
 [Horvath B, Jacquier A J, Muguruza A. Functional central limit theorems for rough volatility[J]. Available at SSRN 3078743, 2017.](https://arxiv.org/abs/1711.03078)
+
+**Notations**: 在单位区间 $\mathbb{I}:=[0,1]上, \mathcal{C}(\mathbb{I})$ 表示连续函数空间， $\mathcal{C}^{\alpha}(\mathbb{I})$ 表示 $\alpha$-Hölder 连续函数空间， $\alpha \in(0,1)$ ． $\mathcal{C}^{1}(\mathbb{I})$ 和 $\mathcal{C}_{b}^{1}(\mathbb{I})$ 是 $\mathbb{I}$ 上连续可微和有界连续可微函数空间．
+
+#### 1.1. Hölder spaces and fractional operators
+
+For $\beta \in(0,1]$, the **$\beta$-Hölder space** $\mathcal{C}^{\beta}(\mathbb{I})$, with the norm
+$$
+\|f\|_{\beta}:=|f|_{\beta}+\|f\|_{\infty}=\sup_{t, s \in \mathbb{I} \atop t \neq s} \frac{|f(t)-f(s)|}{|t-s|^{\beta}}+\max _{t \in \mathbb{I}}|f(t)|
+$$
+is a non-separable Banach space. Following the spirit of Riemann-Liouville fractional operators recalled in Appendix $\mathrm{A}$, we introduce the class of Generalised Fractional Operators (GFO). For any $\lambda \in(0,1)$ we introduce the intervals
+$$
+\Re^{\lambda}:=\{\alpha \in(-1,1) \text { such that } \alpha+\lambda \in(0,1)\}
+$$
+$\Re_{+}^{\lambda}:=\Re^{\lambda} \cap(0,1), \Re_{-}^{\lambda}:=\Re^{\lambda} \cap(-1,0)$, and the space $\mathcal{L}^{\alpha}:=\left\{u \mapsto u^{\alpha} L(u): L \in \mathcal{C}_{b}^{1}(\mathbb{I})\right\}$, for any $\alpha \in \Re^{\lambda}$
+
+**Definition 1.1.** For any $\lambda \in(0,1)$ and $\alpha \in \mathfrak{R}^{\lambda}$, the GFO associated to $g \in \mathcal{L}^{\alpha}$ is defined on $\mathcal{C}^{\lambda}(\mathbb{I})$ as
+$$
+\left(\mathcal{G}^{\alpha} f\right)(t):= \begin{cases}\int_{0}^{t} f(s) \frac{\mathrm{d}}{\mathrm{d} t} g(t-s) \mathrm{d} s, & \text { if } \alpha \in[0,1-\lambda) \\ \frac{\mathrm{d}}{\mathrm{d} t} \int_{0}^{t} f(s) g(t-s) \mathrm{d} s, & \text { if } \alpha \in(-\lambda, 0)\end{cases}\tag{1.1}
+$$
+We shall further use the notation $G(t):=\int_{0}^{t} g(u) \mathrm{d} u$, for any $t \in \mathbb{I}$. Of particular interest in mathematical finance are the following kernels and operators:
+$$
+\begin{array}{lll}
+Riemann-Liouville: \quad &g(u)=u^{\alpha}, \quad &for \alpha \in(-1,1)\\
+Gamma fractional:  &g(u)=u^{\alpha} \mathrm{e}^{\beta u}, &for \alpha \in(-1,1), \beta<0 \\  Power-law:  &g(u)=u^{\alpha}(1+u)^{\beta-\alpha},  &for \alpha \in(-1,1), \beta<-1
+\end{array}\tag{1.2}
+$$
+
+**Proposition 1.2.** For any $\lambda \in(0,1)$ and $\alpha \in \mathfrak{R}^{\lambda}$, the operator $\mathcal{G}^{\alpha}: \mathcal{C}^{\lambda}(\mathbb{I}) \rightarrow \mathcal{C}^{\lambda+\alpha}(\mathbb{I})$ is continuous.
+
+We develop here an approximation scheme for the following system, generalising the concept of rough volatility in the context of mathematical finance, where the process $X$ represents the dynamics of the logarithm of a stock price process:
+$$
+\begin{aligned}
+\mathrm{d} X_{t} &=-\frac{1}{2} V_{t} \mathrm{~d} t+\sqrt{V_{t}} \mathrm{~d} B_{t}, & X_{0}=0 \\
+V_{t} &=\Phi\left(\mathcal{G}^{\alpha} Y\right)(t), & V_{0}>0
+\end{aligned}\tag{1.3}
+$$
+with $\alpha \in\left(-\frac{1}{2}, \frac{1}{2}\right)$, and $Y$ the (strong) solution to the stochastic differential equation $(1.4)$
+$$
+\mathrm{d} Y_{t}=b\left(Y_{t}\right) \mathrm{d} t+a\left(Y_{t}\right) \mathrm{d} W_{t}, \quad Y_{0} \in \mathcal{D}_{Y}\tag{1.4}
+$$
+
+where $\mathcal{D}_{Y}$ denotes the state space of the process $Y$, usually $\mathbb{R}$ or $\mathbb{R}_{+} .$The two Brownian motions $B$ and $W$, defined on a common filtered probability space $\left(\Omega, \mathcal{F},\left(\mathcal{F}_{t}\right)_{t \in \mathbb{I}}, \mathbb{P}\right)$, are correlated by the parameter $\rho \in[-1,1]$, and the functional $\Phi$ is assumed to be smooth on $\mathcal{C}^{1}(\mathbb{I}) .$ This is enough to ensure that the first stochastic differential equation is well defined. It remains to formulate the precise definition for $\mathcal{G}^{\alpha} Y$ (Proposition [1.4) to fully specify the system (1.3) and clarify the existence of solutions. Existence and (strong) uniquess of a solution to the second $\mathrm{SDE}$ in (1.4) is guaranteed by the following standard assumption :
+
+**Assumption 1.3.** There exist $C_{b}, C_{a}>0$ such that, for all $x, y \in \mathcal{D}_{Y}$
+$$
+|b(x)-b(y)| \leq C_{b}|x-y| \quad \text { and } \quad|a(x)-a(y)| \leq C_{a} \sqrt{|x-y|}
+$$
+
+**Proposition 1.4.** For any $\alpha \in \mathfrak{R}^{1 / 2}$ ，the equality $\left(\mathcal{G}^{\alpha} W\right)(t)=\int_{0}^{t} g(t-s) \mathrm{d} W_{s}$ holds almost surely for $t \in \mathbb{I}$．
+
+**Example 1.5.** This example is the rough Bergomi model introduced by Bayer, Friz and Gatheral, where
+$$
+V_{t}=\xi_{0}(t) \mathcal{E}\left(2 \nu C_{H} \int_{0}^{t}(t-s)^{\alpha} \mathrm{d} W_{s}\right)
+$$
+with $V_{0}, \nu, \xi_{0}(\cdot)>0, \alpha \in \Re^{1 / 2}$ and $\mathcal{E}(\cdot)$ is the Wick stochastic exponential. This corresponds exactly to $(1.3)$ with $g(u) \equiv u^{\alpha}, Y=W$ and
+$$
+\Phi(\varphi)(t):=\xi_{0}(t) \exp \left(2 \nu C_{H} \varphi(t)\right) \exp \left\{-2 \nu^{2} C_{H}^{2} \int_{0}^{t}(t-s)^{2 \alpha} \mathrm{d} s\right\}
+$$
+
+#### 1.2 The approximation scheme
+
+We now move on to the core of the project, namely an approximation scheme for the system (1.3). The basic ingredient to construct approximating sequences is a family of iid random variables, which satisfies the following assumption:
+**Assumption 1.6.** The family $\left(\xi_{i}\right)_{i \geq 1}$ forms an iid sequence of centered random variables with finite moments of all orders and $\mathbb{E}\left[\xi_{1}^{2}\right]=\sigma^{2}>0$
+
+Following Donsker and Lamperti, we first define, for any $\omega \in \Omega, n \geq 1, t \in \mathbb{I}$, the approximating sequence for the driving Brownian motion $B$ as
+$$
+B_{n}(t):=\frac{1}{\sigma \sqrt{n}} \sum_{k=1}^{\lfloor n t\rfloor} \xi_{k}+\frac{n t-\lfloor n t\rfloor}{\sigma \sqrt{n}} \xi_{\lfloor n t\rfloor+1}\tag{1.5}
+$$
+As will be explained later, a similar construction holds to approximate the process $Y$ :
+$$
+Y_{n}(t):=\frac{1}{n} \sum_{k=1}^{\lfloor n t\rfloor} b\left(Y_{n}^{k-1}\right)+\frac{n t-\lfloor n t\rfloor}{n} b\left(Y_{n}^{\lfloor n t\rfloor}\right)+\frac{1}{\sigma \sqrt{n}} \sum_{k=1}^{\lfloor n t\rfloor} a\left(Y_{n}^{k-1}\right) \zeta_{k}+\frac{n t-\lfloor n t\rfloor}{\sigma \sqrt{n}} a\left(Y_{n}^{\lfloor n t\rfloor}\right) \zeta\lfloor n t\rfloor+1\tag{1.6}
+$$
+where $Y_{n}^{k}:=Y_{n}\left(t_{k}\right)$ and $\mathcal{T}_{n}:=\left\{t_{k}=\frac{k}{n}\right\} .$ Here $\{\xi\}_{i=1}^{\lfloor n t\rfloor}$ and $\{\zeta\}_{i=1}^{\lfloor n t\rfloor}$ satisfy Assumption $1.6$, with appropriate correlation structure between the pairs $\left\{\left(\zeta_{i}, \xi_{i}\right)\right\}_{i=1}^{\lfloor n t\rfloor}$ that will be made precise later. We shall always use $\left(\xi_{i}\right)$ to denote the sequence generating $B$ and $\left(\zeta_{i}\right)$ the one generating $W$. Consequently, we deduce an approximating scheme (up to the interpolating term which decays to zero by Chebyshev's inequality) for $X$ as
+$$
+X_{n}(t):=-\frac{1}{2 n} \sum_{k=1}^{\lfloor n t\rfloor} \Phi\left(\mathcal{G}^{\alpha} Y_{n}\right)\left(t_{k}\right)+\frac{1}{\sigma \sqrt{n}} \sum_{k=1}^{\lfloor n t\rfloor} \sqrt{\Phi\left(\mathcal{G}^{\alpha} Y_{n}\right)\left(t_{k}\right)}\left(B_{n}^{k+1}-B_{n}^{k}\right)\tag{1.7}
+$$
+All the approximations above, as well as all the convergence statements below should be understood pathwise, but we omit the $\omega$ dependence in the notations for clarity. The main result here is a convergence statement about the approximating sequence $\left(X_{n}\right)_{n \geq 1}$． *As usual in weak convergence analysis, convergence is stated in the **Skorokhod space** $\left(\mathcal{D}(\mathbb{I}),\|\cdot\|_{\mathcal{D}}\right)$ of càdlàg processes equipped with the Skorokhod topology.*
+**Theorem 1.7.** The sequence $\left(X_{n}\right)_{n \geq 1}$ converges weakly to $X$ in $\left(\mathcal{D}(\mathbb{I}),\|\cdot\|_{\mathcal{D}}\right)$.
+The construction of the proof allows to extend the convergence to the case where $Y$ is a $d$-dimensional diffusion without additional work. The proof of the theorem requires a certain number of steps: we start with the convergence of the approximation $\left(Y_{n}\right)$ in some Hölder space, which we translate, first into convergence of the stochastic integral in $(1.3)$, then, by continuity of the mapping $\Phi$, into convergence of the sequence $\left(\Phi\left(\mathcal{G}^{\alpha} Y_{n}\right)\right)$. All these ingredients are detailed in Section 1.3 below. Once this is achieved, the proof of the theorem itself is relatively straightforward.
+
+#### 1.3. Monte-Carlo. 
+
+Theorem 1.7 introduces the theoretical foundations of Monte-Carlo methods (in particular for path-dependent options) for rough volatility models. In this section we give a general and easy-to-understand recipe to implement the class of rough volatility models (1.3). For the numerical recipe to be as general as possible, we shall consider the general time partition $\mathcal{T}:=\left\{t_{i}=\frac{i T}{n}\right\}_{i=0, \ldots, n}$ on $[0, T]$ with $T>0$.
+
+**Algorithm 1.8** (Simulation of rough volatility models).
+(1) Simulate two $\mathcal{N}(0,1)$ matrices $\left\{\xi_{j, i}\right\}_{j=1, \ldots, M} \\{i=1, \ldots, n}$ and $\left\{\zeta_{j, i}\right\}_{j=1, \ldots, M} \\{i=1, \ldots, n}$ with $\operatorname{corr}\left(\xi_{j, i}, \zeta_{j, i}\right)=\rho$;
+(2) simulate M paths of $Y_{n}$ viad
+$$
+Y_{n}^{j}\left(t_{i}\right)=\frac{T}{n} \sum_{k=1}^{i} b\left(Y_{n}^{j}\left(t_{k-1}\right)\right)+\frac{T}{\sqrt{n}} \sum_{k=1}^{i} a\left(Y_{n}^{j}\left(t_{k-1}\right)\right) \zeta_{j, k}, \quad i=1, \ldots, n \text { and } j=1, \ldots, M
+$$
+and also compute
+$$
+\Delta Y_{n}^{j}\left(t_{i}\right):=Y_{n}^{j}\left(t_{i}\right)-Y_{n}^{j}\left(t_{i-1}\right), \quad i=1, \ldots, n \text { and } j=1, \ldots, M
+$$
+(3) Simulate $M$ paths of the fractional driving process $\left(\left(\mathcal{G}^{\alpha} Y_{n}\right)(t)\right)_{t \in \mathcal{T}}$ using
+$$
+\left(\mathcal{G}^{\alpha} Y_{n}\right)^{j}\left(t_{i}\right):=\sum_{k=1}^{i} g\left(t_{i-k+1}\right) \Delta Y_{n}^{j}\left(t_{k}\right)=\sum_{k=1}^{i} g\left(t_{k}\right) \Delta Y_{n}^{j}\left(t_{i-k+1}\right), \quad i=1, \ldots, n \text { and } j=1, \ldots, M
+$$
+The complexity of this step is in general of order $\mathcal{O}\left(n^{2}\right)$ (see Appendix $[\mathrm{B}$ for details). However, this step is easily implemented using discrete convolution with complexity $\mathcal{O}(n \log n)$ (see Algorithm [B.4 in Appendix $\left[\mathrm{B}\right.$ for details in the implementation). With the vectors $\mathfrak{g}:=\left(g\left(t_{i}\right)\right)_{i=1, \ldots, n}$ and $\Delta Y_{n}^{j}:=$ $\left(\Delta Y_{n}^{j}\left(t_{i}\right)\right)_{i=1, \ldots, n}$ for $j=1, \ldots, M$, we can write $\left(\mathcal{G}^{\alpha} Y_{n}\right)^{j}(\mathcal{T})=\sqrt{\frac{T}{n}}\left(\mathfrak{g} * \Delta Y_{n}^{j}\right)$, for $j=1, \ldots, M$, where $*$ represents the discrete convolution operator.
+(4) Use the forward Euler scheme to simulate the log-stock process, for all $i=1, \ldots, n, j=1, \ldots, M$, as
+$$
+X^{j}\left(t_{i}\right)=X^{j}\left(t_{i-1}\right)-\frac{1}{2} \frac{T}{n} \sum_{k=1}^{i} \Phi\left(\mathcal{G}^{\alpha} Y_{n}\right)^{j}\left(t_{k-1}\right)+\sqrt{\frac{T}{n}} \sum_{k=1}^{i} \sqrt{\Phi\left(\mathcal{G}^{\alpha} Y_{n}\right)^{j}\left(t_{k-1}\right)} \xi_{j, k}
+$$
+
+Remark:
+
+- When $Y=W$, we may skip step (2) and replace $\Delta Y_{n}^{j}\left(t_{i}\right)$ by $\sqrt{T / n} \zeta_{i, j}$ on step (33).
+- Step (3) may be replaced by the Hybrid scheme algorithm 11 only when $Y=W$.
+
+Antithetic variates in Algorithm 1.8 are easy to implement as it suffices to consider the uncorrelated random vectors $\zeta_{j}:=\left(\zeta_{j, 1}, \zeta_{j, 2}, \ldots, \zeta_{j, n}\right)$ and $\xi_{j}:=\left(\xi_{j, 1}, \xi_{j, 2}, \ldots, \xi_{j, n}\right)$, for $j=1, \ldots, M .$ Then $\left(\rho \xi_{j}+\bar{\rho} \zeta_{j}, \xi_{j}\right),\left(\rho \xi_{j}-\right.$ $\left.\bar{\rho} \zeta_{j}, \xi_{j}\right),\left(-\rho \xi_{j}-\bar{\rho} \zeta_{j},-\xi_{j}\right)$ and $\left(-\rho \xi_{j}+\bar{\rho} \zeta_{j},-\xi_{j}\right)$, for $j=1, \ldots, M$, constitute the antithetic variates, which significantly improves the performance of the Algorithm 1.8 by reducing memory requirements, reducing variance and accelerating execution by exploiting symmetry of the antithetic random variables.
+
+*1.3.1 Enhancing performance.* A standard practice in Monte-Carlo simulation is to match moments of the approximating sequence with the target process. In particular, when the process is Gaussian, matching first and second moments suffices. We only illustrate this approximation for Brownian motion: the left-point approximation may be modified to match moments as
+$$
+\left(\mathcal{G}^{\alpha} W\right)\left(t_{i}\right) \approx \frac{1}{\sigma \sqrt{n}} \sum_{k=1}^{i} g\left(t_{k}^{*}\right) \zeta_{k}, \quad \text { for } i=0, \ldots, n\tag{1.8}
+$$
+where $t_{k}^{*}$ is chosen optimally. Since the kernel $g(\cdot)$ is deterministic, there is no confusion with the Stratonovich stochastic integral, and the resulting approximation will always converge to the Itô integral. The first two moments of $\mathcal{G}^{\alpha} W$ read
+$$
+\mathbb{E}\left(\left(\mathcal{G}^{\alpha} W\right)(t)\right)=0 \quad \text { and } \quad \mathbb{V}\left(\left(\mathcal{G}^{\alpha} W\right)(t)\right)=\int_{0}^{t} g(t-s)^{2} \mathrm{~d} s
+$$
+The first moment of the approximating sequence 1.8 is always zero, and the second moment reads
+$$
+\mathbb{V}\left(\frac{1}{\sigma \sqrt{n}} \sum_{k=1}^{j-1} g\left(t_{k}^{*}\right) \zeta_{k}\right)=\frac{1}{n} \sum_{k=1}^{j-1} g\left(t_{k}^{*}\right)^{2}
+$$
+Equating the theoretical and approximating quantities we obtain $\frac{1}{n} g\left(t_{k}^{*}\right)^{2} \mathrm{~d} s=\int_{t_{k-1}}^{t_{k}} g(t-s)^{2} \mathrm{~d} s$ for $k=1, \ldots, n$, so that the optimal evaluation point can be computed as
+$$
+g\left(t_{k}^{*}\right)=\sqrt{n \int_{t_{k-1}}^{t_{k}} g(t-s)^{2} \mathrm{~d} s}, \quad \text { for any } k=1, \ldots, n
+$$
+In the Riemann-Liouville fractional Brownian motion case, $g(u)=u^{H-1 / 2}$, and the optimal point can be computed in closed form as
+$$
+t_{k}^{*}=\left(\frac{n}{2 H}\left[\left(t-t_{k-1}\right)^{2 H}-\left(t-t_{k}\right)^{2 H}\right]\right)^{1 /(2 H-1)}, \quad \text { for each } k=1, \ldots, n
+$$
+
+#### 1.3.2 Reducing Variance. 
+
+As Bayer, Friz and Gatheral, a major drawback in simulating rough volatility models is the very high variance of the estimators, so that a large number of simulations are needed to produce a decent price estimate. Nevertheless, the rDonsker scheme admits a very simple conditional expectation technique which reduces both memory requirements and variance while also admitting antithetic variates. This approach is best suited for calibrating European type options. We consider $\mathcal{F}_{t}^{B}=\sigma\left(B_{s}: s \leq t\right)$ and $\mathcal{F}_{t}^{W}=\sigma\left(W_{s}: s \leq t\right)$ the natural filtrations generated by the Brownian motions $B$ and $W .$ In particular the conditional variance process $V_{t} \mid \mathcal{F}_{t}^{W}$ is deterministic. As discussed by Romano and Touzi, and recently adapted to the rBergomi case by McCrickerd and Pakkanen, we can decompose the stock price process as
+$$
+\mathrm{e}^{X_{t}}=\mathcal{E}\left(\rho \int_{0}^{t} \sqrt{\Phi\left(\mathcal{G}^{\alpha} Y\right)(s)} \mathrm{d} B_{s}\right) \mathcal{E}\left(\sqrt{1-\rho^{2}} \int_{0}^{t} \sqrt{\Phi\left(\mathcal{G}^{\alpha} Y\right)(s)} \mathrm{d} B_{s}^{\perp}\right):=\mathrm{e}^{X_{t}^{1}} \mathrm{e}^{X_{t}^{2}}
+$$
+and notice that
+$$
+X_{t} \mid\left(\mathcal{F}_{t}^{W} \wedge \mathcal{F}_{0}^{B}\right) \sim \mathcal{N}\left(X_{t}^{1}-\left(1-\rho^{2}\right) \int_{0}^{t} \Phi\left(\mathcal{G}^{\alpha} Y\right)(s) \mathrm{d} s,\left(1-\rho^{2}\right) \int_{0}^{t} \Phi\left(\mathcal{G}^{\alpha} Y\right)(s) \mathrm{d} s\right)
+$$
+Thus $\exp \left(X_{t}\right)$ becomes log-normal and the Black-Scholes closed-form formulae are valid here (European, Barrier options, maximum,...). The advantage of this approach is that the orthogonal Brownian motion $B^{\perp}$ is completely unnecessary for the simulation, hence the generation of random numbers is reduced to a half, yielding proportional memory saving. Not only this, but also this simple trick reduces the variance of the Monte-Carlo estimate, hence fewer simulations are needed to obtain the same precision. We present a simple algorithm to implement the rDonsker with conditional expectation and assuming that $Y=W$.
+
+**Algorithm 1.9** (Simulation of rough volatility models with Brownian drivers). Consider the equidistant grid $\mathcal{T}$.
+(1) Draw a random matrix $\left\{\zeta_{j, i}\right\}_{j=1, \ldots, M / 2}$ with unit variance, and create antithetic variates $\left\{-\zeta_{j, i}\right\}_{j=1, \ldots, M / 2}$;
+(2) Create a correlated matrix $\left\{\xi_{j, i}\right\}$ as above;
+(3) Simulate $M$ paths of the fractional driving process $\mathcal{G}^{\alpha} W$ using discrete convolution:
+$$
+\left(\mathcal{G}^{\alpha} W\right)^{j}(\mathcal{T})=\sqrt{\frac{T}{n}}\left(\mathfrak{g} * \zeta_{j}\right), \quad j=1, \ldots, M
+$$
+and store in memory $\left(1-\rho^{2}\right) \int_{0}^{T}\left(\mathcal{G}^{\alpha} W\right)^{j}(s) \mathrm{d} s \approx\left(1-\rho^{2}\right) \frac{T}{n} \sum_{k=0}^{n-1}\left(\mathcal{G}^{\alpha} W\right)^{j}\left(t_{k}\right)=: \Sigma^{j}$ for each $j=1, \ldots, M$
+(4) use the forward Euler scheme to simulate the log-stock process, for each $i=1, \ldots, n, j=1, \ldots, M$, as
+$$
+X^{j}\left(t_{i}\right)=X^{j}\left(t_{i-1}\right)-\frac{\rho^{2}}{2} \frac{T}{n} \sum_{k=1}^{i} \Phi\left(\mathcal{G}^{\alpha} W\right)^{j}\left(t_{k-1}\right)+\rho \sqrt{\frac{T}{n}} \sum_{k=1}^{i} \sqrt{\Phi\left(\mathcal{G}^{\alpha} W\right)^{j}\left(t_{k-1}\right)} \xi_{j, i}
+$$
+(5) Finally, we have $X^{j}(T) \sim \mathcal{N}\left(X_{T}^{j}-\Sigma^{j}, \Sigma^{j}\right)$ for $j=1, \ldots, M ;$ we may compute any option using the Black-Scholes formula. For instance a Call option with strike $K$ would be given by $C^{j}(K)=$ $\exp \left(X_{T}^{j}\right) \mathcal{N}\left(d_{1}^{j}\right)-K \mathcal{N}\left(d_{2}^{j}\right)$ for $j=1, \ldots, M$, where $d_{1}^{j}:=\frac{1}{\sqrt{\Sigma^{j}}}\left(X_{T}^{j}-\log (K)+\frac{1}{2} \Sigma^{j}\right)$ and $d_{2}^{j}=d_{1}^{j}-\sqrt{\Sigma^{j}}$ Thus, the output of the model would be $C(K)=\frac{1}{M} \sum_{k=1}^{M} C^{j}(K)$
+
+The algorithm is easily adapted to the case of general diffusions $Y$ as drivers of the volatility (see Algorithm 1.8 step 2). Algorithm 1.8 is obviously faster than 1.9, especially when using control variates. Nevertheless, with the same number of paths, Algorithm 1.9 remarkably reduces the Monte-Carlo variance, meaning in turn that fewer simulations are needed, making it very competitive for calibration.
+
+### 2.传统cholesky分解法模拟
+
+>If you need to generate $n$ correlated Gaussian distributed random variables
+$$
+\mathbf{Y} \sim \mathcal{N}(\mu, \boldsymbol{\Sigma})
+$$
+where $\mathbf{Y}=\left(Y_{1}, \ldots, Y_{n}\right)$ is the vector you want to simulate, $\mu=\left(\mu_{1}, \ldots, \mu_{n}\right)$ the vector of means and $\Sigma$ the given covariance matrix,
+1.you first need to simulate a vector of uncorrelated Gaussian random variables, $\mathbf{Z}$
+2.then find a square root of $\Sigma$, i.e. a matrix $\mathbf{C}$ such that $\mathbf{C C}^{\top}=\mathbf{\Sigma}$.
+Your target vector is given by
+$$
+\mathbf{Y}=\mu+\mathbf{C Z}
+$$
+A popular choice to calculate $\mathbf{C}$ is the Cholesky decomposition.
+
+而对于本 rBergomi 模型，
+$$
+\begin{aligned}
+S_{t} &=S_{0} \mathcal{E}\left(\int_{0}^{t} \sqrt{v_{u}} \mathrm{~d} Z_{u}\right) \\
+v_{u} &=\xi_{0}(u) \mathcal{E}\left(\eta \sqrt{2 H} \int_{0}^{u} \frac{1}{(u-s)^{\gamma}} \mathrm{d} W_{s}\right)=\xi_{0}(u) \mathcal{E}\left(\eta \tilde{W}_{u}\right)
+\end{aligned}
+$$
+
+where $\tilde{W}$ is a Volterra processt with the scaling property $\operatorname{Var}\left[\tilde{W}_{u}\right]=u^{2 H}$. So far $\tilde{W}$ behaves just like $\mathrm{fBm}$. However, the dependence structure is different. Specifically, for $v>u$
+$$
+\mathbb{E}\left[\tilde{W}_{v} \tilde{W}_{u}\right]=u^{2 H} G\left(\frac{v}{u}\right)
+$$
+where, for $x \geq 1$ and with $\gamma=1 / 2-H$,
+$$
+\begin{aligned}
+G(x) &=2 H \int_{0}^{1} \frac{\mathrm{d} s}{(1-s)^{\gamma}(x-s)^{\gamma}} \\
+&=\frac{1-2 \gamma}{1-\gamma} x^{\gamma}{ }_{2} F_{1}(1, \gamma, 2-\gamma, x)
+\end{aligned}
+$$
+where ${ }_{2} F_{1}(\cdot)$ denotes the confluent hypergeometric function.
+Remark $4.1$ The dependence structure of the Volterra process $\tilde{W}$ is markedly different from that of $\mathrm{fBm}$ with the MolchanGolosov kernel $K(u, s)$ given by
+$$
+\begin{gathered}
+K(u, s)=c_{H} \frac{1}{(u-s)^{\gamma}}_{2} F_{1}\left(1 / 2-H, H-1 / 2, H+1 / 2, \frac{s-u}{s}\right) \\
+0<s<t
+\end{gathered}
+$$
+for some constant $c_{H} .$ In particular, for small $H$, correlations drop precipitously as the ratio $u / v$ moves away from 1 .
+
+We also need covariances of the Brownian motion $Z$ with the Volterra process $\tilde{W}$. With $v \geq u$, these are given by
+$$
+\mathbb{E}\left[\tilde{W}_{v} Z_{u}\right]=\rho D_{H}\left\{v^{H+1 / 2}-(v-u)^{H+1 / 2}\right\}
+$$
+and
+$$
+\mathbb{E}\left[Z_{v} \tilde{W}_{u}\right]=\rho D_{H} u^{H+1 / 2}
+$$
+where for future convenience, we have defined the constant,
+$$
+D_{H}=\frac{\sqrt{2 H}}{H+1 / 2}
+$$
+These two formulae may be conveniently combined as
+$$
+\mathbb{E}\left[\tilde{W}_{v} Z_{u}\right]=\rho D_{H}\left\{v^{H+1 / 2}-(v-\min (u, v))^{H+1 / 2}\right\}
+$$
+Lastly, of course, for $v \geq u, \mathbb{E}\left[Z_{v} Z_{u}\right]=u$.
+With $m$ the number of time steps and $n$ the number of simulations, our rBergomi model simulation algorithm may then be summarized as follows.
+
+- Construct the joint covariance matrix for the Volterra process $\tilde{W}$ and the Brownian motion $Z$ and compute its Cholesky decomposition.
+- For each time, generate iid normal random vectors and multiply them by the lower triangular matrix obtained by the Cholesky decomposition to get a $m \times 2 n$ matrix of paths of $\tilde{W}$ and $Z$ with the correct joint marginals.
+- With these paths held in memory, we may evaluate the expectation under $\mathbb{Q}$ of any payoff of interest.
+
+we simulate the process $\int_0^t (t-s)^{H-1/2}dW_s$
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.special as special
+def fBm_path_chol(grid_points, M, H, T):
+    """
+    @grid_points: # points in the simulation grid
+    @H: Hurst Index
+    @T: time horizon
+    @M: # paths to simulate
+    """
+    
+    assert 0<H<1.0
+    
+    ## Step1: create partition 
+    
+    X=np.linspace(0, 1, num=grid_points)
+    
+    # get rid of starting point
+    X=X[1:grid_points]
+    
+    ## Step 2: compute covariance matrix
+    Sigma=np.zeros((grid_points-1,grid_points-1))
+    for j in range(grid_points-1):
+        for i in range(grid_points-1):
+            if i==j:
+                Sigma[i,j]=np.power(X[i],2*H)/2/H
+            else:
+                s=np.minimum(X[i],X[j])
+                t=np.maximum(X[i],X[j])
+                Sigma[i,j]=np.power(t-s,H-0.5)/(H+0.5)*np.power(s,0.5+H)*special.hyp2f1(0.5-H, 0.5+H, 1.5+H, -s/(t-s))
+        
+    ## Step 3: compute Cholesky decomposition
+    
+    P=np.linalg.cholesky(Sigma)
+    
+    ## Step 4: draw Gaussian rv
+    
+    Z=np.random.normal(loc=0.0, scale=1.0, size=[M,grid_points-1])
+    
+    ## Step 5: get V
+    
+    W=np.zeros((M,grid_points))
+    for i in range(M):
+        W[i,1:grid_points]=np.dot(P,Z[i,:])
+        
+    #Use self-similarity to extend to [0,T] 
+    
+    return W*np.power(T,H)
+```
+
+### 3.rDonker方法
+
+```python
+def fBm_path_rDonsker(grid_points, M, H, T, kernel="optimal"):
+    """
+    @grid_points: # points in the simulation grid
+    @H: Hurst Index
+    @T: time horizon
+    @M: # paths to simulate
+    @kernel: kernel evaluation point use "optimal" for momen-match or "naive" for left-point
+    """
+    
+    assert 0<H<1.0
+    
+    ## Step1: create partition 
+    dt=1./(grid_points-1)
+    X=np.linspace(0, 1, num=grid_points)
+    
+    # get rid of starting point
+    X=X[1:grid_points]
+    
+    ## Step 2: Draw random variables
+    
+    dW = np.power(dt, H) *np.random.normal(loc=0, scale=1, size=[M, grid_points-1])
+        
+    ## Step 3: compute the kernel evaluation points
+    i=np.arange(grid_points-1) + 1
+    # By default use optimal moment-matching
+    if kernel=="optimal":
+        opt_k=np.power((np.power(i,2*H)-np.power(i-1.,2*H))/2.0/H,0.5)
+    # Alternatively use left-point evaluation
+    elif kernel=="naive" : 
+        opt_k=np.power(i,H-0.5)
+    else:
+        raise NameError("That was not a valid kernel")
+    
+    
+    ## Step 4: Compute the convolution
+    
+    Y = np.zeros([M, n])
+    for i in range(int(M)):
+        Y[i, 1:n] = np.convolve(opt_k, dW[i, :])[0:n - 1]
+        
+    #Use self-similarity to extend to [0,T] 
+    
+    return Y*np.power(T,H)
+```
 
 [Github 代码](https://github.com/amuguruza/RoughFCLT)
 
@@ -941,7 +1269,7 @@ where we obtain existence, uniqueness and stability for the second equation by T
 1. 首次在波动率校准中运用神经网络
 [Hernandez A. Model calibration with neural networks[J]. Available at SSRN 2812140, 2016.](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2812140)
 2. rough波动率模型的神经网络校准
-[Bayer C, Horvath B, Muguruza A, et al. On deep calibration of (rough) stochastic volatility models[J]. arXiv preprint arXiv:1908.08806, 2019.](https://arxiv.org/abs/1908.08806)
+[Bayer C, Horvath B, Muguruza A, et al. On deep calibration of (rough) stochastic volatility models[J]. arXiv preprint arXiv:1908.08806, 2019.](https://arxiv.org/abs/1908.08806)和
 [Horvath B, Muguruza A, Tomas M. Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models[J]. Quantitative Finance, 2021, 21(1): 11-27.
 ](https://arxiv.org/abs/1901.09647)
 [Github 代码](https://github.com/amuguruza/RoughFCLT)
@@ -953,3 +1281,5 @@ where we obtain existence, uniqueness and stability for the second equation by T
 5. fBm的MC模拟
 [Horvath B, Jacquier A J, Muguruza A. Functional central limit theorems for rough volatility[J]. Available at SSRN 3078743, 2017.](https://arxiv.org/abs/1711.03078)
 [Github 代码](https://github.com/amuguruza/RoughFCLT)
+6. rBergomi提出
+[Bayer C, Friz P, Gatheral J. Pricing under rough volatility[J]. Quantitative Finance, 2016, 16(6): 887-904.](https://www.tandfonline.com/doi/abs/10.1080/14697688.2015.1099717)
