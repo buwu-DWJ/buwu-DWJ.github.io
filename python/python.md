@@ -1,5 +1,68 @@
 # python基础
 
+导入本地脚本函数
+
+```python
+from ..helpers import p4f
+```
+
+函数以及类注释
+
+```python
+#函数
+def fetch_bigtable_rows(big_table, keys, other_silly_variable=None):
+    """Fetches rows from a Bigtable.
+
+    Retrieves rows pertaining to the given keys from the Table instance
+    represented by big_table.  Silly things may happen if
+    other_silly_variable is not None.
+
+    Args:
+        big_table: An open Bigtable Table instance.
+        keys: A sequence of strings representing the key of each table row
+            to fetch.
+        other_silly_variable: Another optional variable, that has a much
+            longer name than the other args, and which does nothing.
+
+    Returns:
+        A dict mapping keys to the corresponding table row data
+        fetched. Each row is represented as a tuple of strings. For
+        example:
+
+        {'Serak': ('Rigel VII', 'Preparer'),
+         'Zim': ('Irk', 'Invader'),
+         'Lrrr': ('Omicron Persei 8', 'Emperor')}
+
+        If a key from the keys argument is missing from the dictionary,
+        then that row was not found in the table.
+
+    Raises:
+        IOError: An error occurred accessing the bigtable.Table object.
+    """
+    pass
+
+#类
+
+class SampleClass(object):
+    """Summary of class here.
+
+    Longer class information....
+    Longer class information....
+
+    Attributes:
+        likes_spam: A boolean indicating if we like SPAM or not.
+        eggs: An integer count of the eggs we have laid.
+    """
+
+    def __init__(self, likes_spam=False):
+        """Inits SampleClass with blah."""
+        self.likes_spam = likes_spam
+        self.eggs = 0
+
+    def public_method(self):
+        """Performs operation blah."""
+```
+
 ## 一． numpy
 
 `import numpy as np`
@@ -724,3 +787,44 @@ ax2 = fig.add_subplot(2,2,2)
 
 '-'实线 '--'短划线 '-.'点划线 ':'虚线 '.'点 'v'倒三角 等  
 color参数 'b'蓝 'g'绿 'r'红 'c'青 'm'品红 'y'黄 'k'黑 'w'白
+
+## 5. backtrader
+
+```python
+import backtrader as bt
+
+cerebro = bt.Cerebro()
+
+# 设置初始资金
+cerebro.broker.setcash(100000.0)
+
+#获取当前broker的资金数
+cerebro.broker.getvalue()
+
+#设置交易手续费
+cerebro.broker.setcommission(0.005)
+
+# Create a Data Feed（默认的雅虎数据格式）
+data = bt.feeds.YahooFinanceCSVData(
+        dataname=datapath,
+        # Do not pass values before this date
+        fromdate=datetime.datetime(2000, 1, 1),
+        # Do not pass values after this date
+        todate=datetime.datetime(2000, 12, 31),
+        reverse=False)
+
+#一般的CSV文件
+data = bt.feeds.GenericCSVData(
+        dataname='数据文件所在位置',
+        datetime=2,
+        open=3,
+        high=4,
+        low=5,
+        close=6,
+        volume=10,
+        dtformat=('%Y%m%d'),
+        fromdate=datetime(2010, 1, 1),
+        todate=datetime(2020, 4, 12)
+    )
+
+```
