@@ -8,11 +8,11 @@ BS部分参考[知乎专栏：Black-Scholes 模型学习框架](https://zhuanlan
 $$
 d S_{t}=\mu S_{t} d t+\sigma S_{t} d W_{t}
 $$
-自融资资产组合价值变化为
+自融资资产组合（此处为期权价格的一个复制）价值变化为
 $$
 d \Pi_{t}=r \gamma_{t} B_{t} d t+\Delta_{t} d S_{t}
 $$
-对 $V\left(S_{t}, t\right)$ （ $t$ 时刻衍生品的价值）做Ito公式，比较项的系数得到Delta 对冲下 的 **BS 偏微分方程**  
+对 $V\left(S_{t}, t\right)$ （ $t$ 时刻衍生品的价值）做Ito公式，比较项的系数得到Delta 对冲下 的 **BS 偏微分方程**  （在比较系数过程中会使用到$\gamma_{t} B_{t}$替换为$V_{t}-V_{x}^{\prime} S_{t}$，即为持有的债券份额为自融资总份额减去持有的标的份额，标的的持有量已经使用为$\Delta_t$）
 $$
 \left\{\begin{array}{l}
 V_{x}^{\prime}=\Delta_{t} \\
@@ -30,6 +30,56 @@ d_{2}=d_{1}-\sigma \sqrt{T-t}
 \end{array}
 $$
 注意到 $dS_t$ 的漂移项 $\mu$ 对期权定价没有影响．
+
+### BS公式解法（欧式call）
+
+$$
+\frac{\partial C}{\partial t}+\frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} C}{\partial S^{2}}=r C-r S \frac{\partial C}{\partial S}
+$$
+
+有考虑边界条件
+$$
+\begin{aligned}
+C(0, t) &=0 \text { for all } t \\
+C(S, t) & \rightarrow S \text { as } S \rightarrow \infty \\
+C(S, T) &=\max \{S-K, 0\}
+\end{aligned}
+$$
+
+注意到这是一个 Cauchy-Euler 方程，能通过下述变量代换将其转化为一个扩散方程
+The solution of the PDE gives the value of the option at any earlier time, $\mathbb{E}[\max \{S-K, 0\}] .$
+$$
+\begin{aligned}
+&\tau=T-t \\
+&u=C e^{r \tau} \\
+&x=\ln \left(\frac{S}{K}\right)+\left(r-\frac{1}{2} \sigma^{2}\right) \tau
+\end{aligned}
+$$
+Black-Scholes PDE 变为一个扩散方程：
+$$
+\frac{\partial u}{\partial \tau}=\frac{1}{2} \sigma^{2} \frac{\partial^{2} u}{\partial x^{2}}
+$$
+终值条件 $C(S, T)=\max \{S-K, 0\}$ 现在变为了初值条件
+$$
+u(x, 0)=u_{0}(x):=K\left(e^{\max \{x, 0\}}-1\right)=K\left(e^{x}-1\right) H(x)
+$$
+其中 $H(x)$ 是 Heaviside 阶梯函数，
+
+使用解给定了初值函数 $u(x, 0)$ 的扩散方程的标准卷积法，得到
+$$
+u(x, \tau)=\frac{1}{\sigma \sqrt{2 \pi \tau}} \int_{-\infty}^{\infty} u_{0}(y) \exp \left[-\frac{(x-y)^{2}}{2 \sigma^{2} \tau}\right] d y
+$$
+经过处理，得到：
+$$
+u(x, \tau)=K e^{x+\frac{1}{2} \sigma^{2} \tau} N\left(d_{1}\right)-K N\left(d_{2}\right)
+$$
+其中 N 为正态分布累计密度函数，
+$$
+\begin{aligned}
+&d_{1}=\frac{1}{\sigma \sqrt{\tau}}\left[\left(x+\frac{1}{2} \sigma^{2} \tau\right)+\frac{1}{2} \sigma^{2} \tau\right] \\
+&d_{2}=\frac{1}{\sigma \sqrt{\tau}}\left[\left(x+\frac{1}{2} \sigma^{2} \tau\right)-\frac{1}{2} \sigma^{2} \tau\right]
+\end{aligned}
+$$
 
 BS model给出了期权价格的函数，作为一个波动率的函数．可以通过这个公式在给定期权价格时计算**隐含波动率**（implied volatility）．但事实是 BS 波动率强烈依赖于欧式期权的到期日和行权价．
 

@@ -11,7 +11,8 @@
   - [4.5 生成对抗网络](nn/GAN.md)
 - [5. 强化学习基础知识](DRL/RL.md)
 - [6. 深度强化学习(DRL)](DRL/DRL.md)
-- 7\. 杂记
-  - [7.1 随机波动率](notes/sv.md)
-  - [7.2 RL在金融中应用](DRL/fin.md)
-  - [7.3 Rough Volatiity](notes/rough.md)
+- [7. 期权](option/option.md)
+- 8\. 杂记
+  - [8.1 随机波动率](notes/sv.md)
+  - [8.2 RL在金融中应用](DRL/fin.md)
+  - [8.3 Rough Volatiity](notes/rough.md)
