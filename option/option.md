@@ -87,7 +87,7 @@ BS model给出了期权价格的函数，作为一个波动率的函数．可以
 
 波动率微笑是指给定到期日下，隐含波动率与行权价（maturity）的关系．  
 
-### 1．2 Delta对冲
+### 1.2 Delta对冲
 
 我们现在考虑用衍生品 $V(S_t,t)$ 和其标的资产 $S_t$ 构建一个“**无风险组合**”，考虑这样的自融资组合 $\Pi_{t}=\Delta_{t} S_{t}-V_{t}$，即每一单位的空头衍生品，我们用 $\Delta_{t}$ 单位多头的股票对其进行对冲 (Hedging)，由于其自融资的特性，根据定义，我们有 $d \Pi_{t}=\Delta_{t} d S_{t}-d V_{t}$ ，将股价的 SDE 和上一节中通过伊藤-德布林公式求出的 $d V_{t}$ 带入这个式子，我们可以得到:
 $$
@@ -141,23 +141,15 @@ $$
 
 #### 1.3.4 鞅表示
 
-**定理(鞅表示)**  设 $\left\{W_{t}，\mathcal{F}_{t}^{\mathcal{W}}，t \in[0,T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动，而
-$\left\{M_{t}，t \in[0, T]\right\}$ 为 $\mathcal{F}_{t}^{\mathcal{W}}$ -鞅, 且满足 $M_{t} \in \mathcal{L}^{2}(\Omega)，t \in[0, T]$ ，则存在一个 $\mathcal{F}_{t}^{\mathcal{W}}-$
-适应的过程 $\left\{\Gamma_{t}, t \in[0, T]\right\} \in \mathcal{V}[0, T]$ ，使得 $M_{t}-M_{0}=\int_{0}^{t} \Gamma_{u} d W_{u}$ ．  
+**定理(鞅表示)**  设 $\left\{W_{t}，\mathcal{F}_{t}^{\mathcal{W}}，t \in[0,T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动，而 $\left\{M_{t}，t \in[0, T]\right\}$ 为 $\mathcal{F}_{t}^{\mathcal{W}}$ -鞅, 且满足 $M_{t} \in \mathcal{L}^{2}(\Omega)，t \in[0, T]$ ，则存在一个 $\mathcal{F}_{t}^{\mathcal{W}}-$ 适应的过程 $\left\{\Gamma_{t}, t \in[0, T]\right\} \in \mathcal{V}[0, T]$ ，使得 $M_{t}-M_{0}=\int_{0}^{t} \Gamma_{u} d W_{u}$ ．  
 
-可以看到，如果 $M_{t}$ 是鞅，那么 $M_{t}$ 可以被表示为一个伊藤积分的形式，即没有 $d t$ 项而仅仅只有 $d W_{t}$ 项．再看我们的折现价值过程 $d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}}\left(\frac{\mu-r}{\sigma} d t+d W_{t}\right)$ ，如果想让它只有
-$d W_{t}$ 项从而变成一个鞅，我们貌似只需要做变换: $d \tilde{W}_{t}=\frac{\mu-r}{\sigma} d t+d W_{t}$ ，这样折现价值过程就可以被表示为:
-$d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}} d \tilde{W}_{t}$
+可以看到，如果 $M_{t}$ 是鞅，那么 $M_{t}$ 可以被表示为一个伊藤积分的形式，即没有 $d t$ 项而仅仅只有 $d W_{t}$ 项．再看我们的折现价值过程 $d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}}\left(\frac{\mu-r}{\sigma} d t+d W_{t}\right)$ ，如果想让它只有 $d W_{t}$ 项从而变成一个鞅，我们貌似只需要做变换: $d \tilde{W}_{t}=\frac{\mu-r}{\sigma} d t+d W_{t}$ ，这样折现价值过程就可以被表示为: $d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}} d \tilde{W}_{t}$
+
 但是，鞅表示定理有个非常非常重要的前提，就是你需要保证 $\int_{0}^{t} \Gamma_{u} d W_{u}$ 这玩意儿是个伊藤积分，即 $W_{t}$ 需要是一个布朗运动． $W_{t}$ 我们知道是布朗运动，但是经过这样变换过后的 $\tilde{W}_{t}$ 还是布朗运动么，或者说我们需要如何选择新的测度, 来保证经过变换之后的 $\tilde{W}_{t}$ 仍然是个布朗运动?
 
 #### 1.3.5 Girsanov定理
 
-**定理(Grisanov)** 设 $\left\{W_{t}，\mathcal{F}_{t}^{\mathcal{W}}，t \in[0, T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动
-$\left\{\theta_{t}, t \in[0, T]\right\}$ 为一个相适应的过程, 定义指数鞅过程，
-$Z_{t}=\exp \left(X_{t}-\frac{1}{2}[X, X]_{t}\right)$
-其中 $X_{t}$ 是初值 $X_{0}=0$ 的相适应的过程，$[\cdot, \cdot]$ 表示二次变差．则可以定义新的概率测度 $\left.\frac{d \tilde{P}}{d P}\right|_{\mathcal{F}_{t}}=Z_{t}$ ．如果在概率测度 $P$ 下 $W_{t}$ 是一个布朗运动，那么:
-$\tilde{W}_{t}=W_{t}-[W, X]_{t}$
-在新的概率测度 $\tilde{P}$ 下也是一个布朗运动．  
+**定理(Grisanov)** 设 $\left\{W_{t}，\mathcal{F}_{t}^{\mathcal{W}}，t \in[0, T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动．$\left\{\theta_{t}, t \in[0, T]\right\}$ 为一个相适应的过程, 定义指数鞅过程，$Z_{t}=\exp \left(X_{t}-\frac{1}{2}[X, X]_{t}\right)$．其中 $X_{t}$ 是初值 $X_{0}=0$ 的相适应的过程，$[\cdot, \cdot]$ 表示二次变差．则可以定义新的概率测度 $\left.\frac{d \tilde{P}}{d P}\right|_{\mathcal{F}_{t}}=Z_{t}$ ．如果在概率测度 $P$ 下 $W_{t}$ 是一个布朗运动，那么: $\tilde{W}_{t}=W_{t}-[W, X]_{t}$ 在新的概率测度 $\tilde{P}$ 下也是一个布朗运动．  
 
 这样一来, 我们就找到了新的测度和两个测度之下布朗运动之间的关系．我们看新定义的这个布朗运动：$d \tilde{W}_{t}=\frac{\mu-r}{\sigma} d t+d W_{t}$，它的实质是把资产的风险溢价项给消除了．风险溢价是什么？是对承担单位风险的补偿，在新的测度下风险溢价是没有补偿的，所以说在这个世界里，风险是中性的，因此我们把这样定义的新测度 $\tilde{P}$ 称为**风险中性测度**，并且用 $Q$ 来表示．
 
@@ -172,12 +164,7 @@ d S_{t} &=\mu S_{t} d t+\sigma S_{t}\left(d W_{t}^{Q}-\frac{\mu-r}{\sigma} d t\r
 $$
 由此可见，在风险中性世界里，风险资产 (例如股票) 的收益率完全等于无风险收益率．  
 
-此时任意资产的折现价值过程可以被表示为:
-$d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}} d W_{t}^{Q}$
-．我们知道 $\frac{V_{t}}{B_{t}}$ 在 $Q$ 下是一个鞅，那么由鞅的性贡我们可以知道:
-$\frac{V_{t}}{B_{t}}=E^{Q}\left[\frac{V_{T}}{B_{T}} \mid \mathcal{F}_{t}\right]$ ．
-常利率假设下有：
-$V_{t}=e^{-r(T-t)} E^{Q}\left[V_{T} \mid \mathcal{F}_{t}\right]$ ．  
+此时任意资产的折现价值过程可以被表示为: $d\left(\frac{V_{t}}{B_{t}}\right)=\sigma \Delta_{t} \frac{S_{t}}{B_{t}} d W_{t}^{Q}$．我们知道 $\frac{V_{t}}{B_{t}}$ 在 $Q$ 下是一个鞅，那么由鞅的性贡我们可以知道: $\frac{V_{t}}{B_{t}}=E^{Q}\left[\frac{V_{T}}{B_{T}} \mid \mathcal{F}_{t}\right]$．常利率假设下有：$V_{t}=e^{-r(T-t)} E^{Q}\left[V_{T} \mid \mathcal{F}_{t}\right]$ ．
 
 假设我们需要对一个欧式看涨期权进行定价，我们知道该期权在到期日 $T$ 的价值为 $\left(S_{T}-K\right)^{+}$，则有：
 $$
@@ -248,6 +235,53 @@ d_{2}=d_{1}-\sigma \sqrt{T-t}
 \end{array}
 $$
 
+### 3.0 随机分析几大基础定理
+
+#### 3.0.1 Radon–Nikodym
+
+##### 3.0.1.1 Radon-Nikodym 定理
+
+测度空间 $(X, \Sigma)$ 上定义有两个 **$\sigma$-有限测度**：$\mu$ 和 $\nu$．定理表明：如果 $\nu \ll \mu$ （i.e. $\nu$ 关于  $\mu$ **绝对连续**），则存在一个 $\Sigma$-可测函数 $f: X \rightarrow[0, \infty)$ s.t. $\forall A \subseteq X$ 可测集，
+$$
+\nu(A)=\int_{A} f d \mu
+$$
+
+>**$\sigma$-有限**：$(X, \mathcal{A})$ 是一个测度空间，$\mu$ 是上面一测度．$\mu$ 称为其上一个 $\sigma$-有限测度若 $X$ 可以写成至多可列个有限测度集合的无交并．
+
+>**绝对连续**：实线上 Borel 子集上的测度 $\mu$ 称为关于 Lebesgue 测度 $\lambda$ 绝对连续若对任何 $\lambda(A)=0$ 的可测集 $A$ 有 $\mu(A)=0$．记为 $\mu \ll \lambda$．
+
+>等价测度：$\mu$ 和 $\nu$ 称为等价测度若 $\mu \ll \nu$ 且 $\nu \ll \mu$．
+
+##### 3.0.1.2 Radon-Nikodym 导数
+
+上述函数 $f$ 在几乎处处意义下唯一，通常写为 $\frac{d \nu}{d \mu}$ ，通常称为 Radon-Nikodym 导数．
+
+#### 3.0.2 Girsanov 定理
+
+>二次变差（quadratic variation）：$[X]_{t}=\lim_{\|P\| \rightarrow 0} \sum_{k=1}^{n}\left(X_{t_{k}}-X_{t_{k-1}}\right)^{2}$，$[X, Y]_{t}=\lim _{\|P\| \rightarrow 0} \sum_{k=1}^{n}\left(X_{t_{k}}-X_{t_{k-1}}\right)\left(Y_{t_{k}}-Y_{t_{k-1}}\right)$，计算公式为 $d X_{t} d Y_{t}=d[X, Y]_{t}$．
+
+$\left\{W_{t}\right\}$ 是 Wiener 概率空间 $(\Omega, \mathcal{F}, P)$ 上的 Wiener 过程．令 $\left\{X_{t}\right\}$ 是适应于 Wiener 过程生成的自然域流 $\left\{\mathcal{F}_{t}^{W}\right\}$ 的可测过程，$X_{0}=0$．
+
+定义 $X$ 关于 $W$ 的 Doléans-Dade exponential $\mathcal{E}(X)_{t}$ 如下：
+$$
+\mathcal{E}(X)_{t}=\exp \left(X_{t}-\frac{1}{2}[X]_{t}\right)
+$$
+其中 $[X]_{t}$ 是 $X_{t}$ 的二次变差．若 $\mathcal{E}(X)_{t}$ 是严格正的鞅，那么可以定义 $(\Omega, \mathcal{F})$ 上的概率测度 $Q$ s.t. 有 Radon-Nikodym 导数：
+$$
+\left.\frac{d Q}{d P}\right|_{\mathcal{F}_{t}}=\mathcal{E}(X)_{t}
+$$
+则对每个 $t$ ，$Q$ 限制在未扩充的 $\sigma$-域 $\mathcal{F}_{t}^{W}$ 上和 $P$ 限制在 $\mathcal{F}_{t}^{W}$ 是等价的．进一步，若 $Y$ 是 $P$ 下的局部鞅，那么过程
+$$
+\tilde{Y}_{t}=Y_{t}-[Y, X]_{t}
+$$
+是 $Q$ 下的在 $\left(\Omega, \mathcal{F},\left\{\mathcal{F}_{t}^{W}\right\}, Q\right)$ 上的局部鞅．
+
+**推论**：若 $X$ 是连续过程，$W$ 是 $P$ 下的布朗运动，那么：
+$$
+\tilde{W}_{t}=W_{t}-[W, X]_{t}
+$$
+是 $Q$ 下的布朗运动．
+
 ### 3.1 BS公式含义
 
 Moneyness 指的是标的现价相对于行权价格的关系．下面考虑的是远期 F，
@@ -282,9 +316,8 @@ $$
 These have the same ordering, asis monotonic (since it is a CDF):
 因为 $N$ 是单调的（是一个CDF），他们有大小关系
 $$
-N\left(d_{-}\right)<N(m)<N\left(d_{+}\right)=\Delta
+N\left(d_{-}\right)<N(m)<N\left(d_{+}\right)=\Delta．
 $$
-Of these, $N\left(d_{-}\right)$is the (risk-neutral) "likelihood of expiring in the money", and thus the theoretically correct percent moneyness, with $d_{-}$the correct moneyness. The percent moneyness is the implied probability that the derivative will expire in the money, in the risk-neutral measure. Thus a moneyness of 0 yields a $50 \%$ probability of expiring ITM, while a moneyness of 1 yields an approximately $84 \%$ probability of expiring ITM.
 
 ### 3.2 计价单位的变换
 
@@ -336,7 +369,7 @@ $$
 这里我们需要注意的是，计价单位变换公式中，要求 $N_{t}$ 是任意一个价格严格为正的资产，由先前的知识可以知道，这样的资产以债券计价时 (或者说以货币账户计价时) 是一个鞅，即 $\frac{N_{t}}{B_{t}}$ 在测度 $Q$ 下是一个鞅，这样良好的性质，保证了 RN 导数 $Z$ 的存在性．
 >定理( $Z$ 的存在性). 设测度 $P$ 与 $\tilde{P}$ 为 $(\Omega, \mathcal{F})$ 上的等价摡率测度，则存在 $Z>0$ ，满足 $E[Z]=1$ ，且 $\tilde{P}(A)=\int_{A} Z(\omega) d P(\omega)$ ．
 
-根据这个定理，我们可以找到那个存在的 $Z: Z=\left.\frac{d Q^{N}}{d Q}\right|_{\mathcal{F}_{0}}:=\frac{N_{T}}{B_{T}} \cdot \frac{B_{0}}{N_{0}}$ 可以验证，这样定义的 $Z$ 严格为正，且有 $E^{Q}[Z]=1$ ，满足上述定理：
+根据这个定理，我们可以找到那个存在的 $Z: Z=\left.\frac{d Q^{N}}{d Q}\right|_{\mathcal{F}_{0}}:=\frac{N_{T}}{B_{T}} \cdot \frac{B_{0}}{N_{0}}$．可以验证，这样定义的 $Z$ 严格为正，且有 $E^{Q}[Z]=1$ ，满足上述定理：
 $$
 E^{Q}[Z]=\frac{B_{0}}{N_{0}} E^{Q}\left[\frac{N_{T}}{B_{T}}\right]=\frac{B_{0}}{N_{0}} \cdot \frac{N_{0}}{B_{0}}=1
 $$
@@ -399,7 +432,7 @@ $$
 
 但要求出 $E^{Q^{N}}[\cdot]$ ，我们还需要知道某个随机变量在 $Q^{N}$ 下的分布，或者说需要知道它新的 dynamics 是什么，此时还需要 Girsanov 定理来帮助我们找到 $Q^{N}$ 下的布朗运动 $W_{t}^{Q^{N}}$ 和 $Q$ 下的布朗运动之间的关系 $W_{t}^{Q}$ ．
 
->定理 (Grisanov). 设 $\left\{W_{t}, \mathcal{F}_{t}^{\mathcal{W}}, t \in[0, T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动, $\left\{\theta_{t}, t \in[0, T]\right\}$ 为一个相适应的过程，定义指数鞅过程：$Z_{t}=\exp \left(X_{t}-\frac{1}{2}[X, X]_{t}\right)$，其中 $X_{t}$ 是初俼 $X_{0}=0$ 的相适应的过程， $[, \cdot,]$ 表示二次变差．则可以定义新的概率测度 $\left.\frac{d \tilde{P}}{d P}\right|_{\mathcal{F}_{t}}=Z_{t}$ ．如果在概率测度 $P$ 下 $W_{t}$ 是一个布朗运动，那么:$\tilde{W}_{t}=W_{t}-[W, X]_{t}$ 在新的概率测度 $\tilde{P}$ 下也是一个布朗运动．
+>定理 (Grisanov). 设 $\left\{W_{t}, \mathcal{F}_{t}^{\mathcal{W}}, t \in[0, T]\right\}$ 是 $(\Omega, \mathcal{F}, P)$ 上的布朗运动, $\left\{\theta_{t}, t \in[0, T]\right\}$ 为一个相适应的过程，定义指数鞅过程：$Z_{t}=\exp \left(X_{t}-\frac{1}{2}[X, X]_{t}\right)$，其中 $X_{t}$ 是初值 $X_{0}=0$ 的相适应的过程， $[, \cdot,]$ 表示二次变差．则可以定义新的概率测度 $\left.\frac{d \tilde{P}}{d P}\right|_{\mathcal{F}_{t}}=Z_{t}$ ．如果在概率测度 $P$ 下 $W_{t}$ 是一个布朗运动，那么:$\tilde{W}_{t}=W_{t}-[W, X]_{t}$ 在新的概率测度 $\tilde{P}$ 下也是一个布朗运动．
 
 我们这里以股价 $S_{t}$ 为计价单位来运用 Girsanov 定理，找到 $W_{t}^{Q^{S}}$ 与 $W_{t}^{Q}$ 之间的关系．根据 $Z$ 的定义，有:
 $$
