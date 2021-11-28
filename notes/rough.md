@@ -1066,7 +1066,7 @@ d\langle W, Z\rangle_{t} &=\varrho dt
 \end{aligned}\tag{1.1}
 $$
 
-杠杆函数：$L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[V_{t}^{2} \mid S_{t}=s\right]}$
+杠杆函数：$L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[V_t \mid S_{t}=s\right]}$
 
 **主要共有两个神经网络**，一个负责 Rough 的部分，一个负责 LSV 的部分．
 
