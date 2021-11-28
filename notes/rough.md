@@ -1062,11 +1062,11 @@ $$
 \begin{aligned}
 d S_{t} &=S_{t} L\left(t, S_{t}\right)\sqrt{V_t} d W_{t} \\
 V_{t} &=\xi_{0}(t) \mathcal{E}\left(\sqrt{2 H} \eta \int_{0}^{t}(t-s)^{H-1 / 2} d Z_{s}\right), \quad \text { for } t>0, \quad V_{0}=v_{0}>0\\
-d\langle W, B\rangle_{t} &=\varrho dt
+d\langle W, Z\rangle_{t} &=\varrho dt
 \end{aligned}\tag{1.1}
 $$
 
-杠杆函数：$L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[\alpha_{t}^{2} \mid S_{t}=s\right]}$
+杠杆函数：$L^{2}(t, s)=\frac{\sigma_{\text {Dup }}^{2}(t, s)}{\mathbb{E}\left[V_{t}^{2} \mid S_{t}=s\right]}$
 
 **主要共有两个神经网络**，一个负责 Rough 的部分，一个负责 LSV 的部分．
 
