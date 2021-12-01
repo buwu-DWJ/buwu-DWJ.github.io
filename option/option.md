@@ -224,6 +224,27 @@ $$
 
 ## 三．希腊值的含义
 
+### 序:各种希腊值特性
+
+#### delta
+
+call 的价值变化：标的相对于行权价的变化
+![call delta变化](pics/call_value.png)
+
+put 的价值变化：标的相对于行权价的变化
+![put delta](pics/put_value.png)
+
+delta 随标的的变化
+![delta_value](pics/delta.png)
+
+call_delta 随 volatility 的变化
+![call_dalta_as_volatility](pics/call_delta_as_volatility.png)
+
+call_delta 随到期时间变化
+![call_delta_as_time](pics/call_delta_as_volatility.png)
+
+
+
 $$
 V_{t} =S_{t} N\left(d_{1}\right)-K e^{-r(T-t)} N\left(d_{2}\right)
 $$
