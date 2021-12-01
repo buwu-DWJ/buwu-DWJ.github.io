@@ -240,10 +240,38 @@ delta 随标的的变化
 call_delta 随 volatility 的变化
 ![call_dalta_as_volatility](pics/call_delta_as_volatility.png)
 
+put_delta 随 volatility 的变化
+![put_delta_as_volatility](pics/put_delta_as_volatility.png)
+
 call_delta 随到期时间变化
-![call_delta_as_time](pics/call_delta_as_volatility.png)
+![call_delta_as_time](pics/call_delta_as_time.png)
 
+put_delta 随到期时间变化
+![put_delta_as_time](pics/put_delta_as_time.png)
 
+call_delta 随着时间推移或者波动率下降的变化
+![call_delta_as_time_or_volatility](pics/call_delta_as_time_or_volatility.png)
+
+### Vanna
+
+Vanna：作为 Delta 对波动率的偏导，或者 Vega 对标的价格的偏导．
+![vanna](pics/vanna.png)
+
+### theta
+
+theta：期权价格随着标的价格变化，此处取了绝对值(**call 与 put 一样，都是负的！跟恒正 GAMMA 比较**)
+![theta](pics/theta.png)
+
+### vega
+
+![vega](pics/vega.png)
+
+### gamma
+
+恒正的 GAMMA：
+![gamma](pics/gamma.png)
+
+![gamma_time_volatility](pics/gamma_as_time_or_volatility.png)
 
 $$
 V_{t} =S_{t} N\left(d_{1}\right)-K e^{-r(T-t)} N\left(d_{2}\right)
