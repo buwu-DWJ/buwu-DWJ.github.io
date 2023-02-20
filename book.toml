@@ -4,3 +4,6 @@ language = "chs"
 multilingual = false
 src = "src"
 title = "dwj_mdbook"
+
+[output.html]
+mathjax-support = true
