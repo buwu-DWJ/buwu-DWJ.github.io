@@ -1,0 +1,1018 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>dwj_mdbook</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="markdown.html"><strong aria-hidden="true">1.</strong> markdown</a></li><li class="chapter-item expanded "><a href="python.html"><strong aria-hidden="true">2.</strong> python</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwj_mdbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="markdown与其支持的的latex"><a class="header" href="#markdown与其支持的的latex">Markdown与其支持的的LaTeX</a></h1>
+<h1 id="markdown"><a class="header" href="#markdown">Markdown</a></h1>
+<ul>
+<li>圆点突出：- +文字</li>
+<li>序号列表：数字+.</li>
+<li>链接：[文本](链接)</li>
+<li>图片：![文本](链接/本地)</li>
+<li>斜体：*文字*</li>
+<li>加粗：**文字**</li>
+<li>粗斜体：***文字***</li>
+<li>分割线：*********或者----------</li>
+</ul>
+<blockquote>
+<p>采用&gt;+文字</p>
+</blockquote>
+<p>几个#就代表几级标题</p>
+<p><code>反引号</code></p>
+<pre><code class="language-python">import numpy as np  
+利用三个反引号，后面加上代码使用的语言，如python可实现高亮
+</code></pre>
+<h4 id="表格"><a class="header" href="#表格">表格</a></h4>
+<pre><code class="language-markdown">|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |  
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th>表头</th><th>表头</th></tr></thead><tbody>
+<tr><td>单元格</td><td>单元格</td></tr>
+<tr><td>单元格</td><td>单元格</td></tr>
+</tbody></table>
+</div>
+<p>还可设置表格的对齐方式</p>
+<ul>
+<li>:- 实现左对齐</li>
+<li>-: 实现右对齐</li>
+<li>:-: 实现居中</li>
+</ul>
+<pre><code class="language-markdown">| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 1 | 1 | 1 |
+</code></pre>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">左对齐</th><th style="text-align: right">右对齐</th><th style="text-align: center">居中对齐</th></tr></thead><tbody>
+<tr><td style="text-align: left">1</td><td style="text-align: right">1</td><td style="text-align: center">1</td></tr>
+</tbody></table>
+</div>
+<h1 id="markdown中的latex"><a class="header" href="#markdown中的latex">markdown中的LaTeX</a></h1>
+<p>支持的写法详情见<a href="https://katex.org/docs/supported.html">katex官方文档</a></p>
+<h4 id="多行公式"><a class="header" href="#多行公式">多行公式</a></h4>
+<p>为公式加编号：\tag{number}<br />
+$$
+f(x) = x+1\tag{1}
+$$
+在VSCODE中必须使用<code>aligned</code>环境，如：<br />
+$$
+\begin{aligned}
+a&amp;=1\
+&amp;=2
+\end{aligned}
+$$</p>
+<pre><code class="language-markdown">$$
+\begin{aligned}
+a&amp;=1\\
+&amp;=2
+\end{aligned}
+$$
+</code></pre>
+<h4 id="分段函数"><a class="header" href="#分段函数">分段函数</a></h4>
+<p>使用<code>cases</code>环境</p>
+<pre><code class="language-LaTeX">$$
+f(x) = 
+\begin{cases}
+a, a&lt;1,\\
+b, a\geq1.
+\end{cases}
+$$
+效果如下
+</code></pre>
+<p>$$
+f(x) = 
+\begin{cases}
+a&amp;, a&lt;1,\
+b&amp;, a\geq1.
+\end{cases}
+$$</p>
+<p>文内链接</p>
+<pre><code class="language-markdown">[能够点击的链接](#name)
+&lt;div id=&quot;name&quot;&gt;&lt;/div&gt;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python基础"><a class="header" href="#python基础">python基础</a></h1>
+<p>导入本地脚本函数</p>
+<pre><code class="language-python">from ..helpers import p4f
+</code></pre>
+<p>函数以及类注释</p>
+<pre><code class="language-python">#函数
+def fetch_bigtable_rows(big_table, keys, other_silly_variable=None):
+    &quot;&quot;&quot;Fetches rows from a Bigtable.
+
+    Retrieves rows pertaining to the given keys from the Table instance
+    represented by big_table.  Silly things may happen if
+    other_silly_variable is not None.
+
+    Args:
+        big_table: An open Bigtable Table instance.
+        keys: A sequence of strings representing the key of each table row
+            to fetch.
+        other_silly_variable: Another optional variable, that has a much
+            longer name than the other args, and which does nothing.
+
+    Returns:
+        A dict mapping keys to the corresponding table row data
+        fetched. Each row is represented as a tuple of strings. For
+        example:
+
+        {'Serak': ('Rigel VII', 'Preparer'),
+         'Zim': ('Irk', 'Invader'),
+         'Lrrr': ('Omicron Persei 8', 'Emperor')}
+
+        If a key from the keys argument is missing from the dictionary,
+        then that row was not found in the table.
+
+    Raises:
+        IOError: An error occurred accessing the bigtable.Table object.
+    &quot;&quot;&quot;
+    pass
+
+#类
+
+class SampleClass(object):
+    &quot;&quot;&quot;Summary of class here.
+
+    Longer class information....
+    Longer class information....
+
+    Attributes:
+        likes_spam: A boolean indicating if we like SPAM or not.
+        eggs: An integer count of the eggs we have laid.
+    &quot;&quot;&quot;
+
+    def __init__(self, likes_spam=False):
+        &quot;&quot;&quot;Inits SampleClass with blah.&quot;&quot;&quot;
+        self.likes_spam = likes_spam
+        self.eggs = 0
+
+    def public_method(self):
+        &quot;&quot;&quot;Performs operation blah.&quot;&quot;&quot;
+</code></pre>
+<h2 id="一-numpy"><a class="header" href="#一-numpy">一． numpy</a></h2>
+<p><code>import numpy as np</code></p>
+<h3 id="基础"><a class="header" href="#基础">基础</a></h3>
+<ul>
+<li>数组：np.array([[1,2,3],[4,5,6],...])</li>
+<li>序列：np.arange(a,b,c)  初值a，终值b，步长c，不含终值</li>
+<li>序列：np.linspace(a,b,c)    初值a，终值b，个数c，含终值</li>
+<li>空数组：np.empty((a,b),np.int) shape&amp;type</li>
+<li>零数组：np.zeros((a,b),np.int)</li>
+<li>单位阵：np.eye(N,M=None,k=0) 行数N，列数M，k为对角线上移(正)或下移(负)</li>
+<li>全1阵：np.ones((a,b),np.int)</li>
+<li>转置与内积：np.dot(A.T,A)</li>
+</ul>
+<h3 id="切片与索引"><a class="header" href="#切片与索引">切片与索引</a></h3>
+<p>切片是视图而非副本，若要副本：<code>arr[5:8].copy()</code><br />
+布尔型索引：data[data&lt;0]=0, ~可用来反转条件</p>
+<h3 id="通用函数func"><a class="header" href="#通用函数func">通用函数func</a></h3>
+<h4 id="一元函数np-f-arr"><a class="header" href="#一元函数np-f-arr">一元函数：np. <em>f</em> (arr)</a></h4>
+<ul>
+<li>abs,fabs,sqrt开根,square平方</li>
+<li>exp,log,log10,log2</li>
+<li>sign,ceil向上取整,floor向下取整,rint四舍五入,modf拆成整数和小数</li>
+<li>isnan,isfinite,isinf</li>
+<li>cos,sin,cosh,sinh,tan,tanh</li>
+</ul>
+<h4 id="二元函数np-f-arr"><a class="header" href="#二元函数np-f-arr">二元函数：np. <em>f</em> (arr)</a></h4>
+<ul>
+<li>add,substract,multiply,divide,floor_divide 除后取整</li>
+<li>power,maximum,fmax,mod</li>
+<li>copysign 得到第二个数组的符号</li>
+<li>greater,greater_equal,less,less_equal,equal,not_equal返回布尔值</li>
+<li>meshgrid 接受两个一维数组，产生两个二维数组，对应所有(x,y)对</li>
+</ul>
+<p>np.where()是 x if condition else y的矢量化版本<br />
+np.where(arr&gt;2,2,-2)<br />
+np.where(arr&gt;2,2,arr)</p>
+<h3 id="数组统计方法"><a class="header" href="#数组统计方法">数组统计方法</a></h3>
+<ul>
+<li>sum,mean,std,var,min,max</li>
+<li>argmax,argmin 索引,cumsum,cumprod</li>
+<li>查询数组中是否有true:all,any(示例:<code>(a=b).all()</code>)</li>
+</ul>
+<h3 id="排序"><a class="header" href="#排序">排序</a></h3>
+<p>sort</p>
+<h3 id="集合运算数字1"><a class="header" href="#集合运算数字1">集合运算,数字1</a></h3>
+<ul>
+<li>unique(x)</li>
+<li>intersect1d(x,y) 交集</li>
+<li>union1d(x,y) 并集</li>
+<li>in1d(x,y) 包含于</li>
+<li>setdiff1d(x,y) 差集</li>
+<li>setxor1d(x,y) 对称差</li>
+</ul>
+<h3 id="常用numpylinalg函数npl"><a class="header" href="#常用numpylinalg函数npl">常用numpy.linalg函数(npl)</a></h3>
+<ul>
+<li>diag 对角阵和一维数组转化</li>
+<li>dot,trace,det</li>
+<li>eig 特征值特征向量</li>
+<li>inv 逆</li>
+<li>pinv Moore-Penrose 伪逆</li>
+<li>qr QR分解</li>
+<li>svd 奇异值分解</li>
+<li>solve 解Ax=b ,A方针</li>
+<li>lstsq Ax=b最小二乘解</li>
+</ul>
+<h3 id="部分numpyrandom函数"><a class="header" href="#部分numpyrandom函数">部分numpy.random函数</a></h3>
+<ul>
+<li>seed 确定随机数生成器种子</li>
+<li>permutation 返回新的打乱的x,x不变</li>
+<li>shuffle 原地打乱x</li>
+<li>rand 均匀分布</li>
+<li>randint 给定范围内随机取整数</li>
+<li>randn 标准正态分布</li>
+<li>binomial 二项分布</li>
+<li>normal 正态分布</li>
+<li>beta,gamma</li>
+<li>chisquare 卡方分布</li>
+<li>uniform [0,1)均匀分布</li>
+</ul>
+<h3 id="数组合并与拼接"><a class="header" href="#数组合并与拼接">数组合并与拼接</a></h3>
+<ul>
+<li>append(arr,values,axis=None)</li>
+</ul>
+<h2 id="二-pytorch"><a class="header" href="#二-pytorch">二． pytorch</a></h2>
+<p>创建网络的一种快捷方法：Sequential</p>
+<pre><code class="language-python">net = torch.nn.Sequential(
+        torch.nn.Linear(STATE_SIZE, HIDDEN_SIZE),
+        torch.nn.ReLU(),
+        torch.nn.Linear(HIDDEN_SIZE, ACTION_SIZE),
+        )
+</code></pre>
+<h3 id="21-构造张量的函数"><a class="header" href="#21-构造张量的函数">2.1 构造张量的函数</a></h3>
+<p>torch.tensor()<br />
+torch.zeros(), torch.zeros_like()<br />
+torch.ones(), torch.ones_like()<br />
+torch.full(), torch.full_like() 全填充为指定值<br />
+torch.empty(), torch.empty_like()<br />
+torch.eye()<br />
+torch.arange(), torch.range(), torch.linspace()<br />
+torch.logspace() 等比<br />
+torch.rand(), torch.rand_like() 标准均匀<br />
+torch.randn(), torch.randn_like(), torch.normal() 标准正态<br />
+torch.randint(), torch.randint_like()<br />
+torch.bernoulli() 两点分布<br />
+torch.multinomial()<br />
+torch.randperm() {0,1,2,3...,n-1}的随机排列</p>
+<h3 id="22-重排张量元素"><a class="header" href="#22-重排张量元素">2.2 重排张量元素</a></h3>
+<p>以下三种不会改变张量的实际位置（浅拷贝）</p>
+<ul>
+<li>reshape()</li>
+<li>squeeze()：消除张量中大小为 $1$ 的维度，<code>t.squeeze()</code></li>
+<li>unsqueeze()：添加一个大小为 $0$ 的维度，<code>t.unsqueeze(dim=2)</code></li>
+</ul>
+<h3 id="23-张量扩展和拼接"><a class="header" href="#23-张量扩展和拼接">2.3 张量扩展和拼接</a></h3>
+<ul>
+<li>repeat()</li>
+<li>cat()：两个参数，第一个是要拼接的张量的列表，第二个是延哪一个维度</li>
+<li>stack()：同上，不同在于 stack 要求拼接的张量大小完全一样，延一个新的维度拼接</li>
+</ul>
+<h3 id="24-求解优化问题"><a class="header" href="#24-求解优化问题">2.4 求解优化问题</a></h3>
+<ul>
+<li>在构造用做自变量的 torch.Tensor 类实例时，应将参数 requires_grad 设置为 True</li>
+<li>调用张量类实例的成员方法 backward() 可以求偏导，调用完后，<strong>自变量</strong>的属性 grad 就储存了偏导的数值</li>
+</ul>
+<pre><code class="language-python">from math import pi
+import torch
+x = torch.tensor([ pi/3 , pi/6 ], requires_grad=True)
+f = -((x.cos()**2).sum)**2
+print(f'value = {f}')
+f.backward()
+print(f'grad = {x.grad}')
+</code></pre>
+<h4 id="优化算法与torchoptim包"><a class="header" href="#优化算法与torchoptim包">优化算法与torch.optim包</a></h4>
+<p>在梯度下降时，先调用优化器实例的方法 zero_grad() 清空优化器在上次迭代中储存的数据，然后调用 torch.tensor 类实例的方法 backward() 求梯度，最后使用优化器的方法 step() 更新自变量的值</p>
+<pre><code class="language-python">optimizer.zero_grad()
+f.backward()
+optimizer.step()
+</code></pre>
+<p>使用 torch.optim.SGD 梯度下降的一个实例</p>
+<pre><code class="language-python">from math import pi
+import torch
+import torch.optim
+x = torch.tensor([ pi/3 , pi/6 ], requires_grad=True)
+optimizer = torch.optim.SGD([x,], lr=0.1 ,momentum=0)
+for step in range(11):
+    if step:
+        optimizer.zero_grad()
+        f.backward()
+        optimizer.step()
+    f = -((x.cos()**2).sum)**2
+    print(f'step {step}: x = {x.tolist()}, f(x) = {f}')
+</code></pre>
+<h4 id="torchnn子包与损失类"><a class="header" href="#torchnn子包与损失类">torch.nn子包与损失类</a></h4>
+<p>torch.nn.Module 类及其子类可有以下用途</p>
+<ul>
+<li>表示一个神经网络．如：torch.nn.Sequential 类可以表示一个前馈神经网络</li>
+<li>表示神经网络的一个层：如 torch.nn.Linear 线性层，torch.nn.ReLU 激活层</li>
+<li>表示损失：torch.nn.MSELoss，torh.nn.CrossEntropyLoss 等</li>
+</ul>
+<p><strong>激活层</strong>中逐元素激活分为以下三类</p>
+<ul>
+<li>S 型激活：Sigmoid，Softsign，Tanh，Hardtanh，ReLU6</li>
+<li>单侧激活：ReLU，LeakyReLU，PReLU，RReLU，Threshold，ELU，SELU，Softplus，LogSigmoid</li>
+<li>褶皱激活：Hardshrinkage，Softshrinkage，Tanhshrinkage</li>
+</ul>
+<p>非逐元素激活</p>
+<ul>
+<li>Softmax，Softmax2d，LogSoftmax</li>
+</ul>
+<p>torch.nn 里的损失类都是 torch.nn.Module 类的子类</p>
+<pre><code class="language-python">criterion = torch.nn.MSELoss()
+pred = torch.arange(5, requires_grad=True)
+y = torch.ones(5)
+loss = criterion(pred, y)
+loss.backward()
+</code></pre>
+<h4 id="训练集验证集与训练集"><a class="header" href="#训练集验证集与训练集">训练集、验证集与训练集</a></h4>
+<p>训练集用来计算参数，验证集来判定欠拟合或过拟合，测试机来评价最终结果</p>
+<p><img src="img/1.jpg" alt="1" /></p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>欠拟合</th><th>过拟合</th></tr></thead><tbody>
+<tr><td>泛化差错主要来源</td><td>偏差差错 (bias)</td><td>方差差错 (variance)</td></tr>
+<tr><td>模型复杂度</td><td>过低</td><td>过高</td></tr>
+<tr><td>学习曲线和验证曲线特征</td><td>收敛到比较大的差错值</td><td>两条曲线之间差别大</td></tr>
+<tr><td>解决方案</td><td>增加模型复杂度</td><td>减小模型复杂度或增大训练集</td></tr>
+</tbody></table>
+</div>
+<h3 id="25-标准化"><a class="header" href="#25-标准化">2.5 标准化</a></h3>
+<ul>
+<li>批标准化( batch normalization )：对同一通道使用相同的均值和方差进行归一化，更适用于特征提取这样的应用</li>
+<li>实例标准化( instance normalization )：对同一通道使用不同的均值和方差进行归一化，更适用于生成数据这样的应用</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>标准化操作类型</th><th>维度</th><th>标准化类</th><th>输入输出张量维度</th><th>适用网络</th></tr></thead><tbody>
+<tr><td>批标准化</td><td>1</td><td>torch.nn.BatchNorm1d</td><td>$(n,c,l[0])$</td><td>前馈神经网络</td></tr>
+<tr><td>批标准化</td><td>2</td><td>torch.nn.BatchNorm2d</td><td>$(n,c,l[0],l[1])$</td><td>前馈神经网络</td></tr>
+<tr><td>批标准化</td><td>3</td><td>torch.nn.BatchNorm3d</td><td>$(n,c,l[0],l[1],l[2])$</td><td>前馈神经网络</td></tr>
+<tr><td>实例标准化</td><td>1</td><td>torch.nn.InstanceNorm1d</td><td>$(n,c,l[0])$</td><td>前馈神经网络</td></tr>
+<tr><td>实例标准化</td><td>2</td><td>torch.nn.InstanceNorm2d</td><td>$(n,c,l[0],l[1])$</td><td>前馈神经网络</td></tr>
+<tr><td>实例标准化</td><td>3</td><td>torch.nn.InstanceNorm3d</td><td>$(n,c,l[0]),l[1],l[2]$</td><td>前馈神经网络</td></tr>
+<tr><td>层标准化</td><td>不限</td><td>torch.nn.LayerNorm</td><td>$(n,L$</td><td>前馈神经网络</td></tr>
+</tbody></table>
+</div>
+<h3 id="26-网络权重初始化"><a class="header" href="#26-网络权重初始化">2.6 网络权重初始化</a></h3>
+<p>pytorch 中完成权重初始化需要 torch.nn.init 子包和 torch.nn.Module 类成员方法 apply()．</p>
+<div class="table-wrapper"><table><thead><tr><th>函数名</th><th>元素分布</th><th>分布参数确定方法</th></tr></thead><tbody>
+<tr><td>torch.nn.init.uniform_()</td><td>均匀分布</td><td>传入表示最小值的参数 a (默认为 0 )和表示最大值的参数 b (默认为 1 )</td></tr>
+<tr><td>torch.nn.init.normal_()</td><td>正态分布</td><td>传入表示均值的参数 mean (默认为 0 )和表示方差的参数 std (默认为 1 )</td></tr>
+<tr><td>torch.nn.init.constant_()</td><td>常量</td><td>传入常量 vaL</td></tr>
+<tr><td>torch.nn.init.xavier_uniform_()</td><td>均匀分布</td><td>均值为 0 ，标准差 $\sigma$ 根据输入的张量大小和增益函数 gain 计算得到</td></tr>
+<tr><td>torch.nn.init.xavier_uniform_()</td><td>均匀分布</td><td>均值为 0 ，标准差 $\sigma$ 根据输入的张量大小和增益函数 gain 计算得到</td></tr>
+</tbody></table>
+</div>
+<p>apply() 方法有一个参数，参数是一个 python 函数，这个函数的参数必须是 torch.nn.Module 类．</p>
+<pre><code class="language-python">import torch.nn.init as init
+def weights_init(m):
+    init.xavier_normal_(m.weight)
+    init.constant_(m.bias, 0)
+</code></pre>
+<h3 id="27-卷积神经网络"><a class="header" href="#27-卷积神经网络">2.7 卷积神经网络</a></h3>
+<p>对一维卷积，设 $X$ 为输入张量，大小为 $(l_x,)$，$W$ 为卷积核，大小为 $(k,)$ ，输出张量为 $Z$ ，大小为 $(l_z,)$，则有
+$$
+l_z=l_x-k+1
+$$</p>
+<p><strong>补全</strong> (pad) 运算</p>
+<p><img src="img/2.jpg" alt="2" /></p>
+<p>在补零后 (前后各补 $p_{x-}$ ，$p_{x+}$) ，相应的张量维度为
+$$
+l_{补后}=p_{x-}+l_x+p_{x+}
+$$</p>
+<p>核的<strong>膨胀</strong>(dilate)，基本互相关中，每个权重连续对应着输入张量中的元素，此时可认为膨胀系数为 $k_{膨胀}=1$ ，膨胀前后核大小关系为
+$$
+k_{膨胀后}=d_{膨胀}(k-1)+1
+$$
+图 8-4 给出了膨胀系数 $d_{膨胀}=2$ 的例子．膨胀前，核的大小为 $k=3$ ，膨胀后，$k_{膨胀后}=5$</p>
+<p><img src="img/3.jpg" alt="3" /></p>
+<p><strong>步幅</strong>(stride)，基本互相关中，卷积核每次相对输入张量 $X$ 向右移动一个元素的位置并得到一个输出张量，一共 $l_z=l_x-k+1$ 个输出．将此输出大小记为 $l_{z步幅前}$ 视为可以认为基本互相关操作的步幅 $s_{步幅}=1$ ，如果考虑更大步幅，则有
+$$
+l_z = \left[ \frac{l_{z步幅前}-1}{s_{步幅}}+1 \right]
+$$</p>
+<p>补全、步幅、膨胀可以综合使用．综合前文，输入大小 $\left( l_{x},\right)$ ，输出大小 $\left(l_{z},\right)$ ，核张量大小 $(k,)$，两侧分别补全数 $p_{x-}$ 和 $p_{x+}$ ，步幅 $s_{步幅}$，膨胀系数 $d_{膨胀}$ 之间的关系满足
+$$
+\begin{aligned}
+l_{x补后}&amp;=p_{x-}+l_x+p_{x+}\
+k_{膨胀后}&amp;=d_{膨胀}(k-1)+1\
+l_{z步幅前}&amp;=l_{x补后}-k_{膨胀后}+1\
+l_z &amp;= \left[ \frac{l_{z步幅前}-1}{s_{步幅}}+1 \right]
+\end{aligned}
+$$
+将以上几式综合起来，可以得到
+$$
+l_z=\left[ \frac{ (p_{x-}+l_x+p_{x+})-(d_{膨胀}(k-1)+1) }{s_{步幅}} +1 \right]
+$$</p>
+<h4 id="torchnn-里的卷积层"><a class="header" href="#torchnn-里的卷积层">torch.nn 里的卷积层</a></h4>
+<div class="table-wrapper"><table><thead><tr><th>运算类型</th><th>运算维度</th><th>torch.nn.Module子类</th><th>类实例输入张量的大小</th><th>类实例输出张量的大小</th></tr></thead><tbody>
+<tr><td>互相关</td><td>1</td><td>torch.nn.Conv1d</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>互相关</td><td>2</td><td>torch.nn.Conv2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>互相关</td><td>3</td><td>torch.nn.Conv3d</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+</tbody></table>
+</div>
+<p>$n$ 为样本的计数， $c$ 表示数据的通道数，即一条数据有几个 $d$ 维张量．卷积层的输出通道数表示最多支持的特征个数．因为每个通道使用相同的卷积核计算，每个卷积核只能提取一种特征．</p>
+<pre><code class="language-python">conv = torch.nn.Conv2d(16, 33, kernel_size={3, 5}, stride={2, 1}, padding={4, 2}, dilation={3, 1})
+inputs = torch.rand(20, 16, 50, 100) #20条样本，16个通道，每个通道大小为 50*100
+outputs = conv(inputs)
+outputs.size()
+</code></pre>
+<h4 id="张量的池化"><a class="header" href="#张量的池化">张量的池化</a></h4>
+<p><strong>池化</strong> (pooling)，核不需要权重</p>
+<ul>
+<li>最大池化(max pool)：输出张量的每个元素都是若干个输入张量的最大值</li>
+<li>平均池化(average pool)：输出元素由若干个输入元素求平均得到</li>
+<li>$l_p$池化($l_p$ pool)：计算输入元素组合的 $l_p$ 范数</li>
+</ul>
+<p><img src="img/4.jpg" alt="4" /></p>
+<p><img src="img/5.jpg" alt="5" /></p>
+<p>以下为不带“自适应”(adaptive)的版本，带自适应只需在 MaxPool1d 前加上 Adaptive，此时不能设置补全数等，他会自动帮你计算</p>
+<div class="table-wrapper"><table><thead><tr><th>运算类型</th><th>运算维度</th><th>torch.nn.Module子类</th><th>类实例输入张量的大小</th><th>类实例输出张量的大小</th></tr></thead><tbody>
+<tr><td>最大池化</td><td>1</td><td>torch.nn.MaxPool1d</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>最大池化</td><td>2</td><td>torch.nn.MaxPool2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>最大池化</td><td>3</td><td>torch.nn.MaxPool3d</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+<tr><td>平均池化</td><td>1</td><td>torch.nn.AvgPool1d</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>平均池化</td><td>2</td><td>torch.nn.AvgPool2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>平均池化</td><td>3</td><td>torch.nn.AvgPool3d</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+<tr><td>$l_p$池化</td><td>1</td><td>torch.nn.LPPool1d</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>$l_p$池化</td><td>2</td><td>torch.nn.LPPool2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>最大反池化</td><td>1</td><td>torch.nn.MaxUnpool1d</td><td>$(n,c_x,l_x[0]$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>最大反池化</td><td>2</td><td>torch.nn.MaxUnpool2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>最大反池化</td><td>3</td><td>torch.nn.MaxUnpool3d</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+</tbody></table>
+</div>
+<h4 id="张量的上采样"><a class="header" href="#张量的上采样">张量的上采样</a></h4>
+<p>张量的<strong>上采样</strong>(up-sample)，将输入张量的每个维度大小扩展若干倍．</p>
+<ul>
+<li>最邻近上采样( nearest up-sample )：按照一个比例因子( scale factor )将每个元素重复若干次</li>
+<li>线性插值上采样( linearup-sample )</li>
+</ul>
+<p>pytorch 中上采样用的是 torch.nn 的子包 torch.nn.Unsample 类．</p>
+<div class="table-wrapper"><table><thead><tr><th>运算类型</th><th>运算维度</th><th>torch.nn.Unsample类实例构造参数</th><th>类实例输入张量的大小</th><th>类实例输出张量的大小</th></tr></thead><tbody>
+<tr><td>最邻近上采样</td><td>1</td><td>mode='nearest'(默认值)</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>最邻近上采样</td><td>2</td><td>mode='nearest'(默认值)</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>最邻近上采样</td><td>3</td><td>mode='nearest'(默认值)</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+<tr><td>线性上采样</td><td>1</td><td>mode='linear'</td><td>$(n,c_x,l_x[0])$</td><td>$(n,c_x,l_z[0])$</td></tr>
+<tr><td>线性上采样</td><td>2</td><td>mode='bilinear'</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_z[0],l_z[1])$</td></tr>
+<tr><td>线性上采样</td><td>3</td><td>mode='trilinear'</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_z[0],l_z[1],l_z[2])$</td></tr>
+</tbody></table>
+</div>
+<h4 id="张量的补全运算"><a class="header" href="#张量的补全运算">张量的补全运算</a></h4>
+<ul>
+<li>常数补全( constant pad )：输入张量前后补上常数</li>
+<li>重复补全( replication pad )：用最边上的值补全</li>
+<li>反射补全( reflection pad )：以边界为对称轴补全</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>运算类型</th><th>运算维度</th><th>torch.nn.Module子类</th><th>类实例输入张量的大小</th><th>类实例输出张量的大小</th></tr></thead><tbody>
+<tr><td>常数补全</td><td>2</td><td>torch.nn.ConstantPad2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_{x补后}[0],l_{x补后}[1])$</td></tr>
+<tr><td>重复补全</td><td>2</td><td>torch.nn.ReplicationPad2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_{x补后},l_{x补后}[1])$</td></tr>
+<tr><td>反射补全</td><td>2</td><td>torch.nn.ReflectionPad2d</td><td>$(n,c_x,l_x[0],l_x[1])$</td><td>$(n,c_x,l_{x补后}[0],l_{x补后}[1])$</td></tr>
+<tr><td>反射补全</td><td>3</td><td>torch.nn.Reflection3d</td><td>$(n,c_x,l_x[0],l_x[1],l_x[2])$</td><td>$(n,c_x,l_{x补后}[0],l_{x补后}[1],l_{x补后}[2])$</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-python">inputs = torch.arange(12).view(1, 1, 3, 4)
+pad = nn.ConstantPad2d(padding=[1, 1, 1, 1], value=-1)
+pad = nn.Replication2d(padding=[1, 1, 1, 1])
+pad = nn.Reflection2d(padding=[1, 1, 1, 1])
+</code></pre>
+<p>例如实现下图的卷积网络，可以参考的构建网络方法：</p>
+<p><img src="img/6.jpg" alt="6" /></p>
+<pre><code class="language-python">import torch.nn
+
+class Net(torch.nn.Module):
+
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv0 = torch.nn.Conv2d(1, 64, kernel_size=3, padding=1)
+        self.relu1 = torch.nn.ReLU()
+        self.conv2 = torch.nn.Conv2d(64, 128, kernel_size=3, padding=1)
+        self.relu3 = torch.nn.ReLU()
+        self.pool4 = torch.nn.MaxPool2d(stride=2, kernel_size=2)
+        self.fc5 = torch.nn.Linear(128*14*14, 1024)
+        self.relu6 = torch.nn.ReLU()
+        self.drop7 = torch.nn.Dropout(p=0.5)
+        self.fc8 = torch.nn.Linear(1024, 10)
+
+    def forward(self, x):
+        x = self.conv0(x)
+        x = self.relu1(x)
+        x = self.conv2(x)
+        x = self.relu3(x)
+        x = self.pool4(x)
+        x = x.view(-1, 128 * 14 * 14)
+        x = self.fc5(x)
+        x = self.relu6(x)
+        x = self.drop7(x)
+        x = self.fc8(x)
+        return x
+    
+net = Net()
+</code></pre>
+<p>另外可用 sequential 方法</p>
+<pre><code class="language-python">import torch.nn
+
+class Net(torch.nn.Module):
+
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv = torch.nn.Sequential(
+            torch.nn.Conv2d(1, 64, kernel_size=3, padding=1)
+            torch.nn.ReLU()
+            torch.nn.Conv2d(64, 128, kernel_size=3, padding=1)
+            torch.nn.ReLU()
+            torch.nn.MaxPool2d(stride=2, kernel_size=2))
+        self.dense = torch.nn.Sequential(
+            torch.nn.Linear(128*14*14, 1024)
+            torch.nn.ReLU()
+            torch.nn.Dropout(p=0.5)
+            torch.nn.Linear(1024, 10))
+
+    def forward(self, x):
+        x = self.conv(x)
+        x = x.view(-1, 128 * 14 * 14)
+        x = self.dense(x)
+        return x
+    
+net = Net()
+</code></pre>
+<h3 id="28-循环神经网络"><a class="header" href="#28-循环神经网络">2.8 循环神经网络</a></h3>
+<p>TODO:循环神经网络</p>
+<p>以下是 LSTM 示例</p>
+<pre><code class="language-python">import torch.nn
+
+class Net(torch.nn.Module):
+
+    def __init__(self, input_size, hidden_size):
+        super(Net, self).__init__()
+        self.rnn = torch.nn.LSTM(input_size, hidden_size)
+        self.fc = torch.nn.Linear(hidden_size, 1)
+
+    def forward(self, x):
+        x = x[:, :, None]
+        x, _ = self.rnn(x)
+        x = self.fc(x)
+        x = x[:, :, 0]
+        return x
+
+net = Net(input_size=1, hidden_size=5)
+</code></pre>
+<h3 id="29-生成对抗网络"><a class="header" href="#29-生成对抗网络">2.9 生成对抗网络</a></h3>
+<ul>
+<li>生成网络( generative network )：一般一条随机输入是一个有多个元素的张量 $Z$，张量 $Z$ 的取值空间称为“潜在空间”( latent space )，张量 $Z$ 的元素个数称为“潜在大小”( latent size )．生成网络 $g$ 可以将这条潜在张量样本 $Z$ 映射为一条数据张量 $X=g(Z)$．</li>
+<li>鉴别网络( discriminative network )：对生成网络生成的数据进行判定．</li>
+</ul>
+<p>以 $l$ 记交叉熵损失函数</p>
+<p>目的：训练鉴别网络 $d$ 使得
+$$
+\begin{aligned}
+&amp;min_d l(d(X),1),\qquad其中X是真实数据\
+&amp;min_d l(d(g(X)),0)
+\end{aligned}
+$$
+训练生成网络使得
+$$
+max_g min_d l(d(g(Z)),0)
+$$</p>
+<p>以下是CIFAR-10图像生成的实例</p>
+<pre><code class="language-python">'''读取数据'''
+from torch.utils.data import DataLoader
+from torchvision.datasets import CIFAR10
+import torchvision.transforms as transforms
+from torchvision.utils import save_image
+
+dataset = CIFAR10(root='./data', download=True,
+        transform=transforms.ToTensor())
+dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
+
+for batch_idx, data in enumerate(dataloader):
+    real_images, _ = data
+    batch_size = real_images.size(0)
+    print ('#{} has {} images.'.format(batch_idx, batch_size))
+    if batch_idx % 100 == 0:
+        path = './data/CIFAR10_shuffled_batch{:03d}.png'.format(batch_idx)
+        save_image(real_images, path, normalize=True)
+
+'''生成网络与鉴别网络的搭建'''
+import torch.nn as nn
+
+# 搭建生成网络
+latent_size = 64 # 潜在大小
+n_channel = 3 # 输出通道数
+n_g_feature = 64 # 生成网络隐藏层大小
+gnet = nn.Sequential( 
+        # 输入大小 = (64, 1, 1)
+        nn.ConvTranspose2d(latent_size, 4 * n_g_feature, kernel_size=4,
+                bias=False),
+        nn.BatchNorm2d(4 * n_g_feature),
+        nn.ReLU(),
+        # 大小 = (256, 4, 4)
+        nn.ConvTranspose2d(4 * n_g_feature, 2 * n_g_feature, kernel_size=4,
+                stride=2, padding=1, bias=False),
+        nn.BatchNorm2d(2 * n_g_feature),
+        nn.ReLU(),
+        # 大小 = (128, 8, 8)
+        nn.ConvTranspose2d(2 * n_g_feature, n_g_feature, kernel_size=4,
+                stride=2, padding=1, bias=False),
+        nn.BatchNorm2d(n_g_feature),
+        nn.ReLU(),
+        # 大小 = (64, 16, 16)
+        nn.ConvTranspose2d(n_g_feature, n_channel, kernel_size=4,
+                stride=2, padding=1),
+        nn.Sigmoid(),
+        # 图片大小 = (3, 32, 32)
+        )
+print (gnet)
+
+# 搭建鉴别网络
+n_d_feature = 64 # 鉴别网络隐藏层大小
+dnet = nn.Sequential( 
+        # 图片大小 = (3, 32, 32)
+        nn.Conv2d(n_channel, n_d_feature, kernel_size=4,
+                stride=2, padding=1),
+        nn.LeakyReLU(0.2),
+        # 大小 = (64, 16, 16)
+        nn.Conv2d(n_d_feature, 2 * n_d_feature, kernel_size=4,
+                stride=2, padding=1, bias=False),
+        nn.BatchNorm2d(2 * n_d_feature),
+        nn.LeakyReLU(0.2),
+        # 大小 = (128, 8, 8)
+        nn.Conv2d(2 * n_d_feature, 4 * n_d_feature, kernel_size=4,
+                stride=2, padding=1, bias=False),
+        nn.BatchNorm2d(4 * n_d_feature),
+        nn.LeakyReLU(0.2),
+        # 大小 = (256, 4, 4)
+        nn.Conv2d(4 * n_d_feature, 1, kernel_size=4),
+        # 对数赔率张量大小 = (1, 1, 1)
+        )
+print(dnet)
+
+'''网络初始化'''
+import torch.nn.init as init
+
+def weights_init(m): # 用于初始化权重值的函数
+    if type(m) in [nn.ConvTranspose2d, nn.Conv2d]:
+        init.xavier_normal_(m.weight)
+    elif type(m) == nn.BatchNorm2d:
+        init.normal_(m.weight, 1.0, 0.02)
+        init.constant_(m.bias, 0)
+
+gnet.apply(weights_init)
+dnet.apply(weights_init)
+
+'''训练并输出图片'''
+import torch
+import torch.optim
+
+# 损失
+criterion = nn.BCEWithLogitsLoss()
+
+# 优化器
+goptimizer = torch.optim.Adam(gnet.parameters(),
+        lr=0.0002, betas=(0.5, 0.999))
+doptimizer = torch.optim.Adam(dnet.parameters(), 
+        lr=0.0002, betas=(0.5, 0.999))
+
+# 用于测试的固定噪声,用来查看相同的潜在张量在训练过程中生成图片的变换
+batch_size = 64
+fixed_noises = torch.randn(batch_size, latent_size, 1, 1)
+
+# 训练过程
+epoch_num = 10
+for epoch in range(epoch_num):
+    for batch_idx, data in enumerate(dataloader):
+        # 载入本批次数据
+        real_images, _ = data
+        batch_size = real_images.size(0)
+        
+        # 训练鉴别网络
+        labels = torch.ones(batch_size) # 真实数据对应标签为1
+        preds = dnet(real_images) # 对真实数据进行判别
+        outputs = preds.reshape(-1)
+        dloss_real = criterion(outputs, labels) # 真实数据的鉴别器损失
+        dmean_real = outputs.sigmoid().mean()
+                # 计算鉴别器将多少比例的真数据判定为真,仅用于输出显示
+        
+        noises = torch.randn(batch_size, latent_size, 1, 1) # 潜在噪声
+        fake_images = gnet(noises) # 生成假数据
+        labels = torch.zeros(batch_size) # 假数据对应标签为0
+        fake = fake_images.detach()
+                # 使得梯度的计算不回溯到生成网络,可用于加快训练速度.删去此步结果不变
+        preds = dnet(fake) # 对假数据进行鉴别
+        outputs = preds.view(-1)
+        dloss_fake = criterion(outputs, labels) # 假数据的鉴别器损失
+        dmean_fake = outputs.sigmoid().mean()
+                # 计算鉴别器将多少比例的假数据判定为真,仅用于输出显示
+        
+        dloss = dloss_real + dloss_fake # 总的鉴别器损失
+        dnet.zero_grad()
+        dloss.backward()
+        doptimizer.step()
+        
+        # 训练生成网络
+        labels = torch.ones(batch_size)
+                # 生成网络希望所有生成的数据都被认为是真数据
+        preds = dnet(fake_images) # 把假数据通过鉴别网络
+        outputs = preds.view(-1)
+        gloss = criterion(outputs, labels) # 真数据看到的损失
+        gmean_fake = outputs.sigmoid().mean()
+                # 计算鉴别器将多少比例的假数据判定为真,仅用于输出显示
+        gnet.zero_grad()
+        gloss.backward()
+        goptimizer.step()
+        
+        # 输出本步训练结果
+        print('[{}/{}]'.format(epoch, epoch_num) +
+                '[{}/{}]'.format(batch_idx, len(dataloader)) +
+                '鉴别网络损失:{:g} 生成网络损失:{:g}'.format(dloss, gloss) +
+                '真数据判真比例:{:g} 假数据判真比例:{:g}/{:g}'.format(
+                dmean_real, dmean_fake, gmean_fake))
+        if batch_idx % 100 == 0:
+            fake = gnet(fixed_noises) # 由固定潜在张量生成假数据
+            save_image(fake, # 保存假数据
+                    './data/images_epoch{:02d}_batch{:03d}.png'.format(
+                    epoch, batch_idx))
+</code></pre>
+<h2 id="python之禅"><a class="header" href="#python之禅">python之禅</a></h2>
+<p><strong>print</strong>写法</p>
+<pre><code class="language-python">name = 'ROSE'
+country = 'China'
+age = 20
+
+print('hi, my name is {}. im from {}, and im {}'.format(name,country,age))
+
+最简单写法
+print(f'hi, my name is {name}, im from {country}, and im {age+1}')
+</code></pre>
+<p>for 循环时使用 enumerate 可返回两个参数，前一个是 index ，第二个是对应参数</p>
+<pre><code class="language-python">for idx,step in enumerate(range(10))
+</code></pre>
+<h2 id="3-pandas"><a class="header" href="#3-pandas">3. Pandas</a></h2>
+<p>Series([1, 2, 3, 4], index=[a, b, c, d])<br />
+查缺失数据 .isnull(), .notnull(), 返回同结构的布尔值<br />
+Series对象本身及其索引有个 name 属性</p>
+<pre><code class="language-python">a = pd.Series([1 ,2 ,3 ,4], index=['a', 'b', 'c', 'd'])  
+a.name = 'series'
+</code></pre>
+<p>将序列作为 DataFrame 的一列时，name属性就变为那一列的列名</p>
+<p>DataFrame</p>
+<pre><code class="language-python">data = np.ones([3,4])
+d = pd.DataFrame(data, index=['a','b','c'], columns=['a','b','c','d'])
+</code></pre>
+<p>.head() 取前五行，.tail()<br />
+.del() 删除某一列，.drop()删除指定轴上某些项<br />
+.append() .difference() .intersection() .union()</p>
+<p>索引 用标签名 data.loc['a',['c','d']] 不用标签名 data.iloc[2,[2,3]]</p>
+<p>常用方法 .cumsum() .cumprod() .diff() .pct_change()</p>
+<p><strong>换指定列名</strong> d=d.rename( index={1:'new'}, columns={'a':'shit'} )</p>
+<h2 id="4-matplotlib"><a class="header" href="#4-matplotlib">4. matplotlib</a></h2>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+data1 = np.linspace(1,200,2000)
+data2 = np.random.randn(2000)
+fig = plt.figure()
+ax1 = fig.add_subplot(2,2,1)
+plt.plot(data1, label='first')
+plt.plot(data2,'.', label='second')
+ax1.set_xticks([1,2,40])
+ax1.legend(loc='best')
+ax1.set_title('first plot')
+ax1.set_xlabel('index')
+ax2 = fig.add_subplot(2,2,2)
+</code></pre>
+<p>'-'实线 '--'短划线 '-.'点划线 ':'虚线 '.'点 'v'倒三角 等<br />
+color参数 'b'蓝 'g'绿 'r'红 'c'青 'm'品红 'y'黄 'k'黑 'w'白</p>
+<h2 id="5-backtrader"><a class="header" href="#5-backtrader">5. backtrader</a></h2>
+<pre><code class="language-python">import backtrader as bt
+
+cerebro = bt.Cerebro()
+
+# 设置初始资金
+cerebro.broker.setcash(100000.0)
+
+#获取当前broker的资金数
+cerebro.broker.getvalue()
+
+#设置交易手续费
+cerebro.broker.setcommission(0.005)
+
+# Create a Data Feed（默认的雅虎数据格式）
+data = bt.feeds.YahooFinanceCSVData(
+        dataname=datapath,
+        # Do not pass values before this date
+        fromdate=datetime.datetime(2000, 1, 1),
+        # Do not pass values after this date
+        todate=datetime.datetime(2000, 12, 31),
+        reverse=False)
+
+#一般的CSV文件
+data = bt.feeds.GenericCSVData(
+        dataname='数据文件所在位置',
+        datetime=2,
+        open=3,
+        high=4,
+        low=5,
+        close=6,
+        volume=10,
+        dtformat=('%Y%m%d'),
+        fromdate=datetime(2010, 1, 1),
+        todate=datetime(2020, 4, 12)
+    )
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
