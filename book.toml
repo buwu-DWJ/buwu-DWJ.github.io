@@ -5,5 +5,11 @@ multilingual = false
 src = "src"
 title = "dwj_mdbook"
 
+[output.katex]
+
 [output.html]
-mathjax-support = true
+default-theme = "rust"
+preferred-light-theme = "rust"
+
+[preprocessor.katex]
+renderers = ["html"]

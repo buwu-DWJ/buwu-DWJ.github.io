@@ -6,5 +6,5 @@
 - [机器学习](ml/ml.md)
 - [DRL]()
   - [RL](DRL/RL.md)
-  - [DRL](DRL/DRL.md)
   - [FIN](DRL/fin.md)
+  - [DRL](DRL/DRL.md)
