@@ -10,6 +10,7 @@ title = "dwj_mdbook"
 [output.html]
 default-theme = "rust"
 preferred-light-theme = "rust"
+fold.enable = true
 
 [preprocessor.katex]
 renderers = ["html"]
