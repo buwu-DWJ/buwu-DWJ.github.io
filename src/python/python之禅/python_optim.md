@@ -19,6 +19,9 @@ for 循环时使用 enumerate 可返回两个参数，前一个是 index ，第�
 for idx,step in enumerate(range(10))
 ```
 
+
+
+```python
 @staticmethod
 静态方法, 不强制要求传递参数
 
@@ -80,3 +83,65 @@ plt.axhline(y=0,ls=":",c="yellow") 水平直线
 plt.axvline(x=4,ls="-",c="green")  垂直直线
 '''
 
+```
+
+![img](https://pic4.zhimg.com/v2-c84b6a01a16b94af53a56e8f49d9c497_r.jpg)
+
+## 自动发邮件
+
+```python
+import smtplib
+from smtplib import SMTP_SSL
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
+from email.mime.application import MIMEApplication  # 用于添加附件
+
+
+host_server = 'smtp.qq.com'  # qq邮箱smtp服务器
+sender_qq = '359582058@qq.com'  # 发件人邮箱
+pwd = 'bglhxfrujynobhda'qq
+pwd = 'EGGZASTFLHVGCBRU'163
+receiver = '13918949838@163.com'
+mail_title = 'Python自动发送邮件'  # 邮件标题
+
+# 邮件正文内容
+mail_content = "您好"
+
+msg = MIMEMultipart()
+msg["Subject"] = Header(mail_title, 'utf-8')
+msg["From"] = sender_qq
+msg["To"] = Header("测试邮箱", "utf-8")
+
+msg.attach(MIMEText(mail_content, 'html'))
+attachment = MIMEApplication(open('复权.xlsx', 'rb').read())
+attachment["Content-Type"] = 'application/octet-stream'
+# 给附件重命名
+basename = "复权.xlsx"
+attachment.add_header('Content-Disposition', 'attachment',
+                      filename=('utf-8', '', basename))  # 注意：此处basename要转换为gbk编码，否则中文会有乱码。
+msg.attach(attachment)
+
+
+try:
+    smtp = SMTP_SSL(host_server)  # ssl登录连接到邮件服务器
+    smtp.set_debuglevel(1)  # 0是关闭，1是开启debug
+    smtp.ehlo(host_server)  # 跟服务器打招呼，告诉它我们准备连接，最好加上这行代码
+    smtp.login(sender_qq, pwd)
+    smtp.sendmail(sender_qq, receiver, msg.as_string())
+    smtp.quit()
+    print("邮件发送成功")
+except smtplib.SMTPException:
+    print("无法发送邮件")
+```
+
+
+
+## py23com
+
+```python
+from win32com.client import makepy
+makepy.main()  # 跳出窗口, 创建静态代理static proxy
+
+win32com.client.constant.__d
+```

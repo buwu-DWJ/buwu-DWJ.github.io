@@ -10,6 +10,8 @@ title = "dwj_mdbook"
 [output.html]
 default-theme = "light"
 fold.enable = true
+playground.editable = true
+playground.line-numbers = true
 
 [preprocessor.katex]
 renderers = ["html"]
