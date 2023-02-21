@@ -58,3 +58,6 @@
     - [经典SV](option/models/sv.md)
     - [RV](option/models/rough.md)
     - [wing_model](option/models/wing_model.md)
+  - [Automatic_Trading](option/automatic_trading/automatic_trading_pre.md)
+    - [Automatic_Hedging](option/automatic_trading/automatic_hedging/automatic_hedging_pre.md)
+      - [hedging_vanilla]
