@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>降维与度量学习 - dwj_mdbook</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.4.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.</strong> python之禅</a></li></ol></li><li class="chapter-item expanded "><a href="../../ml/ml.html"><strong aria-hidden="true">3.</strong> 机器学习</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">3.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">3.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">3.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">3.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">3.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">3.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">3.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">3.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chatper9.html"><strong aria-hidden="true">3.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../ml/chapter10/chapter10.html"><strong aria-hidden="true">3.10.</strong> 聚类算法</a></li><li class="chapter-item expanded "><a href="../../ml/chapter11/chapter11.html" class="active"><strong aria-hidden="true">3.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../ml/chapter12/chapter12.html"><strong aria-hidden="true">3.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">3.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">3.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">3.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">3.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">4.</strong> nn</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">4.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">4.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">4.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">4.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">5.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">5.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">5.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">5.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">5.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">5.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">5.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">5.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">5.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">5.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">5.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">6.</strong> 期权相关</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">6.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">6.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">6.1.2.</strong> 价差策略</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">6.1.3.</strong> 随机分析几大基本定理</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">6.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">6.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">6.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">6.2.3.</strong> wing_model</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwj_mdbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h2 id="十一-降维与度量学习"><a class="header" href="#十一-降维与度量学习"><strong>十一． 降维与度量学习</strong></a></h2>
+<p>样本的特征数称为<strong>维数</strong>（dimensionality），当维数非常大时，也就是现在所说的“<strong>维数灾难</strong>”，具体表现在：在高维情形下，<strong>数据样本将变得十分稀疏</strong>，因为此时要满足训练样本为“<strong>密采样</strong>”的总体样本数目是一个触不可及的天文数字，谓可远观而不可亵玩焉...<strong>训练样本的稀疏使得其代表总体分布的能力大大减弱，从而消减了学习器的泛化能力</strong>；同时当维数很高时，<strong>计算距离也变得十分复杂</strong>，甚至连计算内积都不再容易，这也是为什么支持向量机（SVM）使用核函数**“低维计算，高维表现”**的原因。</p>
+<p>缓解维数灾难的一个重要途径就是<strong>降维，即通过某种数学变换将原始高维空间转变到一个低维的子空间</strong>。在这个子空间中，样本的密度将大幅提高，同时距离计算也变得容易。这时也许会有疑问，这样降维之后不是会丢失原始数据的一部分信息吗？这是因为在很多实际的问题中，虽然训练数据是高维的，但是与学习任务相关也许仅仅是其中的一个低维子空间，也称为一个<strong>低维嵌入</strong>，例如：数据属性中存在噪声属性、相似属性或冗余属性等，<strong>对高维数据进行降维能在一定程度上达到提炼低维优质属性或降噪的效果</strong>。</p>
+<h3 id="111-k近邻学习"><a class="header" href="#111-k近邻学习"><strong>11.1 K近邻学习</strong></a></h3>
+<p>k近邻算法简称<strong>kNN（k-Nearest Neighbor）</strong>，是一种经典的监督学习方法，同时也实力担当入选数据挖掘十大算法。其工作机制十分简单粗暴：给定某个测试样本，kNN基于某种<strong>距离度量</strong>在训练集中找出与其距离最近的k个带有真实标记的训练样本，然后给基于这k个邻居的真实标记来进行预测，类似于前面集成学习中所讲到的基学习器结合策略：分类任务采用投票法，回归任务则采用平均法。接下来本篇主要就kNN分类进行讨论。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a43873a.png" alt="1.png" /></p>
+<p>从上图【来自Wiki】中我们可以看到，图中有两种类型的样本，一类是蓝色正方形，另一类是红色三角形。而那个绿色圆形是我们待分类的样本。基于kNN算法的思路，我们很容易得到以下结论：</p>
+<blockquote>
+<p>如果K=3，那么离绿色点最近的有2个红色三角形和1个蓝色的正方形，这3个点投票，于是绿色的这个待分类点属于红色的三角形。
+如果K=5，那么离绿色点最近的有2个红色三角形和3个蓝色的正方形，这5个点投票，于是绿色的这个待分类点属于蓝色的正方形。</p>
+</blockquote>
+<p>可以发现：<strong>kNN虽然是一种监督学习方法，但是它却没有显式的训练过程</strong>，而是当有新样本需要预测时，才来计算出最近的k个邻居，因此<strong>kNN是一种典型的懒惰学习方法</strong>，再来回想一下朴素贝叶斯的流程，训练的过程就是参数估计，因此朴素贝叶斯也可以懒惰式学习，此类技术在<strong>训练阶段开销为零</strong>，待收到测试样本后再进行计算。相应地我们称那些一有训练数据立马开工的算法为“<strong>急切学习</strong>”，可见前面我们学习的大部分算法都归属于急切学习。</p>
+<p>很容易看出：<strong>kNN算法的核心在于k值的选取以及距离的度量</strong>。k值选取太小，模型很容易受到噪声数据的干扰，例如：极端地取k=1，若待分类样本正好与一个噪声数据距离最近，就导致了分类错误；若k值太大， 则在更大的邻域内进行投票，此时模型的预测能力大大减弱，例如：极端取k=训练样本数，就相当于模型根本没有学习，所有测试样本的预测结果都是一样的。<strong>一般地我们都通过交叉验证法来选取一个适当的k值</strong>。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a47db9a.png" alt="2.png" /></p>
+<p>对于距离度量，<strong>不同的度量方法得到的k个近邻不尽相同，从而对最终的投票结果产生了影响</strong>，因此选择一个合适的距离度量方法也十分重要。在上一篇聚类算法中，在度量样本相似性时介绍了常用的几种距离计算方法，包括<strong>闵可夫斯基距离，曼哈顿距离，VDM</strong>等。在实际应用中，<strong>kNN的距离度量函数一般根据样本的特性来选择合适的距离度量，同时应对数据进行去量纲/归一化处理来消除大量纲属性的强权政治影响</strong>。</p>
+<h3 id="112-mds算法"><a class="header" href="#112-mds算法"><strong>11.2 MDS算法</strong></a></h3>
+<p>不管是使用核函数升维还是对数据降维，我们都希望<strong>原始空间样本点之间的距离在新空间中基本保持不变</strong>，这样才不会使得原始空间样本之间的关系及总体分布发生较大的改变。**“多维缩放”（MDS）**正是基于这样的思想，<strong>MDS要求原始空间样本之间的距离在降维后的低维空间中得以保持</strong>。</p>
+<p>假定m个样本在原始空间中任意两两样本之间的距离矩阵为D∈R(m*m)，我们的目标便是获得样本在低维空间中的表示Z∈R(d'*m , d'&lt; d)，且任意两个样本在低维空间中的欧式距离等于原始空间中的距离，即||zi-zj||=Dist(ij)。因此接下来我们要做的就是根据已有的距离矩阵D来求解出降维后的坐标矩阵Z。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a4b664e.png" alt="3.png" /></p>
+<p>令降维后的样本坐标矩阵Z被中心化，<strong>中心化是指将每个样本向量减去整个样本集的均值向量，故所有样本向量求和得到一个零向量</strong>。这样易知：矩阵B的每一列以及每一列求和均为0，因为提取公因子后都有一项为所有样本向量的和向量。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a4a4ee2.png" alt="4.png" /></p>
+<p>根据上面矩阵B的特征，我们很容易得到等式（2）、（3）以及（4）：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a4a777b.png" alt="5.png" /></p>
+<p>这时根据(1)--(4)式我们便可以计算出bij，即<strong>bij=(1)-(2)<em>(1/m)-(3)</em>(1/m)+(4)*(1/(m^2))</strong>，再逐一地计算每个b(ij)，就得到了降维后低维空间中的内积矩阵B(B=Z'*Z)，只需对B进行特征值分解便可以得到Z。MDS的算法流程如下图所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a5340dd.png" alt="6.png" /></p>
+<h3 id="113-主成分分析pca"><a class="header" href="#113-主成分分析pca"><strong>11.3 主成分分析（PCA）</strong></a></h3>
+<p>不同于MDS采用距离保持的方法，<strong>主成分分析（PCA）直接通过一个线性变换，将原始空间中的样本投影到新的低维空间中</strong>。简单来理解这一过程便是：<strong>PCA采用一组新的基来表示样本点，其中每一个基向量都是原来基向量的线性组合，通过使用尽可能少的新基向量来表出样本，从而达到降维的目的。</strong></p>
+<p>假设使用d'个新基向量来表示原来样本，实质上是将样本投影到一个由d'个基向量确定的一个<strong>超平面</strong>上（<strong>即舍弃了一些维度</strong>），要用一个超平面对空间中所有高维样本进行恰当的表达，最理想的情形是：<strong>若这些样本点都能在超平面上表出且这些表出在超平面上都能够很好地分散开来</strong>。但是一般使用较原空间低一些维度的超平面来做到这两点十分不容易，因此我们退一步海阔天空，要求这个超平面应具有如下两个性质：</p>
+<blockquote>
+<p><strong>最近重构性</strong>：样本点到超平面的距离足够近，即尽可能在超平面附近；
+<strong>最大可分性</strong>：样本点在超平面上的投影尽可能地分散开来，即投影后的坐标具有区分性。</p>
+</blockquote>
+<p>这里十分神奇的是：<strong>最近重构性与最大可分性虽然从不同的出发点来定义优化问题中的目标函数，但最终这两种特性得到了完全相同的优化问题</strong>：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a5213c1.png" alt="7.png" /></p>
+<p>接着使用拉格朗日乘子法求解上面的优化问题，得到：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a4a102a.png" alt="8.png" /></p>
+<p>因此只需对协方差矩阵进行特征值分解即可求解出W，PCA算法的整个流程如下图所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a540eb3.png" alt="9.png" /></p>
+<p>另一篇博客给出更通俗更详细的理解：<a href="http://blog.csdn.net/u011826404/article/details/57472730">主成分分析解析（基于最大方差理论）</a></p>
+<h3 id="114-核化线性降维"><a class="header" href="#114-核化线性降维"><strong>11.4 核化线性降维</strong></a></h3>
+<p>说起机器学习你中有我/我中有你/水乳相融...在这里能够得到很好的体现。正如SVM在处理非线性可分时，通过引入核函数将样本投影到高维特征空间，接着在高维空间再对样本点使用超平面划分。这里也是相同的问题：若我们的样本数据点本身就不是线性分布，那还如何使用一个超平面去近似表出呢？因此也就引入了核函数，<strong>即先将样本映射到高维空间，再在高维空间中使用线性降维的方法</strong>。下面主要介绍**核化主成分分析（KPCA）**的思想。</p>
+<p>若核函数的形式已知，即我们知道如何将低维的坐标变换为高维坐标，这时我们只需先将数据映射到高维特征空间，再在高维空间中运用PCA即可。但是一般情况下，我们并不知道核函数具体的映射规则，例如：Sigmoid、高斯核等，我们只知道如何计算高维空间中的样本内积，这时就引出了KPCA的一个重要创新之处：<strong>即空间中的任一向量，都可以由该空间中的所有样本线性表示</strong>。证明过程也十分简单：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851a51bd2a.png" alt="10.png" /></p>
+<p>这样我们便可以将高维特征空间中的投影向量wi使用所有高维样本点线性表出，接着代入PCA的求解问题，得到：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b74b083.png" alt="11.png" /></p>
+<p>化简到最后一步，发现结果十分的美妙，只需对核矩阵K进行特征分解，便可以得出投影向量wi对应的系数向量α，因此选取特征值前d'大对应的特征向量便是d'个系数向量。这时对于需要降维的样本点，只需按照以下步骤便可以求出其降维后的坐标。可以看出：KPCA在计算降维后的坐标表示时，需要与所有样本点计算核函数值并求和，因此该算法的计算开销十分大。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b735754.png" alt="12.png" /></p>
+<h3 id="115-流形学习"><a class="header" href="#115-流形学习"><strong>11.5 流形学习</strong></a></h3>
+<p><strong>流形学习（manifold learning）是一种借助拓扑流形概念的降维方法</strong>，<strong>流形是指在局部与欧式空间同胚的空间</strong>，即在局部与欧式空间具有相同的性质，能用欧氏距离计算样本之间的距离。这样即使高维空间的分布十分复杂，但是在局部上依然满足欧式空间的性质，基于流形学习的降维正是这种**“邻域保持”<strong>的思想。其中</strong>等度量映射（Isomap）试图在降维前后保持邻域内样本之间的距离，而局部线性嵌入（LLE）则是保持邻域内样本之间的线性关系**，下面将分别对这两种著名的流行学习方法进行介绍。</p>
+<h4 id="1151-等度量映射isomap"><a class="header" href="#1151-等度量映射isomap"><strong>11.5.1 等度量映射（Isomap）</strong></a></h4>
+<p>等度量映射的基本出发点是：高维空间中的直线距离具有误导性，因为有时高维空间中的直线距离在低维空间中是不可达的。<strong>因此利用流形在局部上与欧式空间同胚的性质，可以使用近邻距离来逼近测地线距离</strong>，即对于一个样本点，它与近邻内的样本点之间是可达的，且距离使用欧式距离计算，这样整个样本空间就形成了一张近邻图，高维空间中两个样本之间的距离就转为最短路径问题。可采用著名的<strong>Dijkstra算法</strong>或<strong>Floyd算法</strong>计算最短距离，得到高维空间中任意两点之间的距离后便可以使用MDS算法来其计算低维空间中的坐标。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b731a1e.png" alt="13.png" /></p>
+<p>从MDS算法的描述中我们可以知道：MDS先求出了低维空间的内积矩阵B，接着使用特征值分解计算出了样本在低维空间中的坐标，但是并没有给出通用的投影向量w，因此对于需要降维的新样本无从下手，书中给出的权宜之计是利用已知高/低维坐标的样本作为训练集学习出一个“投影器”，便可以用高维坐标预测出低维坐标。Isomap算法流程如下图：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b6c7e37.png" alt="14.png" /></p>
+<p>对于近邻图的构建，常用的有两种方法：<strong>一种是指定近邻点个数</strong>，像kNN一样选取k个最近的邻居；<strong>另一种是指定邻域半径</strong>，距离小于该阈值的被认为是它的近邻点。但两种方法均会出现下面的问题：</p>
+<blockquote>
+<p>若<strong>邻域范围指定过大，则会造成“短路问题”</strong>，即本身距离很远却成了近邻，将距离近的那些样本扼杀在摇篮。
+若<strong>邻域范围指定过小，则会造成“断路问题”</strong>，即有些样本点无法可达了，整个世界村被划分为互不可达的小部落。</p>
+</blockquote>
+<h4 id="1152-局部线性嵌入lle"><a class="header" href="#1152-局部线性嵌入lle"><strong>11.5.2 局部线性嵌入(LLE)</strong></a></h4>
+<p>不同于Isomap算法去保持邻域距离，LLE算法试图去保持邻域内的线性关系，假定样本xi的坐标可以通过它的邻域样本线性表出：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b64236f.png" alt="15.png" /></p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b6a7b9a.png" alt="16.png" /></p>
+<p>LLE算法分为两步走，<strong>首先第一步根据近邻关系计算出所有样本的邻域重构系数w</strong>：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b662815.png" alt="17.png" /></p>
+<p><strong>接着根据邻域重构系数不变，去求解低维坐标</strong>：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b648b98.png" alt="18.png" /></p>
+<p>这样利用矩阵M，优化问题可以重写为：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b6948d7.png" alt="19.png" /></p>
+<p>M特征值分解后最小的d'个特征值对应的特征向量组成Z，LLE算法的具体流程如下图所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851b757d8c.png" alt="20.png" /></p>
+<h3 id="116-度量学习"><a class="header" href="#116-度量学习"><strong>11.6 度量学习</strong></a></h3>
+<p>本篇一开始就提到维数灾难，即在高维空间进行机器学习任务遇到样本稀疏、距离难计算等诸多的问题，因此前面讨论的降维方法都试图将原空间投影到一个合适的低维空间中，接着在低维空间进行学习任务从而产生较好的性能。事实上，不管高维空间还是低维空间都潜在对应着一个距离度量，那可不可以直接学习出一个距离度量来等效降维呢？例如：<strong>咋们就按照降维后的方式来进行距离的计算，这便是度量学习的初衷</strong>。</p>
+<p><strong>首先要学习出距离度量必须先定义一个合适的距离度量形式</strong>。对两个样本xi与xj，它们之间的平方欧式距离为：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851d3ca3d5.png" alt="21.png" /></p>
+<p>若各个属性重要程度不一样即都有一个权重，则得到加权的平方欧式距离：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851d3d82c5.png" alt="22.png" /></p>
+<p>此时各个属性之间都是相互独立无关的，但现实中往往会存在属性之间有关联的情形，例如：身高和体重，一般人越高，体重也会重一些，他们之间存在较大的相关性。这样计算距离就不能分属性单独计算，于是就引入经典的<strong>马氏距离(Mahalanobis distance)</strong>:</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851d3dc303.png" alt="23.png" /></p>
+<p><strong>标准的马氏距离中M是协方差矩阵的逆，马氏距离是一种考虑属性之间相关性且尺度无关（即无须去量纲）的距离度量</strong>。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc851d3e17c0.png" alt="24.png" /></p>
+<p><strong>矩阵M也称为“度量矩阵”，为保证距离度量的非负性与对称性，M必须为(半)正定对称矩阵</strong>，这样就为度量学习定义好了距离度量的形式，换句话说：<strong>度量学习便是对度量矩阵进行学习</strong>。现在来回想一下前面我们接触的机器学习不难发现：<strong>机器学习算法几乎都是在优化目标函数，从而求解目标函数中的参数</strong>。同样对于度量学习，也需要设置一个优化目标，书中简要介绍了错误率和相似性两种优化目标，此处限于篇幅不进行展开。</p>
+<p>在此，降维和度量学习就介绍完毕。<strong>降维是将原高维空间嵌入到一个合适的低维子空间中，接着在低维空间中进行学习任务；度量学习则是试图去学习出一个距离度量来等效降维的效果</strong>，两者都是为了解决维数灾难带来的诸多问题。也许大家最后心存疑惑，那kNN呢，为什么一开头就说了kNN算法，但是好像和后面没有半毛钱关系？正是因为在降维算法中，低维子空间的维数d'通常都由人为指定，因此我们需要使用一些低开销的学习器来选取合适的d'，<strong>kNN这家伙懒到家了根本无心学习，在训练阶段开销为零，测试阶段也只是遍历计算了距离，因此拿kNN来进行交叉验证就十分有优势了~同时降维后样本密度增大同时距离计算变易，更为kNN来展示它独特的十八般手艺提供了用武之地。</strong></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../ml/chapter10/chapter10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../ml/chapter12/chapter12.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../ml/chapter10/chapter10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../ml/chapter12/chapter12.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
