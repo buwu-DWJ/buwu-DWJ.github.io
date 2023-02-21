@@ -17,7 +17,7 @@
   - [支持向量机](ml/chapter6/chapter6.md)
   - [贝叶斯分类器](ml/chapter7/chapter7.md)
   - [EM算法](ml/chapter8/chapter8.md)
-  - [集成学习](ml/chapter9/chatper9.md)
+  - [集成学习](ml/chapter9/chapter9.md)
   - [聚类算法](ml/chapter10/chapter10.md)
   - [降维与度量学习](ml/chapter11/chapter11.md)
   - [特征选择与稀疏学习](ml/chapter12/chapter12.md)

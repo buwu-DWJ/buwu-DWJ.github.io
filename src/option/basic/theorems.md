@@ -1,3 +1,65 @@
+## 三．希腊值的含义
+
+### 序:各种希腊值特性
+
+#### delta
+
+call 的价值变化：标的相对于行权价的变化
+![call delta变化](pics/call_value.png)
+
+put 的价值变化：标的相对于行权价的变化
+![put delta](pics/put_value.png)
+
+delta 随标的的变化
+![delta_value](pics/delta.png)
+
+call_delta 随 volatility 的变化
+![call_dalta_as_volatility](pics/call_delta_as_volatility.png)
+
+put_delta 随 volatility 的变化
+![put_delta_as_volatility](pics/put_delta_as_volatility.png)
+
+call_delta 随到期时间变化
+![call_delta_as_time](pics/call_delta_as_time.png)
+
+put_delta 随到期时间变化
+![put_delta_as_time](pics/put_delta_as_time.png)
+
+call_delta 随着时间推移或者波动率下降的变化
+![call_delta_as_time_or_volatility](pics/call_delta_as_time_or_volatility.png)
+
+### Vanna
+
+Vanna：作为 Delta 对波动率的偏导，或者 Vega 对标的价格的偏导．
+![vanna](pics/vanna.png)
+
+### theta
+
+theta：期权价格随着标的价格变化，此处取了绝对值(**call 与 put 一样，都是负的！跟恒正 GAMMA 比较**)
+![theta](pics/theta.png)
+
+### vega
+
+![vega](pics/vega.png)
+
+### gamma
+
+恒正的 GAMMA：
+![gamma](pics/gamma.png)
+
+![gamma_time_volatility](pics/gamma_as_time_or_volatility.png)
+
+$$
+V_{t} =S_{t} N\left(d_{1}\right)-K e^{-r(T-t)} N\left(d_{2}\right)
+$$
+其中
+$$
+\begin{array}{l}
+d_{1}=\frac{\ln \left(\frac{S_{t}}{K}\right)+\left(r+\frac{1}{2} \sigma^{2}\right)(T-t)}{\sigma \sqrt{T-t}} \\
+d_{2}=d_{1}-\sigma \sqrt{T-t}
+\end{array}
+$$
+
 ### 3.0 随机分析几大基础定理
 
 #### 3.0.1 Radon–Nikodym
