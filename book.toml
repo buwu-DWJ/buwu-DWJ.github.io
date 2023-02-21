@@ -8,8 +8,7 @@ title = "dwj_mdbook"
 [output.katex]
 
 [output.html]
-default-theme = "rust"
-preferred-light-theme = "rust"
+default-theme = "light"
 fold.enable = true
 
 [preprocessor.katex]
