@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>特征选择与稀疏学习 - dwj_mdbook</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.4.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.</strong> python之禅</a></li></ol></li><li class="chapter-item expanded "><a href="../../ml/ml.html"><strong aria-hidden="true">3.</strong> 机器学习</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">3.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">3.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">3.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">3.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">3.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">3.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">3.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">3.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chatper9.html"><strong aria-hidden="true">3.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../ml/chapter10/chapter10.html"><strong aria-hidden="true">3.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../ml/chapter11/chapter11.html"><strong aria-hidden="true">3.11.</strong> 降维与度量学习</a></li><li class="chapter-item expanded "><a href="../../ml/chapter12/chapter12.html" class="active"><strong aria-hidden="true">3.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">3.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">3.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">3.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">3.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">4.</strong> nn</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">4.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">4.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">4.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">4.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">5.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">5.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">5.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">5.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">5.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">5.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">5.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">5.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">5.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">5.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">5.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">6.</strong> 期权相关</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">6.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">6.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">6.1.2.</strong> 价差策略</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">6.1.3.</strong> 随机分析几大基本定理</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">6.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">6.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">6.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">6.2.3.</strong> wing_model</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">dwj_mdbook</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h2 id="十二-特征选择与稀疏学习"><a class="header" href="#十二-特征选择与稀疏学习"><strong>十二． 特征选择与稀疏学习</strong></a></h2>
+<p>最近在看论文的过程中，发现对于数据集行和列的叫法颇有不同，故在介绍本篇之前，决定先将最常用的术语罗列一二，以后再见到了不管它脚扑朔还是眼迷离就能一眼识破真身了~对于数据集中的一个对象及组成对象的零件元素：</p>
+<blockquote>
+<p>统计学家常称它们为<strong>观测</strong>（<strong>observation</strong>）和<strong>变量</strong>（<strong>variable</strong>）；
+数据库分析师则称其为<strong>记录</strong>（<strong>record</strong>）和<strong>字段</strong>（<strong>field</strong>）；
+数据挖掘/机器学习学科的研究者则习惯把它们叫做<strong>样本</strong>/<strong>示例</strong>（<strong>example</strong>/<strong>instance</strong>）和<strong>属性</strong>/<strong>特征</strong>（<strong>attribute</strong>/<strong>feature</strong>）。</p>
+</blockquote>
+<p>回归正题，在机器学习中特征选择是一个重要的“<strong>数据预处理</strong>”（<strong>data</strong> <strong>preprocessing</strong>）过程，即试图从数据集的所有特征中挑选出与当前学习任务相关的特征子集，接着再利用数据子集来训练学习器；稀疏学习则是围绕着稀疏矩阵的优良性质，来完成相应的学习任务。</p>
+<h3 id="121-子集搜索与评价"><a class="header" href="#121-子集搜索与评价"><strong>12.1 子集搜索与评价</strong></a></h3>
+<p>一般地，我们可以用很多属性/特征来描述一个示例，例如对于一个人可以用性别、身高、体重、年龄、学历、专业、是否吃货等属性来描述，那现在想要训练出一个学习器来预测人的收入。根据生活经验易知：并不是所有的特征都与学习任务相关，例如年龄/学历/专业可能很大程度上影响了收入，身高/体重这些外貌属性也有较小的可能性影响收入，但像是否是一个地地道道的吃货这种属性就八杆子打不着了。因此我们只需要那些与学习任务紧密相关的特征，<strong>特征选择便是从给定的特征集合中选出相关特征子集的过程</strong>。</p>
+<p>与上篇中降维技术有着异曲同工之处的是，特征选择也可以有效地解决维数灾难的难题。具体而言：<strong>降维从一定程度起到了提炼优质低维属性和降噪的效果，特征选择则是直接剔除那些与学习任务无关的属性而选择出最佳特征子集</strong>。若直接遍历所有特征子集，显然当维数过多时遭遇指数爆炸就行不通了；若采取从候选特征子集中不断迭代生成更优候选子集的方法，则时间复杂度大大减小。这时就涉及到了两个关键环节：<strong>1.如何生成候选子集；2.如何评价候选子集的好坏</strong>，这便是早期特征选择的常用方法。书本上介绍了贪心算法，分为三种策略：</p>
+<blockquote>
+<p><strong>前向搜索</strong>：初始将每个特征当做一个候选特征子集，然后从当前所有的候选子集中选择出最佳的特征子集；接着在上一轮选出的特征子集中添加一个新的特征，同样地选出最佳特征子集；最后直至选不出比上一轮更好的特征子集。
+<strong>后向搜索</strong>：初始将所有特征作为一个候选特征子集；接着尝试去掉上一轮特征子集中的一个特征并选出当前最优的特征子集；最后直到选不出比上一轮更好的特征子集。
+<strong>双向搜索</strong>：将前向搜索与后向搜索结合起来，即在每一轮中既有添加操作也有剔除操作。</p>
+</blockquote>
+<p>对于特征子集的评价，书中给出了一些想法及基于信息熵的方法。假设数据集的属性皆为离散属性，这样给定一个特征子集，便可以通过这个特征子集的取值将数据集合划分为V个子集。例如：A1={男,女}，A2={本科,硕士}就可以将原数据集划分为2*2=4个子集，其中每个子集的取值完全相同。这时我们就可以像决策树选择划分属性那样，通过计算信息增益来评价该属性子集的好坏。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853eca1a43.png" alt="1.png" /></p>
+<p>此时，信息增益越大表示该属性子集包含有助于分类的特征越多，使用上述这种<strong>子集搜索与子集评价相结合的机制，便可以得到特征选择方法</strong>。值得一提的是若将前向搜索策略与信息增益结合在一起，与前面我们讲到的ID3决策树十分地相似。事实上，决策树也可以用于特征选择，树节点划分属性组成的集合便是选择出的特征子集。</p>
+<h3 id="122-过滤式选择relief"><a class="header" href="#122-过滤式选择relief"><strong>12.2 过滤式选择（Relief）</strong></a></h3>
+<p>过滤式方法是一种将特征选择与学习器训练相分离的特征选择技术，即首先将相关特征挑选出来，再使用选择出的数据子集来训练学习器。Relief是其中著名的代表性算法，它使用一个“<strong>相关统计量</strong>”来度量特征的重要性，该统计量是一个向量，其中每个分量代表着相应特征的重要性，因此我们最终可以根据这个统计量各个分量的大小来选择出合适的特征子集。</p>
+<p>易知Relief算法的核心在于如何计算出该相关统计量。对于数据集中的每个样例xi，Relief首先找出与xi同类别的最近邻与不同类别的最近邻，分别称为<strong>猜中近邻（near-hit）<strong>与</strong>猜错近邻（near-miss）</strong>，接着便可以分别计算出相关统计量中的每个分量。对于j分量：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ec70c88.png" alt="2.png" /></p>
+<p>直观上理解：对于猜中近邻，两者j属性的距离越小越好，对于猜错近邻，j属性距离越大越好。更一般地，若xi为离散属性，diff取海明距离，即相同取0，不同取1；若xi为连续属性，则diff为曼哈顿距离，即取差的绝对值。分别计算每个分量，最终取平均便得到了整个相关统计量。</p>
+<p>标准的Relief算法只用于二分类问题，后续产生的拓展变体Relief-F则解决了多分类问题。对于j分量，新的计算公式如下：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ec93042.png" alt="3.png" /></p>
+<p>其中pl表示第l类样本在数据集中所占的比例，易知两者的不同之处在于：<strong>标准Relief 只有一个猜错近邻，而Relief-F有多个猜错近邻</strong>。</p>
+<h3 id="123-包裹式选择lvw"><a class="header" href="#123-包裹式选择lvw"><strong>12.3 包裹式选择（LVW）</strong></a></h3>
+<p>与过滤式选择不同的是，包裹式选择将后续的学习器也考虑进来作为特征选择的评价准则。因此包裹式选择可以看作是为某种学习器<strong>量身定做</strong>的特征选择方法，由于在每一轮迭代中，包裹式选择都需要训练学习器，因此在获得较好性能的同时也产生了较大的开销。下面主要介绍一种经典的包裹式特征选择方法 --LVW（Las Vegas Wrapper），它在拉斯维加斯框架下使用随机策略来进行特征子集的搜索。拉斯维加斯？怎么听起来那么耳熟，不是那个声名显赫的赌场吗？歪果仁真会玩。怀着好奇科普一下，结果又顺带了一个赌场：</p>
+<blockquote>
+<p><strong>蒙特卡罗算法</strong>：采样越多，越近似最优解，一定会给出解，但给出的解不一定是正确解；
+<strong>拉斯维加斯算法</strong>：采样越多，越有机会找到最优解，不一定会给出解，且给出的解一定是正确解。</p>
+</blockquote>
+<p>举个例子，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找较好的，但不保证是最好的。</p>
+<p>而拉斯维加斯算法，则是另一种情况。假如有一把锁，给我100把钥匙，只有1把是对的。于是我每次随机拿1把钥匙去试，打不开就再换1把。我试的次数越多，打开（正确解）的机会就越大，但在打开之前，那些错的钥匙都是没有用的。这个试钥匙的算法，就是拉斯维加斯的——尽量找最好的，但不保证能找到。</p>
+<p>LVW算法的具体流程如下所示，其中比较特别的是停止条件参数T的设置，即在每一轮寻找最优特征子集的过程中，若随机T次仍没找到，算法就会停止，从而保证了算法运行时间的可行性。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ed5e08e.png" alt="4.png" /></p>
+<h3 id="124-嵌入式选择与正则化"><a class="header" href="#124-嵌入式选择与正则化"><strong>12.4 嵌入式选择与正则化</strong></a></h3>
+<p>前面提到了的两种特征选择方法：<strong>过滤式中特征选择与后续学习器完全分离，包裹式则是使用学习器作为特征选择的评价准则；嵌入式是一种将特征选择与学习器训练完全融合的特征选择方法，即将特征选择融入学习器的优化过程中</strong>。在之前《经验风险与结构风险》中已经提到：经验风险指的是模型与训练数据的契合度，结构风险则是模型的复杂程度，机器学习的核心任务就是：<strong>在模型简单的基础上保证模型的契合度</strong>。例如：岭回归就是加上了L2范数的最小二乘法，有效地解决了奇异矩阵、过拟合等诸多问题，下面的嵌入式特征选择则是在损失函数后加上了L1范数。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ec8b203.png" alt="5.png" /></p>
+<p>L1范数美名又约<strong>Lasso Regularization</strong>，指的是向量中每个元素的绝对值之和，这样在优化目标函数的过程中，就会使得w尽可能地小，在一定程度上起到了防止过拟合的作用，同时与L2范数（Ridge Regularization ）不同的是，L1范数会使得部分w变为0， 从而达到了特征选择的效果。</p>
+<p>总的来说：<strong>L1范数会趋向产生少量的特征，其他特征的权值都是0；L2会选择更多的特征，这些特征的权值都会接近于0</strong>。这样L1范数在特征选择上就十分有用，而L2范数则具备较强的控制过拟合能力。可以从下面两个方面来理解：</p>
+<p>（1）<strong>下降速度</strong>：L1范数按照绝对值函数来下降，L2范数按照二次函数来下降。因此在0附近，L1范数的下降速度大于L2范数，故L1范数能很快地下降到0，而L2范数在0附近的下降速度非常慢，因此较大可能收敛在0的附近。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ed0aaf5.png" alt="6.png" /></p>
+<p>（2）<strong>空间限制</strong>：L1范数与L2范数都试图在最小化损失函数的同时，让权值W也尽可能地小。我们可以将原优化问题看做为下面的问题，即让后面的规则则都小于某个阈值。这样从图中可以看出：L1范数相比L2范数更容易得到稀疏解。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ecc223e.png" alt="7.png" /></p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ed51aa1.png" alt="8.png" /></p>
+<h3 id="125-稀疏表示与字典学习"><a class="header" href="#125-稀疏表示与字典学习"><strong>12.5 稀疏表示与字典学习</strong></a></h3>
+<p>当样本数据是一个稀疏矩阵时，对学习任务来说会有不少的好处，例如很多问题变得线性可分，储存更为高效等。这便是稀疏表示与字典学习的基本出发点。稀疏矩阵即矩阵的每一行/列中都包含了大量的零元素，且这些零元素没有出现在同一行/列，对于一个给定的稠密矩阵，若我们能<strong>通过某种方法找到其合适的稀疏表示</strong>，则可以使得学习任务更加简单高效，我们称之为<strong>稀疏编码（sparse coding）<strong>或</strong>字典学习（dictionary learning）</strong>。</p>
+<p>给定一个数据集，字典学习/稀疏编码指的便是通过一个字典将原数据转化为稀疏表示，因此最终的目标就是求得字典矩阵B及稀疏表示α，书中使用变量交替优化的策略能较好地求得解，深感陷进去短时间无法自拔，故先不进行深入...</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ed0ca43.png" alt="9.png" /></p>
+<h3 id="126-压缩感知"><a class="header" href="#126-压缩感知"><strong>12.6 压缩感知</strong></a></h3>
+<p>压缩感知在前些年也是风风火火，与特征选择、稀疏表示不同的是：它关注的是通过欠采样信息来恢复全部信息。在实际问题中，为了方便传输和存储，我们一般将数字信息进行压缩，这样就有可能损失部分信息，如何根据已有的信息来重构出全部信号，这便是压缩感知的来历，压缩感知的前提是已知的信息具有稀疏表示。下面是关于压缩感知的一些背景：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc853ed431c6.png" alt="10.png" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../ml/chapter11/chapter11.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../ml/chapter13/chapter13.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../ml/chapter11/chapter11.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../ml/chapter13/chapter13.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
