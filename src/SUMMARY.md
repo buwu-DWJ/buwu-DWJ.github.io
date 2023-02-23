@@ -55,7 +55,7 @@
     - [连续动作空间的确定性策略](DRL/RL/chapter7/chapter7.md)
   - [FIN](DRL/fin.md)
   - [DRL](DRL/DRL.md)
-- [期权相关](../option/option.md)
+- [期权相关](option/option.md)
   - [期权基础概念](option/basic/pre.md)
     - [基础知识](option/basic/basic.md)
     - [价差](option/basic/spread.md)

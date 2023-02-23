@@ -13,14 +13,14 @@
     .sidetoc {
         margin-left: auto;
         margin-right: auto;
-        /*left: calc(100% + (var(--content-max-width))/4 - 180px);*/
-        left: calc(100% - 200px);
+        /* left: calc(100% + (var(--content-max-width))/4 - 180px); */
+        left: calc(100% - 260px);
         position: absolute;
     }
 
     .pagetoc {
         position: fixed;
-        width: 200px;
+        width: 250px;
         height: calc(100vh - var(--menu-bar-height) - 10rem);
         overflow: auto;
         z-index: 1000;
@@ -28,19 +28,19 @@
 
     .pagetoc a {
         border-left: 1px solid var(--sidebar-bg);
-        color: var(--fg) !important;
+        color: #798186;
         display: block;
         padding-bottom: 5px;
         padding-top: 5px;
         padding-left: 10px;
-        text-align: left;
+        text-align: justify;
         text-decoration: none;
         font-size: 1.2rem;
     }
 
     .pagetoc a:hover,
     .pagetoc a.active {
-        background: var(--sidebar-bg);
+        background: #fd1cc58f;
         color: var(--sidebar-fg) !important;
     }
 
