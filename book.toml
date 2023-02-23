@@ -17,3 +17,12 @@ additional-js = ["assets/custom.js", "assets/bigPicture.js"]
 
 [preprocessor.katex]
 renderers = ["html"]
+
+
+# [preprocessor.theme]
+# coal-inline-code-color = "#ffb454"
+# light-inline-code-color = "#F42C4C"
+# navy-inline-code-color = "#ffb454"
+# rust-inline-code-color = "#F42C4C"
+# light-links = "#1f1fff"
+# rust-links = "#1f1fff"

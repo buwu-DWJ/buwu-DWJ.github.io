@@ -134,3 +134,11 @@ code.editable,
 .chapter li .md-viewed {
     color: #777;
 }
+
+.light {
+    --scrollbar: #8F8F8F;
+
+    --icons: #747474;
+    --icons-hover: #ff00d4;
+    --inline-code-color: #ff00f2;
+}
