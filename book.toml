@@ -3,7 +3,7 @@ authors = ["buwu-DWJ"]
 language = "chs"
 multilingual = false
 src = "src"
-title = "dwj_mdbook"
+title = "buwu_dwj_srcbk"
 
 [output.katex]
 
