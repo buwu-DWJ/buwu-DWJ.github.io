@@ -14,7 +14,7 @@
     - [结构上优化运行速度](python/python之禅/optim.md)
     - [其他细节](python/python之禅/python_optim.md)
 - [Rust🙉]()
-  - [⚜️Rust圣经⚜️摘要](rust/rust_holy/pre.md)
+  - [Rust圣经👿摘要](rust/rust_holy/pre.md)
     - [基础知识](rust/rust_holy/basic/pre.md)
       - [安装及其他](rust/rust_holy/basic/basic.md)
       - [变量绑定与解构](rust/rust_holy/basic/variable.md)
