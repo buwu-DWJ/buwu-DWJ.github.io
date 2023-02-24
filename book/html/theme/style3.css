@@ -40,7 +40,7 @@
 
     .pagetoc a:hover,
     .pagetoc a.active {
-        background: #fd1cc58f;
+        background: #fffb008f;
         color: var(--sidebar-fg) !important;
     }
 
@@ -65,10 +65,54 @@
     margin-top: 1rem;
 }
 
+
+.chapter-item:hover {
+    font-weight: bold;
+    color: #fcf805;
+    filter: brightness(1.1);
+    /* background-color: #cc00df2a; */
+    background-image: linear-gradient(to right, #c000e65d, #ffffff);
+    /* -webkit-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1);
+    box-shadow: 10px 10px 99px 6px rgba(240, 56, 255, 1); */
+}
+
+
+/* .chapter-item.expanded:hover {
+    color: #faf5fc;
+    background-color: #a407ff;
+} */
+
+.sidebar {
+    background-image: linear-gradient(to right, #f9fc6e17, #ffffff);
+}
+
+
+li.chapter-item.expanded .active {
+    color: #8000b3;
+    font-weight: bold !important;
+    /* background-image: linear-gradient(to right, #5d009ba6, #ffffff); */
+}
+
+
 /* 修改滚动条宽度 */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #fbff10;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #a407ff;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #fbff00;
+
 }
 
 /* 表格靠左对齐 */
@@ -95,6 +139,7 @@ table {
     .sidebar-visible .nav-wrapper {
         display: block;
     }
+
 }
 
 
@@ -136,7 +181,7 @@ code.editable,
 }
 
 .light {
-    --scrollbar: #8F8F8F;
+    --scrollbar: #55cfffd8;
 
     --icons: #747474;
     --icons-hover: #ff00d4;
