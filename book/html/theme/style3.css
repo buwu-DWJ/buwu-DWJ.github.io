@@ -40,7 +40,7 @@
 
     .pagetoc a:hover,
     .pagetoc a.active {
-        background: #fd1cc58f;
+        background: #fffb008f;
         color: var(--sidebar-fg) !important;
     }
 
@@ -65,10 +65,52 @@
     margin-top: 1rem;
 }
 
+.sidebar .sidebar-scrollbox {
+    /* background-color: #f9fc6e17; */
+    background-image: linear-gradient(to right, #f9fc6e17, #ffffff);
+
+
+}
+
+
+ol.chapter {
+    color: #8300c0;
+    /* background-color: #fffc510c; */
+    background-image: linear-gradient(to right, #f9fc6e17, #ffffff);
+}
+
+
+
+li.chapter-item.expanded .active {
+    color: #010002;
+    /* background-color: #fffc5411; */
+    background-image: linear-gradient(to right, #f9fc6e17, #ffffff);
+}
+
+ol.section {
+    color: #000000;
+    /* background-color: #fffd6c1e; */
+    background-image: linear-gradient(to right, #f9fc6e17, #ffffff);
+}
+
 /* 修改滚动条宽度 */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: #fbff10;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #a407ff;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #fbff00;
+
 }
 
 /* 表格靠左对齐 */
@@ -95,6 +137,7 @@ table {
     .sidebar-visible .nav-wrapper {
         display: block;
     }
+
 }
 
 
@@ -136,7 +179,7 @@ code.editable,
 }
 
 .light {
-    --scrollbar: #8F8F8F;
+    --scrollbar: #55cfffd8;
 
     --icons: #747474;
     --icons-hover: #ff00d4;
