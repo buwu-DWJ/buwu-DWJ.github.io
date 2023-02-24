@@ -1,0 +1,491 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>hashmap - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../../favicon.png">
+    <link rel="stylesheet" href="../../../../css/variables.css">
+    <link rel="stylesheet" href="../../../../css/general.css">
+    <link rel="stylesheet" href="../../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../../highlight.css">
+    <link rel="stylesheet" href="../../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../../theme/style3.css">
+
+
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../../../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../../python/crawler/re.html"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/pre.html"><strong aria-hidden="true">3.</strong> Rust🙉</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">3.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">3.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">3.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">3.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">3.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">3.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">3.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">3.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">3.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">3.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">3.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">3.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">3.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">3.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">3.1.6.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">3.1.6.2.</strong> option</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">3.1.6.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">3.1.6.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">3.1.7.</strong> 方法method</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">3.1.8.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">3.1.8.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">3.1.8.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">3.1.8.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">3.1.8.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">3.1.9.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">3.1.9.1.</strong> 动态数组</a></li><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/collections/hashmap.html" class="active"><strong aria-hidden="true">3.1.9.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">3.1.10.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">3.1.11.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">3.1.11.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">3.1.11.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">3.1.12.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">3.1.12.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">3.1.12.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">3.1.12.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">3.1.13.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">3.1.14.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">3.1.15.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">3.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">3.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">3.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">3.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">3.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">3.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">3.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">3.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">3.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">3.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">3.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">3.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">3.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">3.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">3.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">3.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">3.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">3.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">3.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">3.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">3.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">3.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">3.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">3.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">3.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">3.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">3.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">3.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">3.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">3.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">3.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">3.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">3.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">3.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">3.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">3.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">3.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">3.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">3.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">3.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/intro.html"><strong aria-hidden="true">3.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/intro.html"><strong aria-hidden="true">3.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/getting-started.html"><strong aria-hidden="true">3.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/future-excuting.html"><strong aria-hidden="true">3.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/pin-unpin.html"><strong aria-hidden="true">3.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/async-await.html"><strong aria-hidden="true">3.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/multi-futures-simultaneous.html"><strong aria-hidden="true">3.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/pain-points-and-workarounds.html"><strong aria-hidden="true">3.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/async/web-server.html"><strong aria-hidden="true">3.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/intro.html"><strong aria-hidden="true">3.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/overview.html"><strong aria-hidden="true">3.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/getting-startted.html"><strong aria-hidden="true">3.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/spawning.html"><strong aria-hidden="true">3.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/shared-state.html"><strong aria-hidden="true">3.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/channels.html"><strong aria-hidden="true">3.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/io.html"><strong aria-hidden="true">3.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/frame.html"><strong aria-hidden="true">3.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/async.html"><strong aria-hidden="true">3.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/select.html"><strong aria-hidden="true">3.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/stream.html"><strong aria-hidden="true">3.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/graceful-shutdown.html"><strong aria-hidden="true">3.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/rust_holy/tokio/bridging-with-sync.html"><strong aria-hidden="true">3.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">3.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">3.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">3.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">3.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">3.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">3.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">3.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">3.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">3.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">3.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">3.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">3.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">3.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">3.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">3.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">3.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">3.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">3.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">3.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">3.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">3.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">3.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">3.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">3.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">3.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">3.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">3.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">3.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">3.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">3.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">3.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">3.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">3.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">3.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">3.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">3.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">3.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">3.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">3.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">3.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">3.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">3.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">3.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">3.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">3.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">3.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">3.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">3.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">3.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">3.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../ml/ml.html"><strong aria-hidden="true">4.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../ml/pre/pre.html"><strong aria-hidden="true">4.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">4.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">4.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">4.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">4.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">4.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">4.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">4.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">4.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">4.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">4.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">4.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">4.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">4.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">4.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">4.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../../nn/basic.html"><strong aria-hidden="true">5.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../nn/feedforward.html"><strong aria-hidden="true">5.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../../nn/memory.html"><strong aria-hidden="true">5.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../../nn/GAN.html"><strong aria-hidden="true">5.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../../nn/graph.html"><strong aria-hidden="true">5.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../../DRL/DRL.html"><strong aria-hidden="true">6.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../DRL/RL.html"><strong aria-hidden="true">6.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">6.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">6.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">6.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">6.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">6.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">6.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">6.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../../DRL/fin.html"><strong aria-hidden="true">6.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../../DRL/DRL.html"><strong aria-hidden="true">6.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../../option/option.html"><strong aria-hidden="true">7.</strong> Option😪💤</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/basic/pre.html"><strong aria-hidden="true">7.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/basic/basic.html"><strong aria-hidden="true">7.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../../option/basic/spread.html"><strong aria-hidden="true">7.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../../option/basic/theorems.html"><strong aria-hidden="true">7.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../../../option/models/pre.html"><strong aria-hidden="true">7.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/models/sv.html"><strong aria-hidden="true">7.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../../option/models/rough.html"><strong aria-hidden="true">7.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../../option/models/wing_model.html"><strong aria-hidden="true">7.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">7.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">7.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">7.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="kv-存储-hashmap"><a class="header" href="#kv-存储-hashmap">KV 存储 HashMap</a></h1>
+<p>和动态数组一样，<code>HashMap</code> 也是 Rust 标准库中提供的集合类型，但是又与动态数组不同，<code>HashMap</code> 中存储的是一一映射的 <code>KV</code> 键值对，并提供了平均复杂度为 <code>O(1)</code> 的查询方法，当我们希望通过一个 <code>Key</code> 去查询值时，该类型非常有用，以致于 Go 语言将该类型设置成了语言级别的内置特性。</p>
+<p>Rust 中哈希类型（哈希映射）为 <code>HashMap&lt;K,V&gt;</code>，在其它语言中，也有类似的数据结构，例如 <code>hash map</code>，<code>map</code>，<code>object</code>，<code>hash table</code>，<code>字典</code> 等等，引用小品演员孙涛的一句台词：大家都是本地狐狸，别搁那装貂 :)。</p>
+<h2 id="创建-hashmap"><a class="header" href="#创建-hashmap">创建 HashMap</a></h2>
+<p>跟创建动态数组 <code>Vec</code> 的方法类似，可以使用 <code>new</code> 方法来创建 <code>HashMap</code>，然后通过 <code>insert</code> 方法插入键值对。</p>
+<h4 id="使用-new-方法创建"><a class="header" href="#使用-new-方法创建">使用 new 方法创建</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+// 创建一个HashMap，用于存储宝石种类和对应的数量
+let mut my_gems = HashMap::new();
+
+// 将宝石类型和对应的数量写入表中
+my_gems.insert(&quot;红宝石&quot;, 1);
+my_gems.insert(&quot;蓝宝石&quot;, 2);
+my_gems.insert(&quot;河边捡的误以为是宝石的破石头&quot;, 18);
+<span class="boring">}</span></code></pre></pre>
+<p>很简单对吧？跟其它语言没有区别，聪明的同学甚至能够猜到该 <code>HashMap</code> 的类型：<code>HashMap&lt;&amp;str,i32&gt;</code>。</p>
+<p>但是还有一点，你可能没有注意，那就是使用 <code>HashMap</code> 需要手动通过 <code>use ...</code> 从标准库中引入到我们当前的作用域中来，仔细回忆下，之前使用另外两个集合类型 <code>String</code> 和 <code>Vec</code> 时，我们是否有手动引用过？答案是 <strong>No</strong>，因为 <code>HashMap</code> 并没有包含在 Rust 的 <code>prelude</code>中（Rust 为了简化用户使用，提前将最常用的类型自动引入到作用域中）。</p>
+<p>所有的集合类型都是动态的，意味着它们没有固定的内存大小，因此它们底层的数据都存储在内存堆上，然后通过一个存储在栈中的引用类型来访问。同时，跟其它集合类型一致，<code>HashMap</code> 也是内聚性的，即所有的 <code>K</code> 必须拥有同样的类型，<code>V</code> 也是如此。</p>
+<blockquote>
+<p>跟 <code>Vec</code> 一样，如果预先知道要存储的 <code>KV</code> 对个数，可以使用 <code>HashMap::with_capacity(capacity)</code> 创建指定大小的 <code>HashMap</code>，避免频繁的内存分配和拷贝，提升性能</p>
+</blockquote>
+<h4 id="使用迭代器和-collect-方法创建"><a class="header" href="#使用迭代器和-collect-方法创建">使用迭代器和 collect 方法创建</a></h4>
+<p>在实际使用中，不是所有的场景都能 <code>new</code> 一个哈希表后，然后悠哉悠哉的依次插入对应的键值对，而是可能会从另外一个数据结构中，获取到对应的数据，最终生成 <code>HashMap</code>。</p>
+<p>例如考虑一个场景，有一张表格中记录了足球联赛中各队伍名称和积分的信息，这张表如果被导入到 Rust 项目中，一个合理的数据结构是 <code>Vec&lt;(String, u32)&gt;</code> 类型，该数组中的元素是一个个元组，该数据结构跟表格数据非常契合：表格中的数据都是逐行存储，每一个行都存有一个 <code>(队伍名称, 积分)</code> 的信息。</p>
+<p>但是在很多时候，又需要通过队伍名称来查询对应的积分，此时动态数组就不适用了，因此可以用 <code>HashMap</code> 来保存相关的<strong>队伍名称 -&gt; 积分</strong>映射关系。 理想很丰满，现实很骨感，如何将 <code>Vec&lt;(String, u32)&gt;</code> 中的数据快速写入到 <code>HashMap&lt;String, u32&gt;</code> 中？</p>
+<p>一个动动脚趾头就能想到的笨方法如下：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let teams_list = vec![
+        (&quot;中国队&quot;.to_string(), 100),
+        (&quot;美国队&quot;.to_string(), 10),
+        (&quot;日本队&quot;.to_string(), 50),
+    ];
+
+    let mut teams_map = HashMap::new();
+    for team in &amp;teams_list {
+        teams_map.insert(&amp;team.0, team.1);
+    }
+
+    println!(&quot;{:?}&quot;,teams_map)
+}</code></pre></pre>
+<p>遍历列表，将每一个元组作为一对 <code>KV </code>插入到 <code>HashMap</code> 中，很简单，但是……也不太聪明的样子，换个词说就是 —— 不够 rusty。</p>
+<p>好在，Rust 为我们提供了一个非常精妙的解决办法：先将 <code>Vec</code> 转为迭代器，接着通过 <code>collect</code> 方法，将迭代器中的元素收集后，转成 <code>HashMap</code>：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let teams_list = vec![
+        (&quot;中国队&quot;.to_string(), 100),
+        (&quot;美国队&quot;.to_string(), 10),
+        (&quot;日本队&quot;.to_string(), 50),
+    ];
+
+    let teams_map: HashMap&lt;_,_&gt; = teams_list.into_iter().collect();
+
+    println!(&quot;{:?}&quot;,teams_map)
+}</code></pre></pre>
+<p>代码很简单，<code>into_iter</code> 方法将列表转为迭代器，接着通过 <code>collect</code> 进行收集，不过需要注意的是，<code>collect</code> 方法在内部实际上支持生成多种类型的目标集合，因此我们需要通过类型标注 <code>HashMap&lt;_,_&gt;</code> 来告诉编译器：请帮我们收集为 <code>HashMap</code> 集合类型，具体的 <code>KV</code> 类型，麻烦编译器您老人家帮我们推导。</p>
+<p>由此可见，Rust 中的编译器时而小聪明，时而大聪明，不过好在，它大聪明的时候，会自家人知道自己事，总归会通知你一声：</p>
+<pre><code class="language-console">error[E0282]: type annotations needed // 需要类型标注
+  --&gt; src/main.rs:10:9
+   |
+10 |     let teams_map = teams_list.into_iter().collect();
+   |         ^^^^^^^^^ consider giving `teams_map` a type // 给予 `teams_map` 一个具体的类型
+</code></pre>
+<h2 id="所有权转移"><a class="header" href="#所有权转移">所有权转移</a></h2>
+<p><code>HashMap</code> 的所有权规则与其它 Rust 类型没有区别：</p>
+<ul>
+<li>若类型实现 <code>Copy</code> 特征，该类型会被复制进 <code>HashMap</code>，因此无所谓所有权</li>
+<li>若没实现 <code>Copy</code> 特征，所有权将被转移给 <code>HashMap</code> 中</li>
+</ul>
+<p>例如我参选帅气男孩时的场景再现：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let name = String::from(&quot;Sunface&quot;);
+    let age = 18;
+
+    let mut handsome_boys = HashMap::new();
+    handsome_boys.insert(name, age);
+
+    println!(&quot;因为过于无耻，{}已经被从帅气男孩名单中除名&quot;, name);
+    println!(&quot;还有，他的真实年龄远远不止{}岁&quot;, age);
+}</code></pre></pre>
+<p>运行代码，报错如下：</p>
+<pre><code class="language-console">error[E0382]: borrow of moved value: `name`
+  --&gt; src/main.rs:10:32
+   |
+4  |     let name = String::from(&quot;Sunface&quot;);
+   |         ---- move occurs because `name` has type `String`, which does not implement the `Copy` trait
+...
+8  |     handsome_boys.insert(name, age);
+   |                          ---- value moved here
+9  |
+10 |     println!(&quot;因为过于无耻，{}已经被除名&quot;, name);
+   |                                            ^^^^ value borrowed here after move
+</code></pre>
+<p>提示很清晰，<code>name</code> 是 <code>String</code> 类型，因此它受到所有权的限制，在 <code>insert</code> 时，它的所有权被转移给 <code>handsome_boys</code>，所以最后在使用时，会遇到这个无情但是意料之中的报错。</p>
+<p><strong>如果你使用引用类型放入 HashMap 中</strong>，请确保该引用的生命周期至少跟 <code>HashMap</code> 活得一样久：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let name = String::from(&quot;Sunface&quot;);
+    let age = 18;
+
+    let mut handsome_boys = HashMap::new();
+    handsome_boys.insert(&amp;name, age);
+
+    std::mem::drop(name);
+    println!(&quot;因为过于无耻，{:?}已经被除名&quot;, handsome_boys);
+    println!(&quot;还有，他的真实年龄远远不止{}岁&quot;, age);
+}</code></pre></pre>
+<p>上面代码，我们借用 <code>name</code> 获取了它的引用，然后插入到 <code>handsome_boys</code> 中，至此一切都很完美。但是紧接着，就通过 <code>drop</code> 函数手动将 <code>name</code> 字符串从内存中移除，再然后就报错了：</p>
+<pre><code class="language-console"> handsome_boys.insert(&amp;name, age);
+   |                          ----- borrow of `name` occurs here // name借用发生在此处
+9  |
+10 |     std::mem::drop(name);
+   |                    ^^^^ move out of `name` occurs here // name的所有权被转移走
+11 |     println!(&quot;因为过于无耻，{:?}已经被除名&quot;, handsome_boys);
+   |                                              ------------- borrow later used here // 所有权转移后，还试图使用name
+</code></pre>
+<p>最终，某人因为过于无耻，真正的被除名了 :)</p>
+<h2 id="查询-hashmap"><a class="header" href="#查询-hashmap">查询 HashMap</a></h2>
+<p>通过 <code>get</code> 方法可以获取元素：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+
+let team_name = String::from(&quot;Blue&quot;);
+let score: Option&lt;&amp;i32&gt; = scores.get(&amp;team_name);
+<span class="boring">}</span></code></pre></pre>
+<p>上面有几点需要注意：</p>
+<ul>
+<li><code>get</code> 方法返回一个 <code>Option&lt;&amp;i32&gt;</code> 类型：当查询不到时，会返回一个 <code>None</code>，查询到时返回 <code>Some(&amp;i32)</code></li>
+<li><code>&amp;i32</code> 是对 <code>HashMap</code> 中值的借用，如果不使用借用，可能会发生所有权的转移</li>
+</ul>
+<p>还可以继续拓展下，上面的代码中，如果我们想直接获得值类型的 <code>score</code> 该怎么办，答案简约但不简单:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let score: i32 = scores.get(&amp;team_name).copied().unwrap_or(0);
+<span class="boring">}</span></code></pre></pre>
+<p>这里留给大家一个小作业: 去官方文档中查询下 <code>Option</code> 的 <code>copied</code> 方法和 <code>unwrap_or</code> 方法的含义及该如何使用。</p>
+<p>还可以通过循环的方式依次遍历 <code>KV</code> 对：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let mut scores = HashMap::new();
+
+scores.insert(String::from(&quot;Blue&quot;), 10);
+scores.insert(String::from(&quot;Yellow&quot;), 50);
+
+for (key, value) in &amp;scores {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>最终输出：</p>
+<pre><code class="language-console">Yellow: 50
+Blue: 10
+</code></pre>
+<h2 id="更新-hashmap-中的值"><a class="header" href="#更新-hashmap-中的值">更新 HashMap 中的值</a></h2>
+<p>更新值的时候，涉及多种情况，咱们在代码中一一进行说明：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let mut scores = HashMap::new();
+
+    scores.insert(&quot;Blue&quot;, 10);
+
+    // 覆盖已有的值
+    let old = scores.insert(&quot;Blue&quot;, 20);
+    assert_eq!(old, Some(10));
+
+    // 查询新插入的值
+    let new = scores.get(&quot;Blue&quot;);
+    assert_eq!(new, Some(&amp;20));
+
+    // 查询Yellow对应的值，若不存在则插入新值
+    let v = scores.entry(&quot;Yellow&quot;).or_insert(5);
+    assert_eq!(*v, 5); // 不存在，插入5
+
+    // 查询Yellow对应的值，若不存在则插入新值
+    let v = scores.entry(&quot;Yellow&quot;).or_insert(50);
+    assert_eq!(*v, 5); // 已经存在，因此50没有插入
+}</code></pre></pre>
+<p>具体的解释在代码注释中已有，这里不再进行赘述。</p>
+<h4 id="在已有值的基础上更新"><a class="header" href="#在已有值的基础上更新">在已有值的基础上更新</a></h4>
+<p>另一个常用场景如下：查询某个 <code>key</code> 对应的值，若不存在则插入新值，若存在则对已有的值进行更新，例如在文本中统计词语出现的次数：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+
+let text = &quot;hello world wonderful world&quot;;
+
+let mut map = HashMap::new();
+// 根据空格来切分字符串(英文单词都是通过空格切分)
+for word in text.split_whitespace() {
+    let count = map.entry(word).or_insert(0);
+    *count += 1;
+}
+
+println!(&quot;{:?}&quot;, map);
+<span class="boring">}</span></code></pre></pre>
+<p>上面代码中，新建一个 <code>map</code> 用于保存词语出现的次数，插入一个词语时会进行判断：若之前没有插入过，则使用该词语作 <code>Key</code>，插入次数 0 作为 <code>Value</code>，若之前插入过则取出之前统计的该词语出现的次数，对其加一。</p>
+<p>有两点值得注意：</p>
+<ul>
+<li><code>or_insert</code> 返回了 <code>&amp;mut v</code> 引用，因此可以通过该可变引用直接修改 <code>map</code> 中对应的值</li>
+<li>使用 <code>count</code> 引用时，需要先进行解引用 <code>*count</code>，否则会出现类型不匹配</li>
+</ul>
+<h2 id="哈希函数"><a class="header" href="#哈希函数">哈希函数</a></h2>
+<p>你肯定比较好奇，为何叫哈希表，到底什么是哈希。</p>
+<p>先来设想下，如果要实现 <code>Key</code> 与 <code>Value</code> 的一一对应，是不是意味着我们要能比较两个 <code>Key</code> 的相等性？例如 &quot;a&quot; 和 &quot;b&quot;，1 和 2，当这些类型做 <code>Key</code> 且能比较时，可以很容易知道 <code>1</code> 对应的值不会错误的映射到 <code>2</code> 上，因为 <code>1</code> 不等于 <code>2</code>。因此，一个类型能否作为 <code>Key</code> 的关键就是是否能进行相等比较，或者说该类型是否实现了 <code>std::cmp::Eq</code> 特征。</p>
+<blockquote>
+<p>f32 和 f64 浮点数，没有实现 <code>std::cmp::Eq</code> 特征，因此不可以用作 <code>HashMap</code> 的 <code>Key</code></p>
+</blockquote>
+<p>好了，理解完这个，再来设想一点，若一个复杂点的类型作为 <code>Key</code>，那怎么在底层对它进行存储，怎么使用它进行查询和比较？ 是不是很棘手？好在我们有哈希函数：通过它把 <code>Key</code> 计算后映射为哈希值，然后使用该哈希值来进行存储、查询、比较等操作。</p>
+<p>但是问题又来了，如何保证不同 <code>Key</code> 通过哈希后的两个值不会相同？如果相同，那意味着我们使用不同的 <code>Key</code>，却查到了同一个结果，这种明显是错误的行为。
+此时，就涉及到安全性跟性能的取舍了。</p>
+<p>若要追求安全，尽可能减少冲突，同时防止拒绝服务（Denial of Service, DoS）攻击，就要使用密码学安全的哈希函数，<code>HashMap</code> 就是使用了这样的哈希函数。反之若要追求性能，就需要使用没有那么安全的算法。</p>
+<h4 id="高性能三方库"><a class="header" href="#高性能三方库">高性能三方库</a></h4>
+<p>因此若性能测试显示当前标准库默认的哈希函数不能满足你的性能需求，就需要去 <a href="https://crates.io"><code>crates.io</code></a> 上寻找其它的哈希函数实现，使用方法很简单：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::hash::BuildHasherDefault;
+use std::collections::HashMap;
+// 引入第三方的哈希函数
+use twox_hash::XxHash64;
+
+// 指定HashMap使用第三方的哈希函数XxHash64
+let mut hash: HashMap&lt;_, _, BuildHasherDefault&lt;XxHash64&gt;&gt; = Default::default();
+hash.insert(42, &quot;the answer&quot;);
+assert_eq!(hash.get(&amp;42), Some(&amp;&quot;the answer&quot;));
+<span class="boring">}</span></code></pre></pre>
+<blockquote>
+<p>目前，<code>HashMap</code> 使用的哈希函数是 <code>SipHash</code>，它的性能不是很高，但是安全性很高。<code>SipHash</code> 在中等大小的 <code>Key</code> 上，性能相当不错，但是对于小型的 <code>Key</code> （例如整数）或者大型 <code>Key</code> （例如字符串）来说，性能还是不够好。若你需要极致性能，例如实现算法，可以考虑这个库：<a href="https://github.com/tkaitchuck/ahash">ahash</a></p>
+</blockquote>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../../rust/rust_holy/basic/collections/vector.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../../rust/rust_holy/basic/lifetime.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../../rust/rust_holy/basic/collections/vector.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../../rust/rust_holy/basic/lifetime.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "rust/rust_holy/basic/collections/hashmap.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

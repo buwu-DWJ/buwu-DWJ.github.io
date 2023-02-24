@@ -1,4 +1,4 @@
-<<<<<<< HEAD @media only screen and (max-width:1080px) {
+@media only screen and (max-width:1080px) {
     .sidetoc {
         display: none !important;
     }
@@ -181,7 +181,7 @@ code {
     font-size: 14px !important;
     font-weight: bold !important;
 
-    =======@media only screen and (max-width:1080px) {
+    @media only screen and (max-width:1080px) {
         .sidetoc {
             display: none !important;
         }
