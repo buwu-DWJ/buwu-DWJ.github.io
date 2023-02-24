@@ -116,7 +116,7 @@
         - [解析数据帧](rust/rust_holy/async-rust/tokio/frame.md)
         - [深入 async](rust/rust_holy/async-rust/tokio/async.md)
         - [select](rust/rust_holy/async-rust/tokio/select.md)
-        - [类似迭代器的 Stream](rust/rust_holy/async-rust/tokio/stream.md))
+        - [类似迭代器的 Stream](rust/rust_holy/async-rust/tokio/stream.md)
         - [优雅的关闭](rust/rust_holy/async-rust/tokio/graceful-shutdown.md)
         - [异步跟同步共存](rust/rust_holy/async-rust/tokio/bridging-with-sync.md)
     - [Cargo 使用指南](rust/rust_holy/cargo/intro.md)
