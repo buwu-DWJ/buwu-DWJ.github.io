@@ -183,7 +183,7 @@ Rust 在语言级别，只有一种字符串类型： `str`，它通常是以引
 - `String::from("hello,world")`
 - `"hello,world".to_string()`
 
-那么如何将 `String` 类型转为 `&str` 类型呢？答案很简单，取引用即可：
+那么如何将 `String` 类型转为 `&str` 类型呢？答案很简单，`取引用`即可：
 
 ```rust
 fn main() {
@@ -198,7 +198,7 @@ fn say_hello(s: &str) {
 }
 ```
 
-实际上这种灵活用法是因为 `deref` 隐式强制转换，具体我们会在 [`Deref` 特征](https://course.rs/advance/smart-pointer/deref.html)进行详细讲解。
+实际上这种灵活用法是因为 `deref` 隐式强制转换，具体我们会在`Deref`特征进行详细讲解。
 
 ## 字符串索引
 
@@ -558,9 +558,7 @@ let s = s1 + "-" + &s2 + "-" + &s3;
 
 2、使用 `format!` 连接字符串
 
-`format!` 这种方式适用于 `String` 和 `&str` 。`format!` 的用法与 `print!` 的用法类似，详见[格式化输出](https://course.rs/basic/formatted-output.html#printprintlnformat)。
-
-示例代码如下：
+`format!` 这种方式适用于 `String` 和 `&str` 。`format!` 的用法与 `print!` 的用法类似, 示例代码如下：
 
 ```rust
 fn main() {
@@ -705,20 +703,3 @@ for b in "中国人".bytes() {
 与其它系统编程语言的 `free` 函数相同，Rust 也提供了一个释放内存的函数： `drop`，但是不同的是，其它语言要手动调用 `free` 来释放每一个变量占用的内存，而 Rust 则在变量离开作用域时，自动调用 `drop` 函数: 上面代码中，Rust 在结尾的 `}` 处自动调用 `drop`。
 
 > 其实，在 C++ 中，也有这种概念: _Resource Acquisition Is Initialization (RAII)_。如果你使用过 RAII 模式的话应该对 Rust 的 `drop` 函数并不陌生
-
-这个模式对编写 Rust 代码的方式有着深远的影响，在后面章节我们会进行更深入的介绍。
-
-## 课后练习
-> Rust By Practice，支持代码在线编辑和运行，并提供详细的习题解答。
-> - [字符串](https://zh.practice.rs/compound-types/string.html)
->     - [习题解答](https://github.com/sunface/rust-by-practice/blob/master/solutions/compound-types/string.md)
-> - [切片](https://zh.practice.rs/compound-types/slice.html)
->     - [习题解答](https://github.com/sunface/rust-by-practice/blob/master/solutions/compound-types/slice.md)
-> - [String](https://zh.practice.rs/collections/String.html)
->     - [习题解答](https://github.com/sunface/rust-by-practice/blob/master/solutions/collections/String.md)
-
-<hr />
-
-## 引用资料
-
-1. https://blog.csdn.net/a1595901624/article/details/119294443

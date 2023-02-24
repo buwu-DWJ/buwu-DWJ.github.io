@@ -117,11 +117,11 @@ code {
     word-break: break-word;
 }
 
-/* 修复可编辑代码框顶部过窄的问题 */
+/* 修复可编辑代码框顶部过窄的问题
 code.editable,
 .ace_scroller {
     top: 10px;
-}
+} */
 
 /* 修改书侧边目录的区域分隔行样式 */
 
@@ -140,5 +140,10 @@ code.editable,
 
     --icons: #747474;
     --icons-hover: #ff00d4;
-    --inline-code-color: #ff00f2;
+    --inline-code-color: #9200e7;
+}
+
+code {
+    font-size: 14px !important;
+    font-weight: bold !important;
 }
