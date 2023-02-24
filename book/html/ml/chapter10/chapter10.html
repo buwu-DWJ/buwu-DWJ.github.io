@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>聚类算法 - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../theme/style3.css">
+
+
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../python/crawler/re.html"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/pre.html"><strong aria-hidden="true">3.</strong> $\dagger$Rust$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/pre.html"><strong aria-hidden="true">3.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/basic.html"><strong aria-hidden="true">3.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../rust/basic/variable.html"><strong aria-hidden="true">3.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/pre.html"><strong aria-hidden="true">3.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/ownership/ownership.html"><strong aria-hidden="true">3.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/borrowing.html"><strong aria-hidden="true">3.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/compound_type/pre.html"><strong aria-hidden="true">3.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/compound_type/string_slice.html"><strong aria-hidden="true">3.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/tuple.html"><strong aria-hidden="true">3.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/struct.html"><strong aria-hidden="true">3.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/enum.html"><strong aria-hidden="true">3.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/array.html"><strong aria-hidden="true">3.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/flow_control.html"><strong aria-hidden="true">3.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../rust/basic/match_pattern/pre.html"><strong aria-hidden="true">3.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/match_pattern/if_let.html"><strong aria-hidden="true">3.1.6.1.</strong> if_let</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../ml/ml.html"><strong aria-hidden="true">4.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">4.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">4.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">4.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">4.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">4.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">4.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">4.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">4.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chapter9.html"><strong aria-hidden="true">4.9.</strong> 集成学习</a></li><li class="chapter-item expanded "><a href="../../ml/chapter10/chapter10.html" class="active"><strong aria-hidden="true">4.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../ml/chapter11/chapter11.html"><strong aria-hidden="true">4.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../ml/chapter12/chapter12.html"><strong aria-hidden="true">4.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">4.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">4.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">4.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">4.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">5.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">5.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">5.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">5.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">5.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">6.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">6.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">6.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">6.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">6.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">6.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">6.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">6.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">6.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../option/option.html"><strong aria-hidden="true">7.</strong> $\dagger$Option$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">7.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">7.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">7.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">7.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">7.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">7.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">7.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">7.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">7.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">7.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">7.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+
+                <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h2 id="十-聚类算法"><a class="header" href="#十-聚类算法"><strong>十． 聚类算法</strong></a></h2>
+<p>聚类是一种经典的<strong>无监督学习</strong>方法，<strong>无监督学习的目标是通过对无标记训练样本的学习，发掘和揭示数据集本身潜在的结构与规律</strong>，即不依赖于训练数据集的类标记信息。聚类则是试图将数据集的样本划分为若干个互不相交的类簇，从而每个簇对应一个潜在的类别。</p>
+<p>聚类直观上来说是将相似的样本聚在一起，从而形成一个<strong>类簇（cluster）</strong>。那首先的问题是如何来<strong>度量相似性</strong>（similarity measure）呢？这便是<strong>距离度量</strong>，在生活中我们说差别小则相似，对应到多维样本，每个样本可以对应于高维空间中的一个数据点，若它们的距离相近，我们便可以称它们相似。那接着如何来评价聚类结果的好坏呢？这便是<strong>性能度量</strong>，性能度量为评价聚类结果的好坏提供了一系列有效性指标。</p>
+<h3 id="101-距离度量"><a class="header" href="#101-距离度量"><strong>10.1 距离度量</strong></a></h3>
+<p>谈及距离度量，最熟悉的莫过于欧式距离了，从年头一直用到年尾的距离计算公式：即对应属性之间相减的平方和再开根号。度量距离还有其它的很多经典方法，通常它们需要满足一些基本性质：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed4c0390.png" alt="1.png" /></p>
+<p>最常用的距离度量方法是**“闵可夫斯基距离”（Minkowski distance)**：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed49e31f.png" alt="2.png" /></p>
+<p>当p=1时，闵可夫斯基距离即<strong>曼哈顿距离（Manhattan distance）</strong>：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed49c31f.png" alt="3.png" /></p>
+<p>当p=2时，闵可夫斯基距离即<strong>欧氏距离（Euclidean distance）</strong>：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed497613.png" alt="4.png" /></p>
+<p>我们知道属性分为两种：<strong>连续属性</strong>和<strong>离散属性</strong>（有限个取值）。对于连续值的属性，一般都可以被学习器所用，有时会根据具体的情形作相应的预处理，例如：归一化等；而对于离散值的属性，需要作下面进一步的处理：</p>
+<blockquote>
+<p>若属性值之间<strong>存在序关系</strong>，则可以将其转化为连续值，例如：身高属性“高”“中等”“矮”，可转化为{1, 0.5, 0}。
+若属性值之间<strong>不存在序关系</strong>，则通常将其转化为向量的形式，例如：性别属性“男”“女”，可转化为{（1,0），（0,1）}。</p>
+</blockquote>
+<p>在进行距离度量时，易知<strong>连续属性和存在序关系的离散属性都可以直接参与计算</strong>，因为它们都可以反映一种程度，我们称其为“<strong>有序属性</strong>”；而对于不存在序关系的离散属性，我们称其为：“<strong>无序属性</strong>”，显然无序属性再使用闵可夫斯基距离就行不通了。</p>
+<p><strong>对于无序属性，我们一般采用VDM进行距离的计算</strong>，例如：对于离散属性的两个取值a和b，定义：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed4e9560.png" alt="5.png" /></p>
+<p>于是，在计算两个样本之间的距离时，我们可以将闵可夫斯基距离和VDM混合在一起进行计算：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed507bc7.png" alt="6.png" /></p>
+<p>若我们定义的距离计算方法是用来度量相似性，例如下面将要讨论的聚类问题，即距离越小，相似性越大，反之距离越大，相似性越小。这时距离的度量方法并不一定需要满足前面所说的四个基本性质，这样的方法称为：<strong>非度量距离（non-metric distance）</strong>。</p>
+<h3 id="102-性能度量"><a class="header" href="#102-性能度量"><strong>10.2 性能度量</strong></a></h3>
+<p>由于聚类算法不依赖于样本的真实类标，就不能像监督学习的分类那般，通过计算分对分错（即精确度或错误率）来评价学习器的好坏或作为学习过程中的优化目标。一般聚类有两类性能度量指标：<strong>外部指标</strong>和<strong>内部指标</strong>。</p>
+<h4 id="1021-外部指标"><a class="header" href="#1021-外部指标"><strong>10.2.1 外部指标</strong></a></h4>
+<p>即将聚类结果与某个参考模型的结果进行比较，<strong>以参考模型的输出作为标准，来评价聚类好坏</strong>。假设聚类给出的结果为λ，参考模型给出的结果是λ*，则我们将样本进行两两配对，定义：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed59160e.png" alt="7.png" /></p>
+<p>显然a和b代表着聚类结果好坏的正能量，b和c则表示参考结果和聚类结果相矛盾，基于这四个值可以导出以下常用的外部评价指标：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed587438.png" alt="8.png" /></p>
+<h4 id="1022-内部指标"><a class="header" href="#1022-内部指标"><strong>10.2.2 内部指标</strong></a></h4>
+<p>内部指标即不依赖任何外部模型，直接对聚类的结果进行评估，聚类的目的是想将那些相似的样本尽可能聚在一起，不相似的样本尽可能分开，直观来说：<strong>簇内高内聚紧紧抱团，簇间低耦合老死不相往来</strong>。定义：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed581852.png" alt="9.png" /></p>
+<p>基于上面的四个距离，可以导出下面这些常用的内部评价指标：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84ed582854.png" alt="10.png" /></p>
+<h3 id="103-原型聚类"><a class="header" href="#103-原型聚类"><strong>10.3 原型聚类</strong></a></h3>
+<p>原型聚类即“<strong>基于原型的聚类</strong>”（prototype-based clustering），原型表示模板的意思，就是通过参考一个模板向量或模板分布的方式来完成聚类的过程，常见的K-Means便是基于簇中心来实现聚类，混合高斯聚类则是基于簇分布来实现聚类。</p>
+<h4 id="1031-k-means"><a class="header" href="#1031-k-means"><strong>10.3.1 K-Means</strong></a></h4>
+<p>K-Means的思想十分简单，<strong>首先随机指定类中心，根据样本与类中心的远近划分类簇，接着重新计算类中心，迭代直至收敛</strong>。但是其中迭代的过程并不是主观地想象得出，事实上，若将样本的类别看做为“隐变量”（latent variable），类中心看作样本的分布参数，这一过程正是通过<strong>EM算法</strong>的两步走策略而计算出，其根本的目的是为了最小化平方误差函数E：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb82b5d3.png" alt="11.png" /></p>
+<p>K-Means的算法流程如下所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb9c0817.png" alt="12.png" /></p>
+<h4 id="1032-学习向量量化lvq"><a class="header" href="#1032-学习向量量化lvq"><strong>10.3.2 学习向量量化（LVQ）</strong></a></h4>
+<p>LVQ也是基于原型的聚类算法，与K-Means不同的是，<strong>LVQ使用样本真实类标记辅助聚类</strong>，首先LVQ根据样本的类标记，从各类中分别随机选出一个样本作为该类簇的原型，从而组成了一个<strong>原型特征向量组</strong>，接着从样本集中随机挑选一个样本，计算其与原型向量组中每个向量的距离，并选取距离最小的原型向量所在的类簇作为它的划分结果，再与真实类标比较。</p>
+<blockquote>
+<p><strong>若划分结果正确，则对应原型向量向这个样本靠近一些</strong>
+<strong>若划分结果不正确，则对应原型向量向这个样本远离一些</strong></p>
+</blockquote>
+<p>LVQ算法的流程如下所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb9d59f2.png" alt="13.png" /></p>
+<h4 id="1033-高斯混合聚类"><a class="header" href="#1033-高斯混合聚类"><strong>10.3.3 高斯混合聚类</strong></a></h4>
+<p>现在可以看出K-Means与LVQ都试图以类中心作为原型指导聚类，高斯混合聚类则采用高斯分布来描述原型。现假设<strong>每个类簇中的样本都服从一个多维高斯分布，那么空间中的样本可以看作由k个多维高斯分布混合而成</strong>。</p>
+<p>对于多维高斯分布，其概率密度函数如下所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb870d98.png" alt="14.png" /></p>
+<p>其中u表示均值向量，∑表示协方差矩阵，可以看出一个多维高斯分布完全由这两个参数所确定。接着定义高斯混合分布为：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb876794.png" alt="15.png" /></p>
+<p>α称为混合系数，这样空间中样本的采集过程则可以抽象为：<strong>（1）先选择一个类簇（高斯分布），（2）再根据对应高斯分布的密度函数进行采样</strong>，这时候贝叶斯公式又能大展身手了：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb9191d9.png" alt="16.png" /></p>
+<p>此时只需要选择PM最大时的类簇并将该样本划分到其中，看到这里很容易发现：这和那个传说中的贝叶斯分类不是神似吗，都是通过贝叶斯公式展开，然后计算类先验概率和类条件概率。但遗憾的是：<strong>这里没有真实类标信息，对于类条件概率，并不能像贝叶斯分类那样通过最大似然法美好地计算出来</strong>，因为这里的样本可能属于所有的类簇，这里的似然函数变为：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb871d4a.png" alt="17.png" /></p>
+<p>可以看出：简单的最大似然法根本无法求出所有的参数，这样PM也就没法计算。<strong>这里就要召唤出之前的EM大法，首先对高斯分布的参数及混合系数进行随机初始化，计算出各个PM（即γji，第i个样本属于j类），再最大化似然函数（即LL（D）分别对α、u和∑求偏导 ），对参数进行迭代更新</strong>。</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb8a6f32.png" alt="18.png" /></p>
+<p>高斯混合聚类的算法流程如下图所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb9c4fa4.png" alt="19.png" /></p>
+<h3 id="104-密度聚类"><a class="header" href="#104-密度聚类"><strong>10.4 密度聚类</strong></a></h3>
+<p>密度聚类则是基于密度的聚类，它从样本分布的角度来考察样本之间的可连接性，并基于可连接性（密度可达）不断拓展疆域（类簇）。其中最著名的便是<strong>DBSCAN</strong>算法，首先定义以下概念：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc84fb9bd69c.png" alt="20.png" /></p>
+<p><img src="https://i.loli.net/2018/10/18/5bc8509f8d619.png" alt="21.png" /></p>
+<p>简单来理解DBSCAN便是：<strong>找出一个核心对象所有密度可达的样本集合形成簇</strong>。首先从数据集中任选一个核心对象A，找出所有A密度可达的样本集合，将这些样本形成一个密度相连的类簇，直到所有的核心对象都遍历完。DBSCAN算法的流程如下图所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc8509feb587.png" alt="22.png" /></p>
+<h3 id="105-层次聚类"><a class="header" href="#105-层次聚类"><strong>10.5 层次聚类</strong></a></h3>
+<p>层次聚类是一种基于树形结构的聚类方法，常用的是<strong>自底向上</strong>的结合策略（<strong>AGNES算法</strong>）。假设有N个待聚类的样本，其基本步骤是：</p>
+<blockquote>
+<p>1.初始化--&gt;把每个样本归为一类，计算每两个类之间的距离，也就是样本与样本之间的相似度；
+2.寻找各个类之间最近的两个类，把他们归为一类（这样类的总数就少了一个）；
+3.重新计算新生成的这个<strong>类与各个旧类之间的相似度</strong>；
+4.重复2和3直到所有样本点都归为一类，结束。</p>
+</blockquote>
+<p>可以看出其中最关键的一步就是<strong>计算两个类簇的相似度</strong>，这里有多种度量方法：</p>
+<ul>
+<li>
+<p>单链接（single-linkage）:取类间最小距离。
+<img src="https://i.loli.net/2018/10/18/5bc8509ebb022.png" alt="23.png" /></p>
+</li>
+<li>
+<p>全链接（complete-linkage）:取类间最大距离
+<img src="https://i.loli.net/2018/10/18/5bc8509eb2b30.png" alt="24.png" /></p>
+</li>
+<li>
+<p>均链接（average-linkage）:取类间两两的平均距离
+<img src="https://i.loli.net/2018/10/18/5bc8509f089a7.png" alt="25.png" /></p>
+</li>
+</ul>
+<p>很容易看出：<strong>单链接的包容性极强，稍微有点暧昧就当做是自己人了，全链接则是坚持到底，只要存在缺点就坚决不合并，均连接则是从全局出发顾全大局</strong>。层次聚类法的算法流程如下所示：</p>
+<p><img src="https://i.loli.net/2018/10/18/5bc8509f9d4a0.png" alt="26.png" /></p>
+<blockquote>
+<p>在此聚类算法就介绍完毕，分类/聚类都是机器学习中最常见的任务，我实验室的大Boss也是靠着聚类起家，从此走上人生事业钱途...之巅峰，在书最后的阅读材料还看见Boss的名字，所以这章也是必读不可了...</p>
+</blockquote>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../ml/chapter9/chapter9.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../ml/chapter11/chapter11.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../ml/chapter9/chapter9.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../ml/chapter11/chapter11.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "ml/chapter10/chapter10.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

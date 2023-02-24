@@ -1,0 +1,803 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>re - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../theme/style3.css">
+
+
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item expanded "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item expanded "><a href="../../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item expanded "><a href="../../python/crawler/re.html" class="active"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/pre.html"><strong aria-hidden="true">3.</strong> $\dagger$Rust$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/pre.html"><strong aria-hidden="true">3.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/basic.html"><strong aria-hidden="true">3.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../rust/basic/variable.html"><strong aria-hidden="true">3.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/pre.html"><strong aria-hidden="true">3.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/ownership/ownership.html"><strong aria-hidden="true">3.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/borrowing.html"><strong aria-hidden="true">3.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/compound_type/pre.html"><strong aria-hidden="true">3.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/compound_type/string_slice.html"><strong aria-hidden="true">3.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/tuple.html"><strong aria-hidden="true">3.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/struct.html"><strong aria-hidden="true">3.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/enum.html"><strong aria-hidden="true">3.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/array.html"><strong aria-hidden="true">3.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/flow_control.html"><strong aria-hidden="true">3.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../rust/basic/match_pattern/pre.html"><strong aria-hidden="true">3.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/match_pattern/if_let.html"><strong aria-hidden="true">3.1.6.1.</strong> if_let</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../ml/ml.html"><strong aria-hidden="true">4.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">4.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">4.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">4.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">4.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">4.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">4.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">4.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">4.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chapter9.html"><strong aria-hidden="true">4.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../ml/chapter10/chapter10.html"><strong aria-hidden="true">4.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../ml/chapter11/chapter11.html"><strong aria-hidden="true">4.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../ml/chapter12/chapter12.html"><strong aria-hidden="true">4.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">4.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">4.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">4.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">4.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">5.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">5.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">5.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">5.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">5.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">6.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">6.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">6.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">6.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">6.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">6.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">6.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">6.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">6.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../option/option.html"><strong aria-hidden="true">7.</strong> $\dagger$Option$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">7.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">7.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">7.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">7.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">7.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">7.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">7.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">7.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">7.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">7.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">7.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+
+                <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="python正则表达式"><a class="header" href="#python正则表达式">python正则表达式</a></h1>
+<h2 id="正则表达式基础"><a class="header" href="#正则表达式基础">正则表达式基础</a></h2>
+<h3 id="语法"><a class="header" href="#语法">语法</a></h3>
+<ul>
+<li>
+<p><strong>普通字符</strong>：</p>
+</li>
+<li>
+<ul>
+<li>
+<p>普通字符包括没有显式指定为元字符的所有可打印和不可打印字符。这包括所有大写和小写字母、所有数字、所有标点符号和一些其他符号。</p>
+</li>
+<li>
+<p><strong>[ABC]</strong>：匹配 <strong>[...]</strong> 中的所有字符，例如 <strong>[aeiou]</strong> 匹配字符串 &quot;google runoob taobao&quot; 中所有的 e o u a 字母</p>
+</li>
+<li>
+<p><strong><sup class="footnote-reference"><a href="#ABC">1</a></sup></strong>：匹配除了 <strong>[...]</strong> 中字符的所有字符，例如 <strong><sup class="footnote-reference"><a href="#aeiou">2</a></sup></strong> 匹配字符串 &quot;google runoob taobao&quot; 中除了 e o u a 字母的所有字母</p>
+</li>
+<li>
+<p><strong>[A-Z]</strong>：<strong>[A-Z]</strong> 表示一个区间，匹配所有大写字母，<strong>[a-z]</strong> 表示所有小写字母</p>
+</li>
+<li>
+<p><strong>.</strong>  ：匹配除换行符**（\n、\r）<strong>之外的任何单个字符，相等于</strong>[ ^\n\r]**</p>
+</li>
+<li>
+<p><strong>[\s\S]</strong>：匹配所有。<strong>\s</strong> 是匹配所有空白符，包括换行，<strong>\S</strong> 非空白符，不包括换行</p>
+</li>
+<li>
+<p><strong>\w</strong>：匹配字母、数字、下划线。等价于 <strong>[A-Za-z0-9_]</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>非打印字符</strong>：</p>
+</li>
+<li>
+<ul>
+<li>
+<p>非打印字符也可以是正则表达式的组成部分。下表列出了表示非打印字符的转义序列</p>
+</li>
+<li>
+<p><strong>\cx</strong>：匹配由x指明的控制字符。例如， <strong>\cM</strong> 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 'c' 字符</p>
+</li>
+<li>
+<p><strong>\f</strong>：匹配一个换页符。等价于 <strong>\x0c</strong> 和 <strong>\cL</strong></p>
+</li>
+<li>
+<p><strong>\n</strong>：匹配一个换行符。等价于 <strong>\x0a</strong> 和 <strong>\cJ</strong></p>
+</li>
+<li>
+<p><strong>\r</strong>：匹配一个回车符。等价于 <strong>\x0d</strong> 和 <strong>\cM</strong></p>
+</li>
+<li>
+<p><strong>\s</strong>：匹配任何空白字符，包括空格、制表符、换页符等等。等价于 <strong>[ \f\n\r\t\v]</strong>。注意 Unicode 正则表达式会匹配全角空格符</p>
+</li>
+<li>
+<p><strong>\S</strong>：匹配任何非空白字符。等价于 <strong>[ ^ \f\n\r\t\v]</strong></p>
+</li>
+<li>
+<p><strong>\t</strong>：匹配一个制表符。等价于 <strong>\x09</strong> 和 <strong>\cI</strong></p>
+</li>
+<li>
+<p><strong>\v</strong>：匹配一个垂直制表符。等价于 <strong>\x0b</strong> 和 <strong>\cK</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>特殊字符</strong>：</p>
+</li>
+<li>
+<ul>
+<li></li>
+<li>
+<p><strong>$</strong>：匹配输入字符串的结尾位置。要匹配 **** 字符本身，请使用 <strong>\$</strong></p>
+</li>
+<li>
+<p><strong>( )</strong>：标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )</p>
+</li>
+<li>
+<p>*****：匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *</p>
+</li>
+<li>
+<p>+：匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +</p>
+</li>
+<li>
+<p><strong>.</strong> ：匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 .</p>
+</li>
+<li>
+<p>[：标记一个中括号表达式的开始。要匹配 [，请使用 [</p>
+</li>
+<li>
+<p><strong>?</strong>：匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?</p>
+</li>
+<li>
+<p><strong>\</strong>：将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， 'n' 匹配字符 <strong>'n'</strong>。<strong>'\n'</strong> 匹配换行符。序列 '\' 匹配 &quot;&quot;，而 '(' 则匹配 &quot;(&quot;</p>
+</li>
+<li>
+<p><strong>^</strong>：匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 ^</p>
+</li>
+<li>
+<p><strong>{</strong>：标记限定符表达式的开始。要匹配 {，请使用 {</p>
+</li>
+<li>
+<p><strong>|</strong>：指明两项之间的一个选择。要匹配 |，请使用 |</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>限定符</strong>：</p>
+</li>
+<li>
+<ul>
+<li>
+<p>限定符用来指定正则表达式的一个给定组件必须要出现多少次才能满足匹配</p>
+</li>
+<li>
+<p><em><strong><strong>：匹配前面的子表达式</strong>零次或多次</strong>。例如，<strong>zo*</strong> 能匹配 <strong>&quot;z&quot;</strong> 以及 <strong>&quot;zoo&quot;</strong>。</em>**** 等价于 <strong>{0,}</strong></p>
+</li>
+<li>
+<p>+：匹配前面的子表达式<strong>一次或多次</strong>。例如，<strong>zo+</strong> 能匹配 <strong>&quot;zo&quot;</strong> 以及 &quot;<strong>zoo&quot;</strong>，但不能匹配 <strong>&quot;z&quot;</strong>。<strong>+</strong> 等价于 <strong>{1,}</strong></p>
+</li>
+<li>
+<p><strong>?</strong>：匹配前面的子表达式<strong>零次或一次</strong>。例如，<strong>do(es)?</strong> 可以匹配 <strong>&quot;do&quot;</strong> 、 <strong>&quot;does&quot;</strong>、 <strong>&quot;doxy&quot;</strong> 中的 <strong>&quot;do&quot;</strong> 。<strong>?</strong> 等价于 <strong>{0,1}</strong></p>
+</li>
+<li>
+<p>{n}：n 是一个非负整数。匹配<strong>确定的 n 次</strong>。例如，<strong>o{2}</strong> 不能匹配 <strong>&quot;Bob&quot;</strong> 中的 <strong>o</strong>，但是能匹配 <strong>&quot;food&quot;</strong> 中的两个 <strong>o</strong></p>
+</li>
+<li>
+<p><strong>{n,}</strong>：n 是一个非负整数。<strong>至少匹配n 次</strong>。例如，<strong>o{2,}</strong> 不能匹配 <strong>&quot;Bob&quot;</strong> 中的 <strong>o</strong>，但能匹配 <strong>&quot;foooood&quot;</strong> 中的所有 <strong>o</strong>。<strong>o{1,}</strong> 等价于 <strong>o+</strong>。<strong>o{0,}</strong> 则等价于 <strong>o*</strong></p>
+</li>
+<li>
+<p><strong>{n,m}</strong>：m 和 n 均为非负整数，其中 n &lt;= m。<strong>最少匹配 n 次且最多匹配 m 次</strong>。例如，<strong>o{1,3}</strong> 将匹配 <strong>&quot;fooooood&quot;</strong> 中的前三个 <strong>o</strong>。<strong>o{0,1}</strong> 等价于 <strong>o?</strong>。请注意在逗号和两个数之间不能有空格</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>定位符</strong>：</p>
+</li>
+<li>
+<ul>
+<li>定位符能够将正则表达式固定到行首或行尾。它们还能够创建这样的正则表达式，这些正则表达式出现在一个单词内、在一个单词的开头或者一个单词的结尾。</li>
+<li><strong>^</strong>：匹配输入字符串开始的位置</li>
+<li>****：匹配输入字符串结尾的位置</li>
+<li><strong>\b</strong>：匹配一个单词边界，即字与空格间的位置</li>
+<li><strong>\B</strong>：非单词边界匹配</li>
+<li><strong>注意</strong>：不能将限定符与定位符一起使用。由于在紧靠换行或者单词边界的前面或后面不能有一个以上位置，因此不允许诸如 <strong>^*</strong> 之类的表达式</li>
+</ul>
+</li>
+<li>
+<p><strong>选择</strong>：</p>
+</li>
+<li>
+<ul>
+<li>用圆括号 <strong>()</strong> 将所有选择项括起来，相邻的选择项之间用 <strong>|</strong> 分隔</li>
+</ul>
+</li>
+</ul>
+<h3 id="修饰符标记"><a class="header" href="#修饰符标记">修饰符/标记</a></h3>
+<ul>
+<li>
+<p>标记也称为修饰符，正则表达式的标记用于指定额外的匹配策略。</p>
+<p>标记不写在正则表达式里，标记位于表达式之外，格式如下</p>
+<pre><code>/pattern/flags
+</code></pre>
+</li>
+<li>
+<p>i：ignore - 不区分大小写，</p>
+</li>
+<li>
+<p>g：global - 全局匹配</p>
+</li>
+<li>
+<p>m：multiline - 多行匹配</p>
+</li>
+<li>
+<p>s：特殊字符圆点 <strong>.</strong> 中包含换行符 <strong>\n</strong></p>
+</li>
+</ul>
+<h3 id="元字符重要"><a class="header" href="#元字符重要">元字符（重要）</a></h3>
+<p>下表包含了元字符的完整列表以及它们在正则表达式上下文中的行为</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left"><strong>字符</strong></th><th style="text-align: left"><strong>描述</strong></th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>\</strong></td><td style="text-align: left">将下一个字符标记为一个特殊字符、或一个原义字符、或一个 向后引用、或一个八进制转义符。例如，'n' 匹配字符 &quot;n&quot;。'\n' 匹配一个换行符。序列 '\' 匹配 &quot;&quot; 而 &quot;(&quot; 则匹配 &quot;(&quot;。</td></tr>
+<tr><td style="text-align: left"><strong>^</strong></td><td style="text-align: left">匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 '\n' 或 '\r' 之后的位置。</td></tr>
+<tr><td style="text-align: left">**<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord cjk_fallback">匹配输入字符串的结束位置。如果设置了</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal">x</span><span class="mord mathnormal">p</span><span class="mord cjk_fallback">对象的</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">u</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">in</span><span class="mord mathnormal">e</span><span class="mord cjk_fallback">属性，</span></span></span></span> 也匹配 '\n' 或 '\r' 之前的位置。</td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left">*****</td><td style="text-align: left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 &quot;z&quot; 以及 &quot;zoo&quot;。* 等价于{0,}。</td></tr>
+<tr><td style="text-align: left"><strong>+</strong></td><td style="text-align: left">匹配前面的子表达式一次或多次。例如，'zo+' 能匹配 &quot;zo&quot; 以及 &quot;zoo&quot;，但不能匹配 &quot;z&quot;。+ 等价于 {1,}。</td></tr>
+<tr><td style="text-align: left"><strong>?</strong></td><td style="text-align: left">匹配前面的子表达式零次或一次。例如，&quot;do(es)?&quot; 可以匹配 &quot;do&quot; 或 &quot;does&quot; 。? 等价于 {0,1}。</td></tr>
+<tr><td style="text-align: left"><strong>{n}</strong></td><td style="text-align: left">n 是一个非负整数。匹配确定的 n 次。例如，'o{2}' 不能匹配 &quot;Bob&quot; 中的 'o'，但是能匹配 &quot;food&quot; 中的两个 o。</td></tr>
+<tr><td style="text-align: left"><strong>{n,}</strong></td><td style="text-align: left">n 是一个非负整数。至少匹配n 次。例如，'o{2,}' 不能匹配 &quot;Bob&quot; 中的 'o'，但能匹配 &quot;foooood&quot; 中的所有 o。'o{1,}' 等价于 'o+'。'o{0,}' 则等价于 'o*'。</td></tr>
+<tr><td style="text-align: left"><strong>{n,m}</strong></td><td style="text-align: left">m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。例如，&quot;o{1,3}&quot; 将匹配 &quot;fooooood&quot; 中的前三个 o。'o{0,1}' 等价于 'o?'。请注意在逗号和两个数之间不能有空格。</td></tr>
+<tr><td style="text-align: left"><strong>?</strong></td><td style="text-align: left">当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 &quot;oooo&quot;，'o+?' 将匹配单个 &quot;o&quot;，而 'o+' 将匹配所有 'o'。</td></tr>
+<tr><td style="text-align: left"><strong>.</strong></td><td style="text-align: left">匹配除换行符（\n、\r）之外的任何单个字符。要匹配包括 '\n' 在内的任何字符，请使用像&quot;<strong>(.|\n)</strong>&quot;的模式。</td></tr>
+<tr><td style="text-align: left"><strong>(pattern)</strong></td><td style="text-align: left">匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span></span></span></span>9 属性。要匹配圆括号字符，请使用 '(' 或 ')'。</td></tr>
+<tr><td style="text-align: left"><strong>(?:pattern)</strong></td><td style="text-align: left">匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 &quot;或&quot; 字符 (|) 来组合一个模式的各个部分是很有用。例如， 'industr(?:y|ies) 就是一个比 'industry|industries' 更简略的表达式。</td></tr>
+<tr><td style="text-align: left"><strong>(?=pattern)</strong></td><td style="text-align: left">正向肯定预查（look ahead positive assert），在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，&quot;Windows(?=95|98|NT|2000)&quot;能匹配&quot;Windows2000&quot;中的&quot;Windows&quot;，但不能匹配&quot;Windows3.1&quot;中的&quot;Windows&quot;。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td></tr>
+<tr><td style="text-align: left"><strong>(?!pattern)</strong></td><td style="text-align: left">正向否定预查(negative assert)，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如&quot;Windows(?!95|98|NT|2000)&quot;能匹配&quot;Windows3.1&quot;中的&quot;Windows&quot;，但不能匹配&quot;Windows2000&quot;中的&quot;Windows&quot;。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td></tr>
+<tr><td style="text-align: left"><strong>(?&lt;=pattern)</strong></td><td style="text-align: left">反向(look behind)肯定预查，与正向肯定预查类似，只是方向相反。例如，&quot;(?&lt;=95|98|NT|2000)Windows&quot;能匹配&quot;2000Windows&quot;中的&quot;Windows&quot;，但不能匹配&quot;3.1Windows&quot;中的&quot;Windows&quot;。</td></tr>
+<tr><td style="text-align: left"><strong>(?&lt;!pattern)</strong></td><td style="text-align: left">反向否定预查，与正向否定预查类似，只是方向相反。例如&quot;(?&lt;!95|98|NT|2000)Windows&quot;能匹配&quot;3.1Windows&quot;中的&quot;Windows&quot;，但不能匹配&quot;2000Windows&quot;中的&quot;Windows&quot;。</td></tr>
+<tr><td style="text-align: left"><strong>x|y</strong></td><td style="text-align: left">匹配 x 或 y。例如，'z|food' 能匹配 &quot;z&quot; 或 &quot;food&quot;。'(z|f)ood' 则匹配 &quot;zood&quot; 或 &quot;food&quot;。</td></tr>
+<tr><td style="text-align: left"><strong>[xyz]</strong></td><td style="text-align: left">字符集合。匹配所包含的任意一个字符。例如， '[abc]' 可以匹配 &quot;plain&quot; 中的 'a'。</td></tr>
+<tr><td style="text-align: left"><strong><sup class="footnote-reference"><a href="#xyz">3</a></sup></strong></td><td style="text-align: left">负值字符集合。匹配未包含的任意字符。例如， '[ ^abc]' 可以匹配 &quot;plain&quot; 中的'p'、'l'、'i'、'n'。</td></tr>
+<tr><td style="text-align: left"><strong>[a-z]</strong></td><td style="text-align: left">字符范围。匹配指定范围内的任意字符。例如，'[a-z]' 可以匹配 'a' 到 'z' 范围内的任意小写字母字符。</td></tr>
+<tr><td style="text-align: left"><strong><sup class="footnote-reference"><a href="#a-z">4</a></sup></strong></td><td style="text-align: left">负值字符范围。匹配任何不在指定范围内的任意字符。例如，'[ ^a-z]' 可以匹配任何不在 'a' 到 'z' 范围内的任意字符。</td></tr>
+<tr><td style="text-align: left"><strong>\b</strong></td><td style="text-align: left">匹配一个单词边界，也就是指单词和空格间的位置。例如， 'er\b' 可以匹配&quot;never&quot; 中的 'er'，但不能匹配 &quot;verb&quot; 中的 'er'。</td></tr>
+<tr><td style="text-align: left"><strong>\B</strong></td><td style="text-align: left">匹配非单词边界。'er\B' 能匹配 &quot;verb&quot; 中的 'er'，但不能匹配 &quot;never&quot; 中的 'er'。</td></tr>
+<tr><td style="text-align: left"><strong>\cx</strong></td><td style="text-align: left">匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 'c' 字符。</td></tr>
+<tr><td style="text-align: left"><strong>\d</strong></td><td style="text-align: left">匹配一个数字字符。等价于 [0-9]。</td></tr>
+<tr><td style="text-align: left"><strong>\D</strong></td><td style="text-align: left">匹配一个非数字字符。等价于 [ ^0-9]。</td></tr>
+<tr><td style="text-align: left"><strong>\f</strong></td><td style="text-align: left">匹配一个换页符。等价于 \x0c 和 \cL。</td></tr>
+<tr><td style="text-align: left"><strong>\n</strong></td><td style="text-align: left">匹配一个换行符。等价于 \x0a 和 \cJ。</td></tr>
+<tr><td style="text-align: left"><strong>\r</strong></td><td style="text-align: left">匹配一个回车符。等价于 \x0d 和 \cM。</td></tr>
+<tr><td style="text-align: left"><strong>\s</strong></td><td style="text-align: left">匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。</td></tr>
+<tr><td style="text-align: left"><strong>\S</strong></td><td style="text-align: left">匹配任何非空白字符。等价于 [ ^ \f\n\r\t\v]。</td></tr>
+<tr><td style="text-align: left"><strong>\t</strong></td><td style="text-align: left">匹配一个制表符。等价于 \x09 和 \cI。</td></tr>
+<tr><td style="text-align: left"><strong>\v</strong></td><td style="text-align: left">匹配一个垂直制表符。等价于 \x0b 和 \cK。</td></tr>
+<tr><td style="text-align: left"><strong>\w</strong></td><td style="text-align: left">匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'。</td></tr>
+<tr><td style="text-align: left"><strong>\W</strong></td><td style="text-align: left">匹配非字母、数字、下划线。等价于 '[ ^A-Za-z0-9_]'。</td></tr>
+<tr><td style="text-align: left"><strong>\xn</strong></td><td style="text-align: left">匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，'\x41' 匹配 &quot;A&quot;。'\x041' 则等价于 '\x04' &amp; &quot;1&quot;。正则表达式中可以使用 ASCII 编码。</td></tr>
+<tr><td style="text-align: left"><strong>\num</strong></td><td style="text-align: left">匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，'(.)\1' 匹配两个连续的相同字符。</td></tr>
+<tr><td style="text-align: left"><strong>\n</strong></td><td style="text-align: left">标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。</td></tr>
+<tr><td style="text-align: left"><strong>\nm</strong></td><td style="text-align: left">标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。</td></tr>
+<tr><td style="text-align: left"><strong>\nml</strong></td><td style="text-align: left">如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。</td></tr>
+<tr><td style="text-align: left"><strong>\un</strong></td><td style="text-align: left">匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。</td></tr>
+</tbody></table>
+</div>
+<p><img src="https://www.runoob.com/wp-content/uploads/2014/03/regexp-metachar-2020-11-23.png" alt="img" /></p>
+<h3 id="运算符优先级"><a class="header" href="#运算符优先级">运算符优先级</a></h3>
+<p>下表从最高到最低说明了各种正则表达式运算符的优先级顺序</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">运算符</th><th style="text-align: left">描述</th></tr></thead><tbody>
+<tr><td style="text-align: left">\</td><td style="text-align: left">转义符</td></tr>
+<tr><td style="text-align: left">(), (?:), (?=), []</td><td style="text-align: left">圆括号和方括号</td></tr>
+<tr><td style="text-align: left">*, +, ?, {n}, {n,}, {n,m}</td><td style="text-align: left">限定符</td></tr>
+<tr><td style="text-align: left">^, , \任何元字符、任何字符</td><td style="text-align: left">定位点和序列（即：位置和顺序）</td></tr>
+<tr><td style="text-align: left">|</td><td style="text-align: left">替换，&quot;或&quot;操作字符具有高于替换运算符的优先级，使得&quot;m|food&quot;匹配&quot;m&quot;或&quot;food&quot;。若要匹配&quot;mood&quot;或&quot;food&quot;，请使用括号创建子表达式，从而产生&quot;(m|f)ood&quot;。</td></tr>
+</tbody></table>
+</div>
+<h3 id="匹配规则"><a class="header" href="#匹配规则">匹配规则</a></h3>
+<h4 id="基本模式匹配"><a class="header" href="#基本模式匹配">基本模式匹配</a></h4>
+<p>一切从最基本的开始。模式，是正则表达式最基本的元素，它们是一组描述字符串特征的字符。模式可以很简单，由普通的字符串组成，也可以非常复杂，往往用特殊的字符表示一个范围内的字符、重复出现，或表示上下文。例如：</p>
+<pre><code>^once
+</code></pre>
+<p>这个模式包含一个特殊的字符 <strong>^</strong>，表示该模式只匹配那些以 <strong>once</strong> 开头的字符串。例如该模式与字符串 <strong>&quot;once upon a time&quot;</strong> 匹配，与 <strong>&quot;There once was a man from NewYork&quot;</strong> 不匹配。正如如 <strong>^</strong> 符号表示开头一样，**** 符号用来匹配那些以给定模式结尾的字符串。</p>
+<pre><code>bucket$
+</code></pre>
+<p>这个模式与 <strong>&quot;Who kept all of this cash in a bucket&quot;</strong> 匹配，与 <strong>&quot;buckets&quot;</strong> 不匹配。字符 <strong>^</strong> 和 **<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord cjk_fallback">同时使用时，表示精确匹配（字符串与模式一样）。例如：</span><span class="mord">‘‘</span><span class="mord"><span class="mord">‘</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span></span></span></span><span class="mord mathnormal">u</span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span></span></span></span></p>
+<pre><code>
+只匹配字符串 **&quot;bucket&quot;**。如果一个模式不包括 **^** 和 **$**，那么它与任何包含该模式的字符串匹配。例如模式：
+
+</code></pre>
+<p>once</p>
+<pre><code>
+与字符串
+
+</code></pre>
+<p>There once was a man from NewYork
+Who kept all of his cash in a bucket.</p>
+<pre><code>
+是匹配的。
+
+在该模式中的字母 **(o-n-c-e)** 是字面的字符，也就是说，他们表示该字母本身，数字也是一样的。其他一些稍微复杂的字符，如标点符号和白字符（空格、制表符等），要用到转义序列。所有的转义序列都用反斜杠 **\\** 打头。制表符的转义序列是 **\t**。所以如果我们要检测一个字符串是否以制表符开头，可以用这个模式：
+
+</code></pre>
+<p>^\t </p>
+<pre><code>
+类似的，用 **\n** 表示**&quot;新行&quot;**，**\r** 表示回车。其他的特殊符号，可以用在前面加上反斜杠，如反斜杠本身用 **\\\\** 表示，句号 **.** 用 **\\.** 表示，以此类推。
+
+#### 字符簇
+
+在 INTERNET 的程序中，正则表达式通常用来验证用户的输入。当用户提交一个 FORM 以后，要判断输入的电话号码、地址、EMAIL 地址、信用卡号码等是否有效，用普通的基于字面的字符是不够的。
+
+所以要用一种更自由的描述我们要的模式的办法，它就是字符簇。要建立一个表示所有元音字符的字符簇，就把所有的元音字符放在一个方括号里：
+
+</code></pre>
+<p>[AaEeIiOoUu]</p>
+<pre><code>
+这个模式与任何元音字符匹配，但只能表示一个字符。用连字号可以表示一个字符的范围，如：
+
+</code></pre>
+<p>[a-z] // 匹配所有的小写字母 
+[A-Z] // 匹配所有的大写字母 
+[a-zA-Z] // 匹配所有的字母 
+[0-9] // 匹配所有的数字 
+[0-9.-] // 匹配所有的数字，句号和减号 
+[ \f\r\t\n] // 匹配所有的白字符</p>
+<pre><code>
+同样的，这些也只表示一个字符，这是一个非常重要的。如果要匹配一个由一个小写字母和一位数字组成的字符串，比如 &quot;z2&quot;、&quot;t6&quot; 或 &quot;g7&quot;，但不是 &quot;ab2&quot;、&quot;r2d3&quot; 或 &quot;b52&quot; 的话，用这个模式：
+
+</code></pre>
+<p>^[a-z][0-9]</p>
+<pre><code>
+尽管 **[a-z]** 代表 26 个字母的范围，但在这里它只能与第一个字符是小写字母的字符串匹配。
+
+前面曾经提到^表示字符串的开头，但它还有另外一个含义。当在一组方括号里使用 **^** 时，它表示&quot;**非**&quot;或&quot;**排除**&quot;的意思，常常用来剔除某个字符。还用前面的例子，我们要求第一个字符不能是数字：
+
+</code></pre>
+<p>^[^0-9][0-9]</p>
+<pre><code>
+这个模式与 &quot;&amp;5&quot;、&quot;g7&quot;及&quot;-2&quot; 是匹配的，但与 &quot;12&quot;、&quot;66&quot; 是不匹配的。下面是几个排除特定字符的例子：
+
+</code></pre>
+<p><sup class="footnote-reference"><a href="#a-z">4</a></sup> //除了小写字母以外的所有字符 
+<sup class="footnote-reference"><a href="#\\\/\^">5</a></sup> //除了()(/)(^)之外的所有字符 
+<sup class="footnote-reference"><a href="#\&quot;\'">6</a></sup> //除了双引号(&quot;)和单引号(')之外的所有字符</p>
+<pre><code>
+特殊字符 **.**(点，句号)在正则表达式中用来表示除了&quot;新行&quot;之外的所有字符。所以模式 **^.5$** 与任何两个字符的、以数字5结尾和以其他非&quot;新行&quot;字符开头的字符串匹配。模式 **.** 可以匹配任何字符串，**换行符（\n、\r）除外**。
+
+PHP的正则表达式有一些内置的通用字符簇，列表如下：
+
+| 字符簇       | 描述                                |
+| :----------- | :---------------------------------- |
+| [[:alpha:]]  | 任何字母                            |
+| [[:digit:]]  | 任何数字                            |
+| [[:alnum:]]  | 任何字母和数字                      |
+| [[:space:]]  | 任何空白字符                        |
+| [[:upper:]]  | 任何大写字母                        |
+| [[:lower:]]  | 任何小写字母                        |
+| [[:punct:]]  | 任何标点符号                        |
+| [[:xdigit:]] | 任何16进制的数字，相当于[0-9a-fA-F] |
+
+
+
+#### 确定重复出现
+
+到现在为止，你已经知道如何去匹配一个字母或数字，但更多的情况下，可能要匹配一个单词或一组数字。一个单词有若干个字母组成，一组数字有若干个单数组成。跟在字符或字符簇后面的花括号({})用来确定前面的内容的重复出现的次数。
+
+| 字符簇           | 描述                            |
+| :--------------- | :------------------------------ |
+| ^[a-zA-Z_]$      | 所有的字母和下划线              |
+| ^[[:alpha:]]{3}$ | 所有的3个字母的单词             |
+| ^a$              | 字母a                           |
+| ^a{4}$           | aaaa                            |
+| ^a{2,4}$         | aa,aaa或aaaa                    |
+| ^a{1,3}$         | a,aa或aaa                       |
+| ^a{2,}$          | 包含多于两个a的字符串           |
+| ^a{2,}           | 如：aardvark和aaab，但apple不行 |
+| a{2,}            | 如：baad和aaa，但Nantucket不行  |
+| \t{2}            | 两个制表符                      |
+| .{2}             | 所有的两个字符                  |
+
+这些例子描述了花括号的三种不同的用法。一个数字 **{x}** 的意思是**前面的字符或字符簇只出现x次** ；一个数字加逗号 **{x,}** 的意思是**前面的内容出现x或更多的次数** ；两个数字用逗号分隔的数字 **{x,y}** 表示 **前面的内容至少出现x次，但不超过y次**。我们可以把模式扩展到更多的单词或数字：
+
+</code></pre>
+<p>^[a-zA-Z0-9_]{1,}<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord">//</span><span class="mord cjk_fallback">所有包含一个以上的字母、数字或下划线的字符</span><span class="mord"><span class="mord cjk_fallback">串</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mopen mtight">[</span></span></span></span></span></span></span></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span></span></span></span>        // 所有的正整数 
+^-{0,1}[0-9]{1,}<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord">//</span><span class="mord cjk_fallback">所有的整</span><span class="mord"><span class="mord cjk_fallback">数</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mopen mtight">[</span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mclose">]?</span><span class="mopen">[</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1813em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9313em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mclose">?</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1389em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9</span><span class="mclose">]</span><span class="mord">+</span></span></span></span>   // 所有的浮点数</p>
+<pre><code>
+最后一个例子不太好理解，是吗？这么看吧：以一个可选的负号 (**[-]?**) 开头 (**^**)、跟着1个或更多的数字(**[0-9]+**)、和一个小数点(**\.**)再跟上1个或多个数字**([0-9]+**)，并且后面没有其他任何东西(**$**)。下面你将知道能够使用的更为简单的方法。
+
+特殊字符 **?** 与 **{0,1}** 是相等的，它们都代表着： **0个或1个前面的内容** 或 **前面的内容是可选的** 。所以刚才的例子可以简化为：
+
+</code></pre>
+<p>^-?[0-9]{1,}.?[0-9]{1,}<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">‘‘‘</span><span class="mord cjk_fallback">特殊字符</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">与</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">∗</span><span class="mord"><span class="mord">0</span><span class="mpunct">,</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∗</span><span class="mord cjk_fallback">是相等的，它们都代表着</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∗</span><span class="mord">0</span><span class="mord cjk_fallback">个或多个前面的内容</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∗</span><span class="mord cjk_fallback">。最后，字符</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4653em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord cjk_fallback">与</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">∗</span><span class="mord"><span class="mord">1</span><span class="mpunct">,</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∗</span><span class="mord cjk_fallback">是相等的，表示</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∗</span><span class="mord">1</span><span class="mord cjk_fallback">个或多个前面的内容</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9713em;vertical-align:-0.0833em;"></span><span class="mord">∗</span><span class="mord cjk_fallback">，所以上面的</span><span class="mord">4</span><span class="mord cjk_fallback">个例子可以写成：</span><span class="mord">‘‘</span><span class="mord"><span class="mord">‘</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mopen mtight">[</span></span></span></span></span></span></span></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9996em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord">9</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mclose mtight">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mord">+</span></span></span></span>      // 所有包含一个以上的字母、数字或下划线的字符串 
+^[1-9][0-9]*        // 所有的正整数 
+^-?[0-9]+          // 所有的整数 
+^[-]?[0-9]+(.[0-9]+)? // 所有的浮点数</p>
+<pre><code>
+当然这并不能从技术上降低正则表达式的复杂性，但可以使它们更容易阅读
+
+
+
+## python re模块
+
+
+
+```python
+import re
+</code></pre>
+<h3 id="rematch函数"><a class="header" href="#rematch函数">re.match函数</a></h3>
+<p>re.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match() 就返回 none</p>
+<pre><code class="language-python">re.match(pattern, string, flags=0)
+</code></pre>
+<p>函数参数说明：</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">参数</th><th style="text-align: left">描述</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>pattern</strong></td><td style="text-align: left">匹配的正则表达式</td></tr>
+<tr><td style="text-align: left"><strong>string</strong></td><td style="text-align: left">要匹配的字符串。</td></tr>
+<tr><td style="text-align: left"><strong>flags</strong></td><td style="text-align: left">标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：[<a href='#xiushi'>正则表达式基础修饰符</a>]</td></tr>
+</tbody></table>
+</div>
+<p>匹配成功 re.match 方法返回一个匹配的对象，否则返回 None。</p>
+<p>我们可以使用 group(num) 或 groups() 匹配对象函数来获取匹配表达式。</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">匹配对象方法</th><th style="text-align: left">描述</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>group(num=0)</strong></td><td style="text-align: left">匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。</td></tr>
+<tr><td style="text-align: left"><strong>groups()</strong></td><td style="text-align: left">返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-python">import re
+
+### match 实例
+print(re.match('www', 'www.runoob.com').span())  # 在起始位置匹配
+print(re.match('com', 'www.runoob.com'))         # 不在起始位置匹配
+
+# 输出为
+# (0, 3)
+# None
+
+### group 实例
+line = &quot;Cats are smarter than dogs&quot;
+matchObj = re.match( r'(.*) are (.*?) .*', line, re.M|re.I)
+if matchObj:
+   print &quot;matchObj.group() : &quot;, matchObj.group()
+   print &quot;matchObj.group(1) : &quot;, matchObj.group(1)
+   print &quot;matchObj.group(2) : &quot;, matchObj.group(2)
+else:
+   print &quot;No match!!&quot;
+
+# 输出为
+# matchObj.group() :  Cats are smarter than dogs
+# matchObj.group(1) :  Cats
+# matchObj.group(2) :  smarter
+</code></pre>
+<h3 id="reresearch-函数"><a class="header" href="#reresearch-函数">re.research 函数</a></h3>
+<p>re.search 扫描整个字符串并返回第一个成功的匹配</p>
+<p>函数语法：</p>
+<pre><code>re.search(pattern, string, flags=0)
+</code></pre>
+<p>函数参数说明：</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">参数</th><th style="text-align: left">描述</th></tr></thead><tbody>
+<tr><td style="text-align: left"><strong>pattern</strong></td><td style="text-align: left">匹配的正则表达式</td></tr>
+<tr><td style="text-align: left"><strong>string</strong></td><td style="text-align: left">要匹配的字符串。</td></tr>
+<tr><td style="text-align: left"><strong>flags</strong></td><td style="text-align: left">标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</td></tr>
+</tbody></table>
+</div>
+<p>匹配成功re.search方法返回一个匹配的对象，否则返回None。</p>
+<p>我们可以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式。</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">匹配对象方法</th><th style="text-align: left">描述</th></tr></thead><tbody>
+<tr><td style="text-align: left">group(num=0)</td><td style="text-align: left">匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。</td></tr>
+<tr><td style="text-align: left">groups()</td><td style="text-align: left">返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。</td></tr>
+</tbody></table>
+</div>
+<pre><code class="language-python">import re
+
+# search实例
+print(re.search('www', 'www.runoob.com').span())  # 在起始位置匹配
+print(re.search('com', 'www.runoob.com').span())  # 不在起始位置匹配
+
+# 输出为
+# (0, 3)
+# (11, 14)
+
+# group实例
+line = &quot;Cats are smarter than dogs&quot;;
+searchObj = re.search( r'(.*) are (.*?) .*', line, re.M|re.I)
+if searchObj:
+   print &quot;searchObj.group() : &quot;, searchObj.group()
+   print &quot;searchObj.group(1) : &quot;, searchObj.group(1)
+   print &quot;searchObj.group(2) : &quot;, searchObj.group(2)
+else:
+   print &quot;Nothing found!!&quot;
+
+# 输出为
+# searchObj.group() :  Cats are smarter than dogs
+# searchObj.group(1) :  Cats
+# searchObj.group(2) :  smarter
+</code></pre>
+<h3 id="rematch与research的区别"><a class="header" href="#rematch与research的区别">re.match与re.search的区别</a></h3>
+<p>re.match只匹配字符串的<strong>开始</strong>，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配</p>
+<h3 id="resub-检索和替换"><a class="header" href="#resub-检索和替换">re.sub 检索和替换</a></h3>
+<p>语法：</p>
+<pre><code>re.sub(pattern, repl, string, count=0, flags=0)
+</code></pre>
+<p>参数：</p>
+<ul>
+<li>pattern : 正则中的模式字符串。</li>
+<li>repl : 替换的字符串，也可为一个函数。</li>
+<li>string : 要被查找替换的原始字符串。</li>
+<li>count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹配。</li>
+</ul>
+<pre><code class="language-python">import re
+
+phone = &quot;2004-959-559 # 这是一个国外电话号码&quot;
+
+# 删除字符串中的 Python注释 
+num = re.sub(r'#.*', &quot;&quot;, phone)
+print &quot;电话号码是: &quot;, num
+
+# 删除非数字(-)的字符串 
+num = re.sub(r'\D', &quot;&quot;, phone)
+print &quot;电话号码是 : &quot;, num
+
+# 输出为
+# 电话号码是:  2004-959-559 
+# 电话号码是 :  2004959559
+</code></pre>
+<h4 id="repl-参数可以是一个函数"><a class="header" href="#repl-参数可以是一个函数">repl 参数可以是一个函数</a></h4>
+<pre><code class="language-python">import re
+ 
+# 将匹配的数字乘以 2
+def double(matched):
+    value = int(matched.group('value'))
+    return str(value * 2)
+ 
+s = 'A23G4HFD567'
+print(re.sub('(?P&lt;value&gt;\d+)', double, s))
+
+# 输出为
+# A46G8HFD1134
+</code></pre>
+<h3 id="recompile"><a class="header" href="#recompile">re.compile</a></h3>
+<p>compile 函数用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用，语法格式为</p>
+<pre><code class="language-python">re.compile(pattern[, flags])
+</code></pre>
+<p>参数：</p>
+<ul>
+<li><strong>pattern</strong> : 一个字符串形式的正则表达式</li>
+<li><strong>flags</strong> : 可选，表示匹配模式，比如忽略大小写，多行模式等，具体参数为：
+<ol>
+<li><strong>re.I</strong> 忽略大小写</li>
+<li><strong>re.L</strong> 表示特殊字符集 \w, \W, \b, \B, \s, \S 依赖于当前环境</li>
+<li><strong>re.M</strong> 多行模式</li>
+<li><strong>re.S</strong> 即为 <strong>.</strong> 并且包括换行符在内的任意字符（<strong>.</strong> 不包括换行符）</li>
+<li><strong>re.U</strong> 表示特殊字符集 \w, \W, \b, \B, \d, \D, \s, \S 依赖于 Unicode 字符属性数据库</li>
+<li><strong>re.X</strong> 为了增加可读性，忽略空格和 <strong>#</strong> 后面的注释</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt;import re
+&gt;&gt;&gt; pattern = re.compile(r'\d+')                    # 用于匹配至少一个数字
+&gt;&gt;&gt; m = pattern.match('one12twothree34four')        # 查找头部，没有匹配
+&gt;&gt;&gt; print m
+None
+&gt;&gt;&gt; m = pattern.match('one12twothree34four', 2, 10) # 从'e'的位置开始匹配，没有匹配
+&gt;&gt;&gt; print m
+None
+&gt;&gt;&gt; m = pattern.match('one12twothree34four', 3, 10) # 从'1'的位置开始匹配，正好匹配
+&gt;&gt;&gt; print m                                         # 返回一个 Match 对象
+&lt;_sre.SRE_Match object at 0x10a42aac0&gt;
+&gt;&gt;&gt; m.group(0)   # 可省略 0
+'12'
+&gt;&gt;&gt; m.start(0)   # 可省略 0
+3
+&gt;&gt;&gt; m.end(0)     # 可省略 0
+5
+&gt;&gt;&gt; m.span(0)    # 可省略 0
+(3, 5)
+</code></pre>
+<h3 id="findall"><a class="header" href="#findall">findall</a></h3>
+<p>在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果有多个匹配模式，则返回元组列表，如果没有找到匹配的，则返回空列表</p>
+<p><strong>注意：</strong> match 和 search 是匹配一次 findall 匹配所有</p>
+<p>参数：</p>
+<ul>
+<li><strong>string</strong> : 待匹配的字符串</li>
+<li><strong>pos</strong> : 可选参数，指定字符串的起始位置，默认为 0</li>
+<li><strong>endpos</strong> : 可选参数，指定字符串的结束位置，默认为字符串的长度</li>
+</ul>
+<pre><code class="language-python">import re
+ 
+pattern = re.compile(r'\d+')   # 查找数字
+result1 = pattern.findall('runoob 123 google 456')
+result2 = pattern.findall('run88oob123google456', 0, 10)
+ 
+print(result1)
+print(result2)
+
+# 输出
+# ['123', '456']
+# ['88', '12']
+</code></pre>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../python/crawler/BeautifulSoup.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../python/pytorch/pytorch.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../python/crawler/BeautifulSoup.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../python/pytorch/pytorch.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "python/crawler/re.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

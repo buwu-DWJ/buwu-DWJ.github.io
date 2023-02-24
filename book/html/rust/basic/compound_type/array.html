@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>数组 - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../favicon.png">
+    <link rel="stylesheet" href="../../../css/variables.css">
+    <link rel="stylesheet" href="../../../css/general.css">
+    <link rel="stylesheet" href="../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../highlight.css">
+    <link rel="stylesheet" href="../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../theme/style3.css">
+
+
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../python/crawler/re.html"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../rust/pre.html"><strong aria-hidden="true">3.</strong> $\dagger$Rust$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../rust/basic/pre.html"><strong aria-hidden="true">3.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/basic/basic.html"><strong aria-hidden="true">3.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../rust/basic/variable.html"><strong aria-hidden="true">3.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../rust/basic/ownership/pre.html"><strong aria-hidden="true">3.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/basic/ownership/ownership.html"><strong aria-hidden="true">3.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../rust/basic/ownership/borrowing.html"><strong aria-hidden="true">3.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item expanded "><a href="../../../rust/basic/compound_type/pre.html"><strong aria-hidden="true">3.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/basic/compound_type/string_slice.html"><strong aria-hidden="true">3.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../rust/basic/compound_type/tuple.html"><strong aria-hidden="true">3.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../rust/basic/compound_type/struct.html"><strong aria-hidden="true">3.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../rust/basic/compound_type/enum.html"><strong aria-hidden="true">3.1.4.4.</strong> 枚举</a></li><li class="chapter-item expanded "><a href="../../../rust/basic/compound_type/array.html" class="active"><strong aria-hidden="true">3.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../rust/basic/flow_control.html"><strong aria-hidden="true">3.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../rust/basic/match_pattern/pre.html"><strong aria-hidden="true">3.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/basic/match_pattern/if_let.html"><strong aria-hidden="true">3.1.6.1.</strong> if_let</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../ml/ml.html"><strong aria-hidden="true">4.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../ml/pre/pre.html"><strong aria-hidden="true">4.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">4.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">4.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">4.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">4.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">4.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">4.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">4.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">4.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">4.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">4.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">4.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">4.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">4.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">4.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">4.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../nn/basic.html"><strong aria-hidden="true">5.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../nn/feedforward.html"><strong aria-hidden="true">5.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../nn/memory.html"><strong aria-hidden="true">5.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../nn/GAN.html"><strong aria-hidden="true">5.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../nn/graph.html"><strong aria-hidden="true">5.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">6.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL.html"><strong aria-hidden="true">6.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">6.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">6.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">6.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">6.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">6.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">6.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">6.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/fin.html"><strong aria-hidden="true">6.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">6.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">7.</strong> $\dagger$Option$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/pre.html"><strong aria-hidden="true">7.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/basic.html"><strong aria-hidden="true">7.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../option/basic/spread.html"><strong aria-hidden="true">7.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../option/basic/theorems.html"><strong aria-hidden="true">7.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../../option/models/pre.html"><strong aria-hidden="true">7.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/models/sv.html"><strong aria-hidden="true">7.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../option/models/rough.html"><strong aria-hidden="true">7.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../option/models/wing_model.html"><strong aria-hidden="true">7.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">7.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">7.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">7.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="数组"><a class="header" href="#数组">数组</a></h1>
+<p>在 Rust 中，最常用的数组有两种，第一种是速度很快但是长度固定的 <code>array</code>，第二种是可动态增长的但是有性能损耗的 <code>Vector</code>，方便起见，我们称 <code>array</code> 为数组，<code>Vector</code> 为动态数组。</p>
+<p>这两个数组的关系跟 <code>&amp;str</code> 与 <code>String</code> 的关系很像，前者是长度固定的字符串切片，后者是可动态增长的字符串。其实，在 Rust 中无论是 <code>String</code> 还是 <code>Vector</code>，它们都是 Rust 的高级类型：集合类型，在后面章节会有详细介绍。</p>
+<p>对于本章节，我们的重点还是放在数组 <code>array</code> 上。数组的具体定义很简单：将多个类型相同的元素依次组合在一起，就是一个数组。结合上面的内容，可以得出数组的三要素：</p>
+<ul>
+<li>长度固定</li>
+<li>元素必须有相同的类型</li>
+<li>依次线性排列</li>
+</ul>
+<p>这里再啰嗦一句，<strong>我们这里说的数组是 Rust 的基本类型，是固定长度的，这点与其他编程语言不同，其它编程语言的数组往往是可变长度的，与 Rust 中的动态数组 <code>Vector</code> 类似</strong>。</p>
+<h3 id="创建数组"><a class="header" href="#创建数组">创建数组</a></h3>
+<p>在 Rust 中，数组是这样定义的：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let a = [1, 2, 3, 4, 5];
+}</code></pre></pre>
+<p>数组语法跟 JavaScript 很像，也跟大多数编程语言很像。由于它的元素类型大小固定，且长度也是固定，因此<strong>数组 <code>array</code> 是存储在栈上</strong>，性能也会非常优秀。与此对应，<strong>动态数组 <code>Vector</code> 是存储在堆上</strong>，因此长度可以动态改变。当你不确定是使用数组还是动态数组时，那就应该使用后者。</p>
+<p>举个例子，在需要知道一年中各个月份名称的程序中，你很可能希望使用的是数组而不是动态数组。因为月份是固定的，它总是只包含 12 个元素：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let months = [&quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;July&quot;,
+              &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;];
+<span class="boring">}</span></code></pre></pre>
+<p>在一些时候，还需要为<strong>数组声明类型</strong>，如下所示：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a: [i32; 5] = [1, 2, 3, 4, 5];
+<span class="boring">}</span></code></pre></pre>
+<p>这里，数组类型是通过方括号语法声明，<code>i32</code> 是元素类型，分号后面的数字 <code>5</code> 是数组长度，数组类型也从侧面说明了<strong>数组的元素类型要统一，长度要固定</strong>。</p>
+<p>还可以使用下面的语法初始化一个<strong>某个值重复出现 N 次的数组</strong>：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a = [3; 5];
+<span class="boring">}</span></code></pre></pre>
+<p><code>a</code> 数组包含 <code>5</code> 个元素，这些元素的初始化值为 <code>3</code>，聪明的读者已经发现，这种语法跟数组类型的声明语法其实是保持一致的：<code>[3; 5]</code> 和 <code>[类型; 长度]</code>。</p>
+<h3 id="访问数组元素"><a class="header" href="#访问数组元素">访问数组元素</a></h3>
+<p>因为数组是连续存放元素的，因此可以通过索引的方式来访问存放其中的元素：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let a = [9, 8, 7, 6, 5];
+
+    let first = a[0]; // 获取a数组第一个元素
+    let second = a[1]; // 获取第二个元素
+}</code></pre></pre>
+<p>与许多语言类似，数组的索引下标是从 0 开始的。此处，<code>first</code> 获取到的值是 <code>9</code>，<code>second</code> 是 <code>8</code>。</p>
+<h4 id="越界访问"><a class="header" href="#越界访问">越界访问</a></h4>
+<p>如果使用超出数组范围的索引访问数组元素，会怎么样？下面是一个接收用户的控制台输入，然后将其作为索引访问数组元素的例子：</p>
+<pre><pre class="playground"><code class="language-rust">use std::io;
+
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+
+    println!(&quot;Please enter an array index.&quot;);
+
+    let mut index = String::new();
+    // 读取控制台的输出
+    io::stdin()
+        .read_line(&amp;mut index)
+        .expect(&quot;Failed to read line&quot;);
+
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect(&quot;Index entered was not a number&quot;);
+
+    let element = a[index];
+
+    println!(
+        &quot;The value of the element at index {} is: {}&quot;,
+        index, element
+    );
+}</code></pre></pre>
+<p>使用 <code>cargo run</code> 来运行代码，因为数组只有 5 个元素，如果我们试图输入 <code>5</code> 去访问第 6 个元素，则会访问到不存在的数组元素，最终程序会崩溃退出：</p>
+<pre><code class="language-console">Please enter an array index.
+5
+thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 5', src/main.rs:19:19
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+</code></pre>
+<p>这就是数组访问越界，访问了数组中不存在的元素，导致 Rust 运行时错误。程序因此退出并显示错误消息，未执行最后的 <code>println!</code> 语句。</p>
+<p>当你尝试使用索引访问元素时，Rust 将检查你指定的索引是否小于数组长度。如果索引大于或等于数组长度，Rust 会出现 <strong><em>panic</em></strong>。这种检查只能在运行时进行，比如在上面这种情况下，编译器无法在编译期知道用户运行代码时将输入什么值。</p>
+<p>这种就是 Rust 的安全特性之一。在很多系统编程语言中，并不会检查数组越界问题，你会访问到无效的内存地址获取到一个风马牛不相及的值，最终导致在程序逻辑上出现大问题，而且这种问题会非常难以检查。</p>
+<h4 id="数组元素为非基础类型"><a class="header" href="#数组元素为非基础类型">数组元素为非基础类型</a></h4>
+<p>学习了上面的知识，很多朋友肯定觉得已经学会了Rust的数组类型，但现实会给我们一记重锤，实际开发中还会碰到一种情况，就是<strong>数组元素是非基本类型</strong>的，这时候大家一定会这样写。</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let array = [String::from(&quot;rust is good!&quot;); 8];
+
+println!(&quot;{:#?}&quot;, array);
+<span class="boring">}</span></code></pre></pre>
+<p>然后你会惊喜的得到编译错误。</p>
+<pre><code class="language-console">error[E0277]: the trait bound `String: std::marker::Copy` is not satisfied
+ --&gt; src/main.rs:7:18
+  |
+7 |     let array = [String::from(&quot;rust is good!&quot;); 8];
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `std::marker::Copy` is not implemented for `String`
+  |
+  = note: the `Copy` trait is required because this value will be copied for each element of the array
+</code></pre>
+<p>有些还没有看过特征的小伙伴，有可能不太明白这个报错，不过这个目前可以不提，我们就拿之前所学的所有权知识，就可以思考明白，前面几个例子都是Rust的基本类型，而<strong>基本类型在Rust中赋值是以Copy的形式</strong>，<code>let array=[3;5]</code>底层就是不断的Copy出来的，但很可惜复杂类型都没有深拷贝，只能一个个创建。</p>
+<p><strong>正确的写法</strong>，应该调用<code>std::array::from_fn</code></p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let array: [String; 8] = core::array::from_fn(|i| String::from(&quot;rust is good!&quot;));
+
+println!(&quot;{:#?}&quot;, array);
+<span class="boring">}</span></code></pre></pre>
+<h2 id="数组切片"><a class="header" href="#数组切片">数组切片</a></h2>
+<p>在之前的章节，我们有讲到 <code>切片</code> 这个概念，它允许你引用集合中的部分连续片段，而不是整个集合，对于数组也是，数组切片允许我们引用数组的一部分：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let a: [i32; 5] = [1, 2, 3, 4, 5];
+
+let slice: &amp;[i32] = &amp;a[1..3];
+
+assert_eq!(slice, &amp;[2, 3]);
+<span class="boring">}</span></code></pre></pre>
+<p>上面的数组切片 <code>slice</code> 的类型是<code>&amp;[i32]</code>，与之对比，数组的类型是<code>[i32;5]</code>，简单总结下切片的特点：</p>
+<ul>
+<li>切片的长度可以与数组不同，并不是固定的，而是取决于你使用时指定的起始和结束位置</li>
+<li>创建切片的代价非常小，因为切片只是针对底层数组的一个引用</li>
+<li>切片类型[T]拥有不固定的大小，而切片引用类型&amp;[T]则具有固定的大小，因为 Rust 很多时候都需要固定大小数据类型，因此&amp;[T]更有用,<code>&amp;str</code>字符串切片也同理</li>
+</ul>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<p>最后，让我们以一个综合性使用数组的例子来结束本章：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+  // 编译器自动推导出one的类型
+  let one             = [1, 2, 3];
+  // 显式类型标注
+  let two: [u8; 3]    = [1, 2, 3];
+  let blank1          = [0; 3];
+  let blank2: [u8; 3] = [0; 3];
+
+  // arrays是一个二维数组，其中每一个元素都是一个数组，元素类型是[u8; 3]
+  let arrays: [[u8; 3]; 4]  = [one, two, blank1, blank2];
+
+  // 借用arrays的元素用作循环中
+  for a in &amp;arrays {
+    print!(&quot;{:?}: &quot;, a);
+    // 将a变成一个迭代器，用于循环
+    // 你也可以直接用for n in a {}来进行循环
+    for n in a.iter() {
+      print!(&quot;\t{} + 10 = {}&quot;, n, n+10);
+    }
+
+    let mut sum = 0;
+    // 0..a.len,是一个 Rust 的语法糖，其实就等于一个数组，元素是从0,1,2一直增加到到a.len-1
+    for i in 0..a.len() {
+      sum += a[i];
+    }
+    println!(&quot;\t({:?} = {})&quot;, a, sum);
+  }
+}</code></pre></pre>
+<p>做个总结，数组虽然很简单，但是其实还是存在几个要注意的点：</p>
+<ul>
+<li><strong>数组类型容易跟数组切片混淆</strong>，[T;n]描述了一个数组的类型，而[T]描述了切片的类型， 因为切片是运行期的数据结构，它的长度无法在编译期得知，因此不能用[T;n]的形式去描述</li>
+<li><code>[u8; 3]</code>和<code>[u8; 4]</code>是不同的类型，数组的长度也是类型的一部分</li>
+<li><strong>在实际开发中，使用最多的是数组切片[T]</strong>，我们往往通过引用的方式去使用<code>&amp;[T]</code>，因为后者有固定的类型大小</li>
+</ul>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../rust/basic/compound_type/enum.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../rust/basic/flow_control.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../rust/basic/compound_type/enum.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../rust/basic/flow_control.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "rust/basic/compound_type/array.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

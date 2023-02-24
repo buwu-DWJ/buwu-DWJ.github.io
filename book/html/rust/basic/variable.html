@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>变量绑定与解构 - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../theme/style3.css">
+
+
+</head>
+
+<body>
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../python/crawler/re.html"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../rust/pre.html"><strong aria-hidden="true">3.</strong> $\dagger$Rust$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../rust/basic/pre.html"><strong aria-hidden="true">3.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/basic.html"><strong aria-hidden="true">3.1.1.</strong> 安装及其他</a></li><li class="chapter-item expanded "><a href="../../rust/basic/variable.html" class="active"><strong aria-hidden="true">3.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/pre.html"><strong aria-hidden="true">3.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/ownership/ownership.html"><strong aria-hidden="true">3.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../rust/basic/ownership/borrowing.html"><strong aria-hidden="true">3.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/compound_type/pre.html"><strong aria-hidden="true">3.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/compound_type/string_slice.html"><strong aria-hidden="true">3.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/tuple.html"><strong aria-hidden="true">3.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/struct.html"><strong aria-hidden="true">3.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/enum.html"><strong aria-hidden="true">3.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../rust/basic/compound_type/array.html"><strong aria-hidden="true">3.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../rust/basic/flow_control.html"><strong aria-hidden="true">3.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../rust/basic/match_pattern/pre.html"><strong aria-hidden="true">3.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/basic/match_pattern/if_let.html"><strong aria-hidden="true">3.1.6.1.</strong> if_let</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../ml/ml.html"><strong aria-hidden="true">4.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">4.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">4.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">4.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">4.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">4.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">4.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">4.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">4.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chapter9.html"><strong aria-hidden="true">4.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../ml/chapter10/chapter10.html"><strong aria-hidden="true">4.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../ml/chapter11/chapter11.html"><strong aria-hidden="true">4.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../ml/chapter12/chapter12.html"><strong aria-hidden="true">4.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">4.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">4.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">4.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">4.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">5.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">5.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">5.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">5.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">5.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">6.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">6.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">6.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">6.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">6.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">6.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">6.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">6.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">6.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">6.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../option/option.html"><strong aria-hidden="true">7.</strong> $\dagger$Option$\dagger$</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">7.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">7.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">7.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">7.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">7.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">7.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">7.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">7.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">7.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">7.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">7.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+
+                <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="变量绑定与解构"><a class="header" href="#变量绑定与解构">变量绑定与解构</a></h1>
+<h2 id="变量绑定"><a class="header" href="#变量绑定">变量绑定</a></h2>
+<p>在其它语言中，我们用 <code>var a = &quot;hello world&quot;</code> 的方式给 <code>a</code> 赋值，也就是把等式右边的 <code>&quot;hello world&quot;</code> 字符串赋值给变量 <code>a</code> ，而在 Rust 中，我们这样写： <code>let a = &quot;hello world&quot;</code> ，同时给这个过程起了另一个名字：<strong>变量绑定</strong>。</p>
+<p>为何不用赋值而用绑定呢（其实你也可以称之为赋值，但是绑定的含义更清晰准确）？这里就涉及 Rust 最核心的原则——<strong>所有权</strong>，简单来讲，任何内存对象都是有主人的，而且一般情况下完全属于它的主人，绑定就是把这个对象绑定给一个变量.</p>
+<h2 id="变量可变性"><a class="header" href="#变量可变性">变量可变性</a></h2>
+<p>Rust 的变量在默认情况下是<strong>不可变的</strong>。前文提到，这是 Rust 团队为我们精心设计的语言特性之一，让我们编写的代码更安全，性能也更好。当然你可以通过 <code>mut</code> 关键字让变量变为<strong>可变的</strong>，让设计更灵活。</p>
+<p>如果变量 <code>a</code> 不可变，那么一旦为它绑定值，就不能再修改 <code>a</code>:</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = 5;
+    println!(&quot;The value of x is: {}&quot;, x);
+    x = 6;
+    println!(&quot;The value of x is: {}&quot;, x);
+}</code></pre></pre>
+<p>在 Rust 中，可变性很简单，只要在变量名前加一个 <code>mut</code> 即可, 而且这种显式的声明方式还会给后来人传达这样的信息：嗯，这个变量在后面代码部分会发生改变。</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let mut x = 5;
+    println!(&quot;The value of x is: {}&quot;, x);
+    x = 6;
+    println!(&quot;The value of x is: {}&quot;, x);
+}</code></pre></pre>
+<p>如果创建了一个变量却不在任何地方使用它，Rust 通常会给你一个警告，因为这可能会是个 BUG。但是有时创建一个不会被使用的变量是有用的，比如你正在设计原型或刚刚开始一个项目。这时<strong>你希望告诉 Rust 不要警告未使用的变量，为此可以用下划线作为变量名的开头</strong>：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let _x = 5;
+    let y = 10;
+}</code></pre></pre>
+<h2 id="变量解构"><a class="header" href="#变量解构">变量解构</a></h2>
+<p><code>let</code> 表达式不仅仅用于变量的绑定，还能进行复杂变量的解构：从一个相对复杂的变量中，匹配出该变量的一部分内容：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let (a, mut b): (bool,bool) = (true, false);
+    // a = true,不可变; b = false，可变
+    println!(&quot;a = {:?}, b = {:?}&quot;, a, b);
+
+    b = true;
+    assert_eq!(a, b);
+}</code></pre></pre>
+<h3 id="解构式赋值"><a class="header" href="#解构式赋值">解构式赋值</a></h3>
+<p>在Rust 1.59版本后，我们可以在赋值语句的左式中使用元组、切片和结构体模式了。</p>
+<pre><pre class="playground"><code class="language-rust">struct Struct {
+    e: i32
+}
+
+fn main() {
+    let (a, b, c, d, e);
+
+    (a, b) = (1, 2);
+    // _ 代表匹配一个值，但是我们不关心具体的值是什么，因此没有使用一个变量名而是使用了 _
+    [c, .., d, _] = [1, 2, 3, 4, 5];
+    Struct { e, .. } = Struct { e: 5 };
+
+    assert_eq!([1, 2, 1, 4, 5], [a, b, c, d, e]);
+}</code></pre></pre>
+<p>这种使用方式跟之前的 <code>let</code> 保持了一致性，但是 <code>let</code> 会重新绑定，而这里仅仅是对之前绑定的变量进行再赋值。</p>
+<h2 id="变量和常量之间的差异"><a class="header" href="#变量和常量之间的差异">变量和常量之间的差异</a></h2>
+<p>变量的值不能更改可能让你想起其他另一个很多语言都有的编程概念：<strong>常量</strong>(<em>constant</em>)。与不可变变量一样，常量也是绑定到一个常量名且不允许更改的值，但是常量和变量之间存在一些差异：</p>
+<ul>
+<li>常量不允许使用 <code>mut</code>。<strong>常量不仅仅默认不可变，而且自始至终不可变</strong>，因为常量在编译完成后，已经确定它的值。</li>
+<li>常量使用 <code>const</code> 关键字而不是 <code>let</code> 关键字来声明，并且值的类型<strong>必须</strong>标注。</li>
+</ul>
+<p>常量可以在任意作用域内声明，包括全局作用域，在声明的作用域内，常量在程序运行的整个过程中都有效。</p>
+<h2 id="变量遮蔽shadowing"><a class="header" href="#变量遮蔽shadowing">变量遮蔽(shadowing)</a></h2>
+<p>Rust 允许声明相同的变量名，在后面声明的变量会遮蔽掉前面声明的，如下所示：</p>
+<pre><pre class="playground"><code class="language-rust">fn main() {
+    let x = 5;
+    // 在main函数的作用域内对之前的x进行遮蔽
+    let x = x + 1;
+
+    {
+        // 在当前的花括号作用域内，对之前的x进行遮蔽
+        let x = x * 2;
+        println!(&quot;The value of x in the inner scope is: {}&quot;, x);
+    }
+
+    println!(&quot;The value of x is: {}&quot;, x);
+}</code></pre></pre>
+<p>这个程序首先将数值 <code>5</code> 绑定到 <code>x</code>，然后通过重复使用 <code>let x =</code> 来遮蔽之前的 <code>x</code>，并取原来的值加上 <code>1</code>，所以 <code>x</code> 的值变成了 <code>6</code>。第三个 <code>let</code> 语句同样遮蔽前面的 <code>x</code>，取之前的值并乘上 <code>2</code>，得到的 <code>x</code> 最终值为 <code>12</code>。</p>
+<p>这和 <code>mut</code> 变量的使用是不同的，第二个 <code>let</code> 生成了完全不同的新变量，两个变量只是恰好拥有同样的名称，涉及一次内存对象的再分配
+，而 <code>mut</code> 声明的变量，可以修改同一个内存地址上的值，并不会发生内存对象的再分配，性能要更好.</p>
+<p>变量遮蔽的用处在于，如果你在某个作用域内无需再使用之前的变量（在被遮蔽后，无法再访问到之前的同名变量），就可以重复的使用变量名字，而不用绞尽脑汁去想更多的名字</p>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../rust/basic/basic.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../rust/basic/ownership/pre.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../rust/basic/basic.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../rust/basic/ownership/pre.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "rust/basic/variable.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>
