@@ -71,7 +71,6 @@ fn main() {
 }
 ```
 
-关于原子类型的讲解看[这篇文章](https://course.rs/advance/concurrency-with-threads/sync2.html)
 
 #### 示例：全局 ID 生成器
 

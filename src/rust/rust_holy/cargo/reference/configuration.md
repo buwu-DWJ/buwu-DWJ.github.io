@@ -1,6 +1,6 @@
 # 通过 config.toml 对 Cargo 进行配置
 
-Cargo 相关的配置有两种，第一种是对自身进行配置，第二种是对指定的项目进行配置，关于后者请查看 [Cargo.toml 清单](https://course.rs/cargo/reference/manifest.html)。对于普通用户而言第二种才是我们最常使用的。
+Cargo 相关的配置有两种，第一种是对自身进行配置，第二种是对指定的项目进行配置，关于后者请查看 Cargo.toml 清单。对于普通用户而言第二种才是我们最常使用的。
 
 本文讲述的是如何对 Cargo 相关的工具进行配置，该配置中的部分内容可能会覆盖掉 `Cargo.toml` 中对应的部分，例如关于 `profile` 的内容。
 

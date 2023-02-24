@@ -425,7 +425,7 @@ impl Read for MockTcpStream {
     }
 }
 <span class="boring">}</span></code></pre></pre>
-<p>最后，我们的 mock 需要实现 <code>Unpin</code> 特征，表示它可以在内存中安全的移动，具体内容在<a href="https://course.rs/async-rust/async/pin-unpin.html">前面章节</a>有讲。</p>
+<p>最后，我们的 mock 需要实现 <code>Unpin</code> 特征，表示它可以在内存中安全的移动，具体内容在前面章节有讲。</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>use std::marker::Unpin;

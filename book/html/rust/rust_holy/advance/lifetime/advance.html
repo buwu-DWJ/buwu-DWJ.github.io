@@ -385,7 +385,7 @@ fn fun&lt;T, F: Fn(&amp;T) -&gt; &amp;T&gt;(f: F) -&gt; F {
 }</code></pre></pre>
 </blockquote>
 <h2 id="nll-non-lexical-lifetime"><a class="header" href="#nll-non-lexical-lifetime">NLL (Non-Lexical Lifetime)</a></h2>
-<p>之前我们在<a href="https://course.rs/basic/ownership/borrowing.html#NLL">引用与借用</a>那一章其实有讲到过这个概念，简单来说就是：<strong>引用的生命周期正常来说应该从借用开始一直持续到作用域结束</strong>，但是这种规则会让多引用共存的情况变得更复杂：</p>
+<p>之前我们在引用与借用那一章其实有讲到过这个概念，简单来说就是：<strong>引用的生命周期正常来说应该从借用开始一直持续到作用域结束</strong>，但是这种规则会让多引用共存的情况变得更复杂：</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
    let mut s = String::from(&quot;hello&quot;);
 

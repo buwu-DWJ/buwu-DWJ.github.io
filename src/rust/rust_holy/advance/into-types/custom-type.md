@@ -4,7 +4,7 @@
 
 ## newtype
 
-何为 `newtype`？简单来说，就是使用[元组结构体](https://course.rs/basic/compound-type/struct.html#元组结构体tuple-struct)的方式将已有的类型包裹起来：`struct Meters(u32);`，那么此处 `Meters` 就是一个 `newtype`。
+何为 `newtype`？简单来说，就是使用元组结构体的方式将已有的类型包裹起来：`struct Meters(u32);`，那么此处 `Meters` 就是一个 `newtype`。
 
 为何需要 `newtype`？Rust 这多如繁星的 Old 类型满足不了我们吗？这是因为：
 
@@ -173,7 +173,7 @@ Bingo，这样一来，其它库只需要使用 `std::io::Result<T>` 即可替�
 
 ## !永不返回类型
 
-在[函数](https://course.rs/basic/base-type/function.html#永不返回的函数)那章，曾经介绍过 `!` 类型：`!` 用来说明一个函数永不返回任何值，当时可能体会不深，没事，在学习了更多手法后，保证你有全新的体验：
+在函数那章，曾经介绍过 `!` 类型：`!` 用来说明一个函数永不返回任何值，当时可能体会不深，没事，在学习了更多手法后，保证你有全新的体验：
 
 ```rust
 fn main() {

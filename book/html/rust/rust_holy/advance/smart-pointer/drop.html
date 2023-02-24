@@ -298,7 +298,7 @@ fn main() {
     // println!(&quot;Running!:{:?}&quot;, foo);
 }</code></pre></pre>
 <p>Bingo，完美拿走了所有权，而且这种实现保证了后续的使用必定会导致编译错误，因此非常安全！</p>
-<p>细心的同学可能已经注意到，这里直接调用了 <code>drop</code> 函数，并没有引入任何模块信息，原因是该函数在<a href="https://course.rs/appendix/prelude.html"><code>std::prelude</code></a>里。</p>
+<p>细心的同学可能已经注意到，这里直接调用了 <code>drop</code> 函数，并没有引入任何模块信息，原因是该函数在<code>std::prelude</code>里。</p>
 <h2 id="drop-使用场景"><a class="header" href="#drop-使用场景">Drop 使用场景</a></h2>
 <p>对于 Drop 而言，主要有两个功能：</p>
 <ul>

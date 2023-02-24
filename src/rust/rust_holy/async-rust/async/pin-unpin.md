@@ -127,7 +127,7 @@ pub struct Pin<P> {
 
 因此，一个类型如果不能被移动，它必须实现 `!Unpin` 特征。如果大家对 `Pin` 、 `Unpin` 还是模模糊糊，建议再重复看一遍之前的内容，理解它们对于我们后面要讲到的内容非常重要！
 
-如果将 `Unpin` 与之前章节学过的 [`Send/Sync`](https://course.rs/advance/concurrency-with-threads/send-sync.html) 进行下对比，会发现它们都很像：
+如果将 `Unpin` 与之前章节学过的 `Send/Sync`进行下对比，会发现它们都很像：
 
 - 都是标记特征( marker trait )，该特征未定义任何行为，非常适用于标记
 - 都可以通过`!`语法去除实现

@@ -178,7 +178,7 @@
                 <main>
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="错误处理"><a class="header" href="#错误处理">错误处理</a></h1>
-<p>在之前的<a href="https://course.rs/basic/result-error/intro.html">返回值和错误处理</a>章节中，我们学习了几个重要的概念，例如 <code>Result</code> 用于返回结果处理，<code>?</code> 用于错误的传播，若大家对此还较为模糊，强烈建议回头温习下。</p>
+<p>在之前的返回值和错误处理章节中，我们学习了几个重要的概念，例如 <code>Result</code> 用于返回结果处理，<code>?</code> 用于错误的传播，若大家对此还较为模糊，强烈建议回头温习下。</p>
 <p>在本章节中一起来看看如何对 <code>Result</code> ( <code>Option</code> ) 做进一步的处理，以及如何定义自己的错误类型。</p>
 <h2 id="组合器"><a class="header" href="#组合器">组合器</a></h2>
 <p>在设计模式中，有一个组合器模式，相信有 Java 背景的同学对此并不陌生。</p>
@@ -502,7 +502,7 @@ fn main() {
 }
 <span class="boring">}</span></code></pre></pre>
 <blockquote>
-<p>事实上，该特征在之前的 <a href="https://course.rs/basic/result-error/result.html#%E4%BC%A0%E6%92%AD%E7%95%8C%E7%9A%84%E5%A4%A7%E6%98%8E%E6%98%9F-"><code>?</code> 操作符</a>章节中就有所介绍。</p>
+<p>事实上，该特征在之前的 <code>?</code> 操作符章节中就有所介绍。</p>
 <p>大家都使用过 <code>String::from</code> 函数吧？它可以通过 <code>&amp;str</code> 来创建一个 <code>String</code>，其实该函数就是 <code>From</code> 特征提供的</p>
 </blockquote>
 <p>下面一起来看看如何为自定义类型实现 <code>From</code> 特征:</p>

@@ -28,9 +28,9 @@ fn main() {
 - 根据某个说明描述文件生成一个 Rust 模块
 - 执行一些平台相关的配置
 
-下面的部分我们一起来看看构建脚本具体是如何工作的，然后在[下个章节](https://course.rs/cargo/reference/build-script/examples.html)中还提供了一些关于如何编写构建脚本的示例。
+下面的部分我们一起来看看构建脚本具体是如何工作的，然后在下个章节中还提供了一些关于如何编写构建脚本的示例。
 
-> Note: [`package.build`](https://course.rs/cargo/reference/manifest.html#build) 可以用于改变构建脚本的名称，或者直接禁用该功能
+
 
 #### 构建脚本的生命周期
 

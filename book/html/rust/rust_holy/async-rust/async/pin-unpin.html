@@ -283,7 +283,7 @@ struct AsyncFuture {
 <p>那是不是意味着类型如果实现了 <code>Unpin</code> 特征，就不能被 <code>Pin</code> 了？其实，还是可以 <code>Pin</code> 的，毕竟它只是一个结构体，你可以随意使用，<strong>但是不再有任何效果而已，该值一样可以被移动</strong>！</p>
 <p>例如 <code>Pin&lt;&amp;mut u8&gt;</code> ，显然 <code>u8</code> 实现了 <code>Unpin</code> 特征，它可以在内存中被移动，因此 <code>Pin&lt;&amp;mut u8&gt;</code> 跟 <code>&amp;mut u8</code> 实际上并无区别，一样可以被移动。</p>
 <p>因此，一个类型如果不能被移动，它必须实现 <code>!Unpin</code> 特征。如果大家对 <code>Pin</code> 、 <code>Unpin</code> 还是模模糊糊，建议再重复看一遍之前的内容，理解它们对于我们后面要讲到的内容非常重要！</p>
-<p>如果将 <code>Unpin</code> 与之前章节学过的 <a href="https://course.rs/advance/concurrency-with-threads/send-sync.html"><code>Send/Sync</code></a> 进行下对比，会发现它们都很像：</p>
+<p>如果将 <code>Unpin</code> 与之前章节学过的 <code>Send/Sync</code>进行下对比，会发现它们都很像：</p>
 <ul>
 <li>都是标记特征( marker trait )，该特征未定义任何行为，非常适用于标记</li>
 <li>都可以通过<code>!</code>语法去除实现</li>

@@ -253,7 +253,7 @@ fn main() {
 
     t.join().unwrap();
 }</code></pre></pre>
-<p>报错跟之前无二： <code> `*mut u8` cannot be sent between threads safely</code>, 但是有一个问题，我们无法为其直接实现<code>Send</code>特征，好在可以用<a href="https://course.rs/advance/into-types/custom-type.html#newtype"><code>newtype</code>类型</a> :<code>struct MyBox(*mut u8);</code>。</p>
+<p>报错跟之前无二： <code> `*mut u8` cannot be sent between threads safely</code>, 但是有一个问题，我们无法为其直接实现<code>Send</code>特征，好在可以用<code>newtype</code>类型 :<code>struct MyBox(*mut u8);</code>。</p>
 <p>还记得之前的规则吗：复合类型中有一个成员没实现<code>Send</code>，该复合类型就不是<code>Send</code>，因此我们需要手动为它实现:</p>
 <pre><pre class="playground"><code class="language-rust">use std::thread;
 

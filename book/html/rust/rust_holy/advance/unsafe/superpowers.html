@@ -199,7 +199,7 @@
 let r1 = &amp;num as *const i32;
 let r2 = &amp;mut num as *mut i32;
 <span class="boring">}</span></code></pre></pre>
-<p><code>as</code> 可以用于强制类型转换，在<a href="https://course.rs/basic/converse.html">之前章节</a>中有讲解。在这里，我们将引用 <code>&amp;num / &amp;mut num</code> 强转为相应的裸指针 <code>*const i32 / *mut i32</code>。</p>
+<p><code>as</code> 可以用于强制类型转换，在之前章节中有讲解。在这里，我们将引用 <code>&amp;num / &amp;mut num</code> 强转为相应的裸指针 <code>*const i32 / *mut i32</code>。</p>
 <p>细心的同学可能会发现，在这段代码中并没有 <code>unsafe</code> 的身影，原因在于：<strong>创建裸指针是安全的行为，而解引用裸指针才是不安全的行为</strong> :</p>
 <pre><pre class="playground"><code class="language-rust">fn main() {
     let mut num = 5;
@@ -418,9 +418,9 @@ pub extern &quot;C&quot; fn call_from_c() {
 <p>这里还有一个比较奇怪的注解 <code>#[no_mangle]</code>，它用于告诉 Rust 编译器：不要乱改函数的名称。 <code>Mangling</code> 的定义是：当 Rust 因为编译需要去修改函数的名称，例如为了让名称包含更多的信息，这样其它的编译部分就能从该名称获取相应的信息，这种修改会导致函数名变得相当不可读。</p>
 <p>因此，为了让 Rust 函数能顺利被其它语言调用，我们必须要禁止掉该功能。</p>
 <h2 id="访问或修改一个可变的静态变量"><a class="header" href="#访问或修改一个可变的静态变量">访问或修改一个可变的静态变量</a></h2>
-<p>这部分我们在之前的<a href="https://course.rs/advance/global-variable.html#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F">全局变量章节</a>中有过详细介绍，这里就不再赘述，大家可以前往此章节阅读。</p>
+<p>这部分我们在之前的全局变量章节中有过详细介绍，这里就不再赘述，大家可以前往此章节阅读。</p>
 <h2 id="实现-unsafe-特征"><a class="header" href="#实现-unsafe-特征">实现 unsafe 特征</a></h2>
-<p>说实话，<code>unsafe</code> 的特征确实不多见，如果大家还记得的话，我们在之前的 <a href="https://course.rs/advance/concurrency-with-threads/send-sync.html#%E4%B8%BA%E8%A3%B8%E6%8C%87%E9%92%88%E5%AE%9E%E7%8E%B0sync">Send 和 Sync</a> 章节中实现过 <code>unsafe</code> 特征 <code>Send</code>。</p>
+<p>说实话，<code>unsafe</code> 的特征确实不多见，如果大家还记得的话，我们在之前的 Send 和 Sync章节中实现过 <code>unsafe</code> 特征 <code>Send</code>。</p>
 <p>之所以会有 <code>unsafe</code> 的特征，是因为该特征至少有一个方法包含有编译器无法验证的内容。<code>unsafe</code> 特征的声明很简单：</p>
 <pre><pre class="playground"><code class="language-rust">unsafe trait Foo {
     // 方法列表

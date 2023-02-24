@@ -190,7 +190,7 @@
 <p>这三个步骤将在我们的开发过程中不断循环，知道所有的代码都开发完成并成功通过所有测试。</p>
 <h2 id="注定失败的测试用例"><a class="header" href="#注定失败的测试用例">注定失败的测试用例</a></h2>
 <p>既然要添加测试，那之前的 <code>println!</code> 语句将没有大的用处，毕竟 <code>println!</code> 存在的目的就是为了让我们看到结果是否正确，而现在测试用例将取而代之。</p>
-<p>接下来，在 <code>lib.rs</code> 文件中，添加 <code>tests</code> 模块和 <code>test</code> 函数: </p>
+<p>接下来，在 <code>lib.rs</code> 文件中，添加 <code>tests</code> 模块和 <code>test</code> 函数:</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>#[cfg(test)]
@@ -219,7 +219,6 @@ pub fn search&lt;'a&gt;(query: &amp;str, contents: &amp;'a str) -&gt; Vec&lt;&am
 }
 <span class="boring">}</span></code></pre></pre>
 <p>先添加一个简单的 <code>search</code> 函数实现，非常简单粗暴的返回一个空的数组，显而易见测试用例将成功通过，真是一个居心叵测的测试用例！</p>
-<p>注意这里生命周期 <code>'a</code> 的使用，之前的章节有<a href="https://course.rs/basic/lifetime.html#%E5%87%BD%E6%95%B0%E7%AD%BE%E5%90%8D%E4%B8%AD%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%A0%87%E6%B3%A8">详细介绍</a>，不太明白的同学可以回头看看。</p>
 <p>喔，这么复杂的代码，都用上生命周期了！嘚瑟两下试试：</p>
 <pre><code class="language-shell">$ cargo test
    Compiling minigrep v0.1.0 (file:///projects/minigrep)
@@ -265,7 +264,7 @@ pub fn search&lt;'a&gt;(query: &amp;str, contents: &amp;'a str) -&gt; Vec&lt;&am
     }
 }
 <span class="boring">}</span></code></pre></pre>
-<p>这里的 <code>lines</code> 返回一个<a href="https://course.rs/advance/functional-programing/iterator.html">迭代器</a>，关于迭代器在后续章节会详细讲解，现在只要知道 <code>for</code> 可以遍历取出迭代器中的值即可。</p>
+<p>这里的 <code>lines</code> 返回一个迭代器，关于迭代器在后续章节会详细讲解，现在只要知道 <code>for</code> 可以遍历取出迭代器中的值即可。</p>
 <h3 id="在每一行中查询目标字符串"><a class="header" href="#在每一行中查询目标字符串">在每一行中查询目标字符串</a></h3>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {

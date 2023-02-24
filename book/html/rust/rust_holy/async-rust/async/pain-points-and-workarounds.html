@@ -303,7 +303,7 @@ enum Recursive {
     Second(Recursive),
 }
 <span class="boring">}</span></code></pre></pre>
-<p>这是典型的<a href="https://course.rs/advance/into-types/sized.html#%E5%8A%A8%E6%80%81%E5%A4%A7%E5%B0%8F%E7%B1%BB%E5%9E%8B-dst">动态大小类型</a>，它的大小会无限增长，因此编译器会直接报错:</p>
+<p>这是典型的动态大小类型，它的大小会无限增长，因此编译器会直接报错:</p>
 <pre><code class="language-shell">error[E0733]: recursion in an `async fn` requires boxing
  --&gt; src/lib.rs:1:22
   |

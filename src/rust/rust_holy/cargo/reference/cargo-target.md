@@ -10,7 +10,7 @@
 
 #### 库对象(Library)
 
-库对象用于定义一个库，该库可以被其它的库或者可执行文件所链接。**该对象包含的默认文件名是 `src/lib.rs`，且默认情况下，库对象的名称[跟项目名是一致的](https://course.rs/basic/crate-module/crate.html#package)**，
+库对象用于定义一个库，该库可以被其它的库或者可执行文件所链接。**该对象包含的默认文件名是 `src/lib.rs`，且默认情况下，库对象的名称跟项目名是一致的**，
 
 一个工程只能有一个库对象，因此也只能有一个 `src/lib.rs` 文件，以下是一种自定义配置:
 
@@ -65,15 +65,12 @@ crate-type = ["staticlib"]
 
 #### 测试对象(Tests)
 
-测试对象的文件位于根目录下的 `tests` 目录中，如果大家还有印象的话，就知道该目录是[集成测试](https://course.rs/test/unit-integration-test.html#集成测试)所使用的。
+测试对象的文件位于根目录下的 `tests` 目录中，如果大家还有印象的话，就知道该目录是集成测试所使用的。
 
 当运行 `cargo test` 时，里面的每个文件都会被编译成独立的包，然后被执行。
 
 测试对象可以使用库对象提供的公共 API，也可以通过 `[dependencies]` 来引入外部的依赖库。
 
-#### 基准性能对象(Benches)
-
-该对象的文件位于 `benches` 目录下，可以通过 `cargo bench` 命令来运行，关于基准测试，可以通过[这篇文章](https://course.rs/test/benchmark.html)了解更多。
 
 ## 配置一个对象
 
@@ -111,7 +108,7 @@ required-features = [] # 构建对象所需的 Cargo Features (N/A for lib).
 
 #### proc-macro
 
-该字段的使用方式在[过程宏章节](https://course.rs/advance/macro.html#定义过程宏)有详细的介绍。
+该字段的使用方式在过程宏章节有详细的介绍。
 
 #### edition
 
@@ -137,7 +134,7 @@ required-features = [] # 构建对象所需的 Cargo Features (N/A for lib).
 
 #### required-features
 
-该字段用于指定在构建对象时所需的 [`features`](https://course.rs/cargo/reference/features.html) 列表。
+该字段用于指定在构建对象时所需的 `features`列表。
 
 该字段只对 `[[bin]]`、 `[[bench]]`、 `[[test]]` 和 `[[example]]` 有效，对于 `[lib]` 没有任何效果。
 
@@ -155,7 +152,7 @@ required-features = ["postgres", "tools"]
 
 ## 对象自动发现
 
-默认情况下，`Cargo` 会基于项目的[目录文件布局](https://course.rs/cargo/guide/package-layout.html)自动发现和确定对象，而之前的配置项则允许我们对其进行手动的配置修改(若项目布局跟标准的不一样时)。
+默认情况下，`Cargo` 会基于项目的目录文件布局自动发现和确定对象，而之前的配置项则允许我们对其进行手动的配置修改(若项目布局跟标准的不一样时)。
 
 而这种自动发现对象的设定可以通过以下配置来禁用:
 

@@ -14,7 +14,7 @@
 
 既然要添加测试，那之前的 `println!` 语句将没有大的用处，毕竟 `println!` 存在的目的就是为了让我们看到结果是否正确，而现在测试用例将取而代之。
 
-接下来，在 `lib.rs` 文件中，添加 `tests` 模块和 `test` 函数: 
+接下来，在 `lib.rs` 文件中，添加 `tests` 模块和 `test` 函数:
 
 ```rust
 #[cfg(test)]
@@ -46,8 +46,6 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 ```
 
 先添加一个简单的 `search` 函数实现，非常简单粗暴的返回一个空的数组，显而易见测试用例将成功通过，真是一个居心叵测的测试用例！
-
-注意这里生命周期 `'a` 的使用，之前的章节有[详细介绍](https://course.rs/basic/lifetime.html#函数签名中的生命周期标注)，不太明白的同学可以回头看看。
 
 喔，这么复杂的代码，都用上生命周期了！嘚瑟两下试试：
 
@@ -101,7 +99,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 }
 ```
 
-这里的 `lines` 返回一个[迭代器](https://course.rs/advance/functional-programing/iterator.html)，关于迭代器在后续章节会详细讲解，现在只要知道 `for` 可以遍历取出迭代器中的值即可。
+这里的 `lines` 返回一个迭代器，关于迭代器在后续章节会详细讲解，现在只要知道 `for` 可以遍历取出迭代器中的值即可。
 
 ### 在每一行中查询目标字符串
 
