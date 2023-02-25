@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>泛型Generics - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+    <title>泛型Generics - ∵布武 ∴不舞</title>
 
 
     <!-- Custom HTML head -->
@@ -117,7 +117,7 @@
                     </button>
                 </div>
 
-                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+                <h1 class="menu-title">∵布武 ∴不舞</h1>
 
                 <div class="right-buttons">
                     <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
@@ -195,9 +195,6 @@ fn main() {
     println!(&quot;add i32: {}&quot;, add_i32(20, 30));
     println!(&quot;add f64: {}&quot;, add_f64(1.23, 1.23));
 }</code></pre></pre>
-<p>上述代码可以正常运行，但是很啰嗦，如果你要支持更多的类型，那么会更繁琐。程序员或多或少都有强迫症，一个好程序员的公认特征就是 —— 懒，这么勤快的写一大堆代码，显然不是咱们的优良传统，是不？</p>
-<p>在开始讲解 Rust 的泛型之前，先来看看什么是多态。</p>
-<p>在编程的时候，我们经常利用多态。通俗的讲，多态就是好比坦克的炮管，既可以发射普通弹药，也可以发射制导炮弹（导弹），也可以发射贫铀穿甲弹，甚至发射子母弹，没有必要为每一种炮弹都在坦克上分别安装一个专用炮管，即使生产商愿意，炮手也不愿意，累死人啊。所以在编程开发中，我们也需要这样“通用的炮管”，这个“通用的炮管”就是多态。</p>
 <p>实际上，泛型就是一种多态。泛型主要目的是为程序员提供编程的便利，减少代码的臃肿，同时可以极大地丰富语言本身的表达能力，为程序员提供了一个合适的炮管。想想，一个函数，可以代替几十个，甚至数百个函数，是一件多么让人兴奋的事情：</p>
 <pre><pre class="playground"><code class="language-rust">fn add&lt;T&gt;(a:T, b:T) -&gt; T {
     a + b
@@ -216,7 +213,7 @@ fn main() {
 </span><span class="boring">fn main() {
 </span>fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {
 <span class="boring">}</span></code></pre></pre>
-<p>该泛型函数的作用是从列表中找出最大的值，其中列表中的元素类型为 T。首先 <code>largest&lt;T&gt;</code> 对泛型参数 <code>T</code> 进行了声明，然后才在函数参数中进行使用该泛型参数 <code>list: &amp;[T]</code> （还记得 <code>&amp;[T]</code> 类型吧？这是<a href="https://course.rs/basic/compound-type/array.html#%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87">数组切片</a>）。</p>
+<p>该泛型函数的作用是从列表中找出最大的值，其中列表中的元素类型为 T。首先 <code>largest&lt;T&gt;</code> 对泛型参数 <code>T</code> 进行了声明，然后才在函数参数中进行使用该泛型参数 <code>list: &amp;[T]</code> （还记得 <code>&amp;[T]</code> 类型吧？这是数组切片。</p>
 <p>总之，我们可以这样理解这个函数定义：函数 <code>largest</code> 有泛型类型 <code>T</code>，它有个参数 <code>list</code>，其类型是元素为 <code>T</code> 的数组切片，最后，该函数返回值的类型也是 <code>T</code>。</p>
 <p>具体的泛型函数实现如下：</p>
 <pre><pre class="playground"><code class="language-rust">fn largest&lt;T&gt;(list: &amp;[T]) -&gt; T {
@@ -399,7 +396,7 @@ fn main() {
 <p>这样我们就能针对特定的泛型类型实现某个特定的方法，对于其它泛型类型则没有定义该方法。</p>
 <h2 id="const-泛型rust-151-版本引入的重要特性"><a class="header" href="#const-泛型rust-151-版本引入的重要特性">const 泛型（Rust 1.51 版本引入的重要特性）</a></h2>
 <p>在之前的泛型中，可以抽象为一句话：针对类型实现的泛型，所有的泛型都是为了抽象不同的类型，那有没有针对值的泛型？可能很多同学感觉很难理解，值怎么使用泛型？不急，我们先从数组讲起。</p>
-<p>在<a href="https://course.rs/basic/compound-type/array.html">数组</a>那节，有提到过很重要的一点：<code>[i32; 2]</code> 和 <code>[i32; 3]</code> 是不同的数组类型，比如下面的代码：</p>
+<p>在数组那节，有提到过很重要的一点：<code>[i32; 2]</code> 和 <code>[i32; 3]</code> 是不同的数组类型，比如下面的代码：</p>
 <pre><pre class="playground"><code class="language-rust">fn display_array(arr: [i32; 3]) {
     println!(&quot;{:?}&quot;, arr);
 }

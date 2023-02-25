@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>动态数组 - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+    <title>动态数组 - ∵布武 ∴不舞</title>
 
 
     <!-- Custom HTML head -->
@@ -117,7 +117,7 @@
                     </button>
                 </div>
 
-                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+                <h1 class="menu-title">∵布武 ∴不舞</h1>
 
                 <div class="right-buttons">
                     <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
@@ -258,7 +258,7 @@ let does_not_exist = v.get(100);
 <span class="boring">}</span></code></pre></pre>
 <p>运行以上代码，<code>&amp;v[100]</code> 的访问方式会导致程序无情报错退出，因为发生了数组越界访问。 但是 <code>v.get</code> 就不会，它在内部做了处理，有值的时候返回 <code>Some(T)</code>，无值的时候返回 <code>None</code>，因此 <code>v.get</code> 的使用方式非常安全。</p>
 <p>既然如此，为何不统一使用 <code>v.get</code> 的形式？因为实在是有些啰嗦，Rust 语言的设计者和使用者在审美这方面还是相当统一的：简洁即正义，何况性能上也会有轻微的损耗。</p>
-<p>既然有两个选择，肯定就有如何选择的问题，答案很简单，当你确保索引不会越界的时候，就用索引访问，否则用 <code>.get</code>。例如，访问第几个数组元素并不取决于我们，而是取决于用户的输入时，用 <code>.get</code> 会非常适合，天知道那些可爱的用户会输入一个什么样的数字进来！</p>
+<p>既然有两个选择，肯定就有如何选择的问题，答案很简单，当你确保索引不会越界的时候，就用索引访问，否则用 <code>.get</code>。例如，访问第几个数组元素并不取决于我们，而是取决于用户的输入时，用 <code>.get</code> 会非常适合。</p>
 <h2 id="同时借用多个数组元素"><a class="header" href="#同时借用多个数组元素">同时借用多个数组元素</a></h2>
 <p>既然涉及到借用数组元素，那么很可能会遇到同时借用多个数组元素的情况，还记得在所有权和借用章节咱们讲过的借用规则嘛？如果记得，就来看看下面的代码 :)</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -292,7 +292,6 @@ error: could not compile `collections` due to previous error
 </code></pre>
 <p>其实，按理来说，这两个引用不应该互相影响的：一个是查询元素，一个是在数组尾部插入元素，完全不相干的操作，为何编译器要这么严格呢？</p>
 <p>原因在于：数组的大小是可变的，当旧数组的大小不够用时，Rust 会重新分配一块更大的内存空间，然后把旧数组拷贝过来。这种情况下，之前的引用显然会指向一块无效的内存，这非常 rusty —— 对用户进行严格的教育。</p>
-<p>其实想想，<strong>在长大之后，我们感激人生路上遇到过的严师益友，正是因为他们，我们才在正确的道路上不断前行，虽然在那个时候，并不能理解他们</strong>，而 Rust 就如那个良师益友，它不断的在纠正我们不好的编程习惯，直到某一天，你发现自己能写出一次性通过的漂亮代码时，就能明白它的良苦用心。</p>
 <blockquote>
 <p>若读者想要更深入的了解 <code>Vec&lt;T&gt;</code>，可以看看<a href="https://nomicon.purewhite.io/vec/vec.html">Rustonomicon</a>，其中从零手撸一个动态数组，非常适合深入学习</p>
 </blockquote>

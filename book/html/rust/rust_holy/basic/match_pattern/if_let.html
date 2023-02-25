@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>if_let - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+    <title>if_let - ∵布武 ∴不舞</title>
 
 
     <!-- Custom HTML head -->
@@ -117,7 +117,7 @@
                     </button>
                 </div>
 
-                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+                <h1 class="menu-title">∵布武 ∴不舞</h1>
 
                 <div class="right-buttons">
                     <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
@@ -373,7 +373,7 @@ fn main() {
    = help: ensure that all possible cases are being handled, possibly by adding wildcards or more match arms
    = note: the matched value is of type `Direction`
 </code></pre>
-<p>不禁想感叹，Rust 的编译器<strong>真强大</strong>，忍不住想爆粗口了，sorry，如果你以后进一步深入使用 Rust 也会像我这样感叹的。Rust 编译器清晰地知道 <code>match</code> 中有哪些分支没有被覆盖, 这种行为能强制我们处理所有的可能性，有效避免传说中价值<strong>十亿美金</strong>的 <code>null</code> 陷阱。</p>
+<p>Rust 编译器清晰地知道 <code>match</code> 中有哪些分支没有被覆盖, 这种行为能强制我们处理所有的可能性，有效避免传说中价值<strong>十亿美金</strong>的 <code>null</code> 陷阱。</p>
 <h4 id="_-通配符"><a class="header" href="#_-通配符"><code>_</code> 通配符</a></h4>
 <p>当我们不想在匹配时列出所有值的时候，可以使用 Rust 提供的一个特殊<strong>模式</strong>，例如，<code>u8</code> 可以拥有 0 到 255 的有效的值，但是我们只关心 <code>1、3、5 和 7</code> 这几个值，不想列出其它的 <code>0、2、4、6、8、9 一直到 255</code> 的值。那么, 我们不必一个一个列出所有值, 因为可以使用特殊的模式 <code>_</code> 替代：</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -407,7 +407,7 @@ match some_u8_value {
     println!(&quot;three&quot;);
 }
 <span class="boring">}</span></code></pre></pre>
-<p>这两种匹配对于新手来说，可能有些难以抉择，但是只要记住一点就好：<strong>当你只要匹配一个条件，且忽略其他条件时就用 <code>if let</code> ，否则都用 <code>match</code></strong>。</p>
+<p>只要记住一点就好：<strong>当你只要匹配一个条件，且忽略其他条件时就用 <code>if let</code> ，否则都用 <code>match</code></strong>。</p>
 <h2 id="matches宏"><a class="header" href="#matches宏">matches!宏</a></h2>
 <p>Rust 标准库中提供了一个非常实用的宏：<code>matches!</code>，它可以将一个表达式跟模式进行匹配，然后返回匹配的结果 <code>true</code> or <code>false</code>。</p>
 <p>例如，有一个动态数组，里面存有以下枚举：</p>
@@ -466,10 +466,6 @@ assert!(matches!(bar, Some(x) if x &gt; 2));
    println!(&quot;在匹配后，age是{:?}&quot;,age);
 }</code></pre></pre>
 <p>需要注意的是，<strong><code>match</code> 中的变量覆盖其实不是那么的容易看出</strong>，因此要小心！</p>
-<h2 id="课后练习"><a class="header" href="#课后练习">课后练习</a></h2>
-<blockquote>
-<p><a href="https://zh.practice.rs/pattern-match/match-iflet.html">Rust By Practice</a>，支持代码在线编辑和运行，并提供详细的<a href="https://github.com/sunface/rust-by-practice/blob/master/solutions/pattern-match/match.md">习题解答</a>。</p>
-</blockquote>
 
                     <div id="giscus-container"></div>
                 </main>

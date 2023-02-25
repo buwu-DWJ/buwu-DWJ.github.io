@@ -4,7 +4,7 @@
 <head>
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
-    <title>hashmap - 🤣👉buwu_dwj🤡👈😅_srcbk</title>
+    <title>hashmap - ∵布武 ∴不舞</title>
 
 
     <!-- Custom HTML head -->
@@ -117,7 +117,7 @@
                     </button>
                 </div>
 
-                <h1 class="menu-title">🤣👉buwu_dwj🤡👈😅_srcbk</h1>
+                <h1 class="menu-title">∵布武 ∴不舞</h1>
 
                 <div class="right-buttons">
                     <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
@@ -179,7 +179,7 @@
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="kv-存储-hashmap"><a class="header" href="#kv-存储-hashmap">KV 存储 HashMap</a></h1>
 <p>和动态数组一样，<code>HashMap</code> 也是 Rust 标准库中提供的集合类型，但是又与动态数组不同，<code>HashMap</code> 中存储的是一一映射的 <code>KV</code> 键值对，并提供了平均复杂度为 <code>O(1)</code> 的查询方法，当我们希望通过一个 <code>Key</code> 去查询值时，该类型非常有用，以致于 Go 语言将该类型设置成了语言级别的内置特性。</p>
-<p>Rust 中哈希类型（哈希映射）为 <code>HashMap&lt;K,V&gt;</code>，在其它语言中，也有类似的数据结构，例如 <code>hash map</code>，<code>map</code>，<code>object</code>，<code>hash table</code>，<code>字典</code> 等等，引用小品演员孙涛的一句台词：大家都是本地狐狸，别搁那装貂 :)。</p>
+<p>Rust 中哈希类型（哈希映射）为 <code>HashMap&lt;K,V&gt;</code>，在其它语言中，也有类似的数据结构，例如 <code>hash map</code>，<code>map</code>，<code>object</code>，<code>hash table</code>，<code>字典</code> 等等。</p>
 <h2 id="创建-hashmap"><a class="header" href="#创建-hashmap">创建 HashMap</a></h2>
 <p>跟创建动态数组 <code>Vec</code> 的方法类似，可以使用 <code>new</code> 方法来创建 <code>HashMap</code>，然后通过 <code>insert</code> 方法插入键值对。</p>
 <h4 id="使用-new-方法创建"><a class="header" href="#使用-new-方法创建">使用 new 方法创建</a></h4>
@@ -301,7 +301,6 @@ my_gems.insert(&quot;河边捡的误以为是宝石的破石头&quot;, 18);
 11 |     println!(&quot;因为过于无耻，{:?}已经被除名&quot;, handsome_boys);
    |                                              ------------- borrow later used here // 所有权转移后，还试图使用name
 </code></pre>
-<p>最终，某人因为过于无耻，真正的被除名了 :)</p>
 <h2 id="查询-hashmap"><a class="header" href="#查询-hashmap">查询 HashMap</a></h2>
 <p>通过 <code>get</code> 方法可以获取元素：</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
