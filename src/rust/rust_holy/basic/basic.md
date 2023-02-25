@@ -47,6 +47,13 @@ Current installation options:
 
 ```
 
+### windows arm
+
+[rust other_installation](https://forge.rust-lang.org/infra/other-installation-methods.html)  `aarch64-pc-windows-msvc`
+安装目录默认为`C:\Program Files(x86)\Rust stable MSVC 1.67\`
+
+
+
 ## cargo
 
 上面的命令使用 `cargo new` 创建一个项目，项目名是 `world_hello`, 该项目的结构和配置文件都是由 `cargo` 生成，意味着**我们的项目被 `cargo` 所管理**.
