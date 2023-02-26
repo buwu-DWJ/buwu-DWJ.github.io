@@ -180,6 +180,8 @@
         - [1.65](appendix/rust-versions/1.65.md)
         - [1.66](appendix/rust-versions/1.66.md)
         - [1.67](appendix/rust-versions/1.67.md)
+- [others](others/pre.md)
+  - [COM组件](others/com.md)
 - [ML](ml/ml.md)
   - [绪言](ml/pre/pre.md)
   - [模型的评估与选择](ml/chapter2/chapter2.md)

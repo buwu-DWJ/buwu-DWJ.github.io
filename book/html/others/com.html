@@ -1,0 +1,591 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>COM组件 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../favicon.svg">
+    <link rel="shortcut icon" href="../favicon.png">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/chrome.css">
+    <link rel="stylesheet" href="../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../highlight.css">
+    <link rel="stylesheet" href="../tomorrow-night.css">
+    <link rel="stylesheet" href="../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('light')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../python/np_pd/np_pd.html"><strong aria-hidden="true">2.1.</strong> np&pd</a></li><li class="chapter-item "><a href="../python/matplotlib/matplotlib.html"><strong aria-hidden="true">2.2.</strong> matplotlib</a></li><li class="chapter-item "><a href="../python/tkinter/tkinter.html"><strong aria-hidden="true">2.3.</strong> tkinter</a></li><li class="chapter-item "><a href="../python/crawler/pre.html"><strong aria-hidden="true">2.4.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.4.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../python/crawler/re.html"><strong aria-hidden="true">2.4.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../python/pytorch/pytorch.html"><strong aria-hidden="true">2.5.</strong> pytorch</a></li><li class="chapter-item "><a href="../python/python之禅/pre.html"><strong aria-hidden="true">2.6.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../python/python之禅/optim.html"><strong aria-hidden="true">2.6.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../python/python之禅/python_optim.html"><strong aria-hidden="true">2.6.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item "><a href="../cpp/pre.html"><strong aria-hidden="true">3.</strong> cpp</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/2.函数/index.html"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item "><a href="../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.6.1.</strong> if_let</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.6.2.</strong> option</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.6.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.6.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.7.</strong> 方法method</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.8.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.8.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.8.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.8.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.8.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.9.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.10.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.11.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.11.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.11.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.12.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">4.1.1.12.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.13.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.14.</strong> 类型转换</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.15.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../others/pre.html"><strong aria-hidden="true">5.</strong> others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../others/com.html" class="active"><strong aria-hidden="true">5.1.</strong> COM组件</a></li></ol></li><li class="chapter-item "><a href="../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="com组件"><a class="header" href="#com组件">Com组件</a></h1>
+<h2 id="如何查看本地的com组件"><a class="header" href="#如何查看本地的com组件">如何查看本地的Com组件</a></h2>
+<p><a href="https://learn.microsoft.com/zh-cn/windows/win32/com/ole-com-object-viewer">oleview.exe</a>是在 Windows SDK 中提供的应用程序，它显示计算机上安装的 COM 对象及其支持的接口。 可以使用此对象查看器查看类型库和接口。</p>
+<p>OLE/COM 对象查看器应用位于 \Program Files (x86) \Windows Kits\10[version][architecture]\oleview.exe的 Windows SDK 中。</p>
+<p>遇到程序调用的com，根据其id到注册表(win+r,regedit)中搜索，找到后复制其路径在oleview中进行搜索后即显示其com的method及event结构。</p>
+<h2 id="introduction-to-com---what-it-is-and-how-to-use-it"><a class="header" href="#introduction-to-com---what-it-is-and-how-to-use-it">Introduction to COM - What It Is and How to Use It</a></h2>
+<p><a href="https://www.codeproject.com/Articles/633/Introduction-to-COM-What-It-Is-and-How-to-Use-It">原文链接</a>，<a href="https://blog.csdn.net/wangqiulin123456/article/details/8026270">中文链接</a></p>
+<p>本章目的是理解COM的基本概念，内容包括COM规范简介，重要的COM术语以及如何重用现有的COM组件。</p>
+<p>COM即组件对象模型（Component Object Model），本章包括如下内容:</p>
+<ul>
+<li>COM――到底是什么？――COM标准的要点介绍，它被设计用来解决什么问题</li>
+<li>基本元素的定义――COM术语以及这些术语的含义</li>
+<li>使用和处理COM对象――如何创建、使用和销毁COM对象</li>
+<li>基本接口――描述IUnknown基本接口及其方法</li>
+<li>掌握串的处理――在COM代码中如何处理串</li>
+<li>应用COM技术――例子代码，举例说明本章所讨论的所有概念</li>
+<li>处理HRESULT――HRESULT类型描述，如何监测错误及成功代码</li>
+</ul>
+<h3 id="com-到底是什么"><a class="header" href="#com-到底是什么">COM 到底是什么</a></h3>
+<p>简单地说，COM是一种跨应用和语言共享二进制代码的方法。与C++不同，它提倡源代码重用。ATL便是一个很好的例证。源码级重用虽然好，但只能用于C++。它还带来了名字冲突的可能性，更不用说不断拷贝重用代码而导致工程膨胀和臃肿。</p>
+<p>Windows使用DLLs在二进制级共享代码。这也是Windows程序运行的关键――重用kernel32.dll, user32.dll等。但DLLs是针对C接口而写的，它们只能被C或理解C调用规范的语言使用。由编程语言来负责实现共享代码，而不是由DLLs本身。这样的话DLLs的使用受到限制。MFC引入了另外一种MFC扩展DLLs二进制共享机制。但它的使用仍受限制――只能在MFC程序中使用。</p>
+<p>COM通过定义二进制标准解决了这些问题，即COM明确指出二进制模块（DLLs和EXEs）<strong>必须被编译成与指定的结构匹配</strong>。这个标准也确切规定了在内存中如何组织COM对象。COM定义的二进制标准还<strong>必须独立于任何编程语言</strong>（如C++中的命名修饰）。一旦满足了这些条件，就可以轻松地从<strong>任何编程语言中</strong>存取这些模块。由编译器负责所产生的二进制代码与标准兼容。这样使后来的人就能更容易地使用这些二进制代码。</p>
+<p>在内存中，COM对象的这种标准形式在C++虚函数中偶尔用到，所以这就是为什么许多COM代码使用C++的原因。但是记住，编写模块所用的语言是无关的，因为结果二进制代码为所有语言可用。</p>
+<h3 id="基本元素的定义"><a class="header" href="#基本元素的定义">基本元素的定义</a></h3>
+<p>接口只不过是一组函数。这些函数被称为方法。接口名字以大写的I开头，例如C++中的IShellLink，接口被设计成一个抽象基类，其中只有纯粹的虚拟函数。</p>
+<p>接口可以从其它接口继承，这里所说的继承的原理就好像C++中的单继承。接口是不允许多继承的。</p>
+<p><code>coclass</code>（简称组件对象类――componentobject class）被包含在DLL或EXE中，并且包含着一个或者多个接口的代码。组件对象类（coclasss）实现这些接口。COM对象在内存中表现为组件对象类（coclasss）的一个实例。注意COM“类”和C++“类”是不相同的，尽管常常COM类实现的就是一个C++类。</p>
+<p><code>COM服务器</code>是包含了一个或多个coclass的二进制（DLL或EXE）。</p>
+<p>注册（Registration）是创建注册表入口的一个过程，告诉Windows 操作系统COM服务器放在什么位置。取消注册（Unregistration）则相反――从注册表删除这些注册入口。</p>
+<p><code>GUID</code>（谐音为“fluid”，意思是全球唯一标示符――globally unique identifier）是个128位的数字。它是一种独立于COM编程语言的标示方法。每一个接口和coclass有一个GUID。因为每一个GUID都是全球唯一的，所以避免了名字冲突（只要你用COM API创建它们）。有时你还会碰到另一个术语UUID（意思也是全球唯一标示符――universally unique identifier）。UUIDs和GUIDs在实际使用时的用途是一样的。</p>
+<p><code>类ID或者CLSID</code>是命名coclass的GUID。接口ID或者IID是命名接口的GUID。</p>
+<p>在COM中广泛地使用GUID有两个理由：</p>
+<ol>
+<li>GUIDs只是简单的数字，任何编程语言都可以对之进行处理；</li>
+<li>GUIDs可以在任何机器上被任何人创建，一旦完成创建，它就是唯一的。因此，COM开发人员可以创建自己特有的GUIDs而不会与其它开发人员所创建的GUIDs有冲突。这样就消除了集中授权发布GUIDs的必要。</li>
+</ol>
+<p><code>HRESULT</code>是COM用来返回错误和成功代码的整型数字，除此之外，别无它意，虽然以H作前缀，但没有句柄之意。</p>
+<p>最后，<code>COM库</code>是在你使用COM时与你交互的操作系统的一部分，它常常指的就是COM本身。但是为了避免混淆才分开描述的。</p>
+<h3 id="使用和处理com对象"><a class="header" href="#使用和处理com对象">使用和处理COM对象</a></h3>
+<p>每一种语言都有其自己处理对象的方式。例如，C++是在栈中创建对象，或者用new动态分配。因为COM必须独立于语言，所以COM库为自己提供对象管理例程。下面是对COM对象管理和C++对象管理所做的一个比较：</p>
+<p><strong>创建一个新对象</strong></p>
+<ul>
+<li>C++中，用new操作符，或者在栈中创建对象。</li>
+<li>COM中，调用COM库中的API。</li>
+</ul>
+<p><strong>删除对象</strong></p>
+<ul>
+<li>C++中，用delete操作符，或将栈对象踢出。</li>
+<li>COM中，所有的对象保持它们自己的引用计数。调用者必须通知对象什么时候用完这个对象。当引用计数为零时，COM对象将自己从内存中释放。</li>
+</ul>
+<p>由此可见，对象处理的两个阶段：创建和销毁，缺一不可。当创建COM对象时要通知COM库使用哪一个接口。如果这个对象创建成功，COM库返回所请求接口的指针。然后通过这个指针调用方法，就像使用常规C++对象指针一样。</p>
+<h4 id="创建com对象"><a class="header" href="#创建com对象">创建COM对象</a></h4>
+<p>为了创建COM对象并从这个对象获得接口，必须调用COM库的API函数，<code>CoCreateInstance()</code>。其原型如下：</p>
+<pre><code class="language-c++">HRESULT CoCreateInstance (
+REFCLSID  rclsid,
+LPUNKNOWN pUnkOuter,
+DWORD     dwClsContext,
+REFIID    riid,
+LPVOID*   ppv );
+</code></pre>
+<p>参数解释：</p>
+<ul>
+<li>rclsid：coclass的CLSID，例如，可以传递CLSID_ShellLink创建一个COM对象来建立快捷方式。</li>
+<li>pUnkOuter：这个参数只用于COM对象的聚合，利用它向现有的coclass添加新方法。参数值为null表示不使用聚合。</li>
+<li>dwClsContext：表示所使用COM服务器的种类。本文使用的是最简单的COM服务器，一个进程内（in-process）DLL，所以传递的参数值为CLSCTX_INPROC_SERVER。注意这里不要随意使用CLSCTX_ALL（在ATL中，它是个缺省值），因为在没有安装DCOM的Windows95系统上会导致失败。</li>
+<li>riid：请求接口的IID。例如，可以传递IID_IShellLink获得IShellLink接口指针。</li>
+<li>ppv：接口指针的地址。COM库通过这个参数返回请求的接口。</li>
+</ul>
+<p>当你调用CoCreateInstance()时，它负责在注册表中查找COM服务器的位置，将服务器加载到内存，并创建你所请求的coclass实例。以下是一个调用的例子，创建一个CLSID_ShellLink对象的实例并请求指向这个对象IShellLink接口指针。</p>
+<pre><code class="language-c++">HRESULT     hr;
+IShellLink* pISL;
+hr = CoCreateInstance ( CLSID_ShellLink,         //coclass 的CLSID
+NULL,                    //不是用聚合
+CLSCTX_INPROC_SERVER,    //服务器类型
+IID_IShellLink,          //接口的IID
+ (void**)&amp;pISL );        // 指向接口的指针
+
+if ( SUCCEEDED ( hr ) )
+{
+// 用pISL调用方法
+}
+else
+{
+// 不能创建COM对象，hr 为出错代码
+}
+</code></pre>
+<p>首先声明一个接受CoCreateInstance()返回值的HRESULT和IShellLink指针。调用CoCreateInstance()来创建新的COM对象。如果hr接受到一个表示成功的代码，则SUCCEEDED宏返回TRUE，否则返回FALSE。FAILED是一个与SUCCEEDED对应的宏用来检查失败代码。</p>
+<h4 id="删除com对象"><a class="header" href="#删除com对象">删除COM对象</a></h4>
+<p>前面说过，你不用释放COM对象，只要告诉它们你已经用完对象。<code>IUnknown</code>是每一个COM对象必须实现的接口，它有一个方法，<code>Release()</code>。调用这个方法通知COM对象你不再需要对象。一旦调用了这个方法之后，就不能再次使用这个接口，因为这个COM对象可能从此就从内存中消失了。</p>
+<p>如果你的应用程序使用许多不同的COM对象，因此在用完某个接口后调用<code>Release()</code>就显得非常重要。如果你不释放接口，这个COM对象（包含代码的DLLs）将保留在内存中，这会增加不必要的开销。如果你的应用程序要长时间运行，就应该在应用程序处于空闲期间调用<code>CoFreeUnusedLibraries()</code> API。这个API将卸载任何没有明显引用的COM服务器，因此这也降低了应用程序使用的内存开销。</p>
+<p>继续用上面的例子来说明如何使用<code>Release()</code>：</p>
+<pre><code class="language-c++">// 像上面一样创建COM 对象， 然后，
+if ( SUCCEEDED ( hr ) )
+{
+     // 用pISL调用方法
+     // 通知COM 对象不再使用它
+     pISL-&gt;Release();
+}
+
+</code></pre>
+<h3 id="基本接口iunknow"><a class="header" href="#基本接口iunknow">基本接口IUnknow</a></h3>
+<p>每一个COM接口都派生于<code>IUnknown</code>。这个名字有点误导人，其中没有未知（Unknown）接口的意思。它的原意是如果有一个指向某COM对象的<code>IUnknown指针</code>，就不用知道潜在的对象是什么，因为每个COM对象都实现<code>IUnknown</code>。<code>IUnknown</code>有三个方法：</p>
+<ul>
+<li><code>AddRef()</code> ―― 通知COM对象增加它的引用计数。如果你进行了一次接口指针的拷贝，就必须调用一次这个方法，并且原始的值和拷贝的值两者都要用到。在本文的例子中没有用到<code>AddRef()</code>方法；</li>
+<li><code>Release()</code> ―― 通知COM对象减少它的引用计数。参见前面的<code>Release()</code>示例代码段；</li>
+<li><code>QueryInterface()</code> ―― 从COM对象请求一个接口指针。当<code>coclass</code>实现一个以上的接口时，就要用到这个方法；</li>
+</ul>
+<p>前面已经看到了<code>Release()</code>的使用，但如何使用<code>QueryInterface()</code>呢?当你用<code>CoCreateInstance()</code>创建对象的时候，你得到一个返回的接口指针。如果这个COM对象实现一个以上的接口（不包括<code>IUnknown</code>），你就必须用<code>QueryInterface()</code>方法来获得任何你需要的附加的接口指针。<code>QueryInterface()</code>的原型如下：</p>
+<pre><code class="language-c++">HRESULT IUnknown::QueryInterface (
+    REFIID iid,
+    void** ppv );
+</code></pre>
+<p>以下是参数解释：</p>
+<ul>
+<li>iid：所请求的接口的IID。</li>
+<li>ppv：接口指针的地址，<code>QueryInterface()</code>通过这个参数在成功时返回这个接口。</li>
+</ul>
+<p>让我们继续 shell link 的例子，它实现了<code>IShellLink</code>和<code>IPersistFile</code>接口。如果你已经有一个<code>IShellLink</code>指针，pISL，可以从COM对象请求<code>IPersistFile</code>接口：</p>
+<pre><code class="language-c++">HRESULT hr;
+IPersistFile* pIPF;
+hr = pISL-&gt;QueryInterface (IID_IPersistFile, (void**) &amp;pIPF );
+</code></pre>
+<p>然后使用SUCCEEDED宏检查hr的值以确定<code>QueryInterface()</code>的调用情况，如果成功的话你就可以象使用其它接口指针那样使用新的接口指针，pIPF。但必须记住调用<code>pIPF-&gt;Release()</code>通知COM对象已经用完这个接口。</p>
+<h3 id="处理string"><a class="header" href="#处理string">处理String</a></h3>
+<p>不管什么时候，只要COM方法返回一个串，这个串都是Unicode串（这里指的是写入COM规范的所有方法）。Unicode是一种字符编码集，类似ASCII，但用两个字节表示一个字符。如果你想更好地控制或操作串的话，应该将它转换成TCHAR类型串。</p>
+<p><code>TCHAR</code>和以<code>_t</code>开头的函数（如_tcscpy()）被设计用来让你用相同的源代码处理Unicode和ANSI串。在大多数情况下编写的代码都是用来处理ANSI串和ANSI WindowsAPIs，所以在下文中，除非另外说明，我所说的字符/串都是指TCHAR类型。你应该熟练掌握TCHAR类型，尤其是当你阅读其他人写的有关代码时，要特别注意TCHAR类型。</p>
+<p>当你从某个COM方法返回得到一个Unicode串时，可以用下列几种方法之一将它转换成char类型串：</p>
+<ul>
+<li>调用 WideCharToMultiByte()API；</li>
+<li>调用CRT 函数wcstombs()；</li>
+<li>使用CString 构造器或赋值操作(仅用于MFC )；</li>
+<li>使用ATL 串转换宏；</li>
+</ul>
+<h4 id="1widechartomultibyte"><a class="header" href="#1widechartomultibyte">1.WideCharToMultiByte()</a></h4>
+<p>你可以用<code>WideCharToMultiByte()</code>将一个Unicode串转换成一个ANSI串。此函数的原型如下：</p>
+<pre><code class="language-c++">int WideCharToMultiByte (
+UINT    CodePage,
+DWORD   dwFlags,
+LPCWSTR lpWideCharStr,
+int     cchWideChar,
+LPSTR   lpMultiByteStr,
+int     cbMultiByte,
+LPCSTR  lpDefaultChar,
+LPBOOL  lpUsedDefaultChar );
+</code></pre>
+<p>以下是参数解释：</p>
+<ul>
+<li>
+<p><code>CodePage</code>：Unicode字符转换成的代码页。你可以传递CP_ACP来使用当前的ANSI代码页。代码页是256个字符集。字符0――127与ANSI编码一样。字符128――255与ANSI字符不同，它可以包含图形字符或者读音符号。每一种语言或地区都有其自己的代码页，所以使用正确的代码页对于正确地显示重音字符很重要。</p>
+</li>
+<li>
+<p><code>dwFlags</code>：dwFlags 确定Windows如何处理“复合” Unicode字符，它是一种后面带读音符号的字符。如è就是一个复合字符。如果这些字符在CodePage参数指定的代码页中，不会出什么事。否则，Windows必须对之进行转换。传递WC_COMPOSITECHECK使得这个API检查非映射复合字符。传递WC_SEPCHARS使得Windows将字符分为两段，即字符加读音，如e`。传递WC_DISCARDNS使得Windows丢弃读音符号。传递WC_DEFAULTCHAR使得Windows用lpDefaultChar参数中说明的缺省字符替代复合字符。缺省行为是WC_SEPCHARS。</p>
+</li>
+<li>
+<p><code>lpWideCharStr</code> 要转换的Unicode串。</p>
+</li>
+<li>
+<p><code>cchWideChar</code> lpWideCharStr在Unicode 字符中的长度。通常传递-1，表示这个串是以0x00结尾。</p>
+</li>
+<li>
+<p><code>lpMultiByteStr</code> 接受转换的串的字符缓冲 cbMultiBytelpMultiByteStr的字节大小。</p>
+</li>
+<li>
+<p><code>lpDefaultChar</code> 可选――当dwFlags包含WC_COMPOSITECHECK | WC_DEFAULTCHAR并且某个Unicode字符不能被映射到同等的ANSI串时所传递的一个单字符ANSI串，包含被插入的“缺省”字符。可以传递NULL，让API使用系统缺省字符（一种写法是一个问号）。</p>
+</li>
+<li>
+<p><code>lpUsedDefaultChar</code> 可选――指向BOOL类型的一个指针，设置它来表示是否缺省字符曾被插入ANSI串。可以传递NULL来忽略这个参数。</p>
+</li>
+</ul>
+<p>不搞清楚这些东西就很难搞清楚COM的串处理。何况文档中列出的比实际应用的要复杂得多。下面就给出了如何使用这个API的例子：</p>
+<pre><code class="language-c++">// 假设已经有了一个Unicode 串 wszSomeString...
+char szANSIString[MAX_PATH];
+WideCharToMultiByte (CP_ACP,                //ANSI 代码页
+WC_COMPOSITECHECK, // 检查重音字符
+wszSomeString,         //原Unicode 串
+-1,                    //-1 意思是串以0x00结尾
+szANSIString,          //目的char字符串
+sizeof(szANSIString),  // 缓冲大小
+NULL,                  //肥缺省字符串
+NULL);                //忽略这个参数
+</code></pre>
+<p>调用这个函数后，szANSIString将包含Unicode串的ANSI版本。调用这个函数后，szANSIString将包含Unicode串的ANSI版本。</p>
+<h4 id="2wcstombs"><a class="header" href="#2wcstombs">2.wcstombs()</a></h4>
+<p>这个CRT函数<code>wcstombs()</code>是个简化版，但它终结了<code>WideCharToMultiByte()</code>的调用，所以最终结果是一样的。其原型如下：</p>
+<pre><code class="language-c++">size_t wcstombs (
+char*         mbstr,
+const wchar_t* wcstr,
+size_t         count );
+</code></pre>
+<p>以下是参数解释：</p>
+<ul>
+<li><code>mbstr</code>：接受结果ANSI串的字符（char）缓冲。</li>
+<li><code>wcstr</code>：要转换的Unicode串。</li>
+<li><code>count</code>：mbstr参数所指的缓冲大小。</li>
+</ul>
+<p><code>wcstombs()</code>在它对<code>WideCharToMultiByte()</code>的调用中使用WC_COMPOSITECHECK | WC_SEPCHARS标志。用<code>wcstombs()</code>转换前面例子中的   Unicode串，结果一样：</p>
+<pre><code class="language-c++">wcstombs ( szANSIString, wszSomeString, sizeof(szANSIString));
+</code></pre>
+<h4 id="3cstring"><a class="header" href="#3cstring">3.CString</a></h4>
+<p>MFC中的<code>CString</code>包含有构造函数和接受Unicode串的赋值操作，所以你可以用<code>CString</code>来实现转换。例如：</p>
+<pre><code class="language-c++">// 假设有一个Unicode串wszSomeString...
+CString str1 ( wszSomeString ); // 用构造器转换
+CString str2;
+str2 = wszSomeString; // 用赋值操作转换
+</code></pre>
+<p>4.ATL宏</p>
+<p>ATL有一组很方便的宏用于串的转换。<code>W2A()</code>用于将Unicode串转换为ANSI串（记忆方法是“wide to ANSI”――宽字符到ANSI）。实际上使用<code>OLE2A()</code>更精确，“OLE”表示的意思是COM串或者OLE串。下面是使用这些宏的例子：</p>
+<pre><code class="language-c++">// 还是假设有一个Unicode串wszSomeString...
+{
+char szANSIString[MAX_PATH];
+USES_CONVERSION; // 声明这个宏要使用的局部变量
+lstrcpy ( szANSIString, OLE2A(wszSomeString));
+}
+</code></pre>
+<p><code>OLE2A()</code>宏“返回”转换的串的指针，但转换的串被存储在某个临时栈变量中，所以要用<code>lstrcpy()</code>来获得自己的拷贝。其它的几个宏是<code>W2T()</code>（Unicode 到 TCHAR）以及<code>W2CT()</code>（Unicode到常量TCHAR串）。</p>
+<p>有个宏是<code>OLE2CA()</code>（Unicode到常量char串），可以被用到上面的例子中，<code>OLE2CA()</code>实际上是个更正宏，因为<code>lstrcpy()</code>的第二个参数是一个常量char*，关于这个问题本文将在以后作详细讨论。</p>
+<p>另一方面，如果你不想做以上复杂的串处理，尽管让它还保持为Unicode串，如果编写的是控制台应用程序，输出/显示Unicode串时应该用全程变量std::wcout，如：</p>
+<pre><code class="language-c++">wcout &lt;&lt; wszSomeString;
+</code></pre>
+<p>但是要记住，<code>std::wcout</code>只认Unicode，所以你要是“正常”串的话，还得用<code>std::cout输出/显示</code>。对于Unicode串文字量，要使用前缀L标示，如：</p>
+<pre><code class="language-c++">wcout &lt;&lt; L&quot;The Oraclesays...&quot; &lt;&lt; endl &lt;&lt; wszOracleResponse;
+</code></pre>
+<p>如果保持串为Unicode，编程时有两个限制：</p>
+<ul>
+<li>必须使用<code>wcsXXX()</code> Unicode串处理函数，如<code>wcslen()</code>；</li>
+<li>在Windows 9x环境中不能在Windows API中传递Unicode串。要想编写能在9x和NT上都能运行的应用，必须使用TCHAR类型，详情请参考MSDN；</li>
+</ul>
+<h3 id="用例子总结上述内容"><a class="header" href="#用例子总结上述内容">用例子总结上述内容</a></h3>
+<h4 id="使用单接口com对象"><a class="header" href="#使用单接口com对象">使用单接口COM对象</a></h4>
+<p>第一个例子展示的是单接口COM对象。这可能是你碰到得最简单的例子。它使用shell中的活动桌面组件对象类（CLSID_ActiveDesktop）来获得当前桌面墙纸的文件名。请确认系统中安装了活动桌面（Active Desktop）。以下是编程步骤：</p>
+<ul>
+<li>初始化COM库。 （Initialize）；</li>
+<li>创建一个与活动桌面交互的COM对象，并取得<code>IActiveDesktop</code>接口；</li>
+<li>调用COM对象的<code>GetWallpaper()</code>方法；</li>
+<li>如果<code>GetWallpaper()</code>成功，则输出/显示墙纸文件名；</li>
+<li>释放接口（<code>Release()</code>）；</li>
+<li>收回COM库（Uninitialize）；</li>
+</ul>
+<pre><code class="language-c++">WCHAR   wszWallpaper [MAX_PATH];
+CString strPath;
+HRESULT hr;
+IActiveDesktop* pIAD;
+// 1. 初始化COM库（让Windows加载DLLs）。通常是在程序的InitInstance()中调用
+// CoInitialize ( NULL )或其它启动代码。MFC程序使用AfxOleInit()
+CoInitialize ( NULL );
+// 2. 使用外壳提供的活动桌面组件对象类创建COM对象。
+// 第四个参数通知COM需要什么接口(这里是IActiveDesktop).
+hr = CoCreateInstance(
+    CLSID_ActiveDesktop,
+    NULL,
+    CLSCTX_INPROC_SERVER,
+    IID_IActiveDesktop,
+    (void**) &amp;pIAD );
+
+if ( SUCCEEDED(hr) )
+{
+    // 3. 如果COM对象被创建成功，则调用这个对象的GetWallpaper() 方法。
+    hr = pIAD-&gt;GetWallpaper ( wszWallpaper,MAX_PATH, 0 );
+    if ( SUCCEEDED(hr) )
+    {
+            // 4. 如果 GetWallpaper() 成功，则输出它返回的文件名字。
+            // 注意这里使用wcout 来显示Unicode 串wszWallpaper. wcout 是
+            // Unicode 专用，功能与cout.相同。
+            wcout &lt;&lt; L&quot;Wallpaper pathis:\n    &quot; &lt;&lt; wszWallpaper&lt;&lt; endl &lt;&lt; endl;
+    }
+    else
+    {
+            cout &lt;&lt; _T(&quot;GetWallpaper()failed.&quot;) &lt;&lt; endl &lt;&lt; endl;
+    }
+    // 5. 释放接口。
+    pIAD-&gt;Release();
+}
+else
+{
+            cout &lt;&lt; _T(&quot;CoCreateInstanc()failed.&quot;) &lt;&lt; endl &lt;&lt; endl;
+}
+// 6. 收回COM库。MFC 程序不用这一步，它自动完成。
+　　CoUninitialize();
+</code></pre>
+<p>在这个例子中，输出/显示Unicode 串 wszWallpaper用的是std::wcout。</p>
+<h4 id="使用多接口的com对象"><a class="header" href="#使用多接口的com对象">使用多接口的COM对象</a></h4>
+<p>第二个例子展示了如何使用一个提供单接口的COM对象<code>QueryInterface()</code>函数。其中的代码用shell的Shell Link组件对象类创建我们在第一个例子中获得的墙纸文件的快捷方式。以下是编程步骤：</p>
+<ul>
+<li>初始化 COM 库；</li>
+<li>创建一个用于建立快捷方式的COM 对象并取得IShellLink 接口；</li>
+<li>调用IShellLink 接口的<code>SetPath()</code>方法；</li>
+<li>调用对象的<code>QueryInterface()</code>函数并取得IPersistFile接口；</li>
+<li>调用IPersistFile 接口的<code>Save()</code>方法；</li>
+<li>释放接口；</li>
+<li>收回COM库；</li>
+</ul>
+<pre><code class="language-c++">CString       sWallpaper = wszWallpaper;  // 将墙纸路径转换为ANSI
+IShellLink*   pISL;
+IPersistFile* pIPF;
+ // 1. 初始化COM库(让Windows 加载DLLs). 通常在InitInstance()中调用
+// CoInitialize ( NULL )或其它启动代码。MFC 程序使用AfxOleInit()。
+CoInitialize ( NULL );
+// 2. 使用外壳提供的Shell Link组件对象类创建COM对象。.
+// 第四个参数通知COM 需要什么接口(这里是IShellLink)。
+hr = CoCreateInstance (
+    CLSID_ShellLink,
+    NULL,
+    CLSCTX_INPROC_SERVER,
+    IID_IShellLink,
+    (void**)&amp;pISL
+    );
+if ( SUCCEEDED(hr) )
+{
+    // 3. 设置快捷方式目标(墙纸文件)的路径。
+    hr = pISL-&gt;SetPath ( sWallpaper );
+
+    if ( SUCCEEDED(hr) )
+    {
+        // 4. 获取这个对象的第二个接口(IPersistFile)。
+        hr = pISL-&gt;QueryInterface (IID_IPersistFile, (void**) &amp;pIPF );
+        if ( SUCCEEDED(hr) )
+        {
+            // 5. 调用Save() 方法保存某个文件得快捷方式。第一个参数是
+            // Unicode 串。
+            hr = pIPF-&gt;Save (L&quot;C:\\wallpaper.lnk&quot;, FALSE );
+            // 6a. 释放IPersistFile 接口。
+            pIPF-&gt;Release();
+        }
+    }
+       // 6. 释放IShellLink 接口。
+       pISL-&gt;Release();
+}
+// 输出错误信息部分这里省略。
+// 7. 收回COM 库。MFC 程序不用这一步，它自动完成。
+CoUninitialize();
+</code></pre>
+<h3 id="处理hresult"><a class="header" href="#处理hresult">处理HRESULT</a></h3>
+<p>这一部分准备用SUCCEEDED 和 FAILED宏进行一些简单的出错处理。主要是深入研究从COM方法返回的HRESULT，以便达到完全理解和熟练应用。</p>
+<p>HRESULT是个32位符号整数，其非负值表示成功，负值表示失败。HRESULT有三个域：程度位（表示成功或失败），功能码和状态码。功能码表示HRESULT来自什么组件或程序。微软给不同的组件多赋予功能码，如：COM、任务调度程序等都有功能码。功能码是个16位的值，仅此而已，没有其它内在含义；它在数字和意义之间是随意关联的；类似<code>GetLastError()</code>返回的值。</p>
+<p>如果你在<code>winerror.h</code>头文件中查找错误代码，会看到许多按照[功能]_[程度]_[描述]命名规范列出的<code>HRESULT</code>值，由组件返回的通用的 <code>HRESULT</code>（类似<code>E_OUTOFMEMORY</code>）在名字中没有功能码。如 ：</p>
+<ul>
+<li><code>REGDB_E_READREGDB</code>：功能码 = REGDB, 指“注册表数据库（registry database）”；程度 = E 意思是错误（error）；描述 = READREGDB 是对错误的描述（意思是不能读注册表数据库）。</li>
+<li><code>S_OK</code>: 没有功能码――通用（generic）HRESULT；程度=S；表示成功（success）；OK 是状态描述表示一切都好（everything''sOK）。</li>
+</ul>
+<p>好在有一种比察看winerror.h文件更容易的方法来确定HRESULT的意思。使用VC提供的错误查找工具（<code>Error Lookup</code>）可以轻松查到为HRESULT内建功能码。例如，假设你在<code>CoCreateInstance()</code>之前忘了调用<code>CoInitialize()</code>。<code>CoCreateInstance()</code>返回的值是0x800401F0。你只要将这个值输入到错误查找工具按“Look Up”按钮，便可以看到错误信息描述“尚未调用CoInitialize”如下图所示：
+<img src="img/com1.gif" alt="" /></p>
+<p>另外一种查找HRESULT描述的方法是在调试器中。假设有一个<code>HRESULT</code>变量是<code>hres</code>。在Watch窗口的左边框中输入“hres,hr”，表示想要看的值，“hr”便会通知VC显示<code>HRESULT</code>所描述的值。如下图所示：
+<img src="img/com2.gif" alt="" /></p>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../others/pre.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../ml/ml.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../others/pre.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../ml/ml.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "others/com.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../assets/custom.js"></script>
+    <script type="text/javascript" src="../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>
