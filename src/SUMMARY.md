@@ -182,6 +182,7 @@
         - [1.67](appendix/rust-versions/1.67.md)
 - [others](others/pre.md)
   - [COM组件](others/com.md)
+  - [cython](others/cython/pre.md)
 - [ML](ml/ml.md)
   - [绪言](ml/pre/pre.md)
   - [模型的评估与选择](ml/chapter2/chapter2.md)
