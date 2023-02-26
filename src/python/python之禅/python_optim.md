@@ -137,11 +137,4 @@ except smtplib.SMTPException:
 
 
 
-## py23com
 
-```python
-from win32com.client import makepy
-makepy.main()  # 跳出窗口, 创建静态代理static proxy
-
-win32com.client.constant.__d
-```
