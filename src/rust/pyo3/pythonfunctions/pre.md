@@ -64,7 +64,7 @@ fn module_with_fn(py: Python<'_>, m: &PyModule) -> PyResult<()> {
 
 `#[pyo3]`也可以用在单独的变量中来改变其性质，它可以是下述选项的任意组合：
 
-- `#[pyo3(from_py_with = "...")]`：将一个本地函数从 Python 形式转化为 Rust 形式的函数参数，取代使用默认的 `FromPyObject`。函数签名必须为`fn(&PyAny) -> PyResult<T>`，其中 `T` 必须为 Rust 类型的变量。下述例子使用`from_py_with`将输入的 Python object 转换为它的长度
+- `#[pyo3(from_py_with = "...")]`：将一个本地函数从 Python 形式转化为 Rust 形式的函数参数，取代使用默认的 `FromPyObject`。函数签名必须为`fn(&PyAny) -> PyResult<T>`，其中 `T` 必须为 Rust 类型的变量。下述例子使用`from_py_with`将输入的 Python 对象转换为它的长度
 ```rust
 use pyo3::prelude::*;
 
@@ -87,11 +87,11 @@ fn object_length(
 
 可以将 Python 中定义的函数或者内置函数传递为 Rust 函数 （`PyFunction`-常规Python函数，`PyCFunction`-内置函数）`repr()`。
 
-也可以使用 `PyAny::is_callable` 来检查是否有一个可调用的（callable） object。 `is_callable`会返回`true`若函数（包括 lambdas），方法和 objects 带有 `__call__` 方法。可以用 `PyAny::call` 调用 object，args作为第一个参数，kwargs作为第二个参数。另外没参数时使用 `PyAny::call0`，只有 positional 参数时使用`PyAny::call1`。
+也可以使用 `PyAny::is_callable` 来检查是否有一个可调用的（callable） 对象。 `is_callable`会返回`true`若函数（包括 lambdas），方法和 objects 带有 `__call__` 方法。可以用 `PyAny::call` 调用对象，args作为第一个参数，kwargs作为第二个参数。另外没参数时使用 `PyAny::call0`，只有 positional 参数时使用`PyAny::call1`。
 
 ### 在 Python 中调用 Rust 函数
 
-将 Rust 函数转换为 Python object 的方法取决于函数：
+将 Rust 函数转换为 Python 对象的方法取决于函数：
 - Named functions，e.g. `fn foo():`添加`#[pyfunction]` 然后使用 `wrap_pyfunction!`得到对应的`PyCFunction`
 - 匿名函数（Anonymous functions）或者闭包（closures）e.g. `foo: fn()`：
   - 使用 `#[pyclass]` 结构将函数保存为一个域（field）并用`__call__`来调用保存的函数

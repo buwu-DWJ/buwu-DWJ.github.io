@@ -1,8 +1,8 @@
 [前言](pre.md)
 # Summary
 
-- [markdown&latex](markdown/markdown.md)
-- [python](python/python.md)
+- [Markdown&LaTeX](markdown/markdown.md)
+- [Python](python/python.md)
   - [win32com](python/win32com/pre.md)
   - [crawler](python/crawler/pre.md)
     - [BeautifulSoup](python/crawler/BeautifulSoup.md)
@@ -12,7 +12,7 @@
   - [python之禅](python/python之禅/pre.md)
     - [结构上优化运行速度](python/python之禅/optim.md)
     - [其他细节](python/python之禅/python_optim.md)
-- [cpp](cpp/pre.md)
+- [CPP](cpp/pre.md)
   - [cpp_primer_plus笔记]()
     - [基础](cpp/cpp_primer_plus/1.基础/readme.md)
     - [函数](cpp/cpp_primer_plus/2.函数/readme.md)
@@ -185,7 +185,7 @@
       - [函数签名 Function signatures](rust/pyo3/pythonfunctions/function_signatures.md)
       - [错误处理 Error handling](rust/pyo3/pythonfunctions/error_handling.md)
     - [Python 类](rust/pyo3/python_classes/pre.md)
-- [others](others/pre.md)
+- [Others](others/pre.md)
   - [COM组件](others/com.md)
   - [cython](others/cython/pre.md)
 - [ML](ml/ml.md)
