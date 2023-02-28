@@ -1,0 +1,651 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js ayu">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>使用use及受限可见性 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../../favicon.png">
+    <link rel="stylesheet" href="../../../../css/variables.css">
+    <link rel="stylesheet" href="../../../../css/general.css">
+    <link rel="stylesheet" href="../../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../../highlight.css">
+    <link rel="stylesheet" href="../../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('ayu')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/win32com/pre.html"><strong aria-hidden="true">2.1.</strong> win32com</a></li><li class="chapter-item "><a href="../../../../python/crawler/pre.html"><strong aria-hidden="true">2.2.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.2.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../../python/crawler/re.html"><strong aria-hidden="true">2.2.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.3.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.4.</strong> others</a></li><li class="chapter-item "><a href="../../../../python/python之禅/pre.html"><strong aria-hidden="true">2.5.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../python/python之禅/optim.html"><strong aria-hidden="true">2.5.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../cpp/pre.html"><strong aria-hidden="true">3.</strong> cpp</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/2.函数/index.html"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../../../../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.6.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.6.2.</strong> option</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.6.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.6.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.7.</strong> 方法method</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.8.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.8.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.8.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.8.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.8.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.9.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.10.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.11.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.11.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.11.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.12.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 模块Module</a></li><li class="chapter-item expanded "><a href="../../../../rust/rust_holy/basic/crate_module/use.html" class="active"><strong aria-hidden="true">4.1.1.12.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.13.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.14.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.15.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../../others/pre.html"><strong aria-hidden="true">5.</strong> others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../others/com.html"><strong aria-hidden="true">5.1.</strong> COM组件</a></li><li class="chapter-item "><a href="../../../../others/cython/pre.html"><strong aria-hidden="true">5.2.</strong> cython</a></li></ol></li><li class="chapter-item "><a href="../../../../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../../../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="使用-use-及受限可见性"><a class="header" href="#使用-use-及受限可见性">使用 use 及受限可见性</a></h1>
+<p>如果代码中，通篇都是 <code>crate::front_of_house::hosting::add_to_waitlist</code> 这样的函数调用形式，我不知道有谁会喜欢，也许靠代码行数赚工资的人会很喜欢，但是强迫症肯定受不了，悲伤的是程序员大多都有强迫症。。。</p>
+<p>因此我们需要一个办法来简化这种使用方式，在 Rust 中，可以使用 <code>use</code> 关键字把路径提前引入到当前作用域中，随后的调用就可以省略该路径，极大地简化了代码。</p>
+<h2 id="基本引入方式"><a class="header" href="#基本引入方式">基本引入方式</a></h2>
+<p>在 Rust 中，引入模块中的项有两种方式：绝对路径和相对路径，这两者在前面章节都有讲过，就不再赘述，先来看看使用绝对路径的引入方式。</p>
+<h4 id="绝对路径引入模块"><a class="header" href="#绝对路径引入模块">绝对路径引入模块</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这里，我们使用 <code>use</code> 和绝对路径的方式，将 <code>hosting</code> 模块引入到当前作用域中，然后只需通过 <code>hosting::add_to_waitlist</code> 的方式，即可调用目标模块中的函数，相比 <code>crate::front_of_house::hosting::add_to_waitlist()</code> 的方式要简单的多，那么还能更简单吗？</p>
+<h4 id="相对路径引入模块中的函数"><a class="header" href="#相对路径引入模块中的函数">相对路径引入模块中的函数</a></h4>
+<p>在下面代码中，我们不仅要使用相对路径进行引入，而且与上面引入 <code>hosting</code> 模块不同，直接引入该模块中的 <code>add_to_waitlist</code> 函数：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+use front_of_house::hosting::add_to_waitlist;
+
+pub fn eat_at_restaurant() {
+    add_to_waitlist();
+    add_to_waitlist();
+    add_to_waitlist();
+}
+<span class="boring">}</span></code></pre></pre>
+<p>很明显，三兄弟又变得更短了，不过，怎么觉得这句话怪怪的。。</p>
+<h4 id="引入模块还是函数"><a class="header" href="#引入模块还是函数">引入模块还是函数</a></h4>
+<p>从使用简洁性来说，引入函数自然是更甚一筹，但是在某些时候，引入模块会更好：</p>
+<ul>
+<li>需要引入同一个模块的多个函数</li>
+<li>作用域中存在同名函数</li>
+</ul>
+<p>在以上两种情况中，使用 <code>use front_of_house::hosting</code> 引入模块要比 <code>use front_of_house::hosting::add_to_waitlist;</code> 引入函数更好。</p>
+<p>例如，如果想使用 <code>HashMap</code>，那么直接引入该结构体是比引入模块更好的选择，因为在 <code>collections</code> 模块中，我们只需要使用一个 <code>HashMap</code> 结构体：</p>
+<pre><pre class="playground"><code class="language-rust">use std::collections::HashMap;
+
+fn main() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}</code></pre></pre>
+<p>其实严格来说，对于引用方式并没有需要遵守的惯例，主要还是取决于你的喜好，不过我们建议：<strong>优先使用最细粒度(引入函数、结构体等)的引用方式，如果引起了某种麻烦(例如前面两种情况)，再使用引入模块的方式</strong>。</p>
+<h2 id="避免同名引用"><a class="header" href="#避免同名引用">避免同名引用</a></h2>
+<p>根据上一章节的内容，我们只要保证同一个模块中不存在同名项就行，模块之间、包之间的同名，谁管得着谁啊，话虽如此，一起看看，如果遇到同名的情况该如何处理。</p>
+<h4 id="模块函数"><a class="header" href="#模块函数">模块::函数</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt;
+use std::io;
+
+fn function1() -&gt; fmt::Result {
+    // --snip--
+}
+
+fn function2() -&gt; io::Result&lt;()&gt; {
+    // --snip--
+}
+<span class="boring">}</span></code></pre></pre>
+<p>上面的例子给出了很好的解决方案，使用模块引入的方式，具体的 <code>Result</code> 通过 <code>模块::Result</code> 的方式进行调用。</p>
+<p>可以看出，避免同名冲突的关键，就是使用<strong>父模块的方式来调用</strong>，除此之外，还可以给予引入的项起一个别名。</p>
+<h4 id="as-别名引用"><a class="header" href="#as-别名引用"><code>as</code> 别名引用</a></h4>
+<p>对于同名冲突问题，还可以使用 <code>as</code> 关键字来解决，它可以赋予引入项一个全新的名称：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -&gt; Result {
+    // --snip--
+}
+
+fn function2() -&gt; IoResult&lt;()&gt; {
+    // --snip--
+}
+<span class="boring">}</span></code></pre></pre>
+<p>如上所示，首先通过 <code>use std::io::Result</code> 将 <code>Result</code> 引入到作用域，然后使用 <code>as</code> 给予它一个全新的名称 <code>IoResult</code>，这样就不会再产生冲突：</p>
+<ul>
+<li><code>Result</code> 代表 <code>std::fmt::Result</code></li>
+<li><code>IoResult</code> 代表 <code>std:io::Result</code></li>
+</ul>
+<h2 id="引入项再导出"><a class="header" href="#引入项再导出">引入项再导出</a></h2>
+<p>当外部的模块项 <code>A</code> 被引入到当前模块中时，它的可见性自动被设置为私有的，如果你希望允许其它外部代码引用我们的模块项 <code>A</code>，那么可以对它进行再导出：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
+}
+<span class="boring">}</span></code></pre></pre>
+<p>如上，使用 <code>pub use</code> 即可实现。这里 <code>use</code> 代表引入 <code>hosting</code> 模块到当前作用域，<code>pub</code> 表示将该引入的内容再度设置为可见。</p>
+<p>当你希望将内部的实现细节隐藏起来或者按照某个目的组织代码时，可以使用 <code>pub use</code> 再导出，例如统一使用一个模块来提供对外的 API，那该模块就可以引入其它模块中的 API，然后进行再导出，最终对于用户来说，所有的 API 都是由一个模块统一提供的。</p>
+<h2 id="使用第三方包"><a class="header" href="#使用第三方包">使用第三方包</a></h2>
+<p>之前我们一直在引入标准库模块或者自定义模块，现在来引入下第三方包中的模块，关于如何引入外部依赖，这里直接给出操作步骤：</p>
+<ol>
+<li>修改 <code>Cargo.toml</code> 文件，在 <code>[dependencies]</code> 区域添加一行：<code>rand = &quot;0.8.3&quot;</code></li>
+<li>此时，如果你用的是 <code>VSCode</code> 和 <code>rust-analyzer</code> 插件，该插件会自动拉取该库，你可能需要等它完成后，再进行下一步（VSCode 左下角有提示）</li>
+</ol>
+<p>好了，此时，<code>rand</code> 包已经被我们添加到依赖中，下一步就是在代码中使用：</p>
+<pre><pre class="playground"><code class="language-rust">use rand::Rng;
+
+fn main() {
+    let secret_number = rand::thread_rng().gen_range(1..101);
+}</code></pre></pre>
+<p>这里使用 <code>use</code> 引入了第三方包 <code>rand</code> 中的 <code>Rng</code> 特征，因为我们需要调用的 <code>gen_range</code> 方法定义在该特征中。</p>
+<h4 id="cratesiolibrs"><a class="header" href="#cratesiolibrs">crates.io，lib.rs</a></h4>
+<p>Rust 社区已经为我们贡献了大量高质量的第三方包，你可以在 <code>crates.io</code> 或者 <code>lib.rs</code> 中检索和使用，从目前来说查找包更推荐 <code>lib.rs</code>，搜索功能更强大，内容展示也更加合理，但是下载依赖包还是得用<code>crates.io</code>。</p>
+<p>你可以在网站上搜索 <code>rand</code> 包，看看它的文档使用方式是否和我们之前引入方式相一致：在网上找到想要的包，然后将你想要的包和版本信息写入到 <code>Cargo.toml</code> 中。</p>
+<h2 id="使用--简化引入方式"><a class="header" href="#使用--简化引入方式">使用 <code>{}</code> 简化引入方式</a></h2>
+<p>对于以下一行一行的引入方式：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::HashMap;
+use std::collections::BTreeMap;
+use std::collections::HashSet;
+
+use std::cmp::Ordering;
+use std::io;
+<span class="boring">}</span></code></pre></pre>
+<p>可以使用 <code>{}</code> 来一起引入进来，在大型项目中，使用这种方式来引入，可以减少大量 <code>use</code> 的使用：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::{HashMap,BTreeMap,HashSet};
+use std::{cmp::Ordering, io};
+<span class="boring">}</span></code></pre></pre>
+<p>对于下面的同时引入模块和模块中的项：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::io;
+use std::io::Write;
+<span class="boring">}</span></code></pre></pre>
+<p>可以使用 <code>{}</code> 的方式进行简化:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::io::{self, Write};
+<span class="boring">}</span></code></pre></pre>
+<h4 id="self"><a class="header" href="#self">self</a></h4>
+<p>上面使用到了模块章节提到的 <code>self</code> 关键字，用来替代模块自身，结合上一节中的 <code>self</code>，可以得出它在模块中的两个用途：</p>
+<ul>
+<li><code>use self::xxx</code>，表示加载当前模块中的 <code>xxx</code>。此时 <code>self</code> 可省略</li>
+<li><code>use xxx::{self, yyy}</code>，表示，加载当前路径下模块 <code>xxx</code> 本身，以及模块 <code>xxx</code> 下的 <code>yyy</code></li>
+</ul>
+<h2 id="使用--引入模块下的所有项"><a class="header" href="#使用--引入模块下的所有项">使用 <code>*</code> 引入模块下的所有项</a></h2>
+<p>对于之前一行一行引入 <code>std::collections</code> 的方式，我们还可以使用</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::collections::*;
+<span class="boring">}</span></code></pre></pre>
+<p>以上这种方式来引入 <code>std::collections</code> 模块下的所有公共项，这些公共项自然包含了 <code>HashMap</code>，<code>HashSet</code> 等想手动引入的集合类型。</p>
+<p>当使用 <code>*</code> 来引入的时候要格外小心，因为你很难知道到底哪些被引入到了当前作用域中，有哪些会和你自己程序中的名称相冲突：</p>
+<pre><pre class="playground"><code class="language-rust">use std::collections::*;
+
+struct HashMap;
+fn main() {
+   let mut v =  HashMap::new();
+   v.insert(&quot;a&quot;, 1);
+}</code></pre></pre>
+<p>以上代码中，<code>std::collection::HashMap</code> 被 <code>*</code> 引入到当前作用域，但是由于存在另一个同名的结构体，因此 <code>HashMap::new</code> 根本不存在，因为对于编译器来说，本地同名类型的优先级更高。</p>
+<p>在实际项目中，这种引用方式往往用于快速写测试代码，它可以把所有东西一次性引入到 <code>tests</code> 模块中。</p>
+<h2 id="受限的可见性"><a class="header" href="#受限的可见性">受限的可见性</a></h2>
+<p>在上一节中，我们学习了可见性这个概念，这也是模块体系中最为核心的概念，控制了模块中哪些内容可以被外部看见，但是在实际使用时，光被外面看到还不行，我们还想控制哪些人能看，这就是 Rust 提供的受限可见性。</p>
+<p>例如，在 Rust 中，包是一个模块树，我们可以通过 <code>pub(crate) item;</code> 这种方式来实现：<code>item</code> 虽然是对外可见的，但是只在当前包内可见，外部包无法引用到该 <code>item</code>。</p>
+<p>所以，如果我们想要让某一项可以在整个包中都可以被使用，那么有两种办法：</p>
+<ul>
+<li>在包根中定义一个非 <code>pub</code> 类型的 <code>X</code>(父模块的项对子模块都是可见的，因此包根中的项对模块树上的所有模块都可见)</li>
+<li>在子模块中定义一个 <code>pub</code> 类型的 <code>Y</code>，同时通过 <code>use</code> 将其引入到包根</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>mod a {
+    pub mod b {
+        pub fn c() {
+            println!(&quot;{:?}&quot;,crate::X);
+        }
+
+        #[derive(Debug)]
+        pub struct Y;
+    }
+}
+
+#[derive(Debug)]
+struct X;
+use a::b::Y;
+fn d() {
+    println!(&quot;{:?}&quot;,Y);
+}
+<span class="boring">}</span></code></pre></pre>
+<p>以上代码充分说明了之前两种办法的使用方式，但是有时我们会遇到这两种方法都不太好用的时候。例如希望对于某些特定的模块可见，但是对于其他模块又不可见：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// 目标：`a` 导出 `I`、`bar` and `foo`，其他的不导出
+pub mod a {
+    pub const I: i32 = 3;
+
+    fn semisecret(x: i32) -&gt; i32 {
+        use self::b::c::J;
+        x + J
+    }
+
+    pub fn bar(z: i32) -&gt; i32 {
+        semisecret(I) * z
+    }
+    pub fn foo(y: i32) -&gt; i32 {
+        semisecret(I) + y
+    }
+
+    mod b {
+        mod c {
+            const J: i32 = 4;
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这段代码会报错，因为与父模块中的项对子模块可见相反，子模块中的项对父模块是不可见的。这里 <code>semisecret</code> 方法中，<code>a</code> -&gt; <code>b</code> -&gt; <code>c</code> 形成了父子模块链，那 <code>c</code> 中的 <code>J</code> 自然对 <code>a</code> 模块不可见。</p>
+<p>如果使用之前的可见性方式，那么想保持 <code>J</code> 私有，同时让 <code>a</code> 继续使用 <code>semisecret</code> 函数的办法是将该函数移动到 <code>c</code> 模块中，然后用 <code>pub use</code> 将 <code>semisecret</code> 函数进行再导出：</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub mod a {
+    pub const I: i32 = 3;
+
+    use self::b::semisecret;
+
+    pub fn bar(z: i32) -&gt; i32 {
+        semisecret(I) * z
+    }
+    pub fn foo(y: i32) -&gt; i32 {
+        semisecret(I) + y
+    }
+
+    mod b {
+        pub use self::c::semisecret;
+        mod c {
+            const J: i32 = 4;
+            pub fn semisecret(x: i32) -&gt; i32 {
+                x + J
+            }
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这段代码说实话问题不大，但是有些破坏了我们之前的逻辑，如果想保持代码逻辑，同时又只让 <code>J</code> 在 <code>a</code> 内可见该怎么办？</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub mod a {
+    pub const I: i32 = 3;
+
+    fn semisecret(x: i32) -&gt; i32 {
+        use self::b::c::J;
+        x + J
+    }
+
+    pub fn bar(z: i32) -&gt; i32 {
+        semisecret(I) * z
+    }
+    pub fn foo(y: i32) -&gt; i32 {
+        semisecret(I) + y
+    }
+
+    mod b {
+        pub(in crate::a) mod c {
+            pub(in crate::a) const J: i32 = 4;
+        }
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>通过 <code>pub(in crate::a)</code> 的方式，我们指定了模块 <code>c</code> 和常量 <code>J</code> 的可见范围都只是 <code>a</code> 模块中，<code>a</code> 之外的模块是完全访问不到它们的。</p>
+<h4 id="限制可见性语法"><a class="header" href="#限制可见性语法">限制可见性语法</a></h4>
+<p><code>pub(crate)</code> 或 <code>pub(in crate::a)</code> 就是限制可见性语法，前者是限制在整个包内可见，后者是通过绝对路径，限制在包内的某个模块内可见，总结一下：</p>
+<ul>
+<li><code>pub</code> 意味着可见性无任何限制</li>
+<li><code>pub(crate)</code> 表示在当前包可见</li>
+<li><code>pub(self)</code> 在当前模块可见</li>
+<li><code>pub(super)</code> 在父模块可见</li>
+<li><code>pub(in &lt;path&gt;)</code> 表示在某个路径代表的模块中可见，其中 <code>path</code> 必须是父模块或者祖先模块</li>
+</ul>
+<h4 id="一个综合例子"><a class="header" href="#一个综合例子">一个综合例子</a></h4>
+<pre><pre class="playground"><code class="language-rust">// 一个名为 `my_mod` 的模块
+mod my_mod {
+    // 模块中的项默认具有私有的可见性
+    fn private_function() {
+        println!(&quot;called `my_mod::private_function()`&quot;);
+    }
+
+    // 使用 `pub` 修饰语来改变默认可见性。
+    pub fn function() {
+        println!(&quot;called `my_mod::function()`&quot;);
+    }
+
+    // 在同一模块中，项可以访问其它项，即使它是私有的。
+    pub fn indirect_access() {
+        print!(&quot;called `my_mod::indirect_access()`, that\n&gt; &quot;);
+        private_function();
+    }
+
+    // 模块也可以嵌套
+    pub mod nested {
+        pub fn function() {
+            println!(&quot;called `my_mod::nested::function()`&quot;);
+        }
+
+        #[allow(dead_code)]
+        fn private_function() {
+            println!(&quot;called `my_mod::nested::private_function()`&quot;);
+        }
+
+        // 使用 `pub(in path)` 语法定义的函数只在给定的路径中可见。
+        // `path` 必须是父模块（parent module）或祖先模块（ancestor module）
+        pub(in crate::my_mod) fn public_function_in_my_mod() {
+            print!(&quot;called `my_mod::nested::public_function_in_my_mod()`, that\n &gt; &quot;);
+            public_function_in_nested()
+        }
+
+        // 使用 `pub(self)` 语法定义的函数则只在当前模块中可见。
+        pub(self) fn public_function_in_nested() {
+            println!(&quot;called `my_mod::nested::public_function_in_nested&quot;);
+        }
+
+        // 使用 `pub(super)` 语法定义的函数只在父模块中可见。
+        pub(super) fn public_function_in_super_mod() {
+            println!(&quot;called my_mod::nested::public_function_in_super_mod&quot;);
+        }
+    }
+
+    pub fn call_public_function_in_my_mod() {
+        print!(&quot;called `my_mod::call_public_funcion_in_my_mod()`, that\n&gt; &quot;);
+        nested::public_function_in_my_mod();
+        print!(&quot;&gt; &quot;);
+        nested::public_function_in_super_mod();
+    }
+
+    // `pub(crate)` 使得函数只在当前包中可见
+    pub(crate) fn public_function_in_crate() {
+        println!(&quot;called `my_mod::public_function_in_crate()&quot;);
+    }
+
+    // 嵌套模块的可见性遵循相同的规则
+    mod private_nested {
+        #[allow(dead_code)]
+        pub fn function() {
+            println!(&quot;called `my_mod::private_nested::function()`&quot;);
+        }
+    }
+}
+
+fn function() {
+    println!(&quot;called `function()`&quot;);
+}
+
+fn main() {
+    // 模块机制消除了相同名字的项之间的歧义。
+    function();
+    my_mod::function();
+
+    // 公有项，包括嵌套模块内的，都可以在父模块外部访问。
+    my_mod::indirect_access();
+    my_mod::nested::function();
+    my_mod::call_public_function_in_my_mod();
+
+    // pub(crate) 项可以在同一个 crate 中的任何地方访问
+    my_mod::public_function_in_crate();
+
+    // pub(in path) 项只能在指定的模块中访问
+    // 报错！函数 `public_function_in_my_mod` 是私有的
+    //my_mod::nested::public_function_in_my_mod();
+    // 试一试 ^ 取消该行的注释
+
+    // 模块的私有项不能直接访问，即便它是嵌套在公有模块内部的
+
+    // 报错！`private_function` 是私有的
+    //my_mod::private_function();
+    // 试一试 ^ 取消此行注释
+
+    // 报错！`private_function` 是私有的
+    //my_mod::nested::private_function();
+    // 试一试 ^ 取消此行的注释
+
+    // 报错！ `private_nested` 是私有的
+    //my_mod::private_nested::function();
+    // 试一试 ^ 取消此行的注释
+}</code></pre></pre>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../../rust/rust_holy/basic/crate_module/module.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../../rust/rust_holy/basic/comment.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../../rust/rust_holy/basic/crate_module/module.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../../rust/rust_holy/basic/comment.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "rust/rust_holy/basic/crate_module/use.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js ayu">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>函数 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../favicon.png">
+    <link rel="stylesheet" href="../../../css/variables.css">
+    <link rel="stylesheet" href="../../../css/general.css">
+    <link rel="stylesheet" href="../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../highlight.css">
+    <link rel="stylesheet" href="../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('ayu')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../pre.html">前言</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> markdown&latex</a></li><li class="chapter-item "><a href="../../../python/python.html"><strong aria-hidden="true">2.</strong> python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/win32com/pre.html"><strong aria-hidden="true">2.1.</strong> win32com</a></li><li class="chapter-item "><a href="../../../python/crawler/pre.html"><strong aria-hidden="true">2.2.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.2.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../python/crawler/re.html"><strong aria-hidden="true">2.2.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.3.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.4.</strong> others</a></li><li class="chapter-item "><a href="../../../python/python之禅/pre.html"><strong aria-hidden="true">2.5.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/python之禅/optim.html"><strong aria-hidden="true">2.5.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../../cpp/pre.html"><strong aria-hidden="true">3.</strong> cpp</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item expanded "><a href="../../../cpp/cpp_primer_plus/2.函数/index.html" class="active"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.2.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.3.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.3.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.3.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.4.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.4.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.4.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.5.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.6.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.6.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.6.2.</strong> option</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.6.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.6.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.7.</strong> 方法method</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.8.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.8.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.8.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.8.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.8.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.9.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.10.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.11.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.11.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.11.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.12.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">4.1.1.12.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.13.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.14.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.15.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/pyo3.html"><strong aria-hidden="true">4.2.</strong> PyO3</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonmodules.html"><strong aria-hidden="true">4.2.1.</strong> Python 模组</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/pre.html"><strong aria-hidden="true">4.2.2.</strong> Python 函数</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/function_signatures.html"><strong aria-hidden="true">4.2.2.1.</strong> 函数签名 Function signatures</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/error_handling.html"><strong aria-hidden="true">4.2.2.2.</strong> 错误处理 Error handling</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/pre.html"><strong aria-hidden="true">4.2.3.</strong> Python 类</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../others/pre.html"><strong aria-hidden="true">5.</strong> others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../others/com.html"><strong aria-hidden="true">5.1.</strong> COM组件</a></li><li class="chapter-item "><a href="../../../others/cython/pre.html"><strong aria-hidden="true">5.2.</strong> cython</a></li></ol></li><li class="chapter-item "><a href="../../../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li></ol></li><li class="chapter-item "><a href="../../../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="函数"><a class="header" href="#函数">函数</a></h1>
+<p>函数---C++的编程模块（<strong>要提高编程效率，可更深入地学习STL和BOOST C++提供的功能</strong>）</p>
+<blockquote>
+<ul>
+<li>1.提供函数定义 function definition</li>
+<li>2.提供函数原型 function prototype</li>
+<li>3.调用函数 function call</li>
+</ul>
+</blockquote>
+<pre><code class="language-C++">Void functionName(parameterlist)
+{
+statement(s)
+teturn;
+}
+</code></pre>
+<ul>
+<li>parameterlist:指定了传递给函数的参数类型和数量</li>
+<li>void:没有返回值，对于有返回值的函数，必须有返回语句return</li>
+<li>1.返回值类型：不能是数组，但可以是其他任何类型---整数，浮点数，指针，甚至可以是结构和对象。</li>
+<li>2.函数通过将返回值复制到指定的CPU寄存器或内存单元中来将其返回。</li>
+</ul>
+<h2 id="为什么需要原型"><a class="header" href="#为什么需要原型">为什么需要原型</a></h2>
+<p>原型描述了函数到编译器的接口，它将1.函数返回值类型（如果有的话）以及2.参数的类型和3.数量告诉编译器。（在原型的参数列表中，可以包含变量名，也可以不包含。原型中的变量名相当于占位符，因此不必与函数中的变量名相同）</p>
+<ul>
+<li>确保：编译器正确处理1，编译器检查2，3</li>
+</ul>
+<h2 id="函数参数传递和按值传递"><a class="header" href="#函数参数传递和按值传递">函数参数传递和按值传递</a></h2>
+<ul>
+<li>用于接收传递值的变量被称为形参（parameter），传递给函数的值被称为实参（argument）。</li>
+<li>值传递：调用函数时，使用的是<code>实参的副本</code>，而不是原来的数据。</li>
+<li>在函数中声明的变量（<strong>局部变量（自动变量）</strong>）（包括参数）是该函数<strong>私有的</strong>，函数调用时：计算机将为这些变量分配内存；函数结束时：计算机将释放这些变量使用的内存。</li>
+</ul>
+<h2 id="函数和数组"><a class="header" href="#函数和数组">函数和数组</a></h2>
+<pre><code class="language-C++">int sum_arr(int arr[],int n);//arr=arrayname.n=size
+int sum_arr(int arr[],int n);//arr=arrayname.n=size
+//两者是等价的
+</code></pre>
+<ul>
+<li>const保护数组（输入数组原数据不能改变）
+<code>void show_array(const double ar[],int n);</code>//声明形参时使用const关键字</li>
+<li>该声明表明，指针or指向的是常量数据。这意味着不能使用or修改数据。<strong>这并不意味着原始数据必须是常量</strong></li>
+<li>如果该函数要修改数组的值，声明ar时不能使用const</li>
+</ul>
+<hr />
+<ul>
+<li>1.对于处理数组的C++函数，必须将数组中的</li>
+</ul>
+<blockquote>
+<p>1.数据类型
+2.数组的起始位置
+3.和数组元素中的数量<strong>提交给他</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>传统的C/C++方法是，将指向数组起始处的指针作为一个参数，将数组长度作为第二个参数（指针指出数组位置和数据类型）</p>
+</li>
+<li>
+<p>2.第二种方法：指定元素区间（range）
+通过传递两个指针来完成：一个指针表示数组的开头，另外一个指针表示数组的尾部。例子：</p>
+</li>
+</ul>
+<pre><code class="language-C++">int sum_arr(const int *begun,const int *end)
+{
+const int *pt;
+int total=0;
+for(pt=begin;pt!=end;pt++)
+total=toatl+*pt;
+return total;
+}
+int cookies[ArSize]= {1,2,4,8,16,32,64,128};
+int sum=sum_arr(cookies,cookies+ArSize);
+</code></pre>
+<h2 id="函数与c风格字符串"><a class="header" href="#函数与c风格字符串">函数与C风格字符串</a></h2>
+<p>假设要将字符串（实际传递的是字符串第一字符的地址）作为参数传递给函数，则表示字符串的方式有三种：</p>
+<blockquote>
+<ul>
+<li>1.char数组</li>
+<li>2.用字符串常量</li>
+<li>3.被设置为字符串的地址的char指针。</li>
+</ul>
+</blockquote>
+<h2 id="函数和结构"><a class="header" href="#函数和结构">函数和结构</a></h2>
+<p>涉及函数时，结构变量的行为更接近基于基本的<strong>单值变量</strong></p>
+<blockquote>
+<ul>
+<li>1.按值传递--&gt;如果结构非常大，则复制结构将增加内存要求，且<strong>使用的是原始变量的副本</strong></li>
+<li>2.传递结构的地址，然后使用指针来访问结构的内容</li>
+</ul>
+</blockquote>
+<pre><code class="language-C++">rect rplace;
+polar pplace;
+void rect_to_polar(const rect*pxy,polar*pda)
+{
+...
+}
+rect_to_polar(&amp;rplace,&amp;pplace);
+</code></pre>
+<p>调用函数时，将结构的地址（&amp;pplace）而不是结构本身（pplace）传递给它；将形参声明为指向polar的指针，即<code>polar*</code>类型。由于函数不应该修改结构，因此使用了const修饰符，由于形参是指针不是结构，因此应使用姐姐成员运算符(<strong>-&gt;</strong>)，而不是成员运算符（.）。</p>
+<blockquote>
+<ul>
+<li>3.按引传递用，传指针和传引用效率都高，一般主张是引用传递代码逻辑更加紧凑清晰。</li>
+</ul>
+</blockquote>
+<h2 id="递归---c函数有一种有趣的特点--可以调用自己除了main"><a class="header" href="#递归---c函数有一种有趣的特点--可以调用自己除了main">递归---C++函数有一种有趣的特点--可以调用自己（除了main()）</a></h2>
+<p>1.包含一个递归调用的递归</p>
+<pre><code class="language-C++">void recurs(argumentlist)
+{
+statement1
+if(test)
+recurs(arguments)
+statement2
+}
+</code></pre>
+<p>如果调用5次recurs就会运行5次statement1，运行1次statement2.</p>
+<p>2.包含多个递归调用的递归</p>
+<pre><code class="language-C++">void recurs(argumentlist)
+{
+if(test)
+return;
+statement;
+recurs(argumentlist1);
+recurs(argumentlist2);
+}
+</code></pre>
+<p>3.从1加到n</p>
+<pre><code class="language-C++">class Solution
+{
+public:
+int Sum_Solution(int n){
+    int ans=n;
+    ans&amp;&amp;(ans+=Sum_Solution(n-1));
+    return ans;
+}
+};
+//&amp;&amp;就是逻辑与，逻辑与有个短路特点，前面为假，后面不计算。
+</code></pre>
+<h2 id="函数指针"><a class="header" href="#函数指针">函数指针</a></h2>
+<p>函数也有地址---存储其机器语言代码的内存的开始地址</p>
+<ul>
+<li>
+<ol>
+<li>获取函数的地址，只要使用函数名（后面不跟参数）即可。</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>例如think()是个函数</p>
+</blockquote>
+<pre><code class="language-C++">process(think);//传递的是地址
+thought(think());//传递的是函数返回值
+//使用
+double pam(int);//原始函数声明
+double (*pf)(int);//函数指针声明
+pf=pam;//使用指针指向pam函数
+
+double x=pam(4);//使用函数名调用pam()
+double y=(*pf)(5);//使用指针调用pam()
+//也可以这样使用函数指针
+double y=pf(5);
+</code></pre>
+<ul>
+<li>
+<ol start="2">
+<li>进阶
+下面函数原型的特征表和返回类型相同</li>
+</ol>
+</li>
+</ul>
+<pre><code class="language-C++">const double *f1(const double ar[],int n);
+const double *f2(const dopuble [],int );
+const double *f3(const double *,int );
+//声明一个指针可以指向f1，f2，f3
+const double * (*p1)(const double *,int );//返回类型相同，函数的特征标相同
+//声明并初始化
+const double * (*p1)(const double *,int )=f1;
+//也可以使用自动类型推断
+auto p2=f2;
+</code></pre>
+<ul>
+<li>
+<ol start="3">
+<li>使用for循环通过指针依次条用每个函数</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>例子：声明包含三个函数指针的数组，并初始化</p>
+</blockquote>
+<p><code>const double * (*pa[3])(const double *,int)={f1,f2,f3};</code></p>
+<p>问：为什么不使用自动类型推断？auto</p>
+<p>答：因为自动类型推断只能用于<strong>单值初始化</strong>，而不能用初始化列表。</p>
+<p>但可以声明相同类型的数组 auto pb=pa;</p>
+<p>使用：</p>
+<pre><code class="language-C++">const double *px=pa[0](av.3);//两种表示法都可以
+const double *py=pb[1](av.3);
+//创建指向整个数组的指针。由于数组名pa是指向函数指针的指针
+auto pc=&amp;pa;//c++11
+//等价于
+const double * (*(*pd[3]))(const double *,int)=&amp;pa;//C++98
+</code></pre>
+<ul>
+<li><strong>除了auto外，其他简化声明的工具，typedef进行简化</strong>
+点云库里常常用到,如:<code>typedef pcl::PointNormal PointNT</code></li>
+</ul>
+<pre><code class="language-C++">typedef const double * (*p_fun)(const double *,int );
+p_fun p1=f1;
+</code></pre>
+<hr />
+<h1 id="函数探幽"><a class="header" href="#函数探幽">函数探幽</a></h1>
+<p>C++11新特性</p>
+<ol>
+<li>函数内联</li>
+<li>按引用传递变量</li>
+<li>默认参数值</li>
+<li>函数重载（多态）</li>
+<li>模板函数</li>
+</ol>
+<h2 id="内联函数"><a class="header" href="#内联函数">内联函数</a></h2>
+<p>c++内联函数--&gt;提高程序运行速度：常规函数与内联函数的区别在于,<strong>C++编译器如何将它们组合到程序中</strong></p>
+<ul>
+<li>
+<p>常规函数调用过程：</p>
+<ol>
+<li>执行到<strong>函数调用指令</strong>程序在函数调用后立即<strong>存储该指令地址</strong>，并将<strong>函数参数</strong>复制到<strong>堆栈中</strong>(为此保留的代码)，</li>
+<li>跳到标记起点内存单元，</li>
+<li>执行函数代码（也许将返回值放入寄存器中），</li>
+<li>然后跳回地址被保存的指令处。来回跳跃并记录跳跃位置意味着以前使用函数时，需要一定的开销。</li>
+</ol>
+</li>
+<li>
+<p>情况：函数代码执行时间很短---内联调用就可以节省非内联调用的大部分时间（节省时间绝对值并不大）</p>
+</li>
+<li>
+<p>代价：需要占用更多的内存：如果程序在是个不同地方调用一个内联函数，则该函数将包含该函数代码的10个副本</p>
+</li>
+<li>
+<p>使用：在函数声明前加上关键字inline；在函数定义前加上关键字inline；</p>
+</li>
+</ul>
+<p>通常的做法是省略原型，将整个定义（即函数头和所有代码），放在本应提供原型的地方。</p>
+<ul>
+<li><strong>内联函数不能递归</strong></li>
+<li>如果函数占用多行（假设没有冗长的标识符），将其作为内联函数不太合适.</li>
+</ul>
+<h3 id="内联与宏"><a class="header" href="#内联与宏">内联与宏</a></h3>
+<p>C语言使用预处理语句<code>#define</code>来提供宏---内联代码的原始实现</p>
+<pre><code class="language-C++"># define SQUARE(X) X*X
+</code></pre>
+<ul>
+<li>这不是通过<strong>传递参数实现的</strong>,而是通过<strong>文本替换</strong>实现的---X是&quot;参数&quot;的符号标记。<strong>所以宏不能按值传递</strong></li>
+</ul>
+<p>故有时候会出现错误</p>
+<pre><code class="language-C++">c=10;
+d=SQUARE(C++);is replaced by d=C++*c++=11X12=122
+</code></pre>
+<h2 id="按引用传递变量"><a class="header" href="#按引用传递变量">按引用传递变量</a></h2>
+<p><strong>引用变量</strong>--&gt;是复合类型
+<code>int &amp; rodents =rats;</code>其中int &amp;是类型，该声明允许将rats和rodent互换---他们指向相同的值和内存单元。</p>
+<ul>
+<li>必须在声明引用变量时进行初始化</li>
+<li>引用更接近const指针(指向const数据的指针)，必须在创建时进行初始化，一旦与某个变量关联起来就一直效忠于它。</li>
+</ul>
+<pre><code class="language-C++">int &amp; rodents=rats;
+//实际上是下述代码的伪装表示
+int * const pr=&amp;rats;
+//引用rodents扮演的角色与*pr相同。
+//*pr值是个地址，且该地址恒等于&amp;rat--&gt;rats的地址
+</code></pre>
+<h3 id="引用的属性与特别之处"><a class="header" href="#引用的属性与特别之处">引用的属性与特别之处</a></h3>
+<h3 id="应该尽可能使用const"><a class="header" href="#应该尽可能使用const">应该尽可能使用const</a></h3>
+<h3 id="c11新增了另外一种引用---右值引用这种引用可指向右值是使用声明的"><a class="header" href="#c11新增了另外一种引用---右值引用这种引用可指向右值是使用声明的">C++11新增了另外一种引用---右值引用。这种引用可指向右值，是使用&amp;&amp;声明的：</a></h3>
+<p>第十八章将讨论如何使用右值引用来实现<strong>移动语义（move semantics）</strong>,以前的引用（使用&amp;声明的引用）现在称为<strong>左值引用</strong></p>
+<ul>
+<li>
+<ol>
+<li>右值引用是对<strong>临时对象</strong>的一种引用，它是在初始化时完成的，<strong>但右值引用不代表引用临时对象后，就不能改变右值引用所引用对象的值，仍然可以初始化后改变临时对象的值</strong></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>右值短暂，<strong>右值只能绑定到临时对象</strong>。所引用对象将要销毁或没有其他用户</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>初始化右值引用一定要<strong>用一个右值表达式绑定。</strong></li>
+</ol>
+</li>
+</ul>
+<p>例子：</p>
+<pre><code class="language-C++">double &amp;&amp;rref=std::sqrt(36.00);//在左值引用中不成立，即使用&amp;来实现也是不允许的
+double j=15.0;
+double&amp;&amp; jref=2.0*j+18.5;//同样使用左值引用是不能实现的。
+</code></pre>
+<h3 id="将引用用于结构"><a class="header" href="#将引用用于结构">将引用用于结构</a></h3>
+<p>引用非常适合用于结构和类(C++用户定义类型)而不是基本的内置类型。</p>
+<ul>
+<li>声明函数原型，在函数中将指向该结构的引用作为参数：<code>void set_pc(free_throws &amp; tf);</code>如果不希望函数修改传入的结构。可使用const；<code>void display(free_throws &amp; tf);</code></li>
+<li>返回引用：free_throws &amp;accumlate(free_throws&amp; traget,free_throws&amp; source);为何要返回引用？如果accumlate()返回一个结构，如：dup=accumlate(team,five) 而不是指向结构的引用。这将把整个结构复制到一个临时位置，再将这个拷贝复制给dup。<strong>但在返回值为引用时，直接把team复制到dup，其效率更高</strong>，复制两次和复制一次的区别。</li>
+<li>应避免返回函数终止时，不在存在的内存单元引用。为避免这种问题，最简单的方法是，<strong>返回一个作为参数传递给函数的引用</strong>。作为参数的引用指向调用函数使用的数据，因此返回引用也将指向这些数据。</li>
+</ul>
+<pre><code class="language-C++">free_throws&amp; accumlate(free_throws&amp; traget,free_throws&amp; source)
+{
+traget.attempts+=source.attempts;
+traget.mode+=source.mode;
+set_pc(target);
+return target;
+}
+</code></pre>
+<ul>
+<li>另一种方法是用new来分配新的存储空间</li>
+</ul>
+<pre><code class="language-C++">const free_throws&amp; clone(&amp;three)
+{
+free_throws * pt;//创建无名的free_throws结构，并让指针pt指向该结构，因此*pt就是该结构，在不需要new分配的内存时，应使用delete来释放它们。
+                 //auto_ptr模板以及unique_ptr可帮助程序员自动完成释放
+* pt=ft；
+return *pt;//实际上返回的是该结构的引用
+}
+</code></pre>
+<h3 id="将引用用于对象"><a class="header" href="#将引用用于对象">将引用用于对象</a></h3>
+<p>和结构同理</p>
+<h3 id="对象继承和引用"><a class="header" href="#对象继承和引用">对象继承和引用</a></h3>
+<p>使得能够将特性从一个类传递给另外一个类的语言被称为继承</p>
+<p>ostream--&gt;基类 ofstream--&gt;派生类</p>
+<p>基类引用可以指向派生类对象，而无需强制类型转换</p>
+<h3 id="时使用引用参数"><a class="header" href="#时使用引用参数">时使用引用参数</a></h3>
+<p>使用引用参数到主要原因有两个：</p>
+<p>（1）程序员能够修改调用函数中的数据对象。</p>
+<p>（2）通过传递引用而不是整个数据对象，可以提高程序的运行速度。</p>
+<p>　　当数据对象较大时（如结构和类对象），第二个原因最重要。这些也是使用指针参数的原因。这是有道理的，因为引用参数实际上是基于指针的代码的另一个接口。那么什么时候应该使用引用，什么时候应该使用指针呢？什么时候应该按值传递呢？下面是一些指导原则：</p>
+<p>对于使用传递到值而不做修改到函数：</p>
+<p>（1）如果数据对象很小，如内置数据类型或小型结构，则按值传递。
+（2）如果数据对象是数组，则使用指针，因为这是唯一的选择，并将指针声明为指向const的指针。
+（3）如果数据对象是较大的结构，则使用const指针或const引用，以提高程序的效率。这样可以节省复制结构所需要的时间和空间。
+（4）如果数据对象是类对象，则使用const引用。类设计的语义常常要求使用引用，这是C++新增这项特性的主要原因。因此，传递类对象参数的标准方式是按引用传递。</p>
+<p>对于修改调用函数中数据的函数：</p>
+<p>（1）如果数据对象是内置数据类型，则使用指针。如果看到诸如fixit(&amp;x)这样的代码（其中x是int），则很明显，该函数将修改x。
+（2）如果数据对象是数组，则只能使用指针。
+（3）如果数据对象是结构，则使用引用或指针。
+（4）如果数据对象是类对象，则使用引用。</p>
+<p>　　当然，这只是一些指导原则，很可能有充分到理由做出其他的选择。例如，对于基本类型，cin使用引用，因此可以使用cin&gt;&gt;n，而不是cin&gt;&gt;&amp;n。</p>
+<h2 id="默认参数值---当函数调用中省略了实参时自动使用的一个值"><a class="header" href="#默认参数值---当函数调用中省略了实参时自动使用的一个值">默认参数值---当函数调用中省略了实参时自动使用的一个值</a></h2>
+<p>如何设置默认值？<strong>必须通过函数原型</strong></p>
+<p><code>char* left(const char* str,int n=1);</code>原型声明</p>
+<p>定义长这样 char * left(const char* str,int n){...}</p>
+<p>对于带参数列表的函数，必须从左向右添加默认值：下面代码错误，int j应该也设默认值</p>
+<pre><code class="language-C++">int chico(int n,int m=6,int j);//fault
+</code></pre>
+<ul>
+<li>通过默认参数，可以减少要定义的<strong>析构函数</strong>，<strong>方法</strong>以及<strong>方法重载</strong>的数量</li>
+</ul>
+<h2 id="函数重载"><a class="header" href="#函数重载">函数重载</a></h2>
+<ul>
+<li>
+<ol>
+<li>默认参数让你能够使用不同数目的参数调用的同一个函数。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>而函数<strong>多态</strong>（函数<strong>重载</strong>）让你能够使用多个同名函数。</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>仅当函数基本上执行相同的任务，但使用不同形式的数据时，才应用函数重载</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>C++使用名称修饰（名称矫正）来跟踪每一个重载函数</li>
+</ol>
+</li>
+</ul>
+<p>未经过修饰：<code>long MyFunction(int,float);</code></p>
+<p>名称修饰（内部转换）：<code>?MyFunctionFoo@@YAXH</code>---&gt;将对参数数目和类型进行编码</p>
+<h3 id="重载与多态的区别"><a class="header" href="#重载与多态的区别">重载与多态的区别</a></h3>
+<ul>
+<li>重载：是指允许存在多个同名方法，而这些方法的参数不同(<strong>特征标不同</strong>)。重载的实现是：编译器根据方法不同的参数表，对同名方法的名称做修饰，对于编译器而言，这些同名方法就成了不同的方法。他们的调用地址在编译器就绑定了。**重载，是在编译阶段便已确定具体的代码，对同名不同参数的方法调用（静态联编）</li>
+<li>C++中，子类中若有同名函数则隐藏父类的同名函数，即子类如果有永明函数则不能继承父类的重载。</li>
+<li>多态：是指子类重新定义父类的虚方法（virtual,abstract）。当子类<strong>重新定义</strong>了父类的虚方法后，父类根据赋给它的不同的子类，动态调用属于子类的方法，这样的方法调用在编译期间是无法确定的。<strong>（动态联编）</strong>。对于多态，只有等到方法调用的那一刻，编译器才会确定所要调用的具体方法。</li>
+</ul>
+<h3 id="重载与覆盖的区别"><a class="header" href="#重载与覆盖的区别">重载与覆盖的区别</a></h3>
+<ol>
+<li>重载要求函数名相同，但是参数列列表必须不不同，返回值可以相同也可以不不同。
+覆盖要求函数名、参数列列表、返回值必须相同。</li>
+<li>在类中重载是同一个类中不同成员函数之间的关系
+在类中覆盖则是⼦子类和基类之间不同成员函数之间的关系</li>
+<li>重载函数的调用是根据参数列表来决定调用哪一个函数 覆盖函数的调用是根据对象类型的不不同决定调用哪一个</li>
+<li>在类中对成员函数重载是不不能够实现多态 在子类中对基类虚函数的覆盖可以实现多态</li>
+</ol>
+<h2 id="模板函数---通用的函数描述"><a class="header" href="#模板函数---通用的函数描述">模板函数---通用的函数描述</a></h2>
+<ul>
+<li>用于函数参数个数相同的<strong>类型不同</strong>的情况，如果参数个数不同，则不能那个使用函数模板</li>
+<li>函数模板自动完成重载函数的过程。只需要使用泛型和具体算法来定义函数，编译器将为程序使用特定的参数类型生成正确的函数定义</li>
+<li>函数模板允许以任意类型的方式来定义函数。例如，可以这样建立一个交换模板</li>
+</ul>
+<pre><code class="language-C++">template &lt;typename AnyType&gt;
+void Swap(AnyType &amp;a,AnyType &amp;a)
+{
+AnyType temp;
+temp=a;
+a=b;
+b=temp;
+}
+</code></pre>
+<ul>
+<li>模板不会创建任何函数，而只是告诉编译器如何定义函数</li>
+<li>C++98没有关键字typename，使用的是<code>template&lt;class AnyType&gt;void Swap(AnyType &amp;a,AnyType &amp;a){...}</code></li>
+<li>函数模板不能缩短可执行程序，最终仍将由两个独立的函数定义，就像以手工方式定义了这些函数一样。<strong>最终的代码不包含任何模板，只包含了为程序生成的实际函。使用模板的寒除湿，它使生成多个函数定义更简单，更可靠</strong>更常见的情形是将模板放在头文件中，并在<strong>需要使用模板的文件中包含头文件</strong></li>
+</ul>
+<h3 id="重载的模板"><a class="header" href="#重载的模板">重载的模板</a></h3>
+<p>对多个不同类型使用同一种算法（和常规重载一样，被重载的模板的函数特征标必须不同）。</p>
+<pre><code class="language-C++">template &lt;typename T&gt;
+void Swap(T&amp; a,T&amp; b);
+template &lt;typename T&gt;
+void Swap(T* a,T* b,int n);
+</code></pre>
+<ul>
+<li>模板的局限性：编写的模板很可能无法处理某些类型</li>
+</ul>
+<blockquote>
+<p>如1.T为数组时，a=b不成立；T为结构时a&gt;b不成立</p>
+</blockquote>
+<ul>
+<li>解决方案：</li>
+</ul>
+<ol>
+<li>C++允许重载运算符，以便能够将其用于特定的结构或类</li>
+<li>为特定类型提供具体化的模板定义</li>
+</ol>
+<h4 id="显式具体化explicit-specialization"><a class="header" href="#显式具体化explicit-specialization">显式具体化（explicit specialization）</a></h4>
+<p>提供一个具体化函数定义，其中包含所需的代码，当编译器找到与函数调用匹配的具体化定义时，将使用该定义，不再寻找模板。</p>
+<ul>
+<li>该内容在代码重用中有不再重复。</li>
+</ul>
+<h3 id="重载解析overloading-resolution---编译器选择哪个版本的函数"><a class="header" href="#重载解析overloading-resolution---编译器选择哪个版本的函数">重载解析(overloading resolution)---编译器选择哪个版本的函数</a></h3>
+<p>对于函数重载，函数模板和函数模板重载，C++需要一个定义良好的策略，来决定为函数调用哪一个函数定义，尤其是有多个参数时</p>
+<p>过程：</p>
+<ol>
+<li>创建候选函数列表。其中包含与被调用函数的<strong>名称相同</strong>的函数和模板函数。</li>
+<li>使用<strong>候选函数列表</strong>创建可行函数列表。这些都是参数数目正确的函数，为此有一个隐式的转换序列，其中包括实参类型与相应的形参类型完全匹配的情况。例如，使用float参数的函数调用可以将该参数转换为double，从而与double形参匹配，而模板可以为float生成一个实例。</li>
+<li>确定是否有最佳的可行函数。如果有，则使用它，否则该函数调用出错。</li>
+</ol>
+<p>最佳到最差的顺序：</p>
+<ol>
+<li>完全匹配，但常规函数优先于模板</li>
+<li>提升转换（例如，char和shorts自动转换为int ,float自动转换为double）。</li>
+<li>标准转换（例如，int转换为char,long转换为double）。</li>
+<li>用户定义的转换，如类声明中定义的转换。</li>
+</ol>
+<p>完全匹配：完全匹配允许的无关紧要转换</p>
+<div class="table-wrapper"><table><thead><tr><th>从实参到形参</th><th>到实参</th></tr></thead><tbody>
+<tr><td>Type</td><td>Type &amp;</td></tr>
+<tr><td>Type &amp;</td><td>Type</td></tr>
+<tr><td>Type[]</td><td>* Type</td></tr>
+<tr><td>Type(argument-list)</td><td>Type( * )(argument-list)</td></tr>
+<tr><td>Type</td><td>const Type</td></tr>
+<tr><td>Type</td><td>volatile Type</td></tr>
+<tr><td>Type*</td><td>const Type</td></tr>
+<tr><td>Type*</td><td>volatile Type</td></tr>
+</tbody></table>
+</div>
+<hr />
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../cpp/cpp_primer_plus/1.基础/index.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../cpp/cpp_primer_plus/1.基础/index.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "cpp/cpp_primer_plus/2.函数/index.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>
