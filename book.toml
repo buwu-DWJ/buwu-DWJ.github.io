@@ -8,7 +8,8 @@ title = "布武不舞"
 [output.katex]
 
 [output.html]
-default-theme = "light"
+default-theme = "ayu"
+prefered-theme = 'dark'
 fold.enable = true
 playground.editable = true
 # playground.line-numbers = true
