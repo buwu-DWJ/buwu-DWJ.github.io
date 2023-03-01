@@ -3,6 +3,8 @@
 [官方入门教程](https://pyo3.rs/main/)
 [api文档](https://pyo3.rs/main/doc/pyo3/)
 
+下面有任何有疑问的接口中的名称都直接去api文档中搜索
+
 ## 在Python中使用Rust
 PyO3用来生成原生 Python 模块，最简单的方法是使用`maturin`，这是一个用最少配置发布基于 Rust 的 Python 包的工具。新建一个测试用的文件夹
 

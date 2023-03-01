@@ -201,3 +201,781 @@ struct MyClass {}
 | 非继承         | `T`                                                                                             | `PyResult<T>`                     |
 | 继承(T继承U)   | `(T, U)`                                                                                        | `PyResult<(T, U)>`                |
 | 继承(一般情形) | [`PyClassInitializer<T>`](https://pyo3.rs/main/doc/pyo3/pyclass_init/struct.pyclassinitializer) | `PyResult<PyClassInitializer<T>>` |
+
+## 继承 Inheritance
+
+
+默认情况下，`object` i.e. `PyAny` 被用作基本类。要覆盖这种默认，对`pyclass`使用 `extends` 参数，参数值为基类的完整路径。
+
+方便起见，`(T, U)` 实现了`Into<PyClassInitializer<T>>`，其中`U`是`T`的基类。但是对更深的嵌套循环，还是必须明确地使用`PyClassInitializer<T>`。
+
+要从一个子类获得其父类，对方法使用`PyRef`（而不是`&self`）或者`PyRefMut`（而不是`&mut self`）。这样就可以通过`&Self::BaseClass`的`self_.as_ref()`或者`PyRef<Self::BaseClass>`的`self_.into_super()`获取父类。
+
+```rust
+use pyo3::prelude::*;
+
+#[pyclass(subclass)]
+struct BaseClass {
+    val1: usize,
+}
+
+#[pymethods]
+impl BaseClass {
+    #[new]
+    fn new() -> Self {
+        BaseClass { val1: 10 }
+    }
+
+    pub fn method(&self) -> PyResult<usize> {
+        Ok(self.val1)
+    }
+}
+
+#[pyclass(extends=BaseClass, subclass)]
+struct SubClass {
+    val2: usize,
+}
+
+#[pymethods]
+impl SubClass {
+    #[new]
+    fn new() -> (Self, BaseClass) {
+        (SubClass { val2: 15 }, BaseClass::new())
+    }
+
+    fn method2(self_: PyRef<'_, Self>) -> PyResult<usize> {
+        let super_ = self_.as_ref(); // Get &BaseClass
+        super_.method().map(|x| x * self_.val2)
+    }
+}
+
+#[pyclass(extends=SubClass)]
+struct SubSubClass {
+    val3: usize,
+}
+
+#[pymethods]
+impl SubSubClass {
+    #[new]
+    fn new() -> PyClassInitializer<Self> {
+        PyClassInitializer::from(SubClass::new()).add_subclass(SubSubClass { val3: 20 })
+    }
+
+    fn method3(self_: PyRef<'_, Self>) -> PyResult<usize> {
+        let v = self_.val3;
+        let super_ = self_.into_super(); // Get PyRef<'_, SubClass>
+        SubClass::method2(super_).map(|x| x * v)
+    }
+}
+Python::with_gil(|py| {
+    let subsub = pyo3::PyCell::new(py, SubSubClass::new()).unwrap();
+    pyo3::py_run!(py, subsub, "assert subsub.method3() == 3000")
+});
+```
+
+也可以继承类似`PyDict`的原生类型，只要它们实现了`PySizedLayout`。但是由于技术问题，现在还未向继承了原生类型的类型提供安全的 upcasting 方法。即使在这样的情况下，可以 _unsafely get a base class by raw pointer conversion_
+
+
+```rust
+#[cfg(not(Py_LIMITED_API))] {
+use pyo3::prelude::*;
+use pyo3::types::PyDict;
+use pyo3::AsPyPointer;
+use std::collections::HashMap;
+
+#[pyclass(extends=PyDict)]
+#[derive(Default)]
+struct DictWithCounter {
+    counter: HashMap<String, usize>,
+}
+
+#[pymethods]
+impl DictWithCounter {
+    #[new]
+    fn new() -> Self {
+        Self::default()
+    }
+
+    fn set(mut self_: PyRefMut<'_, Self>, key: String, value: &PyAny) -> PyResult<()> {
+        self_.counter.entry(key.clone()).or_insert(0);
+        let py = self_.py();
+        let dict: &PyDict = unsafe { py.from_borrowed_ptr_or_err(self_.as_ptr())? };
+        dict.set_item(key, value)
+    }
+}
+Python::with_gil(|py| {
+    let cnt = pyo3::PyCell::new(py, DictWithCounter::new()).unwrap();
+    pyo3::py_run!(py, cnt, "cnt.set('abc', 10); assert cnt['abc'] == 10")
+});
+}
+```
+
+如果 `SubClass` 没有提供基类的继承，编译会失败。
+
+```rust
+# use pyo3::prelude::*;
+
+#[pyclass]
+struct BaseClass {
+    val1: usize,
+}
+
+#[pyclass(extends=BaseClass)]
+struct SubClass {
+    val2: usize,
+}
+
+#[pymethods]
+impl SubClass {
+    #[new]
+    fn new() -> Self {
+        SubClass { val2: 15 }
+    }
+}
+```
+
+当创建了一个Python实例时，原生基类的`__new__`构造器会隐式地被调用。确保在（希望基类获得的）`#[new]`方法中接受参数，即使它们没有在那个`fn`中被使用：
+
+```rust
+#[allow(dead_code)]
+#[cfg(not(Py_LIMITED_API))] {
+# use pyo3::prelude::*;
+use pyo3::types::PyDict;
+
+#[pyclass(extends=PyDict)]
+struct MyDict {
+    private: i32,
+}
+
+#[pymethods]
+impl MyDict {
+    #[new]
+    #[pyo3(signature = (*args, **kwargs))]
+    fn new(args: &PyAny, kwargs: Option<&PyAny>) -> Self {
+        Self { private: 0 }
+    }
+
+    // some custom methods that use `private` here...
+}
+Python::with_gil(|py| {
+    let cls = py.get_type::<MyDict>();
+    pyo3::py_run!(py, cls, "cls(a=1, b=2)")
+});
+}
+```
+
+这里，`args`和`kwargs`允许创建传递了初始 item 的实例，例如`MyDict(item_sequence)` 或 `MyDict(a=1, b=2)`。
+
+## 对象性质
+
+PyO3 支持两种方式来对`#[pyclass]`添加性质：
+- 对简单的结构域，没有副作用，可以直接在`#[pyclass]`的域定义中添加`#[pyo3(get, set)]`属性
+- 对于需要计算（computation）的属性，可以在[`#[pymethods]`](#instance-methods)块中定义`#[getter]` 和 `#[setter]` 函数
+
+
+### 使用`#[pyo3(get, set)]`的对象性质
+
+对于成员变量只是读取和填写（be read and written）的简单情形，可以用`pyo3`属性在`#[pyclass]`域中声明 getters 和 setters，下面是例子：
+
+```rust
+# use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+    #[pyo3(get, set)]
+    num: i32,
+}
+```
+
+上述代码使得 `num` 域可以作为一个`self.num` Python性质来读取和覆写。要将这个性质在另一个域可见，和其他选项（options）一起指明这个标注，e.g. `#[pyo3(get, set, name = "custom_name")]`。
+
+通过单独使用 `#[pyo3(get)]` 或 `#[pyo3(set)]`可以使性质变为只读或者只写。
+
+要使用这些标注，域类型必须实现一些转换特征：
+- 对 `get`，域类型必须实现 `IntoPy<PyObject>` 和 `Clone`
+- 对 `set` ，域类型必须实现`FromPyObject`
+
+### 使用`#[getter]`和`#[setter]`的对象属性
+
+对于没有满足 `#[pyo3(get, set)]` 特征需求，或者需要副作用的情形，可以在一个`#[pymethods]` `impl`块中定义描述符方法（descriptor method）
+
+通过使用 `#[getter]` 和 `#[setter]` 属性，下面是一个例子
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+    num: i32,
+}
+
+#[pymethods]
+impl MyClass {
+    #[getter]
+    fn num(&self) -> PyResult<i32> {
+        Ok(self.num)
+    }
+}
+```
+
+一个 getter 或 setter 的函数名默认用作属性名。有几种方法覆写这个名字。
+
+如果 getter 和 setter 函数名分别以 `get_` 和 `set_` 开头，描述符的名字会变成这个前缀去掉后的名字。这对于像 `type` 的 Rust 关键字也有用（[raw identifiers](https://doc.rust-lang.org/edition-guide/rust-2018/module-system/raw-identifiers.html)）。
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    #[getter]
+    fn get_num(&self) -> PyResult<i32> {
+        Ok(self.num)
+    }
+
+    #[setter]
+    fn set_num(&mut self, value: i32) -> PyResult<()> {
+        self.num = value;
+        Ok(())
+    }
+}
+```
+
+这里，定义了性质 `num`，可以在 Python 中用 `self.num` 获取它。
+
+`#[getter]` 和 `#[setter]` 都接收一个参数。如果参数被指定了，它将被用作性质的名字，i.e.
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+   num: i32,
+}
+#[pymethods]
+impl MyClass {
+    #[getter(number)]
+    fn num(&self) -> PyResult<i32> {
+        Ok(self.num)
+    }
+
+    #[setter(number)]
+    fn set_num(&mut self, value: i32) -> PyResult<()> {
+        self.num = value;
+        Ok(())
+    }
+}
+```
+
+这里，定义了性质 `number` 并且在 Python 中可以用 `self.number` 获取它。
+
+通过 `#[setter]` 或 `#[pyo3(set)]` 定义的属性永远会对 `del` 算子抛出 `AttributeError`，要自定义 `del` 参见[#1778](https://github.com/PyO3/pyo3/issues/1778).
+
+## 实例方法
+
+要定义一个 Python 相容的方法，必须用 `#[pymethods]` 方法标注结构的 `impl` 块。PyO3 为所有在这个块里的函数生成与 Python 相容的包装器，像描述符，类方法，静态方法等等。
+
+既然 Rust 允许任意数量的 `impl` 块，可以任意切分方法。但是要对同一结构同时标注多个 `#[pymethods]` 的 `impl` 块，必须使用PyO3的 `multiple-pymethods` 特性。
+
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    fn method1(&self) -> PyResult<i32> {
+        Ok(10)
+    }
+
+    fn set_method(&mut self, value: i32) -> PyResult<()> {
+        self.num = value;
+        Ok(())
+    }
+}
+```
+
+对这些方法的调用受 GIL保护，所以 `&self` 和 `&mut self` 都可以使用。返回类型必须为 `PyResult<T>` 或者某个实现了 `IntoPy<PyObject>` 的 `T`，后者在方法不会抛出Python异常时是允许的。
+
+一个 `Python` 参数可以作为方法签名的一部分被指定，此时 `py` 变量被方法包装器注入，e.g.
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+#[allow(dead_code)]
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    fn method2(&self, py: Python<'_>) -> PyResult<i32> {
+        Ok(10)
+    }
+}
+```
+
+从 Python 看来，这个例子中的 `method2` 不接受任何变量。
+
+## 类方法
+
+为一个自定义类创建一个类方法，需要对方法标注 `#[classmethod]` 属性。这和Python中的`@classmethod`是等价的。
+
+```rust
+use pyo3::prelude::*;
+use pyo3::types::PyType;
+#[pyclass]
+struct MyClass {
+    #[allow(dead_code)]
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    #[classmethod]
+    fn cls_method(cls: &PyType) -> PyResult<i32> {
+        Ok(10)
+    }
+}
+```
+
+声明一个可被Python调用的类方法
+- 第一个参数是方法被调用的类的类型对象
+- 第一个参数隐式的是 `&PyType` 类型
+- 对于 `parameter-list` 的细节，参见 `Method arguments` 章节
+- 返回类型必须为 `PyResult<T>` 或者某个实现了 `IntoPy<PyObject>` 的类型 `T`
+
+## 静态方法
+
+要为自定义类创建一个静态方法，需要用 `#[staticmethod]` 属性标注该方法，返回类型必须为`PyResult<T>` 或者某个实现了 `IntoPy<PyObject>` 的类型 `T`
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {
+    #[allow(dead_code)]
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    #[staticmethod]
+    fn static_method(param1: i32, param2: &str) -> PyResult<i32> {
+        Ok(10)
+    }
+}
+```
+
+## 类属性
+
+要创建一个类属性，也称为（`class variable`, `classattr`），可以用 `#[classattr]` 标注一个没有任何变量的方法。
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {}
+#[pymethods]
+impl MyClass {
+    #[classattr]
+    fn my_attribute() -> String {
+        "hello".to_string()
+    }
+}
+
+Python::with_gil(|py| {
+    let my_class = py.get_type::<MyClass>();
+    pyo3::py_run!(py, my_class, "assert my_class.my_attribute == 'hello'")
+});
+```
+> Note: 如果方法有一个 `Result` 返回类型并且返回了 `Err`，PyO3会在类创建过程中 panic
+
+
+如果只用了 `const` 来定义类属性，也可以标注对应的常量：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+struct MyClass {}
+#[pymethods]
+impl MyClass {
+    #[classattr]
+    const MY_CONST_ATTRIBUTE: &'static str = "foobar";
+}
+```
+
+## 方法变量
+
+类似`#[pyfunction]`，可以用 `#[pyo3(signature = (...))]` 属性来指定 `#[pymethods]` 接收变量的方式，参见方法签名章节。
+
+下述例子定义了一个具有`method`方法的类 `MyClass`。这个方法有一个签名，它为 `num` 和 `name` 设置了默认值，并且表明 `py_args` 会接收所有的位置变量，而 `py_kwargs` 会接收所有的关键字变量：
+
+```rust
+use pyo3::prelude::*;
+use pyo3::types::{PyDict, PyTuple};
+
+#[pyclass]
+struct MyClass {
+    num: i32,
+}
+#[pymethods]
+impl MyClass {
+    #[new]
+    #[pyo3(signature = (num=-1))]
+    fn new(num: i32) -> Self {
+        MyClass { num }
+    }
+
+    #[pyo3(signature = (num=10, *py_args, name="Hello", **py_kwargs))]
+    fn method(
+        &mut self,
+        num: i32,
+        py_args: &PyTuple,
+        name: &str,
+        py_kwargs: Option<&PyDict>,
+    ) -> String {
+        let num_before = self.num;
+        self.num = num;
+        format!(
+            "num={} (was previously={}), py_args={:?}, name={}, py_kwargs={:?} ",
+            num, num_before, py_args, name, py_kwargs,
+        )
+    }
+}
+```
+
+而在Python中是这样子的
+
+```python
+>>> import mymodule
+>>> mc = mymodule.MyClass()
+>>> print(mc.method(44, False, "World", 666, x=44, y=55))
+py_args=('World', 666), py_kwargs=Some({'x': 44, 'y': 55}), name=Hello, num=44, num_before=-1
+>>> print(mc.method(num=-1, name="World"))
+py_args=(), py_kwargs=None, name=World, num=-1, num_before=44
+```
+
+## 使得类方法签名对Python可用
+
+`#[pyfunction]` 的 `text_signature = "..."` 选项对类和方法也是可用的：
+
+```rust
+#![allow(dead_code)]
+use pyo3::prelude::*;
+use pyo3::types::PyType;
+
+// it works even if the item is not documented:
+#[pyclass(text_signature = "(c, d, /)")]
+struct MyClass {}
+
+#[pymethods]
+impl MyClass {
+    // the signature for the constructor is attached
+    // to the struct definition instead.
+    #[new]
+    fn new(c: i32, d: &str) -> Self {
+        Self {}
+    }
+    // the self argument should be written $self
+    #[pyo3(text_signature = "($self, e, f)")]
+    fn my_method(&self, e: i32, f: i32) -> i32 {
+        e + f
+    }
+    #[classmethod]
+    #[pyo3(text_signature = "(cls, e, f)")]
+    fn my_class_method(cls: &PyType, e: i32, f: i32) -> i32 {
+        e + f
+    }
+    #[staticmethod]
+    #[pyo3(text_signature = "(e, f)")]
+    fn my_static_method(e: i32, f: i32) -> i32 {
+        e + f
+    }
+}
+
+fn main() -> PyResult<()> {
+    Python::with_gil(|py| {
+        let inspect = PyModule::import(py, "inspect")?.getattr("signature")?;
+        let module = PyModule::new(py, "my_module")?;
+        module.add_class::<MyClass>()?;
+        let class = module.getattr("MyClass")?;
+
+        if cfg!(not(Py_LIMITED_API)) || py.version_info() >= (3, 10)  {
+            let doc: String = class.getattr("__doc__")?.extract()?;
+            assert_eq!(doc, "");
+
+            let sig: String = inspect
+                .call1((class,))?
+                .call_method0("__str__")?
+                .extract()?;
+            assert_eq!(sig, "(c, d, /)");
+       } else {
+            let doc: String = class.getattr("__doc__")?.extract()?;
+            assert_eq!(doc, "");
+
+            inspect.call1((class,)).expect_err("`text_signature` on classes is not compatible with compilation in `abi3` mode until Python 3.10 or greater");
+         }
+
+        {
+            let method = class.getattr("my_method")?;
+
+            assert!(method.getattr("__doc__")?.is_none());
+
+            let sig: String = inspect
+                .call1((method,))?
+                .call_method0("__str__")?
+                .extract()?;
+            assert_eq!(sig, "(self, /, e, f)");
+        }
+
+        {
+            let method = class.getattr("my_class_method")?;
+
+            assert!(method.getattr("__doc__")?.is_none());
+
+            let sig: String = inspect
+                .call1((method,))?
+                .call_method0("__str__")?
+                .extract()?;
+            assert_eq!(sig, "(cls, e, f)");
+        }
+
+        {
+            let method = class.getattr("my_static_method")?;
+
+            assert!(method.getattr("__doc__")?.is_none());
+
+            let sig: String = inspect
+                .call1((method,))?
+                .call_method0("__str__")?
+                .extract()?;
+            assert_eq!(sig, "(e, f)");
+        }
+
+        Ok(())
+    })
+}
+```
+注意到在`abi3`模式下编译时，类的 `text_signature` 只在 Python 3.10 或更高的版本相容。
+
+## #[pyclass]枚举
+
+目前PyO3只支持 fieldless 枚举。PyO3对每个变量添加了类属性，所以你不用定义 `#[new]` 就可以在Python中获取它们。PyO3同样提供了 `__richcmp__` 和 `__int__` 的默认实现，所以它们可以用 `==` 来进行比较：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+enum MyEnum {
+    Variant,
+    OtherVariant,
+}
+
+Python::with_gil(|py| {
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    let y = Py::new(py, MyEnum::OtherVariant).unwrap();
+    let cls = py.get_type::<MyEnum>();
+    pyo3::py_run!(py, x y cls, r#"
+        assert x == cls.Variant
+        assert y == cls.OtherVariant
+        assert x != y
+    "#)
+})
+```
+
+也可以将枚举转换为 `int`：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+enum MyEnum {
+    Variant,
+    OtherVariant = 10,
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::<MyEnum>();
+    let x = MyEnum::Variant as i32; // The exact value is assigned by the compiler.
+    pyo3::py_run!(py, cls x, r#"
+        assert int(cls.Variant) == x
+        assert int(cls.OtherVariant) == 10
+        assert cls.OtherVariant == 10  # You can also compare against int.
+        assert 10 == cls.OtherVariant
+    "#)
+})
+```
+
+PyO3 也为枚举提供了 `__repr__`
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+enum MyEnum{
+    Variant,
+    OtherVariant,
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::<MyEnum>();
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    pyo3::py_run!(py, cls x, r#"
+        assert repr(x) == 'MyEnum.Variant'
+        assert repr(cls.OtherVariant) == 'MyEnum.OtherVariant'
+    "#)
+})
+```
+
+PyO3定义的所有方法可以被覆写，例如想要覆写 `__repr__`：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass]
+enum MyEnum {
+    Answer = 42,
+}
+
+#[pymethods]
+impl MyEnum {
+    fn __repr__(&self) -> &'static str {
+        "42"
+    }
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::<MyEnum>();
+    pyo3::py_run!(py, cls, "assert repr(cls.Answer) == '42'")
+})
+```
+
+枚举以及其变量也能使用 `#[pyo3(name)]` 来重命名：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass(name = "RenamedEnum")]
+enum MyEnum {
+    #[pyo3(name = "UPPERCASE")]
+    Variant,
+}
+
+Python::with_gil(|py| {
+    let x = Py::new(py, MyEnum::Variant).unwrap();
+    let cls = py.get_type::<MyEnum>();
+    pyo3::py_run!(py, x cls, r#"
+        assert repr(x) == 'RenamedEnum.UPPERCASE'
+        assert x == cls.UPPERCASE
+    "#)
+})
+```
+
+不能使用枚举作为基类或者从其他类进行继承：
+
+```rust
+use pyo3::prelude::*;
+#[pyclass(subclass)]
+enum BadBase {
+    Var1,
+}
+```
+
+```rust
+use pyo3::prelude::*;
+
+#[pyclass(subclass)]
+struct Base;
+
+#[pyclass(extends=Base)]
+enum BadSubclass {
+    Var1,
+}
+```
+
+在Python中，`#[pyclass]` 枚举目前还不能与`IntEnum` 一起用。
+
+## 实现的细节
+
+`#[pyclass]`宏依赖许多 conditional code generation，每个 `#[pyclass]` 可以选择性地拥有一个 `#[pymethods]` 块。
+
+>To support this flexibility the `#[pyclass]` macro expands to a blob of boilerplate code which sets up the structure for ["dtolnay specialization"](https://github.com/dtolnay/case-studies/blob/master/autoref-specialization/README.md). This implementation pattern enables the Rust compiler to use `#[pymethods]` implementations when they are present, and fall back to default (empty) definitions when they are not.
+>
+>This simple technique works for the case when there is zero or one implementations. To support multiple `#[pymethods]` for a `#[pyclass]` (in the [`multiple-pymethods`] feature), a registry mechanism provided by the [`inventory`](https://github.com/dtolnay/inventory) crate is used instead. This collects `impl`s at library load time, but isn't supported on all platforms. See [inventory: how it works](https://github.com/dtolnay/inventory#how-it-works) for more details.
+>
+>The `#[pyclass]` macro expands to roughly the code seen below. The `PyClassImplCollector` is the type used internally by PyO3 for dtolnay specialization:
+
+```rust
+#[cfg(not(feature = "multiple-pymethods"))] {
+# use pyo3::prelude::*;
+// Note: the implementation differs slightly with the `multiple-pymethods` feature enabled.
+struct MyClass {
+    # #[allow(dead_code)]
+    num: i32,
+}
+unsafe impl pyo3::type_object::PyTypeInfo for MyClass {
+    type AsRefTarget = pyo3::PyCell<Self>;
+    const NAME: &'static str = "MyClass";
+    const MODULE: ::std::option::Option<&'static str> = ::std::option::Option::None;
+    #[inline]
+    fn type_object_raw(py: pyo3::Python<'_>) -> *mut pyo3::ffi::PyTypeObject {
+        <Self as pyo3::impl_::pyclass::PyClassImpl>::lazy_type_object()
+            .get_or_init(py)
+            .as_type_ptr()
+    }
+}
+
+impl pyo3::PyClass for MyClass {
+    type Frozen = pyo3::pyclass::boolean_struct::False;
+}
+
+impl<'a, 'py> pyo3::impl_::extract_argument::PyFunctionArgument<'a, 'py> for &'a MyClass
+{
+    type Holder = ::std::option::Option<pyo3::PyRef<'py, MyClass>>;
+
+    #[inline]
+    fn extract(obj: &'py pyo3::PyAny, holder: &'a mut Self::Holder) -> pyo3::PyResult<Self> {
+        pyo3::impl_::extract_argument::extract_pyclass_ref(obj, holder)
+    }
+}
+
+impl<'a, 'py> pyo3::impl_::extract_argument::PyFunctionArgument<'a, 'py> for &'a mut MyClass
+{
+    type Holder = ::std::option::Option<pyo3::PyRefMut<'py, MyClass>>;
+
+    #[inline]
+    fn extract(obj: &'py pyo3::PyAny, holder: &'a mut Self::Holder) -> pyo3::PyResult<Self> {
+        pyo3::impl_::extract_argument::extract_pyclass_ref_mut(obj, holder)
+    }
+}
+
+impl pyo3::IntoPy<PyObject> for MyClass {
+    fn into_py(self, py: pyo3::Python<'_>) -> pyo3::PyObject {
+        pyo3::IntoPy::into_py(pyo3::Py::new(py, self).unwrap(), py)
+    }
+}
+
+impl pyo3::impl_::pyclass::PyClassImpl for MyClass {
+    const DOC: &'static str = "Class for demonstration\u{0}";
+    const IS_BASETYPE: bool = false;
+    const IS_SUBCLASS: bool = false;
+    type Layout = PyCell<MyClass>;
+    type BaseType = PyAny;
+    type ThreadChecker = pyo3::impl_::pyclass::ThreadCheckerStub<MyClass>;
+    type PyClassMutability = <<pyo3::PyAny as pyo3::impl_::pyclass::PyClassBaseType>::PyClassMutability as pyo3::impl_::pycell::PyClassMutability>::MutableChild;
+    type Dict = pyo3::impl_::pyclass::PyClassDummySlot;
+    type WeakRef = pyo3::impl_::pyclass::PyClassDummySlot;
+    type BaseNativeType = pyo3::PyAny;
+
+    fn items_iter() -> pyo3::impl_::pyclass::PyClassItemsIter {
+        use pyo3::impl_::pyclass::*;
+        let collector = PyClassImplCollector::<MyClass>::new();
+        static INTRINSIC_ITEMS: PyClassItems = PyClassItems { slots: &[], methods: &[] };
+        PyClassItemsIter::new(&INTRINSIC_ITEMS, collector.py_methods())
+    }
+
+    fn lazy_type_object() -> &'static pyo3::impl_::pyclass::LazyTypeObject<MyClass> {
+        use pyo3::impl_::pyclass::LazyTypeObject;
+        static TYPE_OBJECT: LazyTypeObject<MyClass> = LazyTypeObject::new();
+        &TYPE_OBJECT
+    }
+}
+
+Python::with_gil(|py| {
+    let cls = py.get_type::<MyClass>();
+    pyo3::py_run!(py, cls, "assert cls.__name__ == 'MyClass'")
+});
+}
+```
