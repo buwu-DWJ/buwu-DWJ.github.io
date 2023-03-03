@@ -183,15 +183,11 @@ code.editable,
     --icons: #747474;
     --icons-hover: #ff00d4;
     --inline-code-color: #ff7734;
+
 }
 
 code {
     font-size: 14px !important;
-    font-weight: bold !important;
+    /* font-weight: bolder !important; */
     background-color: #272822;
-}
-
-.playground {
-    background-color: #272822;
-    color: #272822;
 }
