@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js ayu">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>一. 古希腊哲学 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../favicon.svg">
+    <link rel="shortcut icon" href="../../favicon.png">
+    <link rel="stylesheet" href="../../css/variables.css">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="../../css/chrome.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('ayu')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../pre.html">目录</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> Markdown&LaTeX</a></li><li class="chapter-item "><a href="../../python/python.html"><strong aria-hidden="true">2.</strong> Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/win32com/pre.html"><strong aria-hidden="true">2.1.</strong> win32com</a></li><li class="chapter-item "><a href="../../python/crawler/pre.html"><strong aria-hidden="true">2.2.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.2.1.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../python/crawler/re.html"><strong aria-hidden="true">2.2.2.</strong> re</a></li></ol></li><li class="chapter-item "><a href="../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.3.</strong> pytorch</a></li><li class="chapter-item "><a href="../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.4.</strong> others</a></li><li class="chapter-item "><a href="../../python/python之禅/pre.html"><strong aria-hidden="true">2.5.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../python/python之禅/optim.html"><strong aria-hidden="true">2.5.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.2.</strong> 其他细节</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../cpp/pre.html"><strong aria-hidden="true">3.</strong> CPP</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/2.函数/index.html"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic_types/pre.html"><strong aria-hidden="true">4.1.1.2.</strong> 基本类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic_types/basic_types.html"><strong aria-hidden="true">4.1.1.2.1.</strong> 数值类型</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic_types/char.html"><strong aria-hidden="true">4.1.1.2.2.</strong> 字符,布尔,单元类型</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic_types/statement.html"><strong aria-hidden="true">4.1.1.2.3.</strong> 语句和表达式</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/basic_types/function.html"><strong aria-hidden="true">4.1.1.2.4.</strong> 函数</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.3.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.5.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.5.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.5.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.5.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.5.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.5.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.6.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.7.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.7.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.7.2.</strong> option</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.7.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.7.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.8.</strong> 方法method</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.9.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.9.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.9.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.10.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.10.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.10.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.11.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.12.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.13.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.13.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.13.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">4.1.1.13.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.14.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.15.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.16.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../rust/pyo3/pyo3.html"><strong aria-hidden="true">4.2.</strong> PyO3</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/pythonmodules.html"><strong aria-hidden="true">4.2.1.</strong> Python 模组</a></li><li class="chapter-item "><a href="../../rust/pyo3/pythonfunctions/pre.html"><strong aria-hidden="true">4.2.2.</strong> Python 函数</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/pythonfunctions/function_signatures.html"><strong aria-hidden="true">4.2.2.1.</strong> 函数签名 Function signatures</a></li><li class="chapter-item "><a href="../../rust/pyo3/pythonfunctions/error_handling.html"><strong aria-hidden="true">4.2.2.2.</strong> 错误处理 Error handling</a></li></ol></li><li class="chapter-item "><a href="../../rust/pyo3/python_classes/pre.html"><strong aria-hidden="true">4.2.3.</strong> Python 类</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/python_classes/class_customization.html"><strong aria-hidden="true">4.2.3.1.</strong> 类的自定义</a></li><li class="chapter-item "><a href="../../rust/pyo3/python_classes/basic_type.html"><strong aria-hidden="true">4.2.3.2.</strong> 基本对象的自定义</a></li><li class="chapter-item "><a href="../../rust/pyo3/python_classes/emulate_number_type.html"><strong aria-hidden="true">4.2.3.3.</strong> 模拟数值类型</a></li><li class="chapter-item "><a href="../../rust/pyo3/python_classes/emulate_callable_objects.html"><strong aria-hidden="true">4.2.3.4.</strong> 模拟可调用类型</a></li></ol></li><li class="chapter-item "><a href="../../rust/pyo3/type_conversion/pre.html"><strong aria-hidden="true">4.2.4.</strong> 类型转换</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/type_conversion/tables.html"><strong aria-hidden="true">4.2.4.1.</strong> 将Rust类型映射为python类型</a></li><li class="chapter-item "><a href="../../rust/pyo3/type_conversion/traits.html"><strong aria-hidden="true">4.2.4.2.</strong> 转换特征 Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../rust/pyo3/python_exceptions.html"><strong aria-hidden="true">4.2.5.</strong> Python异常</a></li><li class="chapter-item "><a href="../../rust/pyo3/python_from_rust.html"><strong aria-hidden="true">4.2.6.</strong> 在Rust中调用Python</a></li><li class="chapter-item "><a href="../../rust/pyo3/GIL.html"><strong aria-hidden="true">4.2.7.</strong> GIL, 可变性与对象类型</a></li><li class="chapter-item "><a href="../../rust/pyo3/parallelism.html"><strong aria-hidden="true">4.2.8.</strong> 并行</a></li><li class="chapter-item "><a href="../../rust/pyo3/debugging.html"><strong aria-hidden="true">4.2.9.</strong> debug</a></li><li class="chapter-item "><a href="../../rust/pyo3/features_reference.html"><strong aria-hidden="true">4.2.10.</strong> 特性引用Features reference</a></li><li class="chapter-item "><a href="../../rust/pyo3/memory_management.html"><strong aria-hidden="true">4.2.11.</strong> 内存管理</a></li><li class="chapter-item "><a href="../../rust/pyo3/advanced_topic.html"><strong aria-hidden="true">4.2.12.</strong> 高阶话题</a></li><li class="chapter-item "><a href="../../rust/pyo3/building_distribution.md/pre.html"><strong aria-hidden="true">4.2.13.</strong> 构建与发布</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/building_distribution.md/multiple_version.html"><strong aria-hidden="true">4.2.13.1.</strong> 支持多个Python版本</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.2.14.</strong> 有用的包</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../rust/pyo3/useful_crates/logging.html"><strong aria-hidden="true">4.2.14.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../rust/pyo3/useful_crates/async_and_await.html"><strong aria-hidden="true">4.2.14.2.</strong> async与await</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../others/pre.html"><strong aria-hidden="true">5.</strong> Others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../others/com.html"><strong aria-hidden="true">5.1.</strong> COM组件</a></li><li class="chapter-item "><a href="../../others/cython/pre.html"><strong aria-hidden="true">5.2.</strong> cython</a></li></ol></li><li class="chapter-item "><a href="../../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../DRL/DRL/chatgpt.html"><strong aria-hidden="true">8.3.1.</strong> ChatGPT历史</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li><li class="chapter-item "><a href="../../option/basic/trading.html"><strong aria-hidden="true">9.1.4.</strong> 日内交易要点</a></li></ol></li><li class="chapter-item "><a href="../../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../philosophy/philosophy.html"><strong aria-hidden="true">10.</strong> Phylosophy</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../philosophy/history/history.html"><strong aria-hidden="true">10.1.</strong> 西方哲学史</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../philosophy/history/chapter1.html" class="active"><strong aria-hidden="true">10.1.1.</strong> 一. 古希腊哲学</a></li><li class="chapter-item "><a href="../../philosophy/history/chapter2.html"><strong aria-hidden="true">10.1.2.</strong> 二. 希腊化时期和中世纪的哲学</a></li><li class="chapter-item "><a href="../../philosophy/history/chapter3.html"><strong aria-hidden="true">10.1.3.</strong> 三. 近代早期的哲学</a></li><li class="chapter-item "><a href="../../philosophy/history/chapter4.html"><strong aria-hidden="true">10.1.4.</strong> 四. 近代晚期和19世纪哲学</a></li><li class="chapter-item "><a href="../../philosophy/history/chapter5.html"><strong aria-hidden="true">10.1.5.</strong> 五. 20世纪和当代哲学</a></li></ol></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="第一部分-古希腊哲学ancient-greek-philisophy"><a class="header" href="#第一部分-古希腊哲学ancient-greek-philisophy">第一部分 古希腊哲学/Ancient Greek Philisophy</a></h1>
+<h2 id="第一章-苏格拉底的前辈"><a class="header" href="#第一章-苏格拉底的前辈">第一章 苏格拉底的前辈</a></h2>
+<p>希腊哲学诞生在与雅典隔爱琴海相望的港口城市米利都，它坐落于小亚细亚伊奥尼亚地区的西海岸。由于他们所处的地理位置，第一批希腊哲学家就被称作<strong>米利都学派</strong>或<strong>伊奥尼亚学派</strong>。</p>
+<p><img src="pics/militus.svg" alt="" /></p>
+<p>由于他们所处的地理位置，第一批希腊哲学家就被称作<strong>米利都学派</strong>或<strong>伊奥尼亚学派</strong>。大约公元前 585 年，当米利都学派的哲学家们开始他们系统的哲学工作时，米利都巴经成为一个海洋贸易和各地思想的汇聚之地。早先伊奥尼亚就诞生过创作了《伊利亚特 》和《奥德塞》Odyssey)的荷马(约公元前700年)。</p>
+<h3 id="11-什么东西是持存的"><a class="header" href="#11-什么东西是持存的">1.1 什么东西是<strong>持存</strong>的</a></h3>
+<h4 id="泰勒斯"><a class="header" href="#泰勒斯">泰勒斯</a></h4>
+<p>对于米利都的泰勒斯我们知道的并不多，而我们所知道的那些还不如说是一些逸闻。泰勒斯没有留下任何作品。他是希腊国王克洛素斯和执政官梭伦的同代人，他生活的年代大概是在公元前624年到公元前546年之间。 他开启了一个全新的思想领域, 由此，也赢得了西方文明“第一个哲学家”的称号。</p>
+<p>泰勒斯全新的问题是关子事物的本质的。事物是由什么构成的呢?或者，哪种”物质”构成了万事万物?泰勒斯提出这些问题，试图解释这样一个事实，即存在着各种不同的事物, 例如士壤、云和海洋，有时这些事物中的一些转变成另一些事物，不过它们在某些方面依然类似。泰勒斯对思想的独特贡献在于他的如下思想，即不论事物之间有多大的差异，它们之间依然存在着根本的相似。<strong>多通过一而相互关联</strong>。他假定某种单一的元素，某种“物质”包含了自身活动和变化的原则，它是所有物理实在的基础。<strong>对泰勒斯来说，这个一，这种物质，就是水</strong>。</p>
+<p>他的问题为一种新的研究创造了条件，这种研究就其本性而言是允许争论的，在进一步的分析中它可能得到证实，也可能被驳倒。</p>
+<h4 id="阿那克西曼德"><a class="header" href="#阿那克西曼德">阿那克西曼德</a></h4>
+<p>阿那克西曼德是比泰勒斯年轻一些的同代人，也是泰勒斯的学生。他同意老师的看法.认为存在着某种单一的基本物质，事物就是由它构成的。但是, 阿那克西曼德不同于泰勒斯，他说，这种基本的物质既不是水，也不是其他任何特殊的元素。他认为，所有这些物质都来自最原始的本质，它就是一个<strong>不定的或无限制的实在</strong>。</p>
+<p>他另外还提出了人是由鱼演化而来的演化论，绘制了第一幅全球地图，认识到天体环绕北极星运转提出天空是一个完整的球体等等。</p>
+<h4 id="阿那克西米尼"><a class="header" href="#阿那克西米尼">阿那克西米尼</a></h4>
+<p>阿那克西米尼(约公元前585年——公元前528年)，他是阿那克西曼德的年轻同伴。
+阿那克西米尼试图沟通他的两个前辈的不同观点，他提出<strong>气是万物由之而产生的原初物质</strong>。就像泰勒斯提出的水的思想，气也是一种确定的物质，我们可以很有理由的把它看作是所有事物的基础。例如，虽然气是不可见的，但是我们只有在可以呼吸时才能存活，“就像我们的灵魂——它是气——把我们凝聚为一体，气息和气也包围了整个世界。”就像阿那克西曼德 提出的无限制者处于持续的运动中这种看法一样，气弥漫于所有的地方——虽然不像无限制者，它是一种特殊的、可以被实实在在把握到而加以识别的物质实体。此外，气的运动也是一个比阿那克西曼德的“分离”更加特殊的过程。为了解释气是如何作为万物本原的，阿那克西米尼指出，事物之成为它们所是的那个样子，取决于组成这些东西的气在多大程度上凝聚和扩张。在这样说的时候，他已经提出了一种重要的新思想:<strong>质上的差异，原因在于量上的差异</strong>。</p>
+<p>米利都学派真正的意义在于他们第一次提出了事物的最终本性的问题，并且第一次迟疑不决地但却是直接地探究了自然实际上是由什么构成的。</p>
+<h3 id="12-万物的数学基础"><a class="header" href="#12-万物的数学基础">1.2 万物的数学基础</a></h3>
+<h4 id="毕达哥拉斯"><a class="header" href="#毕达哥拉斯">毕达哥拉斯</a></h4>
+<p>爱琴海中有一座与米利都一水之隔的小岛——萨摩斯岛。它就是智薏非凡的毕达哥拉斯(约公元前570年——公元前497年)的出生地。亚里士多德告诉我们，毕达哥拉斯派&quot;致力于数学研究，他们是最先推动这项研究的，由于长期浸淫其中，他们进而认为数的原则就是所有事物的原则。“与米利都学派形成对照的是, 毕达哥拉斯学派认为，<strong>事物是由数构成的</strong>。
+像毕达哥拉斯学派那样说所有事物都是数，就意味着在他们看来所有具有形状和大小的事物都有一个数的基础。他们以这种方式从算术转到了几何，然后再转到实在的结构。
+对数的这种理解使毕达哥拉斯学派形成了他们最重要的哲学观念，即<strong>形式的概念</strong>。米利都学派已经形成了原初物质或质料的观念，所有的事物都是由它构成的，但是特殊事物是如何从这个单一的原初物质中分化出来的?他们对此却没有一个连贯的概念。他们都谈到了一种无限定的物质，不论它是水、气，还是不确定的无限制者，都以之来意指某种原初的物质。毕达哥拉斯学派现在提出了形式的概念。在他们看来，形式意味着<strong>限定(limit)</strong>，而限定尤其要通过数来加以理解。
+毕达哥拉斯及其追随者的辉煌在某种程度上体现在他们对后来的哲学家尤其是柏拉图的影响上。柏拉图哲学的许多内容在毕达哥拉斯的教导中已经得到了表述，包括灵魂的重要性和它的三重区分，还有数学的重要性，因为它关系到形式或“理念”的概念。</p>
+<h3 id="13-解释变化的尝试"><a class="header" href="#13-解释变化的尝试">1.3 解释变化的尝试</a></h3>
+<h4 id="赫拉克利特"><a class="header" href="#赫拉克利特">赫拉克利特</a></h4>
+<p>早先的哲学家们试图描述我们周围世界的<strong>构成要素</strong>。来自爱菲索的贵族赫拉克利特(约公元前540年-公元前480年)把注意力转向一个新的问题，即<strong>变化的问题</strong>。他的主要思想是“<strong>一切都处于流变之中</strong>”，他用如下的话表达了永恒变化的思想：“我们不能两次踏进同一条河流“。这种流变的思想不仅适用于河流，而且适用于一切事物，包括人类的灵魂。赫拉克利特指出，在这许多形式和那单一的持存元素之间，在多和一之间，必定存在着某种基本的统一性。他的说理方式富有想象力，因此他的许多说法在后来柏拉图和斯多噶派的哲学中有着重要的位置；在近几个世纪里，他则深为黑格尔与尼采所激赏。
+流变与火为了把变化描述为多样性中的统一，赫拉克利特认定必定存在着某种在
+变化的东西，他说这个东西就是火。但是他并不只是简单地用火这个元素取代素勒斯的水或者阿那克西米尼的气。赫拉克利特之所以认定火是万物的基本元素，是因为火的活动方式提示出了变化过程是如何进行的。火在同一时刻既是一种不足，又是一种过剩：它必须不停地加人（燃料），它也不停地释放出某些东西一热、烟或者灰烬。火是一个转化的过程，于是在这一过程中，添加进火里去的东西转化成其他的东西。</p>
+<p>除了火的概念外，赫拉克利特还提出了另外一个很有意义的思想，这就是<strong>作为普遍规律的理性的思想</strong>。</p>
+<p><strong>作为普遍规律的理性</strong>  变化的过程不是杂乱无章的运动，而是神的普遍理性（逻各斯，logos)的产物。理性的观念来源于赫拉克利特的宗教信仰，他相信最实在的东西是灵魂，而灵魂最独特最重要的属性是智慧或思想。但是当他谈到神和灵魂时，却并未想到独立的人格实体。对他而言，只存在一种基本的实在，这就是火，赫拉克利特将火这个物质实体称作一或神。因此，赫拉克利特是一个泛神论者，即认为神就是宇宙中万物的总体。在赫拉克利特看来，一切事物都是火/神。既然火/神存在于一切事物之中，所以甚至人的灵魂也是火/神的一部分。</p>
+<h4 id="巴门尼德"><a class="header" href="#巴门尼德">巴门尼德</a></h4>
+<p>巴门尼德是比赫拉克利特年轻一些的同代人。他大约出生在公元前510年，他的一生大部分时间是在埃利亚度过的。这座城市位于意大利的西南部，是由希腊的流亡者们建造的。居于此城时，巴门尼德在多个领域卓有建树，他为埃利亚的人们制定了法律，建立了一个新的哲学学派即<strong>埃利亚学派</strong>。巴门尼德对他的前辈们的哲学观点深感不满，他提出了一种非常引人注目的理论：<strong>整个的宇宙只有一个东西，它从不变化，没有任何部分，永远不可毁灭</strong>。他把这个单一的东西称作<strong>一(One)</strong>。在巴门尼德看来，所有这些变化和多样性都只是一个幻觉。不管现象是怎样的，存在的只能是一个单一的、不变的、永恒的东西。为什么巴门尼德要提出一个与现象截然相反的理论呢？原因就在于他更加信服于逻辑推理而不是眼睛看到的东西。
+巴门尼德的理路从如下一个简单的陈述开始，<strong>要么存在者存在，要么存在者不存在</strong>。
+例如，母牛存在，但是独角兽不存在。经过进一步的考虑，巴门尼德认识到我们只能断言上面这个陈述的前半部分，即存在者存在。因为我们只能对存在的东西形成概念并言说之，而对不存在的东西则不能。因此，在巴门尼德看来，我们必须拒斥任何暗含着存在者不存在的观点。巴门尼德随后揭示了这个观点的几个隐含的意思。首先，他指出不存在变化。赫拉克利特认为一切都处在持续不断的变化之中；而巴门尼德侧持完全相反的观点。我们通常观察到事物通过产生和消失而变化着。虽然事物如此这般地呈现在我们眼前，但是巴门尼德指出，这个所谓的变化过程在逻辑上是有缺陷的。我们先是说树不存在，然后又说它存在，接着我们再一次说它不存在。这里我们在开始和最后都说到了存在者不存在这个不可能成立的观点。于是从逻辑上来说，我们不得不拒斥这个所谓的变化过程，把它看作一个巨大的幻象。因此，没有什么东西是变化的。</p>
+<p>与此类似，巴门尼德指出，世界是由一个不可分的东西构成的。不过我们通常也观察到世界包含许多不同的东西。例如，假设我看到一只猫坐在地毯上。对此，我通常所知觉到的是，猫和地毯是不同的东西，而不仅仅是一团没有分别的物质。但是这种通常的物理差别的观点在逻辑上也是有缺陷的。我其实是在说在猫爪子的下面不存在猫，而从它的爪子到头才存在猫，在猫的头顶之上又不存在猫。因而当我划分猫的物理界限时，我在开始和最后都说到了存在者不存在这个不可能的观点。因此我必须拒斥所谓的物理差异的事实，把它也看作一个幻象。简而言之，只有一个不可分的东西存在。
+巴门尼德运用类似的逻辑指出<strong>一必定是不动的</strong>：如果它运动的话，它在它原来的地方将不存在，这包含了存在者不存在这样一个不合逻辑的断言。巴门尼德还指出一必定是一个完满的球体。如果它在任何一个方向上是不规则的一就像保龄球上钻有三个洞，这将在保龄球里边产生一个不存在的区域。这也会错误地断言某物不存在。
+即使我们承认巴门尼德论证的逻辑力量，我们也很难抛弃我们的常识观点，即世界呈现出变化和多样性。但是巴门尼德拒斥这些通常的思想，坚持在现象与实在之间作出区分。他说，变化和多样性混淆了现象和实在。在现象与实在的区分之后的是巴门尼德另外一个同样重要的区分，即意见与真理之间的区分。现象只能产生意见，而实在是真理的基础。常识告诉我们，事物似乎处在流变之中，因此处在个持续的变化过程之中。然而巴门尼德说，这个建基于感性的意见必须被理性的活动所取代。理性能够辨别出关于事物的真理，它告诉我们如果存在着一个单一的实体，而且所有东西都是由它构成的，那么就不可能存在运动或变化。当泰勒斯说一切都来源于水的时候，他在某种程度上也提出了这个观点。泰勒斯暗示说，事物的现象并没有向我们展示实在的构成物质。但是巴门尼德明确地强调这些区分，它们在柏拉图的哲学中产生了决定性的作用。<em>柏拉图</em>接受了巴门尼德关于存在的不变性的根本思想，<em>由此进一步提出他的真理的理智世界和意见的可见世界之间的区分</em>。
+巴门尼德在65岁时由他主要的学生芝诺陪同前往雅典。传说他与年轻的苏格拉底进行了对话。巴门尼德关于变化和多样性的极端观点不可避免地招致了人们的质疑和嘲笑。捍卫这些观点、反击其论敌的任务落在了巴门尼德的学生芝诺的上。</p>
+<h4 id="芝诺"><a class="header" href="#芝诺">芝诺</a></h4>
+<p>芝诺大约在公元前489年出生在埃利亚。当他陪同巴门尼德访问雅典时已经40岁了。芝诺为巴门尼德进行辩护的主要策略是揭示关于世界的所谓常识会导致比巴门尼德的观点更荒唐的结论。例如，毕达哥拉斯学派拒斥巴门尼德所接受的一个基本的假设，这就是<strong>实在是一</strong>。相反他们相信事物的复多性——存在着大量分离的互相区别的事物——因而运动和变化是实在的。他们的观点似乎更能得到常识和感官的验证。但是芝诺所追随的埃利亚学派要求在现象与实在之间作出区。
+芝诺强烈地感到我们的感官没有为我们提供关于实在的任何线索，它只是为我们提供了关于现象的线索。所以我们的感官没有给我们提供可靠的知识，而只是提供了意见。他举了一个黍米种子的例子来说明这一点。如果我们把一粒黍米的种子扔到地上，是不会发出声响的。但是如果我们把半蒲式尔的种子倒到地上，就会有声音了。芝诺由此下结论说，我们的感官欺骗了我们。因为要么哪怕只有一粒种子落下时也有声音，要么即使许多种子落下时也没有声音，二者必居其一。所以要想达到事物的真理，思想之路要比感觉之路更为可靠。</p>
+<p><strong>芝诺的四个悖论</strong>  为了回击对巴门尼德的批评，芝诺把他的论证构造成悖论的形式。关于世界的常识观点采用了两个主要的假设：(1)<strong>变化在时间中发生</strong>，以及(2)<strong>各种不同的事物延伸在空间之中</strong>。芝诺追随巴门尼德，他当然也拒斥这两个假设。为了反驳常识观点，芝诺暂时先接受上面的两个假设，然后揭示出从中产生的悖论。这样得到的结果实际上如此荒唐，以至于常识的观点再也不是表面上看来那么符合常理了。两相对比之下，巴门尼德关于一的观点似乎倒是对世界更合理的解释了。芝诺提出了四个主要的悖论。</p>
+<p><strong>1.运动场恃论</strong>  根据运动的这个悖论，一个奔跑者从跑道的起点到终点要穿越一系列的距离单位。根据毕达哥拉斯学派的假设，跑步者要跑完全程必须在有限数量的时间内穿越无限数量的点。但关键问题是，一个人如何能够在有限的时间里穿过无限数重的点呢？跑步者要达到跑道的终点，就必须首先达到跑道的中点：但是从起点到中点又可以分成两半，要想达到中间点，跑步者必须首先达到那个四分之一点。同样从起点到四分之一点之间的距离也是可分的，这个分割的过程必定可以无限进行下去，因为分割后总是有剩余，而剩余的部分还是可分的。所以，如果跑步者不首先到达某个点之前的一个中间点，他就不能到达那个点，而如果有无数的点，那么他就不可能在有限的时间里穿越无限数量的点。因此芝诺下结论说，运动并不存在。
+<strong>2.阿基里斯追🐢的恃论</strong>  这个悖论与运动场悖论很类似。让我们想象在迅捷的阿基里斯和缓慢的乌龟之间举行一场赛跑。由于阿基里斯是位运动健将，假设之下，阿基里斯永远也追不上乌龟。
+<strong>3.飞失恃论</strong>  当射手瞄准一个靶子射出箭时，那支箭运动吗？毕达哥拉斯学派承认空间的实在性与可分性，他们会说，运动的箭在每一刻都占据了空间中的一个特定位置。但是如果一支箭在空间中占据了和它的长度相等的一个位置，那么这正是我们说一支箭不动时所表达的意思。由于飞矢必定总是在空间中占据这样一个等于它的长度的位置，它必定总是处于静止状态。此外，正如我们在运动场的例子中看到的，任何量都是无限可分的。因此，飞矢占据的空间是无限的，这样它就必须与所有其他的事物相重合，在此情况下，所有事物都必定是一而不是多。因此运动只是一个幻象。
+<strong>4.运动的相对性恃论</strong>  想象三辆相同长度的大客车，它们在相互平行的道路上行驶，每辆车的一边都有8个窗户。一辆车静止不动，其他两辆车以相同的速度朝相反的方向运动。芝诺主要的观点就是运动没有清晰的定义，它是一个相对的概念。</p>
+<p>在所有这些论证中，芝诺仅仅是在对巴门尼德的反对者的观点进行驳难，他严格遵循他们对复多性世界——例如其中一条线或者时间是可分的世界——的假设。通过把这些假设推导到它们的逻辑结论，芝诺试图证明复多性世界的思想将使人陷人不可解决的荒谬和悖论之中。因此，他重申了巴门尼德的论题：变化和运动乃是幻象，只有一个存在者，它是连续的、物质的、不动的。芝诺的努力尽管勇气非凡，但是关于世界的常识观点依然存在，它促使后来的哲学家们采取一种不同的方式来解决变化与恒常的关系问题。</p>
+<h4 id="恩培多克勒"><a class="header" href="#恩培多克勒">恩培多克勒</a></h4>
+<p>恩培多克勒在他的家乡西西里岛的阿格里琴托是个引人注目的人物，他在那里大概从公元前490年活到了公元前430年。他的兴趣和活动覆盖了从政治学和医学到宗教和哲学的泛领域。传说为了让人们永远对他奉若神明，恩培多克勒跳进埃特纳火山口结束了自已的生命，这样他的身体就不留下任何痕迹，人们便会以为他升天了。恩培多克勒认为<strong>承认与否认运动变化的论证都有各自的价值</strong>。由此他发现了一种协调的方式，使得我们既可以说存在着变化，同时也可以断言实在从根本上来讲是不变的。
+恩培多克勒在如下的观点上是同意巴门尼德的，即存在是永生的、不可毁灭的，它仅仅只存在着。他写道：“从绝对没有实存的东西不可能产生任何存在；而存在的毁灭也是完全不能实现也不可想象的：因为它将一直存在下去，不论什么人把它放在什么条件下，都是如此。”但是，恩培多克勒不像巴门尼德，他不同意说实存之物仅仅由“一”构成。我们要接受那个“一”的概念就必须否认运动的实在性，可是对于恩培多克勒来说，运动的现象如此显而易见、引人注目因而是不容否认的。因此他拒斥了“一”的观念。恩培多克勒同意巴
+门尼德的存在是永生的且不可毁灭的观点，<strong>但是他认为，存在不是一而是多。不变的、永恒的东西是多</strong>。
+在恩培多克勒看来，我们看到和经验到的物体事实上是有成也有毁的。但是这样的变化和运动之所以可能，是因为物体是由许多物质微粒组成的。因此，虽然物体能够变化，就像赫拉克利特说的那样，但是它们由之构成的微粒是不变的，就像巴门尼德谈论的一那样。但是这些微粒包括什么呢？恩培多克勒认为这些微粒包括四种永恒的物质元素，即土、气、火、水。他相信这四种元素是不变的、永恒的，永远也不能转化为其他的东西。用来解释我们看到的物体中的变化的，是四种元素的混合，而不是它们的转化。他写道，“只存在混合以及混合之物的相互交换。”土、气、火、水是不变的微粒，它们混合在一起形成物体，这就使得我们在日常经验中看到的变化成为可能。
+恩培多克勒对土、气、火、水的解释只是他的理论的第一个部分。第二个部分是<strong>对推动变化过程的特殊的力的解释</strong>。伊奥尼亚学派假定自然物质自身就转化为各种各样的物体。只有阿那克西米尼试图用气的稠密和膨胀的理论来具体地分析变化的过程。恩培多克勒则与之形成鲜明对照，他假定在自然中存在着两种力，他称之为爱和恨（也可以说和谐与争执)。它们就是导致四种元素互相混合后来又互相分离的力。爱的力导致元素相互吸引，形成某种特殊的形式或者某个特殊的人。恨的力导致事物的解体。</p>
+<h4 id="阿那克萨戈拉"><a class="header" href="#阿那克萨戈拉">阿那克萨戈拉</a></h4>
+<p>阿那克萨戈拉（公元前500年-公元前428年）出生在一个叫克拉左美奈的海滨小城，它现在土耳其境内。后来他来到雅典伴随执政官伯里克利左右。他主要的哲学贡献是<strong>提出了心灵（奴斯，nous)概念</strong>，他把它和物质区分开来。阿那克萨戈拉同意恩培多克勒的观点，所有存在的产生和消灭都仅仅在于已经存在的物质的混合与分离。但是他不接受恩培多克勒认为各种事物都是由爱与恨形成的那种含糊不清甚至带有神话色彩的思想。在阿那克萨戈拉看来，这个世界和世上的一切事物都是井然有序而且具有复杂精妙的结构的；所
+以，必定存在着某个有知识有力量的存在者把物质世界组织成这个样子。
+根据阿那克萨戈拉的看法，实在的本质最好被理解为是由心灵和物质构成的。在心灵影响物质的形状和行为之前，物质就已经存在了，它是各种各样物质实体的混合，而这些物质实体都是不生不灭的。即使当这种物质原料被分成实际的物体时，分出的每个部分也还是包含着其他所有元素“种子”的微粒。例如雪就既包含了黑又包含了白，而它之所以被称作白的只不过是因为白在其中居于主导地位。所以在某种意义上，实在的每个部分都和实在的全体有同样的成分，因为，每个部分之中都含有每种元素的“一份”。
+根据阿那克萨戈拉的看法，原始物质形成各种事物是通过分离的过程，这个分离是由心灵的力量促其发生的。具体说来，心灵首先产生了一个旋转运动，形成了一个漩涡，它扩展开来，使得越来越多的原初物质卷入进来。这迫使各种物质“分离”开来。这个漩祸运动最初将物质分成两大部分，其中的一部分包含热、光明、稀薄和干燥的物质，另一部分则包含冷、黑暗、稠密和潮湿的物质。这个分离的过程是连续的，是永不间断地进行下去的。特定的事物总是由诸物质结合而成的，在其中某种特定的物质占了统治地位。例如，水中是潮湿的元素占主导地位，但也存在所有其他的元素。
+虽然阿那克萨戈拉把心灵作为宇宙中和人的身体中的推动力或控制力，但是他对心灵实际作用的解释是有其局限的。一方面，心灵不是物质的创造者，因为他认为物质是永恒的。此外，他在心灵中没有看到自然世界的任何目的。那种主要用“分离”过程来说明心灵在特殊事物起源中的作用的办法，看来是一个机械论的解释。事物是物质原因的产物，而心灵除了予以最初的推动外，似乎就没有任何别的特殊作用了。
+亚里士多德后来区分了不同种类的原因，他对阿那克萨戈拉的观点的评价有褒有贬。他把阿那克萨戈拉和他的前辈作了比较，那些前辈把事物的起源归结为自发性和随机。根据亚里士多德的观点，阿那克萨戈拉说，“理性在动物中，也在全部的自然中作为秩序和一切安排的原因而出现时，他看起来头脑冷静，截然不同于他的前辈。”但是，亚里士多德又说，阿那克萨戈拉对心灵概念的运用是“远不充分的”。他的批评是，“阿那克萨戈拉让理性作为一具神奇的机器来制造世界。当他说不清楚某事物必然存在的原因何在时，他就会把理性拉进来，但在其他一切情况下他都把事物的原因归于理性之外的东西。”阿那克萨戈拉似乎只是解释了物质如何能发生漩涡运动，自然秩序的其余内容测不过是这个运动的产物而已。
+然而，阿那克萨戈拉关于理性的说法在哲学史上**产生了深远的影响，因为他由此把一种抽象的原则引入了事物的本质之中。他区分了心灵和物质。**他或许还没有将心灵描述为完全非物质的，但是他将心灵和它要与之打交道的物质区分了开来。他宜称，心灵不像物质，“它不与其他任何东西相混合，是单独的、自在的”。心灵不同于物质的地方在于它是“所有事物中最精细的、最纯的，它拥有对每件事物的一切知识，具有最大的力量”。因而，物质是复合的，而心灵则是单一的。但是阿那克萨戈拉并没有区分两个不同的世界一心灵的世界和物质的世界一而是将它们看作总是相互关联的。所以他写道，心灵存在于“每一个事物存在的地方”。虽然阿那克萨戈拉没有展开他的心灵概念的所有可能性，但是这个概念注定会对此后的希腊哲学产生巨大的影响。</p>
+<h3 id="14-原子论者"><a class="header" href="#14-原子论者">1.4 原子论者</a></h3>
+<p>留基波和德谟克利特建立了一种关于事物的本质的理论，它与某些当代的科学观点有着惊人的相似。然而今天我们很难把留基波和德谟克利特各自对这个理论的贡献区分开。他们的作品绝大部分都佚失了，但是我们至少知道<strong>留基波是原子论学派的创立者，对此理论的详尽阐述则来自德谟克利特</strong>。留基波与恩培多克勒（公元前490年-公元前430年）是同时代的人，但是除此之外我们对他的生平几乎一无所知。德谟克利特出生在色雷斯的阿布德拉，据说他活了100岁，生于公元前460年，卒于公元前360年。他学识广博，力求对他
+那抽象的原子理论进行清晰的表述，这些自然都让留基波相形见绌。不过我们还是得肯定，是留基波提出了原子论的主要观点，即所有事物都是由运动在虚空中的原子构成的。</p>
+<h4 id="原子和虚空"><a class="header" href="#原子和虚空">原子和虚空</a></h4>
+<p>根据亚里士多德的描述，原子论的产生是想要克服埃利亚学派拒斥空间的逻辑结果。巴门尼德否认存在任何独立的事物，因为到处都是存在，在这种情况下整个的存在是一。尤其是他否认非存在或虚空（空的空间）的存在，因为说存在着虚空就是说虚空是某种存在。他认为，我们不可能说存在着无。留基波建立他的新理论，正是为了反对埃利亚学派对空间或虚空的处理方式。</p>
+<p>留基波肯定了空间的实在性，从而为一种关于运动和变化的连贯理论的提出准备了条件。使巴门尼德的空间概念陷入困境的是，他认为任何存在的东西都必须是物质的，因此如果空间存在，那么它也必定是物质的。而留基波则认为，我们可以肯定空间的存在，同时无须说空间是物质的。所以他把空间描述为一个容器，它可以在某个地方是空的，而在另一个地方被充满。空间或虚空作为一个容器可以是物体移动的场所，留基波认为，很显然我们没有任何理由否认空间的这一特性。要是没有这样一种空间概念，留基波和德谟克利特就不可能提出他们的万物都是由原子构成的观点。
+在留基波和德谟克利特看来，事物的本质在于无限数量的微粒或单元，称为“原子”。留基波和德谟克利特赋予这些原子两个主要的特性——这也是巴门尼德认为“一”所具有的——即<strong>不可毁灭性和永恒性</strong>。巴门尼德说过，实在是个单一的“一”，而原子论者现在说，存在着无限多的原子，每一个原子自身是绝对致密的。这些原子不包含任何的虚空，因此是不可入、不可分的。它们存在于空间之中，并且在形状和大小上相互区别。由于它们太过微小，所以是不可见的。因为这些原子是永恒的，所以它们不是被创造的。因此，自然只包含两种东西：空间（它是真空）和原子。原子在空间中运动，它们的运动使它们形成了我们所经验到的物体。
+原子论者认为无须解释原子最初是如何在空间中运动起来的。他们认为这些原子最初的运动类似于灰尘在光线中向各个方向的飞速运动，即使没有风推动它们，灰尘也会这样。最初原子在空间中运动着，它们是单个的单元。它们不可避免地相互碰撞。在有些情况下，它们的形状使它们能够结合在一起，形成团。在这点上，原子论者和认为事物都是数的毕达哥拉斯学派
+有近似之处。事物就像数一样是由可以相互结合的单元构成的；对于原子论者来说，事物仅仅是各种不同原子的结合。数学的形体和物理的形体是类似的。原子一开始就存在于空间中。每个原子就像巴门尼德的一，但是，虽然它们是不可毁灭的，却永远处于运动之中。原子论者把土、气、火、水描述为本身不变的原子所形成的各种不同的聚集一这些聚集产生于最初单一的原子的运动。这四种元素并不像早先的哲学家所认为的那样是所有其他事物的最初根源，它们本身也是绝对原初的物质——原子——的产物。
+原子论者对事物的本质提出了一个<strong>机械论</strong>的概念。对他们来说，所有事物都是在空间中运动的原子相互碰撞的结果。他们认为没有必要解释原子的来源，也没有必要解释推动原子的最初运动。因为这些起源的问题总是可以问下去，甚至对于上帝我们也可以这么问：赋予物质的原子以永恒的存在似乎并不比其他任何解释更令人感到不满。
+留基波和德谟克利特设想的原子理论在历史上造成了长久而深远的影响。这一理论的生命力十分顽强，虽然在中世纪曾一度式微，但到了文艺复兴时期又东山再起，并且为接下来几个世纪里的科学工作提供了模式。伊萨克·牛顿(1642-1727)在写作著名的《数学原理》(Principia Mathematica)时依然用原子论的术语进行思考。在这部著作里他推导出了行星、彗星、月球和海洋的运动；他在1686年写道：
+&gt;我希望我们能够用从机械原理得出的相同的推理揭示出自然的其他现象，因为有许多原因促使我猜测它们或许都依赖于某些力，凭借这些力，由于某种目前还不清楚的原因，这些物体的微粒互相吸引，形成规则的形状，或者互相排斥而彼此远离。
+虽然牛顿假设是上帝椎动了事物运动起来，他对自然的物理分析却仅限于在空间中运动的物质的机械原则。在牛顿之后原子论一直占据支配地位，直到量子理论和爱因斯坦为当代科学提供了一种新的物质概念，它否认了原子有不可毁灭性。</p>
+<h4 id="知识理论和伦理学"><a class="header" href="#知识理论和伦理学">知识理论和伦理学</a></h4>
+<p>除了描述自然的结构，德谟克利特还关注其他两个哲学问题：<strong>知识问题和人类行为问题</strong>。德谟克利特是个彻底的唯物主义者，他认为思想也可以用解释其他现象的方式来解释，即它也是原子的运动。他区分了两种不同的知觉，一种是感性知觉，一种是理性知觉，它们都是物理过程。当我们的眼晴看到某个东西时，它其实是由物体造成的“影响”，是物体的原子的流射，从而形成了一个“影像”。这些事物的原子影像进人眼晴和其他感觉器官，对灵魂产生了影响，而灵魂自身也是由原子构成的。
+德谟克利特进一步区分了两种认识事物的方式：“<strong>存在着两种形式的知识，真实的知识和暗昧的知识</strong>。属于后者的是视觉、听觉、嗅觉、味觉和触觉。但是真实的知识与这完全不同。”区别这两种思想的东西是，“真实的”知识仅仅依赖于对象，而“暗昧的”知识则受到那个人特定身体条件的影响。例如两个人都会同意他们品尝的是苹果（真实的知识）。但是他们可能对苹果的味道意见不一（暗昧的知识）。所以根据德谟克利特的看法，“我们通过感官不能知道任何确切的真理，我们所知道的只是那些按照我们身体的倾向以及进入身体或者抵抗身体的东西的倾向而变化的东西。”不过德谟克利特还是承认，感觉和思想是相同类型的机械式的过程。
+关于伦理学，德谟克利特为人类行为提出了一套雄心勃勃的规则。总的来说，他认为生活最令人向往的目标是快乐，我们最好是通过在一切事务上的节制有度和文化上的教养来获得它。随着伦理学成为哲学最关注的问题，哲学也走到了它的一个主要分水岭前，<strong>哲学的第一个时期结束了，这一时期的主要问题是自然的秩序</strong>。现在人们提出了许多更富有挑战性的问题来探讨他们应该如何行动。</p>
+<h2 id="第二章-智者派与苏格拉底"><a class="header" href="#第二章-智者派与苏格拉底">第二章 智者派与苏格拉底</a></h2>
+<p>第一批哲学家关注的是自然;而智者派和苏格拉底则将哲学的关注点转到了对人类的研究。他们不去问“事物的终极原则是什么”等一些关于宇宙的大问題，而是提出一些与道德行为有着更直接关系的问題。哲学由主要关注科学问题转而关注基本的伦理问题，这一转向能在下述事实中得到部分解释:前苏格拉底哲学家们彼此之间并没有能达成任何一种统一的宇宙概念。他们对自然提出了各不相同的解释，这些解释彼此似乎无法调和。例如，赫拉克利特说自然由多种实体构成，所有事物都处于持续的变化过程中。巴门尼德则持完全相反的观点，他论证实在是单一的、静止的实体，是“一〞，运动和变化只是由事物的現象投射于我们的感官而引起的幻觉。如果这些相互矛盾的宇宙论在破解自然之迷时所遇到的巨大困难产生的仅仅是人们的一种理智的疲倦，那么哲学也许就会在这里止步不前了。确实，关于事物终极原則的爭论导致了一种怀疑主义的傾向:人类理性是否有能力发现自然的真理?但是这种怀疑主义为哲学转向一个新方向提供了推动力，<strong>因为怀疑主义自身成了被加以认真考虑的主題</strong>。哲学家们现在不再就各种自然理论争论不休，他们现在想解决有关人类知识的问題，问道:<strong>我们有没有可能发现普遍的真理</strong>?各个种族和社群的文化差异使这个问题越发显得突出。结果，关于真的问题与关于善的问题深深地纠缠在了一起。如果人们没有能力认识到任何普遍的真理，那么还能够存在一个普通的善的概念吗?这场新爭论的主要参与方是<strong>智者派</strong>和<strong>苏格拉底</strong>。</p>
+<h3 id="21-智者派"><a class="header" href="#21-智者派">2.1 智者派</a></h3>
+<p>在公元前5世纪前后，雅典出现三个最为杰出的智者，他们是普罗泰戈拉、高尔吉亚和塞拉西马柯。他们这群人或者是作为游历教师来到雅典的，或者是像埃利斯的希庇亚的情况那样，作为使节来到雅典的。他们给自己加上“智者”或者“有知识的人”的特别称号。他们的文化背景各异：普罗泰戈拉来自色雷斯的阿布德拉，高尔吉亚来自南西西里岛的林地尼，塞拉西马柯侧来自卡尔亚冬。他们对雅典人的思想和习俗进行了一番新的审视，提出了一些追根究底的问题。特别是，他们使雅典人不得不考虑自己的观念和习俗是基于真理还是仅仅基于惯常的行为方式。雅典人在希腊人与野蛮人之间，以及在主人与奴隶之间作出的区分是有充足的根据还是仅仅基于偏见？智者们对不同文化的广博知识使他们怀疑获得任何让社会能借以对人们生活进行规范的绝对真理的可能性。他们迫使富有思想的雅典人考虑希腊文化是建基于人为的规侧(nomos)还是建基于自然(physis)。他们令雅典人追问自己的宗教和道德规范是约定俗成的从而也是可变的，还是自然的从而也是永恒的。毫无疑问，智者们为更加深人细致地思考人类本性开辟了道路——尤其是<strong>我们如何获得知识以及我们如何规范自己的行为</strong>。
+智者派主要是一些有实际经验的人，他们尤其善于语法、写作和公开辩说。这些技能使他们成了惟一有能力满足雅典社会中一种特殊社会需要的人。在执政官伯里克利（公元前490年-公元前429年)的领导下，雅典旧有的贵族政体被民主制取代了。由于自由民可以参与政治讨论并担任领导职务，人们的政治生活得到了强化。但是旧有的贵族教育体系主要建基于家庭传统，无法使人们适应民主社会生活中的新情况。在宗教、语法领域以及对诗歌的细致解释方面，还没有严格的理论训练。智者们进入这一文化真空，他们在教育上的实践兴趣满足了这个迫切的需要。他们成为广受欢迎的讲师，是新式教育的主要提供者。使他们特别受人追捧的首先是他们自称能教授修辞术——即令人信服地演说。在民主的雅典，说服力对任何一个想要爬到领导层的人都是政治上所必需的。
+智者派的声誉最初是很好的。他们为训练人们清晰有力地表述自己的思想而做了大量工作。但是修辞术有些像一把刀，既可为善，也可作恶。修辞术的运用从令人赞许变为令人遗憾，这其中智者派所固有的怀疑主义起了极大的推动作用。没有多久，智者派的怀疑主义和相对主义使他们受到了怀疑。他们的形象已经不同于早期哲学家那种不带任何经济考虑而从事哲学的公正无偏的思想家形象。智者派为他们的教学索取费用，而且刻意找那些付得起费的有钱人来教。苏格拉底曾在智者门下学习，可是因为穷，他只上得起他们提供的“短期课程”。这种收费教学的行为使得柏拉图将他们讥为“销售灵魂食品的商人”。</p>
+<h4 id="普罗泰戈拉"><a class="header" href="#普罗泰戈拉">普罗泰戈拉</a></h4>
+<p>在来到雅典的诸多智者当中，阿布德拉的普罗泰戈拉（约公元前490年-公元前420年)是年纪最长的，在许多方面他也是最有影响的。他因下面的这一陈述而广为人知，**“人是万物的尺度，是存在者存在的尺度，也是不存在者不存在的尺度。”**就是说，每个个人是他或她作出的所有判断的最终标准。这意味着任何我可能达到的关于事物的知识都受到我作为人的能力的限制。普罗泰戈拉不考虑任何神学的探讨，他说，“关于神，我既不能认识到他们是否存在，也不能认识到他们是什么样子的；因为阻碍我的认识的因素有很多：问题的晦涩，人生的短暂。”普罗泰戈拉说，知识受到我们各种知觉的限制，这些知觉是因人而异的。如果两个人观察同一个对象，他们的感觉会各不相同，因为每个人相对于这个对象的位置不一样。与此相似，同一阵风吹向两个人，一个人会觉得凉，一个人则会觉得暖。因而，说一个人是所有事物的尺度就是说我们的知识被自己的知觉所限制。如果在我们内部的某个东西使我们以与别人不同的方式知觉事物，那么就不存在什么标准来检验是不是某个人的知觉是对的而另一个人的是错的。普罗泰戈拉认为，我们通过自己各种各样的感官知觉到的对象必定具有不同的人各自知觉到的属于它们的所有属性。由于这一原因，我们不可能发现一个事物的“真正”本质是什么；一个事物有多少感知它的人就有多少特性。这样，我们就没有办法区分一个事物的现象和它的实在。基于这一知识理论，我们不可能获得任何绝对的科学知识，因为不同的观察者之间存在着固有的差异，这使我们每个人对事物的观察各不相同。普罗泰戈拉总结道，<strong>知识对每个人而言都是相对的</strong>。</p>
+<p>当普罗泰戈拉谈到伦理学时，他认为道德判断也是相对的。他乐意承认法律观念反映了存在于每一种文化中的想在所有人中建立道德秩序的普遍愿望。但是，他拒绝承认存在着任何适合于所有人类行为的统一的、所有人在任何地方都可以发现的自然法律。他区分了自然和习俗，他说法律和道德规范不是基于自然，而是基于习俗。每个社会都有它自己的法律和道德规则，没有什么方法来断定这个社会的法律和道德规范的对错。但是普罗泰戈拉没有将这一道德相对主义推到极端，他并不认为每个个人都能够仅凭自已就断定对他或她而言什么是道德。相反，他持一种保守的观点，认为城邦制定法律，而每个人应该接受它们，因为这些法律是能够制定出的最好的法律。其他的社群或许有不同的法律，这个城邦里的个人或许想到不同的法律，但是在这两种情况下，并不是说它们就是更好的法律：它们只不过是不同的法律而已。因而，为了社会和平有序，人们应该尊重和支持自己的传统精心发展出的习俗、法律和道德规范。在宗教问题上，普罗泰戈拉持类似的观点：我们不能确定地知道诸神的存在及其本质，不过这并不妨碍我们对神的崇拜。普罗泰戈拉相对主义有趣的结果是他保守的结论，年轻人应该被教育接受和支持自己的社会的传统，这不是因为此传统是正确的，而是因为它使一个稳定的社会成为可能。尽管如此，毫无疑问，普罗泰戈拉的相对主义严重地打击了人们对有可能发现真知的信心。他的怀疑主义招致了苏格拉底和柏拉图的严厉批评。</p>
+<h4 id="高尔吉亚"><a class="header" href="#高尔吉亚">高尔吉亚</a></h4>
+<p>高尔吉亚（公元前5世纪后期）于公元前427年作为使节从他的母邦利昂提尼来到雅典。他对真理所持的观点如此极端，以至最终他放弃了哲学，而转向了修辞术的实践与教学。他的极端观点不同于普罗泰戈拉的观点，因为普罗泰戈拉说，相对于不同的观众，一切都是真的；而高尔吉亚侧拒绝承认任何真理的存在。高尔吉亚极其繁琐地运用埃利亚哲学家巴门尼德和芝诺所使用的推理类型，提出了一系列非同寻常的观点：(1)无物存在，（2)如果有某物存在，它也无法被认识，(3)即使它可以被认识，也不能被传达。以第三个观点为例，他论证说，我们用语言进行交流，但是语言只是符号或标记，符号与它所代表的事物是绝不相同的。因此，知识就不能被传达。通过这种推理，高尔吉亚认为他能够证明上述全部的观点，至少他的推理与和他意见相左者的推理一样严密。他确信不存在任何可靠的知识，当然也不存在任何真理。
+高尔吉亚放弃哲学之后转向了修辞学，他试图将之作为说服的技术加以完善。在修辞学和说服术的这种结合中，传统认为他运用心理学和暗示的力量发展了欺骗术。</p>
+<h4 id="塞拉西马柯"><a class="header" href="#塞拉西马柯">塞拉西马柯</a></h4>
+<p>在柏拉图的《理想国》(Republic)中，塞拉西马柯被刻画为智者，他断言不正义比正义的生活更可取。他并不把不正义看成性格的缺陷。相反，塞拉西马柯将不正义的人看作在性格和智力上更优越的人。他说，事实上，不正义不只是在小偷这种可怜的水平上令人“获利”（虽然在这里也会有利可图），而且尤其对那些将不正义推行到登峰造极之境的人有利，并使他们成为城邦或国家的首领。只有傻子才追求正义，正义只能导致软弱。塞拉西马柯主张，人们应该以一种事实上是毫无顾忌地自作主张的方式去肆意追求他们自己的利益。他将正义看作较强者的利益，他相信“有力即有理”。他说，法律是由统治集团为了自己的利益而制定的，这些法律规定了什么是正确的。所有的国家都一样，“正当”的观念意味着同一个东西，因为“正当”仅仅是以权力建立起来的，反映了把持权力的集团的利益。所以，塞拉西马柯说，“合理的结论就是‘正当'的东西在任何地方都是一样的：都是更强大的集团的利益。”
+这里有一个从道德到权力的还原。这是智者派的怀疑主义不可避免的结果，这种怀疑主义使得他们对真理和伦理抱有相对主义的态度。而揭示智者派的逻辑矛盾，重建某种真理概念，为道德判断建立某种牢固的基础，这些就是苏格拉底主要考虑的问题了。</p>
+<h3 id="22-苏格拉底"><a class="header" href="#22-苏格拉底">2.2 苏格拉底</a></h3>
+<p><img src="pics/Socrate.jpg" alt="" /></p>
+<p>许多雅典人误把苏格拉底看作智者，事实上苏格拉底是智者派最尖锐的批判者之一。苏格拉底之所以被人们混同于智者，部分地是因为他对任何主题的不带感情的分析——智者们也运用了这一技术。然而在苏格拉底与智者派之间存在着一个根本的差异。智者派挖空心思钻牛角尖，以表明对于一个问题的任何一面都可以作出同样好的论证。他们是怀疑主义者，不相信有任何确定的或可靠的知识。此外，他们还得出结论说，既然所有知识都是相对的，那么道德标准也是相对的。相反，苏格拉底坚持不懈地进行论辩却是怀着不同的动机。他坚定地追求真理，认为自己的任务就是为确定的知识寻找基础。他也试图发现善的生活的基础。苏格拉底在履行自己的使命时，发明了一种达到真理的方法：他将知和行联系起来，所以认识善就是行善，在这个意义上，“知识就是美德”。所以，与智者派不同，苏格拉底致力于进行讨论是为了获得对真理和善的实质性概念。</p>
+<h4 id="苏格拉底的生平"><a class="header" href="#苏格拉底的生平">苏格拉底的生平</a></h4>
+<p>苏格拉底于公元前470年出生在雅典。历史上很少有某时某地像此时的雅典这样出现了如此众多的天才人物。这个时候，刷作家埃斯库罗斯已经完成了他的几部戏剧杰作。欧里庇得斯和索福克勒斯这两位剧作家此时还是小孩子，他们以后将要创作的伟大悲剧苏格拉底很有可能是到剧场看过的。这时伯里克利还是个年轻小伙，他将会开创一个政治民主、艺术繁荣的伟大时代。苏格拉底有可能看过帕特农神庙和菲狄亚斯的雕塑，它们就是完成于他生活的那个年代的。这个时候，波斯已经被打败，雅典已经成为海上期主，基本上控制了爱琴海。雅典达到了前所未有的强大和辉煌。虽然苏格拉底成长于一个黄金时代，但在垂暮之年，他目睹了雅典在战争中的失败，而他自己的生命也在狱中结束。公元前399年，也就是苏格拉底71岁时，他遵从法庭对他的判决喝下了毒药。
+苏格拉底没有写下文字作品。我们所知道的关于他的绝大部分事情都是由他的三个著名的年轻的同代人记载下来的，他们是阿里斯托芬、色诺芬以及三人中最重要的一位——柏拉图。从这些资料里看，苏格拉底天资过人，不仅思维严谨超乎群伦，为人也热情友善，秉性幽默。他体格健壮，颇能吃苦耐劳。阿里斯托芬在他的喜剧《云》里把苏格拉底描绘得像一只自负的水鸟，取笑他转跟珠的习惯，俏皮地提到他的“学徒们”及“思想的作坊”。而色诺芬所描绘的则是一位忠诚的战士，他充满激情地探讨着道德的要求，对那些想在他这里得到指点的年轻人有着难以抗拒的吸引力。柏拉图肯定了对苏格拉底的这个总的写照，并进一步把苏格拉底描绘为一个有着深沉的使命感和绝对的道德纯洁性的人。在《会饮篇》中，柏拉图讲述了一位美少年阿尔西比亚德斯是如何希望赢得苏格拉底的爱情的，他想方设法要和苏格拉底单独相处。但是，阿尔西比亚德斯说，“从来就没有出现过这种情况：他只愿意用他通常的方式和我交谈，和我呆了一整个白天后，他就会离开我，自顾自走了。”苏格拉底在从军征战时比其他任何人都更能忍饥挨饿。其他人都“小心翼翼地”把自己包得严严实实，用“毡子加羊毛”裹在鞋子外面，以抵御冬日的严寒。而苏格拉底，阿尔西比亚德斯说，“就穿着他平常穿的一件外套在那样的天气里出门，他光着脚在冰面上行走比我们穿着鞋走还要轻快。”
+苏格拉底的注意力能长时间地高度集中。在一次战役中，他曾经站着沉思了一天一夜，“直到黎明来临，太阳升起；在向着太阳做了一次铸告之后，他才走开”。他经常从一个神秘的“声音”那里获得信息或警告，他称这个声音为自己的灵异(daimon)。虽然这种“超自然的”征兆从小就侵扰着他的思想，但对此最合理的解释应该是苏格拉底具有“宗教梦幻式”的气质，尤其是具有对人类行为的道德品质的敏感，正是这些道德品质赋予生活以价值。他对早期希腊街学家们的自然科学必定是非常熟悉的，虽然在柏拉图的《申辩篇》中，他说过，“事情的真相就是如此，雅典人、我与对自然的思索没有任何关系。”对他而言，这样的思索已经让位于那些更紧迫的问题，即人的本性、真理和善。一个决定性的事件确认了苏格拉底的使命是做一个道德哲学家，这就是<strong>德尔斐神庙的神谕</strong>。故事是这样的，一个名叫凯勒丰的虔信宗教的青年到德尔斐附近的阿波罗神庙去问，这世上是否还有人比苏格拉底更聪明；女祭司回答说没有。苏格拉底认为这个回答的意思是，他之所以是最聪明的，是因为他意识到并且承认自己的无知。苏格拉底就是以这样的态度开始了他对不可动摇的真理和智慧的探求。</p>
+<h4 id="作为哲学家的苏格拉底"><a class="header" href="#作为哲学家的苏格拉底">作为哲学家的苏格拉底</a></h4>
+<h4 id="苏格拉底的知识理论思想的助产术"><a class="header" href="#苏格拉底的知识理论思想的助产术">苏格拉底的知识理论：思想的助产术</a></h4>
+<h4 id="苏格拉底的道德思想"><a class="header" href="#苏格拉底的道德思想">苏格拉底的道德思想</a></h4>
+<h4 id="苏格拉底的审判与死亡"><a class="header" href="#苏格拉底的审判与死亡">苏格拉底的审判与死亡</a></h4>
+<h2 id="第三章-柏拉图"><a class="header" href="#第三章-柏拉图">第三章 柏拉图</a></h2>
+<h3 id="31-柏拉图的生平"><a class="header" href="#31-柏拉图的生平">3.1 柏拉图的生平</a></h3>
+<h3 id="32-知识理论"><a class="header" href="#32-知识理论">3.2 知识理论</a></h3>
+<h4 id="洞穴"><a class="header" href="#洞穴">洞穴</a></h4>
+<h4 id="线段"><a class="header" href="#线段">线段</a></h4>
+<h4 id="理念论"><a class="header" href="#理念论">理念论</a></h4>
+<h3 id="33-道德哲学"><a class="header" href="#33-道德哲学">3.3 道德哲学</a></h3>
+<h4 id="灵魂概念"><a class="header" href="#灵魂概念">灵魂概念</a></h4>
+<h4 id="恶的原因无知或遗忘"><a class="header" href="#恶的原因无知或遗忘">恶的原因：无知或遗忘</a></h4>
+<h4 id="恢复失去的道德"><a class="header" href="#恢复失去的道德">恢复失去的道德</a></h4>
+<h4 id="作为功能之实现的德性"><a class="header" href="#作为功能之实现的德性">作为功能之实现的德性</a></h4>
+<h3 id="34-政治哲学"><a class="header" href="#34-政治哲学">3.4 政治哲学</a></h3>
+<h4 id="巨人般的国家"><a class="header" href="#巨人般的国家">巨人般的国家</a></h4>
+<h4 id="哲学王"><a class="header" href="#哲学王">哲学王</a></h4>
+<h4 id="国家中的德性"><a class="header" href="#国家中的德性">国家中的德性</a></h4>
+<h4 id="理想国的衰败"><a class="header" href="#理想国的衰败">理想国的衰败</a></h4>
+<h3 id="35-宇宙观"><a class="header" href="#35-宇宙观">3.5 宇宙观</a></h3>
+<h2 id="第四章-亚里士多德"><a class="header" href="#第四章-亚里士多德">第四章 亚里士多德</a></h2>
+<h3 id="41-亚里士多德的生平"><a class="header" href="#41-亚里士多德的生平">4.1 亚里士多德的生平</a></h3>
+<h3 id="42-逻辑学"><a class="header" href="#42-逻辑学">4.2 逻辑学</a></h3>
+<h4 id="范畴和推理的起点"><a class="header" href="#范畴和推理的起点">范畴和推理的起点</a></h4>
+<h4 id="三段论"><a class="header" href="#三段论">三段论</a></h4>
+<h3 id="43-形而上学"><a class="header" href="#43-形而上学">4.3 形而上学</a></h3>
+<h4 id="界定形而上学的问题"><a class="header" href="#界定形而上学的问题">界定形而上学的问题</a></h4>
+<h4 id="作为事物的首要本质的实体"><a class="header" href="#作为事物的首要本质的实体">作为事物的首要本质的实体</a></h4>
+<h4 id="质料和形式"><a class="header" href="#质料和形式">质料和形式</a></h4>
+<h4 id="变化的过程四因"><a class="header" href="#变化的过程四因">变化的过程：四因</a></h4>
+<h4 id="潜能和现实"><a class="header" href="#潜能和现实">潜能和现实</a></h4>
+<h4 id="不被推动的推动者"><a class="header" href="#不被推动的推动者">不被推动的推动者</a></h4>
+<h3 id="44-人的地位物理学生物学和心理学"><a class="header" href="#44-人的地位物理学生物学和心理学">4.4 人的地位：物理学、生物学和心理学</a></h3>
+<h4 id="物理学"><a class="header" href="#物理学">物理学</a></h4>
+<h4 id="生物学"><a class="header" href="#生物学">生物学</a></h4>
+<h4 id="心理学"><a class="header" href="#心理学">心理学</a></h4>
+<h3 id="45-伦理学"><a class="header" href="#45-伦理学">4.5 伦理学</a></h3>
+<h4 id="目的的类型"><a class="header" href="#目的的类型">“目的”的类型</a></h4>
+<h4 id="人的功能"><a class="header" href="#人的功能">人的功能</a></h4>
+<h4 id="作为目的的幸福"><a class="header" href="#作为目的的幸福">作为目的的幸福</a></h4>
+<h4 id="作为中道的德性"><a class="header" href="#作为中道的德性">作为中道的德性</a></h4>
+<h4 id="审慎和选择"><a class="header" href="#审慎和选择">审慎和选择</a></h4>
+<h4 id="沉思"><a class="header" href="#沉思">沉思</a></h4>
+<h3 id="46-政治学"><a class="header" href="#46-政治学">4.6 政治学</a></h3>
+<h4 id="国家类型"><a class="header" href="#国家类型">国家类型</a></h4>
+<h4 id="差异与不平等"><a class="header" href="#差异与不平等">差异与不平等</a></h4>
+<h4 id="好的政体和革命"><a class="header" href="#好的政体和革命">好的政体和革命</a></h4>
+<h3 id="47-艺术哲学"><a class="header" href="#47-艺术哲学">4.7 艺术哲学</a></h3>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../philosophy/history/history.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../philosophy/history/chapter2.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../philosophy/history/history.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../philosophy/history/chapter2.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "philosophy/history/chapter1.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

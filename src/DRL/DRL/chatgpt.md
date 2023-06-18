@@ -76,6 +76,58 @@ CHATGPT前置论文:
 
 ## 注意力机制论文:[Attention is all you need](https://arxiv.org/abs/1706.03762)
 
+
+> In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+
+#### MODEL ARCHITECTURE
+
+大多数优秀的神经序列转导模型(neural sequence transduction model)有一个 encoder-decoder 结构. encoder 将输入的序列 $\left(x_1, \ldots, x_n\right)$ 映射为连续的序列 $\mathbf{z}=\left(z_1, \ldots, z_n\right)$，给定$\mathbf{z}$，decoder 将生成一个输出序列 $\left(y_1, \ldots, y_m\right)$. 每一步模型都是自回归的(auto-regressive，即在生成文本时将前一次生成的信号作为额外的输入).
+
+Transformer 遵循了该基本的结构，另外同时对 encoder 和 decoder 使用了 stacked self-attention(栈式的自注意力?) 和点点的全连接层. 如下图所示
+
+![1](pic/attention1.png)
+
+##### Encoder and Decoder Stacks
+
+- **Encoder**: encoder 由 $N=6$ 同样的层组成. 每层有两个子层. 首先是 multi-head attention 机制, 其次是简单的、基于位置的全连接前馈网络.
+- **Decoder**: decoder 也是由 $N=6$ 相同层组成. 除了在每个 encoder 层中的两个子层, decoder 插入了第三个子层, 它在 encoder 的输出后面作为 multi-head 注意力
+
+##### Attention
+
+一个 attention 函数可以描述为将一个请求(query)和一组 key-value pairs 映射为一个输出向量.
+
+###### Scaled Dot-Product Attention
+
+我们将该特殊的 Attention 称为 Scaled Dot-Product Attention, 输入由请求和 $d_k$ 维的 key 以及  $d_v$ 维的 value 组成. 计算请求query与所有key的点积, 每个除以 $\sqrt{d_k}$ 后作用上 softmax 函数来获取它们的权重.
+
+实际中, 我们同时计算一组请求的 attention 函数, 打包进一个矩阵 $Q$, key和value也同样打包进矩阵$K$和$V$, 然后用下式计算输出矩阵
+
+$$
+\operatorname{Attention}(Q, K, V)=\operatorname{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V
+$$
+
+两个最常用的 attention 函数是累加型attention以及点积型attention. 点积式 attention 与本文算法中的是一致的, 除了$\frac{1}{\sqrt{d_k}}$ 的 scaling 部分.
+
+![2](pic/attention2.png)
+
+
+###### Multi-Head Attention
+
+除了对 $d_{\text {model}}$ 维的key, value和query,
+
+Instead of performing a single attention function with $d_{\text {model}}$ -dimensional keys, values and queries, we found it beneficial to linearly project the queries, keys and values $h$ times with different, learned linear projections to $d_k, d_k$ and $d_v$ dimensions, respectively. On each of these projected versions of queries, keys and values we then perform the attention function in parallel, yielding $d_v$-dimensional output values. These are concatenated and once again projected, resulting in the final values.
+
+Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this.
+$$
+\begin{aligned}
+\operatorname{MultiHead}(Q, K, V) & =\operatorname{Concat}\left(\operatorname{head}_1, \ldots, \operatorname{head}_{\mathrm{h}}\right) W^O \\
+\text { where head } & =\operatorname{Attention}\left(Q W_i^Q, K W_i^K, V W_i^V\right)
+\end{aligned}
+$$
+Where the projections are parameter matrices $W_i^Q \in \mathbb{R}^{d_{\text {model }} \times d_k}, W_i^K \in \mathbb{R}^{d_{\text {model }} \times d_k}, W_i^V \in \mathbb{R}^{d_{\text {model }} \times d_v}$ and $W^O \in \mathbb{R}^{h d_v \times d_{\text {model }}}$.
+
+In this work we employ $h=8$ parallel attention layers, or heads. For each of these we use $d_k=d_v=d_{\text {model }} / h=64$. Due to the reduced dimension of each head, the total computational cost is similar to that of single-head attention with full dimensionality.
+
 ## GPT-1论文:[Improving Language Understanding by Generative Pre-training](xtension://nhppiemcomgngbgdeffdgkhnkjlgpcdi/data/pdf.js/web/viewer.html?file=https%3A%2F%2Fwww.cs.ubc.ca%2F~amuham01%2FLING530%2Fpapers%2Fradford2018improving.pdf)
 
 ## GPT-2论文:[Language Models are Unsupervised Multitask Learners](extension://nhppiemcomgngbgdeffdgkhnkjlgpcdi/data/pdf.js/web/viewer.html?file=https%3A%2F%2Flife-extension.github.io%2F2020%2F05%2F27%2FGPT%25E6%258A%2580%25E6%259C%25AF%25E5%2588%259D%25E6%258E%25A2%2Flanguage-models.pdf)
