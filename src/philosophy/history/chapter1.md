@@ -13,28 +13,40 @@
 - 公元前660—公元前645年，第二次美塞尼亚战争，斯巴达占领美塞尼亚人的全部领土，奴役全部美塞尼亚人。
 - 公元前650年，希腊人开始向黑海地区殖民。
 - 公元前638年，梭伦出生于雅典。
-![](pics/solon.jpeg)
+<!-- ![](pics/solon.jpeg) -->
+<img src='pics/solon.jpeg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前630年，希腊人在利比亚建立昔兰尼城邦。
 - 公元前630年，女诗人萨福出生列斯波斯岛。萨福是有史可查的古希腊第一位女诗人。
-![《萨福和阿尔凯乌斯》， Lawrence Alma-Tadema爵士，1881](pics/SapphoandArceus.webp)
+<img src='pics/SapphoandArceus.webp' width='80%' style="display:block; margin:0 auto">
+
 - 公元前624年，**米利都学派创始人泰勒斯**出生于米利都。
-![](pics/Thales.jpg)
+<!-- ![](pics/Thales.jpg) -->
+<img src='pics/Thales.jpg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前621年，雅典执政官德拉古颁布古希腊第一部成文法典。
 - 公元前610年，**米利都学派哲学家阿那克西曼德**出生于米利都。他首次在哲学史上提出“本原”的概念。
-![](pics/Anaximander.jpg)
+<!-- ![](pics/Anaximander.jpg) -->
+<img src='pics/Anaximander.jpg' width='50%' style="display:block; margin:0 auto">
 - 公元前595—公元前586年，为争夺德尔菲的控制权而爆发第一次神圣战争。
 - 公元前594年，梭伦改革。雅典开始民主化进程。
 - 公元前590—公元前560年，斯巴达-提吉亚战争。斯巴达取胜，提吉亚被迫成为斯巴达的“盟邦”。
 - 公元前580年，雅典建立第一座雅典娜神庙。
 - 约公元前580年，**毕达哥拉斯**出生于萨摩斯岛。他最早提出地球是球形的思想。
-![](pics/Pythagoras.jpg)
+<!-- ![](pics/Pythagoras.jpg) -->
+<img src='pics/Pythagoras.jpg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前560年—公元前527年，庇西特拉图在雅典反复建立僭主政治，促进了雅典民主的建立。
 - 公元前544年，**爱菲斯学派创始人、哲学家赫拉克利特**出生于爱菲斯。列宁称其为“辩证法的奠基人”。
-![](pics/Heraclitus.jpeg)
+<!-- ![](pics/Heraclitus.jpeg) -->
+<img src='pics/Heraclitus.jpeg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前540年，阿拉里亚海战，希腊人向地中海西部的扩张被迦太基人和爱特鲁里亚人阻止。
 - 公元前534年，雅典第一部悲剧在酒神节中上演。
 - 公元前525年，“悲剧之父”埃斯库罗斯出生于阿提卡的埃琉西斯。
-![](pics/Aeschylus.jpeg)
+<!-- ![](pics/Aeschylus.jpeg) -->
+<img src='pics/Aeschylus.jpeg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前525—公元前523年，斯巴达人扩张到萨摩斯。伯罗奔尼撒同盟逐渐形成。
 - 公元前510年，雅典僭主希庇阿斯被驱逐，雅典僭主制结束。
 - 公元前508年，克里斯提尼改革，雅典民主政治基本建立，雅典国家正式形成。
@@ -44,28 +56,41 @@
 - 公元前494年，波斯军攻陷并洗劫米利都。
 - 公元前490年，5月，雅典在海战中败于埃及那；波斯军出征希腊本土；9月，马拉松战役，希腊联军大胜。
 - 约公元前490—公元前480年，**智者学派代表人物普罗塔哥拉**出生于阿布德拉。
-![右](pics/Protagoras.jpg)
+<!-- ![右](pics/Protagoras.jpg) -->
+<img src='pics/Protagoras.jpg' width='40%' style="display:block; margin:0 auto">
+
 - 公元前487年，雅典首次实施“陶片放逐法”。同年第一部喜剧上演。
 - 公元前486年，雅典执政官开始实行抽签选举。
 - 约公元前484年，历史学家希罗多德出生于哈利卡纳苏。
-![](pics/Herodotus.jpeg)
+<!-- ![](pics/Herodotus.jpeg) -->
+<img src='pics/Herodotus.jpeg' width='40%' style="display:block; margin:0 auto">
+
 - 公元前482年，雅典人在劳里昂发现银矿，并利用银矿的收入发展海军。
 - 公元前481年，波斯军攻陷雅典，雅典人全部登上舰船；10月，在斯巴达组建希腊同盟。
 - 公元前480年，9月，温泉关战役；同月，萨拉米海战，希腊联军大胜，波斯军大部撤军。
-![](pics/Greco-Persian%20Wars.jpg)
+<!-- ![](pics/Greco-Persian%20Wars.jpg) -->
+<img src='pics/Greco-Persian%20Wars.jpg' width='50%' style="display:block; margin:0 auto">
+
 - 公元前480年，悲剧作家欧里庇得斯出生于阿提卡的佛利亚乡。
 - 普拉提亚战役，希腊联军大胜，波斯驻希腊陆军统帅玛尔多纽斯阵亡；米卡列战役。
-![](pics/Battle%20of%20Plataea.jpg)
+<!-- ![](pics/Battle%20of%20Plataea.jpg) -->
+<img src='pics/Battle%20of%20Plataea.jpg' width='70%' style="display:block; margin:0 auto">
+
 - 公元前478年，提洛同盟成立。
 - 公元前469年，苏格拉底出生于雅典。
-![](pics/Socrate.jpg)
+<!-- ![](pics/Socrate.jpg) -->
+<img src='pics/Socrate.jpg' width='30%' style="display:block; margin:0 auto">
 - 约公元前468年，攸里梅敦河战役，客蒙率领提洛同盟军大胜波斯军。
 - 约公元前464—公元前453年，第三次美塞尼亚战争，美塞尼亚人获得了解放。
 - 公元前462年，雅典厄菲阿尔特改革，民主程度加强。
 - 公元前460—公元前446年，以雅典为首的城邦集团与以斯巴达为首的城邦集团交战（又称“第一次伯罗奔尼撒战争”）。
 - 公元前460年，历史学家修昔底德出生于雅典；医学家希波克拉底出生于科斯岛；**哲学家德谟克利特**出生于色雷斯，他提出了“原子论”。
-![](pics/Thucydides.jpg)
-![](pics/Democritus.jpg)
+<!-- ![](pics/Thucydides.jpg) -->
+<img src='pics/Thucydides.jpg' width='50%' style="display:block; margin:0 auto">
+
+<!-- ![](pics/Democritus.jpg) -->
+<img src='pics/Democritus.jpg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前459—公元前454年，雅典人远征埃及，最终全军覆没。
 - 公元前454年，提洛同盟金库转移至雅典，雅典帝国初步形成；罗马派遣考察团前往希腊考察法律。
 - 公元前449—公元前448年，第二次神圣战争。
@@ -74,16 +99,22 @@
 - 公元前445年，雅典人与伯罗奔尼撒人签订三十年和约。
 - 公元前443年，雅典人在南意大利建立图里伊城邦。
 - 公元前442—公元前429年，伯利克里连续当选将军，雅典民主政治进入黄金时代。
-![](pics/Pericles.jpg)
+<!-- ![](pics/Pericles.jpg) -->
+<img src='pics/Pericles.jpg' width='30%' style="display:block; margin:0 auto">
+
 - 约公元前440年，历史学家色诺芬出生于雅典。
 - 公元前438年，帕特农神庙竣工。
 - 公元前437年，雅典人在色雷斯建立安菲波利斯城邦。
 - 公元前433年，雅典与科基拉结盟，援助科基拉与科林斯作战。此事是伯罗奔尼撒战争的导火索之一。
 - 公元前431年，伯罗奔尼撒战争爆发，斯巴达国王阿奇达慕斯率军入侵阿提卡。
-![](pics/peloponnesian%20war.png)
+<!-- ![](pics/peloponnesian%20war.png) -->
+<img src='pics/peloponnesian%20war.png' width='60%' style="display:block; margin:0 auto">
+
 - 公元前430—公元前427年，雅典大瘟疫。
 - 公元前427年，**柏拉图出生于雅典**；西西里的高尔基亚出使雅典，修辞学开始在希腊本土传播。
-![](pics/Plato.jpg)
+<!-- ![](pics/Plato.jpg) -->
+<img src='pics/Plato.jpg' width='30%' style="display:block; margin:0 auto">
+
 - 公元前424年，伯罗奔尼撒同盟军攻克安菲波利斯，史学家修昔底德因救援不利而被放逐。
 - 公元前422年，克里昂、伯拉西达战死，伯罗奔尼撒战争双方主和派占上风。
 - 公元前421年，雅典与斯巴达签订“尼基阿斯和约”。
@@ -104,13 +135,19 @@
 - 公元前395年，科林斯战争爆发；雅典开始重修长城。
 - 公元前394年，克多尼斯海战，科浓作为雇佣军将领率波斯海军大败斯巴达舰队，斯巴达失去海上霸权。
 - 公元前393年，雅典重修长城竣工。
-![](pics/Great%20Wall%20of%20Athens.jpg)
+<!-- ![](pics/Great%20Wall%20of%20Athens.jpg) -->
+<img src='pics/Great%20Wall%20of%20Athens.jpg' width='60%' style="display:block; margin:0 auto">
+
 - 公元前390年，雅典名将伊菲克拉特首次率轻盾兵击败斯巴达重步兵。
 - 公元前387年，**柏拉图创建阿卡德米学园**。
 - 公元前386年，《大王和约》签订，波斯从此能合法介入希腊事务。
 - 公元前384年，**亚里士多德出生于色雷斯的希腊殖民地斯塔基拉**。
-![](pics/Aristotle.jpg)
-![](pics/Aristotle2.jpg)
+<!-- ![](pics/Aristotle.jpg) -->
+<img src='pics/Aristotle.jpg' width='35%' style="display:block; margin:0 auto">
+
+<!-- ![](pics/Aristotle2.jpg) -->
+<img src='pics/Aristotle2.jpg' width='35%' style="display:block; margin:0 auto">
+
 - 公元前382年，斯巴达军攻占底比斯卫城。
 - 公元前378年，雅典与底比斯结盟；第二雅典海上同盟成立。
 - 公元前376年，纳克索斯海战，雅典重新掌握爱琴海制海权。
