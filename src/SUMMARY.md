@@ -8,6 +8,7 @@
     - [HTML](python/crawler/html.md)
     - [BeautifulSoup](python/crawler/BeautifulSoup.md)
     - [re](python/crawler/re.md)
+    - [XPath](python/crawler/xpath.md)
     - [dash](python/crawler/dash.md)
   - [pytorch](python/pytorch/pytorch.md)
   - [others](python/np_pd/np_pd.md)
