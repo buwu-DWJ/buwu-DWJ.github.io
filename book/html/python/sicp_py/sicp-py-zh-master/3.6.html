@@ -1,0 +1,964 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js ayu">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>3.6 抽象语言的解释器 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../favicon.png">
+    <link rel="stylesheet" href="../../../css/variables.css">
+    <link rel="stylesheet" href="../../../css/general.css">
+    <link rel="stylesheet" href="../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../highlight.css">
+    <link rel="stylesheet" href="../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('ayu')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../pre.html">目录</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> Markdown&LaTeX</a></li><li class="chapter-item expanded "><a href="../../../python/python.html"><strong aria-hidden="true">2.</strong> Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/win32com/pre.html"><strong aria-hidden="true">2.1.</strong> win32com</a></li><li class="chapter-item "><a href="../../../python/crawler/pre.html"><strong aria-hidden="true">2.2.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/crawler/html.html"><strong aria-hidden="true">2.2.1.</strong> HTML</a></li><li class="chapter-item "><a href="../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.2.2.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../python/crawler/re.html"><strong aria-hidden="true">2.2.3.</strong> re</a></li><li class="chapter-item "><a href="../../../python/crawler/xpath.html"><strong aria-hidden="true">2.2.4.</strong> XPath</a></li><li class="chapter-item "><a href="../../../python/crawler/css_selector.html"><strong aria-hidden="true">2.2.5.</strong> CSS_selector</a></li><li class="chapter-item "><a href="../../../python/crawler/dash.html"><strong aria-hidden="true">2.2.6.</strong> dash</a></li></ol></li><li class="chapter-item "><a href="../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.3.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.4.</strong> others</a></li><li class="chapter-item "><a href="../../../python/python之禅/pre.html"><strong aria-hidden="true">2.5.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/python之禅/optim.html"><strong aria-hidden="true">2.5.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.2.</strong> 其他细节</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> SICP_for_Python</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch1.html"><strong aria-hidden="true">2.6.1.</strong> 第一章 使用函数构建抽象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.1.html"><strong aria-hidden="true">2.6.1.1.</strong> 1.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.2.html"><strong aria-hidden="true">2.6.1.2.</strong> 1.2 编程元素</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.3.html"><strong aria-hidden="true">2.6.1.3.</strong> 1.3 定义新的函数</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.4.html"><strong aria-hidden="true">2.6.1.4.</strong> 1.4 实践指南：函数的艺术</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.5.html"><strong aria-hidden="true">2.6.1.5.</strong> 1.5 控制</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.6.html"><strong aria-hidden="true">2.6.1.6.</strong> 1.6 高阶函数</a></li></ol></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch2.html"><strong aria-hidden="true">2.6.2.</strong> 第二章 使用对象构建抽象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.1.html"><strong aria-hidden="true">2.6.2.1.</strong> 2.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.2.html"><strong aria-hidden="true">2.6.2.2.</strong> 2.2 数据抽象</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.3.html"><strong aria-hidden="true">2.6.2.3.</strong> 2.3 序列</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.4.html"><strong aria-hidden="true">2.6.2.4.</strong> 2.4 可变数据</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.5.html"><strong aria-hidden="true">2.6.2.5.</strong> 2.5 面向对象编程</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.6.html"><strong aria-hidden="true">2.6.2.6.</strong> 2.6 实现类和对象</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.7.html"><strong aria-hidden="true">2.6.2.7.</strong> 2.7 泛用方法</a></li></ol></li><li class="chapter-item expanded "><a href="../../../python/sicp_py/sicp-py-zh-master/ch3.html"><strong aria-hidden="true">2.6.3.</strong> 第三章 计算机程序的构造和解释</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.1.html"><strong aria-hidden="true">2.6.3.1.</strong> 3.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.2.html"><strong aria-hidden="true">2.6.3.2.</strong> 3.2 函数和所生成的过程</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.3.html"><strong aria-hidden="true">2.6.3.3.</strong> 3.3 递归数据结构</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.4.html"><strong aria-hidden="true">2.6.3.4.</strong> 3.4 异常</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.5.html"><strong aria-hidden="true">2.6.3.5.</strong> 3.5 组合语言的解释器</a></li><li class="chapter-item expanded "><a href="../../../python/sicp_py/sicp-py-zh-master/3.6.html" class="active"><strong aria-hidden="true">2.6.3.6.</strong> 3.6 抽象语言的解释器</a></li></ol></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch4.html"><strong aria-hidden="true">2.6.4.</strong> 第四章 分布式和并行计算</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch5.html"><strong aria-hidden="true">2.6.5.</strong> 第五章 序列和协程</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../cpp/pre.html"><strong aria-hidden="true">3.</strong> CPP</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/2.函数/index.html"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/pre.html"><strong aria-hidden="true">4.1.1.2.</strong> 基本类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/basic_types.html"><strong aria-hidden="true">4.1.1.2.1.</strong> 数值类型</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/char.html"><strong aria-hidden="true">4.1.1.2.2.</strong> 字符,布尔,单元类型</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/statement.html"><strong aria-hidden="true">4.1.1.2.3.</strong> 语句和表达式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/function.html"><strong aria-hidden="true">4.1.1.2.4.</strong> 函数</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.3.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.5.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.5.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.5.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.5.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.5.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.5.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.6.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.7.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.7.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.7.2.</strong> option</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.7.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.7.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.8.</strong> 方法method</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.9.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.9.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.9.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.10.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.10.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.10.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.11.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.12.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.13.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.13.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.13.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">4.1.1.13.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.14.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.15.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.16.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/pyo3.html"><strong aria-hidden="true">4.2.</strong> PyO3</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonmodules.html"><strong aria-hidden="true">4.2.1.</strong> Python 模组</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/pre.html"><strong aria-hidden="true">4.2.2.</strong> Python 函数</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/function_signatures.html"><strong aria-hidden="true">4.2.2.1.</strong> 函数签名 Function signatures</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/error_handling.html"><strong aria-hidden="true">4.2.2.2.</strong> 错误处理 Error handling</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/pre.html"><strong aria-hidden="true">4.2.3.</strong> Python 类</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/class_customization.html"><strong aria-hidden="true">4.2.3.1.</strong> 类的自定义</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/basic_type.html"><strong aria-hidden="true">4.2.3.2.</strong> 基本对象的自定义</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/emulate_number_type.html"><strong aria-hidden="true">4.2.3.3.</strong> 模拟数值类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/emulate_callable_objects.html"><strong aria-hidden="true">4.2.3.4.</strong> 模拟可调用类型</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/pre.html"><strong aria-hidden="true">4.2.4.</strong> 类型转换</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/tables.html"><strong aria-hidden="true">4.2.4.1.</strong> 将Rust类型映射为python类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/traits.html"><strong aria-hidden="true">4.2.4.2.</strong> 转换特征 Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/python_exceptions.html"><strong aria-hidden="true">4.2.5.</strong> Python异常</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_from_rust.html"><strong aria-hidden="true">4.2.6.</strong> 在Rust中调用Python</a></li><li class="chapter-item "><a href="../../../rust/pyo3/GIL.html"><strong aria-hidden="true">4.2.7.</strong> GIL, 可变性与对象类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/parallelism.html"><strong aria-hidden="true">4.2.8.</strong> 并行</a></li><li class="chapter-item "><a href="../../../rust/pyo3/debugging.html"><strong aria-hidden="true">4.2.9.</strong> debug</a></li><li class="chapter-item "><a href="../../../rust/pyo3/features_reference.html"><strong aria-hidden="true">4.2.10.</strong> 特性引用Features reference</a></li><li class="chapter-item "><a href="../../../rust/pyo3/memory_management.html"><strong aria-hidden="true">4.2.11.</strong> 内存管理</a></li><li class="chapter-item "><a href="../../../rust/pyo3/advanced_topic.html"><strong aria-hidden="true">4.2.12.</strong> 高阶话题</a></li><li class="chapter-item "><a href="../../../rust/pyo3/building_distribution.md/pre.html"><strong aria-hidden="true">4.2.13.</strong> 构建与发布</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/building_distribution.md/multiple_version.html"><strong aria-hidden="true">4.2.13.1.</strong> 支持多个Python版本</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.2.14.</strong> 有用的包</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/useful_crates/logging.html"><strong aria-hidden="true">4.2.14.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../../rust/pyo3/useful_crates/async_and_await.html"><strong aria-hidden="true">4.2.14.2.</strong> async与await</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../others/pre.html"><strong aria-hidden="true">5.</strong> Others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../others/com.html"><strong aria-hidden="true">5.1.</strong> COM组件</a></li><li class="chapter-item "><a href="../../../others/cython/pre.html"><strong aria-hidden="true">5.2.</strong> cython</a></li></ol></li><li class="chapter-item "><a href="../../../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/DRL/chatgpt.html"><strong aria-hidden="true">8.3.1.</strong> ChatGPT历史</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li><li class="chapter-item "><a href="../../../option/basic/trading.html"><strong aria-hidden="true">9.1.4.</strong> 日内交易要点</a></li></ol></li><li class="chapter-item "><a href="../../../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../philosophy/philosophy.html"><strong aria-hidden="true">10.</strong> Phylosophy</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../philosophy/history/history.html"><strong aria-hidden="true">10.1.</strong> 西方哲学史</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../philosophy/history/chapter1.html"><strong aria-hidden="true">10.1.1.</strong> 古希腊哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter2.html"><strong aria-hidden="true">10.1.2.</strong> 希腊化时期和中世纪的哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter3.html"><strong aria-hidden="true">10.1.3.</strong> 近代早期的哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter4.html"><strong aria-hidden="true">10.1.4.</strong> 近代晚期和19世纪哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter5.html"><strong aria-hidden="true">10.1.5.</strong> 20世纪和当代哲学</a></li></ol></li><li class="chapter-item "><a href="../../../philosophy/critique_of_pure_reason/main.html"><strong aria-hidden="true">10.2.</strong> 纯粹理性批判</a></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="36-抽象语言的解释器"><a class="header" href="#36-抽象语言的解释器">3.6 抽象语言的解释器</a></h1>
+<p>计算器语言提供了一种手段，来组合一些嵌套的调用表达式。然而，我们却没有办法定义新的运算符，将值赋给名称，或者表达通用的计算方法。总之，计算器并不以任何方式支持抽象。所以，它并不是特别强大或通用的编程语言。我们现在转到定义一种通用编程语言的任务中，这门语言通过将名称绑定到值以及定义新的操作来支持抽象。</p>
+<p>我们并不是进一步扩展简单的计算器语言，而是重新开始，并且为 Logo 语言开发解释器。Logo 并不是为这门课发明的语言，而是一种经典的命令式语言，拥有许多解释器实现和自己的开发者社区。</p>
+<p>上一章，我们将完整的解释器表示为 Python 源码，这一章使用描述性的方式。某个配套工程需要你通过构建完整的 Logo 函数式解释器来实现这里展示的概念。</p>
+<h2 id="361-scheme-语言"><a class="header" href="#361-scheme-语言">3.6.1 Scheme 语言</a></h2>
+<p>Scheme 是 Lisp 的一种方言，Lisp 是现在仍在广泛使用的第二老（在 Fortran 之后）的编程语言。Scheme首次在 1975 年由 Gerald Sussman 和 Guy Steele 描述。Revised(4) Report on the Algorithmic Language Scheme 的引言中写道：</p>
+<blockquote>
+<p>编程语言不应该通过堆砌特性，而是应该通过移除那些使额外特性变得必要的缺点和限制来设计。Scheme 表明，用于组成表达式的非常少量的规则，在没有组合方式的限制的情况下，足以组成实用并且高效的编程语言，它足够灵活，在使用中可以支持多数当今的主流编程范式。</p>
+</blockquote>
+<p>我们将这个报告推荐给你作为 Scheme 语言的详细参考。我们这里只会涉及重点。下面的描述中，我们会用到报告中的例子。</p>
+<p>虽然 Scheme 非常简单，但它是一种真正的编程语言，在许多地方都类似于 Python，但是“语法糖[1]”会尽量少。基本上，所有运算符都是函数调用的形式。这里我们会描述完整的 Scheme 语言的在报告中描述的可展示的子集。</p>
+<blockquote>
+<p>[1] 非常遗憾，这对于 Scheme 语言的最新版本并不成立，就像 Revised(6) Report 中的那样。所以这里我们仅仅针对之前的版本。</p>
+</blockquote>
+<p>Scheme 有多种可用的实现，它们添加了额外的过程。在 UCB，我们使用<a href="http://inst.eecs.berkeley.edu/~scheme/">Stk 解释器的一个修改版</a>，它也在我们的教学服务器上以<code>stk</code>提供。不幸的是，它并不严格遵守正式规范，但它可用于我们的目的。</p>
+<p>**使用解释器。**就像 Python 解释器[2]那样，向 Stk 键入的表达式会由“读取-求值-打印”循环求值并打印：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; 3
+3
+&gt;&gt;&gt; (- (/ (* (+ 3 7 10) (- 1000 8)) 992) 17)
+3
+&gt;&gt;&gt; (define (fib n) (if (&lt; n 2) n (+ (fib (- n 2)) (fib (- n 1)))))
+fib
+&gt;&gt;&gt; '(1 (7 19))
+(1 (7 19))
+</code></pre>
+<blockquote>
+<p>[2] 在我们的例子中，我们使用了和 Python 相同的符号<code>&gt;&gt;&gt;</code>和<code>...</code>，来表示解释器的输入行，和非前缀输出的行。实际上，Scheme 解释器使用不同的提示符。例如，Stk 以<code>STk&gt;</code>来提示，并且不提示连续行。然而 Python 的惯例使输入和输出更加清晰。</p>
+</blockquote>
+<p><strong>Scheme 中的值</strong>:Scheme 中的值通常与 Python 对应。</p>
+<p>布尔值</p>
+<p>真值和假值，使用<code>#t</code>和<code>#f</code>来表示。Scheme 中唯一的假值（按照 Python 的含义）就是<code>#f</code>。</p>
+<p>数值</p>
+<p>这包括任意精度的整数、有理数、复数，和“不精确”（通常是浮点）数值。整数可用标准的十进制表示，或者通过在数字之前添加<code>#o</code>（八进制）、<code>#x</code>（十六进制）或<code>#b</code>（二进制），以其他进制表示。</p>
+<p>符号</p>
+<p>符号是一种字符串，但是不被引号包围。有效的字符包括字母、数字和：</p>
+<pre><code>!  $  %  &amp;  *  /  :  &lt;  = &gt;  ?  ^  _  ~  +  -  .  @
+</code></pre>
+<p>在使用<code>read</code>函数输入时，它会读取 Scheme 表达式（也是解释器用于输入程序文本的东西），不区分符号中的大小写（在STk 实现中会转为小写）。两个带有相同表示的符号表示同一对象（并不是两个碰巧拥有相同内容的对象）。</p>
+<p>偶对和列表</p>
+<p>偶对是含有两个（任意类型）成员的对象，叫做它的<code>car</code>和<code>cdr</code>。<code>car</code>为<code>A</code>且<code>cdr</code>为<code>B</code>的偶对可表示为<code>(A . B)</code>。偶对（就像 Python 中的元组）可以表示列表、树和任意的层次结构。</p>
+<p>标准的 Scheme 列表包含空的列表值（记为<code>()</code>），或者包含一个偶对，它的<code>car</code>是列表第一个元素，<code>cdr</code>是列表的剩余部分。所以，包含整数<code>1, 2, 3</code>的列表可表示为：</p>
+<pre><code class="language-scheme">(1 . (2 . (3 . ())))
+</code></pre>
+<p>列表无处不在，Scheme 允许我们将<code>(a . ())</code>缩略为<code>(a)</code>，将<code>(a . (b ...))</code>缩略为<code>(a b ...)</code>。所以，上面的列表通常写为：</p>
+<pre><code class="language-scheme">(1 2 3)
+</code></pre>
+<p>过程（函数）</p>
+<p>就像 Python 中一样，过程（或函数）值表示一些计算，它们可以通过向函数提供参数来调用。过程要么是原始的，由 Scheme 的运行时系统提供，要么从 Scheme 表达式和环境构造（就像 Python 中那样）。没有用于函数值的直接表示，但是有一些绑定到基本函数的预定义标识符，也有一些 Scheme 表达式，在求值时会产生新的过程值。</p>
+<p>其它类型</p>
+<p>Scheme 也支持字符和字符串（类似 Python 的字符串，除了 Scheme 区分字符和字符串），以及向量（就像 Python 的列表）。</p>
+<p>**程序表示。**就像其它 Lisp 版本，Scheme 的数据值也用于表示程序。例如，下面的 Scheme 列表：</p>
+<pre><code class="language-scheme">(+ x (* 10 y))
+</code></pre>
+<p>取决于如何使用，可表示为三个元素的列表（它的最后一个元素也是三个元素的列表），或者表达为用于计算<code>x+10y</code>的 Scheme 表达式。为了将 Scheme 值求值为程序，我们需要考虑值的类型，并按以下步骤求值：</p>
+<ul>
+<li>整数、布尔值、字符、字符串和向量都求值为它们自己。所以，表达式<code>5</code>求值为 5。</li>
+<li>纯符号看做变量。它们的值由当前被求值环境来决定，就像 Python 那样。</li>
+<li>非空列表以两种方式解释，取决于它们的第一个成员：
+<ul>
+<li>如果第一个成员是特殊形式的符号（在下面描述），求值由这个特殊形式的规则执行。</li>
+<li>所有其他情况（叫做组合）中，列表的成员会以非特定的顺序（递归）求值。第一个成员必须是函数值。这个值会被调用，以列表中剩余成员的值作为参数。</li>
+</ul>
+</li>
+<li>其他 Scheme 值（特别是，不是列表的偶对）在程序中是错误的。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; 5              ; A literal.
+5
+&gt;&gt;&gt; (define x 3)   ; A special form that creates a binding for symbol
+x                   ; x.
+&gt;&gt;&gt; (+ 3 (* 10 x)) ; A combination.  Symbol + is bound to the primitive
+33                  ; add function and * to primitive multiply.
+</code></pre>
+<p><strong>基本的特殊形式</strong>:特殊形式将东西表示为 Python 中的控制结构、函数调用或者类的定义：在调用时，这些结构不会简单地立即求值。</p>
+<p>首先，一些通用的结构以这种形式使用：</p>
+<p><code>EXPR-SEQ</code></p>
+<p>只是表达式的序列，例如：</p>
+<pre><code class="language-scheme">(+ 3 2) x (* y z)
+</code></pre>
+<p>当它出现在下面的定义中时，它指代从左到右求值的表达式序列，序列中最后一个表达式的值就是它的值。</p>
+<p><code>BODY</code></p>
+<p>一些结构拥有“主体”，它们是 <code>EXPR-SEQ</code>，就像上面一样，可能由一个或多个定义处理。它们的值就是 <code>EXPR-SEQ</code> 的值。这些定义的解释请见内部定义一节。</p>
+<p>下面是这些特殊形式的代表性子集：</p>
+<p>定义</p>
+<p>定义可以出现在程序的顶层（也就是不包含在其它结构中）。</p>
+<p><code>(define SYM EXPR)</code></p>
+<p>求出<code>EXPR</code>并在当前环境将其值绑定到符号<code>SYM</code>上。</p>
+<p><code>(define (SYM ARGUMENTS) BODY)</code></p>
+<p>等价于<code>(define SYM (lambda (ARGUMENTS) BODY))</code>。</p>
+<p><code>(lambda (ARGUMENTS) BODY)</code></p>
+<p>求值为函数。<code>ARGUMENTS </code>通常为（可能非空的）不同符号的列表，向函数提供参数名称，并且表明它们的数量。<code>ARGUMENTS</code>也可能具有如下形式：</p>
+<pre><code class="language-scheme">(sym1 sym2 ... symn . symr)
+</code></pre>
+<p>（也就是说，列表的末尾并不像普通列表那样是空的，最后的<code>cdr</code>是个符号。）这种情况下，<code>symr</code>会绑定到列表的尾后参数值（后面的第 n+1 个参数）。</p>
+<p>当产生的函数被调用时，<code>ARGUMENTS</code>在一个新的环境中绑定到形参的值上，新的环境扩展自<code>lambda</code>表达式求值的环境（就像 Python 那样）。之后<code>BODY</code>会被求值，它的值会作为调用的值返回。</p>
+<p><code>(if COND-EXPR TRUE-EXPR OPTIONAL-FALSE-EXPR)</code></p>
+<p>求出<code>COND-EXPR</code>，如果它的值不是<code>#f</code>，那么求出<code>TRUE-EXPR</code>，结果会作为<code>if</code>的值。如果<code>COND-EXPR</code>值为<code>#f</code>而且<code>OPTIONAL-FALSE-EXPR</code>存在，它会被求值为并作为<code>if</code>的值。如果它不存在，<code>if</code>值是未定义的。</p>
+<p><code>(set! SYMBOL EXPR)</code></p>
+<p>求出<code>EXPR</code>使用该值替换<code>SYMBOL </code>的绑定。<code>SYMBOL </code>必须已经绑定，否则会出现错误。和 Python 的默认情况不同，它会在定义它的第一个环境帧上替换绑定，而不总是最深处的帧。</p>
+<p><code>(quote EXPR)</code> 或 <code>'EXPR</code></p>
+<p>将 Scheme 数据结构用于程序表示的一个问题，是需要一种方式来表示打算被求值的程序文本。<code>quote</code>形式求值为<code>EXPR</code>自身，而不进行进一步的求值（替代的形式使用前导的单引号，由 Scheme 表达式读取器转换为第一种形式）。例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (+ 1 2)
+3
+&gt;&gt;&gt; '(+ 1 2)
+(+ 1 2)
+&gt;&gt;&gt; (define x 3)
+x
+&gt;&gt;&gt; x
+3
+&gt;&gt;&gt; (quote x)
+x
+&gt;&gt;&gt; '5
+5
+&gt;&gt;&gt; (quote 'x)
+(quote x)
+</code></pre>
+<p><strong>派生的特殊形式</strong></p>
+<p>派生结构时可以翻译为基本结构的结构。它们的目的是让程序对于读取器更加简洁可读。在 Scheme 中：</p>
+<p><code>(begin EXPR-SEQ)</code></p>
+<p>简单地求值并产生<code>EXPR-SEQ</code>的值。这个结构是个简单的方式，用于在需要单个表达式的上下文中执行序列或表达式。</p>
+<p><code>(and EXPR1 EXPR2 ...)</code></p>
+<p>每个<code>EXPR</code>从左到右执行，直到碰到了<code>#f</code>，或遍历完<code>EXPRs</code>。值是最后求值的<code>EXPR</code>，如果<code>EXPRs</code>列表为空，那么值为<code>#t</code>。例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (and (= 2 2) (&gt; 2 1))
+#t
+&gt;&gt;&gt; (and (&lt; 2 2) (&gt; 2 1))
+#f
+&gt;&gt;&gt; (and (= 2 2) '(a b))
+(a b)
+&gt;&gt;&gt; (and)
+#t
+</code></pre>
+<p><code>(or EXPR1 EXPR2 ...)</code></p>
+<p>每个<code>EXPR</code>从左到右求值，直到碰到了不为<code>#f</code>的值，或遍历完<code>EXPRs</code>。值为最后求值的<code>EXPR</code>，如<code>EXPRs</code>列表为空，那么值为<code>#f</code>。例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (or (= 2 2) (&gt; 2 3))
+#t
+&gt;&gt;&gt; (or (= 2 2) '(a b))
+#t
+&gt;&gt;&gt; (or (&gt; 2 2) '(a b))
+(a b)
+&gt;&gt;&gt; (or (&gt; 2 2) (&gt; 2 3))
+#f
+&gt;&gt;&gt; (or)
+#f
+</code></pre>
+<p><code>(cond CLAUSE1 CLAUSE2 ...)</code></p>
+<p>每个<code>CLAUSEi</code>都依次处理，直到其中一个处理成功，它的值就是<code>cond</code>的值。如果没有子句处理成功，值是未定义的。每个子句都有三种可能的形式。</p>
+<p>如果<code>TEST-EXPR </code>求值为不为<code>#f</code>的值，<code>(TEST-EXPR EXPR-SEQ)</code>形式执行成功。这种情况下，它会求出<code>EXPR-SEQ</code>并产生它的值。<code>EXPR-SEQ</code>可以不写，这种情况下值为<code>TEST-EXPR</code>本身。</p>
+<p>最后一个子句可为<code>(else EXPR-SEQ)</code>的形式，它等价于<code>(#t EXPR-SEQ)</code>。</p>
+<p>最后，如果<code>(TEST_EXPR =&gt; EXPR)</code>的形式在<code>TEST_EXPR</code>求值为不为<code>#f</code>的值（叫做<code>V</code>）时求值成功。如果求值成功，<code>cond</code>结构的值是由<code>(EXPR V)</code>返回的值。也就是说，<code>EXPR</code>必须求值为单参数的函数，在<code>TEST_EXPR</code>的值上调用。</p>
+<p>例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (cond ((&gt; 3 2) 'greater)
+...        ((&lt; 3 2) 'less)))
+greater
+&gt;&gt;&gt; (cond ((&gt; 3 3) 'greater)
+...        ((&lt; 3 3) 'less)
+...        (else 'equal))
+equal
+&gt;&gt;&gt; (cond ((if (&lt; -2 -3) #f -3) =&gt; abs)
+...        (else #f))
+3
+</code></pre>
+<p><code>(case KEY-EXPR CLAUSE1 CLAUSE2 ...)</code></p>
+<p><code>KEY-EXPR</code>的求值会产生一个值<code>K</code>。之后将<code>K</code>与每个<code>CLAUSEi</code>一次匹配，直到其中一个成功，并且返回该子句的值。如果没有子句成功，值是未定义的。每个子句都拥有<code>((DATUM1 DATUM2 ...) EXPR-SEQ)</code>的形式。其中<code>DATUMs</code>是 Scheme 值（它们不会被求值）。如果<code>K</code>匹配了<code>DATUM</code>的值之一（由下面描述的<code>eqv?</code>函数判断），子句就会求值成功，它的<code>EXPR-SEQ</code>就会被求值，并且它的值会作为<code>case</code>的值。最后的子句可为<code>(else EXPR-SEQ)</code>的形式，它总是会成功，例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (case (* 2 3)
+...     ((2 3 5 7) 'prime)
+...     ((1 4 6 8 9) 'composite))
+composite
+&gt;&gt;&gt; (case (car '(a . b))
+...     ((a c) 'd)
+...     ((b 3) 'e))
+d
+&gt;&gt;&gt; (case (car '(c d))
+...    ((a e i o u) 'vowel)
+...    ((w y) 'semivowel)
+...    (else 'consonant))
+consonant
+</code></pre>
+<p><code>(let BINDINGS BODY)</code></p>
+<p><code>BINDINGS</code>是偶对的列表，形式为：</p>
+<pre><code class="language-scheme">( (VAR1 INIT1) (VAR2 INIT2) ...)
+</code></pre>
+<p>其中<code>VARs</code>是（不同的）符号，而<code>INITs</code>是表达式。首先会求出<code>INIT</code>表达式，之后创建新的帧，将这些值绑定到<code>VARs</code>，再然后在新环境中求出<code>BODY</code>，返回它的值。换句话说，它等价于调用</p>
+<pre><code class="language-scheme">((lambda (VAR1 VAR2 ...) BODY)
+INIT1 INIT2 ...)
+</code></pre>
+<p>所以，任何<code>INIT</code>表达式中的<code>VARs</code>引用都指向这些符号在<code>let</code>结构外的定义（如果存在的话），例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (let ((x 2) (y 3))
+...       (* x y))
+6
+&gt;&gt;&gt; (let ((x 2) (y 3))
+...       (let ((x 7) (z (+ x y)))
+...            (* z x)))
+35
+</code></pre>
+<p><code>(let* BINDINGS BODY)</code></p>
+<p><code>BINDINGS </code>的语法和<code>let</code>相同。它等价于</p>
+<pre><code class="language-scheme">(let ((VAR1 INIT1))
+...
+(let ((VARn INITn))
+BODY))
+</code></pre>
+<p>也就是说，它就像<code>let</code>表达式那样，除了<code>VAR1</code>的新绑定对<code>INITs</code>子序列以及<code>BODY</code>中可见，<code>VAR2</code>与之类似，例如：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (define x 3)
+x
+&gt;&gt;&gt; (define y 4)
+y
+&gt;&gt;&gt; (let ((x 5) (y (+ x 1))) y)
+4
+&gt;&gt;&gt; (let* ((x 5) (y (+ x 1))) y)
+6
+</code></pre>
+<p><code>(letrec BINDINGS BODY)</code></p>
+<p>同样，语法类似于<code>let</code>。这里，首先会创建新的绑定（带有未定义的值），之后<code>INITs</code>被求值并赋给它们。如果某个<code>INITs</code>使用了某个<code>VAR</code>的值，并且没有为其赋初始值，结果是未定义的。这个形式主要用于定义互相递归的函数（lambda 本身并不会使用它们提到过的值；这只会在它们被调用时随后发生）。例如：</p>
+<pre><code class="language-scheme">(letrec ((even?
+      (lambda (n)
+             (if (zero? n)
+                  #t
+                  (odd? (- n 1)))))
+     (odd?
+      (lambda (n)
+              (if (zero? n)
+                  #f
+                  (even? (- n 1))))))
+(even? 88))
+</code></pre>
+<p><strong>内部定义</strong>:当<code>BODY</code>以<code>define</code>结构的序列开始时，它们被看作“内部定义”，并且在解释上与顶层定义有些不同。特别是，它们就像<code>letrec</code>那样。</p>
+<ul>
+<li>首先，会为所有由<code>define</code>语句定义的名称创建绑定，一开始绑定到未定义的值上。</li>
+<li>之后，值由定义来填充。</li>
+</ul>
+<p>所以，内部函数定义的序列是互相递归的，就像 <code>Python 中嵌套在函数中的</code>def`语句那样：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (define (hard-even? x)     ;; An outer-level definition
+...      (define (even? n)      ;; Inner definition
+...          (if (zero? n)
+...              #t
+...              (odd? (- n 1))))
+...      (define (odd? n)       ;; Inner definition
+...          (if (zero? n)
+...              #f
+...              (even? (- n 1))))
+...      (even? x))
+&gt;&gt;&gt; (hard-even? 22)
+#t
+</code></pre>
+<p><strong>预定义函数</strong>:预定义函数有很多，都在全局环境中绑定到名称上，我们只会展示一小部分。其余的会在<a href="http://people.csail.mit.edu/jaffer/r4rs_toc.html"> Revised(4) Scheme 报告</a>中列出。函数调用并不是“特殊的”，因为它们都使用相同的完全统一的求值规则：递归求出所有项目（包括运算符），并且之后在操作数的值上调用运算符的值（它必须是个函数）。</p>
+<ul>
+<li>
+<p><strong>算数</strong>:Scheme 提供了标准的算数运算符，许多都拥有熟悉的表示，虽然它们统一出现在操作数前面：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; ; Semicolons introduce one-line comments.
+&gt;&gt;&gt; ; Compute (3+7+10)*(1000-8) // 992 - 17
+&gt;&gt;&gt; (- (quotient (* (+ 3 7 10) (- 1000 8))) 17)
+3
+&gt;&gt;&gt; (remainder 27 4)
+3
+&gt;&gt;&gt; (- 17)
+-17
+</code></pre>
+<p>与之相似，存在通用的数学比较运算符，为可接受多于两个参数而扩展：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (&lt; 0 5)
+#t
+&gt;&gt;&gt; (&gt;= 100 10 10 0)
+#t
+&gt;&gt;&gt; (= 21 (* 7 3) (+ 19 2))
+#t
+&gt;&gt;&gt; (not (= 15 14))
+#t
+&gt;&gt;&gt; (zero? (- 7 7))
+#t
+</code></pre>
+<p>随便提一下，<code>not</code>是个函数，并不是<code>and</code>或<code>or</code>的特殊形式，因为他的运算符必须求值，所以不需要特殊对待。</p>
+</li>
+<li>
+<p><strong>列表和偶对</strong>:很多操作用于处理偶对和列表（它们同样由偶对和空列表构建）。</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (cons 'a 'b)
+(a . b)
+&gt;&gt;&gt; (list 'a 'b)
+(a b)
+&gt;&gt;&gt; (cons 'a (cons 'b '()))
+(a b)
+&gt;&gt;&gt; (car (cons 'a 'b))
+a
+&gt;&gt;&gt; (cdr (cons 'a 'b))
+b
+&gt;&gt;&gt; (cdr (list a b))
+(b)
+&gt;&gt;&gt; (cadr '(a b))   ; An abbreviation for (car (cdr '(a b)))
+b
+&gt;&gt;&gt; (cddr '(a b))   ; Similarly, an abbreviation for (cdr (cdr '(a b)))
+()
+&gt;&gt;&gt; (list-tail '(a b c) 0)
+(a b c)
+&gt;&gt;&gt; (list-tail '(a b c) 1)
+(b c)
+&gt;&gt;&gt; (list-ref '(a b c) 0)
+a
+&gt;&gt;&gt; (list-ref '(a b c) 2)
+c
+&gt;&gt;&gt; (append '(a b) '(c d) '() '(e))
+(a b c d e)
+&gt;&gt;&gt; ; All but the last list is copied.  The last is shared, so:
+&gt;&gt;&gt; (define L1 (list 'a 'b 'c))
+&gt;&gt;&gt; (define L2 (list 'd))
+&gt;&gt;&gt; (define L3 (append L1 L2))
+&gt;&gt;&gt; (set-car! L1 1)
+&gt;&gt;&gt; (set-car! L2 2)
+&gt;&gt;&gt; L3
+(a b c 2)
+&gt;&gt;&gt; (null? '())
+#t
+&gt;&gt;&gt; (list? '())
+#t
+&gt;&gt;&gt; (list? '(a b))
+#t
+&gt;&gt;&gt; (list? '(a . b))
+#f
+</code></pre>
+</li>
+<li>
+<p><strong>相等性</strong>:<code>=</code>运算符用于数值。通常对于值的相等性，Scheme 区分<code>eq?</code>（就像 Python 的<code>is</code>），<code>eqv?</code>（与之类似，但是和数值上的<code>=</code>一样），和<code>equal?</code>（比较列表结构或字符串的内容）。通常来说，除了在比较符号、布尔值或者空列表的情况中，我们都使用<code>eqv?</code>和<code>equal?</code>。</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (eqv? 'a 'a)
+#t
+&gt;&gt;&gt; (eqv? 'a 'b)
+#f
+&gt;&gt;&gt; (eqv? 100 (+ 50 50))
+#t
+&gt;&gt;&gt; (eqv? (list 'a 'b) (list 'a 'b))
+#f
+&gt;&gt;&gt; (equal? (list 'a 'b) (list 'a 'b))
+#t
+</code></pre>
+</li>
+<li>
+<p><strong>类型</strong>:每个值的类型都只满足一个基本的类型断言。</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (boolean? #f)
+#t
+&gt;&gt;&gt; (integer? 3)
+#t
+&gt;&gt;&gt; (pair? '(a b))
+#t
+&gt;&gt;&gt; (null? '())
+#t
+&gt;&gt;&gt; (symbol? 'a)
+#t
+&gt;&gt;&gt; (procedure? +)
+#t
+</code></pre>
+</li>
+<li>
+<p><strong>输入和输出</strong>:Scheme 解释器通常执行“读取-求值-打印”循环，但是我们可以在程序控制下显式输出东西，使用与解释器内部相同的函数：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (begin (display 'a) (display 'b) (newline))
+ab
+</code></pre>
+<p>于是，<code>(display x)</code>与 Python 的</p>
+<pre><code class="language-py">print(str(x), end=&quot;&quot;)
+</code></pre>
+<p>相似，并且<code>(newline)</code>类似于<code>print()</code>。</p>
+<p>对于输入来说，<code>(read)</code>从当前“端口”读取 Scheme 表达式。它并不会解释表达式，而是将其读作数据：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (read)
+&gt;&gt;&gt; (a b c)
+(a b c)
+</code></pre>
+</li>
+<li>
+<p><strong>求值</strong>:<code>apply </code>函数提供了函数调用运算的直接访问：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (apply cons '(1 2))
+(1 . 2)
+&gt;&gt;&gt; ;; Apply the function f to the arguments in L after g is
+&gt;&gt;&gt; ;; applied to each of them
+&gt;&gt;&gt; (define (compose-list f g L)
+...     (apply f (map g L)))
+&gt;&gt;&gt; (compose-list + (lambda (x) (* x x)) '(1 2 3))
+14
+</code></pre>
+<p>这个扩展允许开头出现“固定”参数：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (apply + 1 2 '(3 4 5))
+15
+</code></pre>
+<p>下面的函数并不在 <a href="http://people.csail.mit.edu/jaffer/r4rs_toc.html">Revised(4) Scheme</a> 中，但是存在于我们的解释器版本中（警告：非标准的过程在 Scheme 的后续版本中并不以这种形式定义）：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (eval '(+ 1 2))
+3
+</code></pre>
+<p>也就是说，<code>eval</code>求解一块 Scheme 数据，它表示正确的 Scheme 表达式。这个版本在全局环境中求解表达式的参数。我们的解释器也提供了一种方式，来规定求值的特定环境：</p>
+<pre><code class="language-scheme">&gt;&gt;&gt; (define (incr n) (lambda (x) (+ n x)))
+&gt;&gt;&gt; (define add5 (incr 5))
+&gt;&gt;&gt; (add5 13)
+18
+&gt;&gt;&gt; (eval 'n (procedure-environment add5))
+5
+</code></pre>
+</li>
+</ul>
+<h2 id="362-logo-语言"><a class="header" href="#362-logo-语言">3.6.2 Logo 语言</a></h2>
+<p>Logo 是 Lisp 的另一种方言。它为教育用途而设计，所以 Logo 的许多设计决策是为了让语言对新手更加友好。例如，多数 Logo 过程以前缀形式调用（首先是过程名称，其次是参数），但是通用的算术运算符以普遍的中缀形式提供。Logo 的伟大之处是，它的简单亲切的语法仍旧为高级程序员提供了惊人的表现力。</p>
+<p>Logo 的核心概念是，它的内建容器类型，也就是 Logo <code>sentence </code>（也叫作列表），可以轻易储存 Logo 源码，这也是它的强大表现力的来源。Logo 的程序可以编写和执行 Logo 表达式，作为求值过程的一部分。许多动态语言都支持代码生成，包括 Python，但是没有语言像 Logo 一样使代码生成如此有趣和易用。</p>
+<p>你可能希望下载完整的 Logo 解释器来体验这个语言。标准的实现是 <a href="http://www.cs.berkeley.edu/~bh/logo.html">Berkeley Logo</a>（也叫做 UCBLogo），由 Brian Harvey 和他的 Berkeley 学生开发。对于苹果用户，<a href="http://www.alancsmith.co.uk/logo/">ACSLogo</a> 兼容 Mac OSX 的最新版本，并带有一份介绍 Logo 语言许多特性的<a href="http://www.alancsmith.co.uk/logo/LogoUserGuide151.pdf">用户指南</a>。</p>
+<p><strong>基础</strong>:Logo 设计为会话式。它的读取-求值循环的提示符是一个问号（<code>?</code>），产生了“我下面应该做什么？”的问题。我们自然想让它打印数值：</p>
+<pre><code class="language-logo">? print 5
+5
+</code></pre>
+<p>Logo 语言使用了非标准的调用表达式语法，完全不带括号分隔符。上面，参数<code>5</code>转给了<code>print</code>，它打印了它的参数。描述 Logo 程序结构的术语有些不同于 Python。Logo 拥有过程而不是 Python 中等价的函数，而且过程输出值而不是返回值。和 python 类似，<code>print</code>过程总是输出<code>None</code>，但也打印出参数的字符串表示作为副作用。（过程的参数在 Logo 中也通常叫做输入，但是为了清晰起见，这篇文章中我们仍然称之为参数。）</p>
+<p>Logo 中最常见的数据类型是单词，它是不带空格的字符串。单词用作可以表示数值、名称和布尔值的通用值。可以解释为数值或布尔值的记号，比如<code>5</code>，直接求值为单词。另一方面，类似<code>five</code>的名称解释为过程调用：</p>
+<pre><code class="language-logo">? 5
+You do not say what to do with 5.
+? five
+I do not know how to five.
+</code></pre>
+<p><code>5</code>和<code>five</code>以不同方式解释，Logo 的读取-求值循环也以不同方式报错。第一种情况的问题是，Logo 在顶层表达式不求值为 None 时报错。这里，我们看到了第一个 Logo 不同于计算器的结构；前者的接口是读取-解释循环，期待用户来打印结果。后者使用更加通用的读取-求值-打印循环，自动打印出返回值。Python 采取了混合的方式，非<code>None</code>的值使用<code>repr</code>强制转换为字符串并自动打印。</p>
+<p>Logo 的行可以顺序包含多个表达式。解释器会一次求出每个表达式。如果行中任何顶层表达式不求值为<code>None</code>，解释器会报错。一旦发生错误，行中其余的表达式会被忽略。</p>
+<pre><code class="language-logo">? print 1 print 2
+1
+2
+? 3 print 4
+You do not say what to do with 3.
+</code></pre>
+<p>Logo 的调用表达式可以嵌套。在 Logo 的实现版本中，每个过程接受固定数量的参数。所以，当嵌套调用表达式的操作数完整时，Logo 解释器能够唯一地判断。例如，考虑两个过程<code>sum</code>和<code>difference</code>，它们相应输出两个参数的和或差。</p>
+<pre><code class="language-logo">? print sum 10 difference 7 3
+14
+</code></pre>
+<p>我们可以从这个嵌套的例子中看到，分隔调用表达式的圆括号和逗号不是必须的。在计算器解释器中，标点符号允许我们将表达式树构建为纯粹的句法操作，没有任何运算符名称的判断。在 Logo 中，我们必须使用我们的知识，关于每个过程接受多少参数，来得出嵌套表达式的正确结构。下一节中，问题的细节会深入探讨。</p>
+<p>Logo 也支持中缀运算符，例如<code>+</code>和<code>*</code>。这些运算符的优先级根据代数的标准规则来解析。乘法和除法优于加法和减法：</p>
+<pre><code class="language-logo">? 2 + 3 * 4
+14
+</code></pre>
+<p>如何实现运算符优先级和前缀运算符来生成正确的表达式树的细节留做练习。对于下面的讨论，我们会专注于使用前缀语法的调用表达式。</p>
+<p><strong>引用</strong>:一个名称会被解释为调用表达式的开始部分，但是我们也希望将单词引用为数据。以双引号开始的记号解释为单词字面值。要注意单词字面值在 Logo 中并没有尾后的双引号。</p>
+<pre><code class="language-logo">? print &quot;hello
+hello
+</code></pre>
+<p>在 Lisp 的方言中（而 Logo 是它的方言），任何不被求值的表达式都叫做引用。这个引用的概念来自于事物之间的经典哲学。例如一只狗，它可以到处乱跑和叫唤，而单词“狗”只是用于指代这种事物的语言结构。当我们以引号使用“狗”的时候，我们并不是指特定的哪一只，而是这个单词。在语言中，引号允许我们谈论语言自身，Logo 中也一样。我们可以按照名称引用<code>sum</code>过程，而不会实际调用它，通过这样引用它：</p>
+<pre><code class="language-logo">? print &quot;sum
+sum
+</code></pre>
+<p>除了单词，Logo 包含句子类型，可以叫做列表。句子由方括号包围。<code>print</code>过程并不会打印方括号，以维持 Logo 的惯例风格，但是方括号可以使用<code>show</code>过程打印到输出：</p>
+<pre><code class="language-logo">? print [hello world]
+hello world
+? show [hello world]
+[hello world]
+</code></pre>
+<p>句子也可以使用三个不同的二元过程来构造。<code>sentence</code>过程将参数组装为句子。它是多态过程，如果参数是单词，会将它的参数放入新的句子中；如果参数是句子，则会将拼接参数。结果通常是一个句子：</p>
+<pre><code class="language-logo">? show sentence 1 2
+[1 2]
+? show sentence 1 [2 3]
+[1 2 3]
+? show sentence [1 2] 3
+[1 2 3]
+? show sentence [1 2] [3 4]
+[1 2 3 4]
+</code></pre>
+<p><code>list</code>过程从两个元素创建句子，它允许用户创建层次数据结构：</p>
+<pre><code class="language-logo">? show list 1 2
+[1 2]
+? show list 1 [2 3]
+[1 [2 3]]
+? show list [1 2] 3
+[[1 2] 3]
+? show list [1 2] [3 4]
+[[1 2] [3 4]]
+</code></pre>
+<p>最后，<code>fput</code>过程从第一个元素和列表的剩余部分创建列表，就像这一章之前的 Python <code>RList</code>构造器那样：</p>
+<pre><code class="language-logo">? show fput 1 [2 3]
+[1 2 3]
+? show fput [1 2] [3 4]
+[[1 2] 3 4]
+</code></pre>
+<p>我们在 Logo 中可以调用<code>sentence</code>、<code>list</code>和<code>fput</code>句子构造器。在 Logo 中将句子解构为<code>first</code>和剩余部分（叫做<code>butfirst</code>）也非常直接，所以，我们也拥有一系列句子的选择器过程。</p>
+<pre><code class="language-logo">? print first [1 2 3]
+1
+? print last [1 2 3]
+3
+? print butfirst [1 2 3]
+[2 3]
+</code></pre>
+<p><strong>作为数据的表达式</strong>:句子的内容可以直接当做未求值的引用。所以，我们可以打印出 Logo 表达式而不求值：</p>
+<pre><code class="language-logo">? show [print sum 1 2]
+[print sum 1 2]
+</code></pre>
+<p>将 Logo 表示表达式表示为句子的目的通常不是打印它们，而是使用<code>run</code>过程来求值。</p>
+<pre><code class="language-logo">? run [print sum 1 2]
+3
+</code></pre>
+<p>通过组合引用和句子构造器，以及<code>run</code>过程，我们获得了一个非常通用的组合手段，它凭空构建 Logo 表达式并对其求值：</p>
+<pre><code class="language-logo">? run sentence &quot;print [sum 1 2]
+3
+? print run sentence &quot;sum sentence 10 run [difference 7 3]
+14
+</code></pre>
+<p>最后一个例子的要点是为了展示，虽然<code>sum</code>和<code>difference</code>过程在 Logo 中并不是一等的构造器（它们不能直接放在句子中），它们的名称是一等的，并且<code>run</code>过程可以将它们的名称解析为所引用的过程。</p>
+<p>将代码表示为数据，并且稍后将其解释为程序的一部分的功能，是 Lisp 风格语言的特性。程序可以重新编写自己来执行是一个强大的概念，并且作为人工智能（AI）早期研究的基础。Lisp 在数十年间都是 AI 研究者的首选语言。<a href="http://www.softwarepreservation.org/projects/LISP/book/LISP%201.5%20Programmers%20Manual.pdf">Lisp 语言</a>由 John McCarthy 发明，他也发明了“人工智能”术语，并且在该领域的定义中起到关键作用。Lisp 方言的“代码即数据”的特性，以及它们的简洁和优雅，今天仍继续吸引着 Lisp 程序员。</p>
+<p><strong>海龟制图(Turtle graphics)</strong>:所有 Logo 的实现都基于 Logo 海龟 来完成图形输出。这个海龟以画布的中点开始，基于过程移动和转向，并且在它的轨迹上画线。虽然海龟为鼓励青少年实践编程而发明，它对于高级程序员来说也是有趣的图形化工具。</p>
+<p>在执行 Logo 程序的任意时段，Logo 海龟都在画布上拥有位置和朝向。类似于<code>forward</code>和<code>right</code>的一元过程能修改海龟的位置和朝向。常用的过程都有缩写：<code>forward</code>也叫作<code>fd</code>，以及其它。下面的嵌套表达式画出了每个端点带有小星星的大星星：</p>
+<pre><code class="language-logo">? repeat 5 [fd 100 repeat 5 [fd 20 rt 144] rt 144]
+</code></pre>
+<p><img src="img/star.png" alt="" /></p>
+<p>海龟过程的全部指令也内建于 Python 的<a href="http://docs.python.org/py3k/library/turtle.html"><code>turtle</code>模块</a>中。这些函数的有限子集也在这一章的配套项目中提供。</p>
+<p><strong>赋值</strong>:Logo 支持绑定名称和值。就像 Python 中那样，Logo 环境由帧的序列组成，每个帧中的某个名称都最多绑定到一个值上。名称使用<code>make</code>过程来绑定，它接受名称和值作为参数。</p>
+<pre><code class="language-logo">? make &quot;x 2
+</code></pre>
+<p>任何以冒号起始的单词，例如<code>:x</code>都叫做变量。变量求值为其名称在当前环境中绑定的值。</p>
+<p><code>make</code>过程和 Python 的赋值语句具有不同的作用。传递给<code>make</code>的名称要么已经绑定了值，要么当前未绑定。</p>
+<ol>
+<li>如果名称已经绑定，<code>make</code>在找到它的第一帧中重新绑定该名称。</li>
+<li>如果没有绑定，<code>make</code>在全局帧中绑定名称。</li>
+</ol>
+<p>这个行为与 Python 赋值语句的语义很不同，后者总是在当前环境中的第一帧中绑定名称。上面的第一条规则类似于遵循<code>nonlocal</code>语句的 Python 赋值。第二条类似于遵循<code>global</code>语句的全局赋值。</p>
+<p><strong>过程</strong>:Logo 支持用户使用以<code>to</code>关键字开始的定义来定义过程。定义是 Logo 中的最后一个表达式类型，在调用表达式、基本表达式和引用表达式之后。定义的第一行提供了新过程的名称，随后是作为变量的形参。下面的行是过程的主体，它可以跨越多行，并且必须以只包含<code>end</code>记号的一行结束。Logo 的读取-求值循环使用<code>&gt;</code>连接符来提示用户输入过程体。用户定义过程使用<code>output</code>过程来输出一个值。</p>
+<pre><code class="language-logo">? to double :x
+&gt; output sum :x :x
+&gt; end
+? print double 4
+8
+</code></pre>
+<p>Logo 的用户定义过程所产生的调用过程和 Python 中的过程类似。在一系列参数上调用过程以使用新的帧扩展当前环境，以及将过程的形参绑定到实参开始，之后在开始于新帧的环境中求出过程体的代码行。</p>
+<p><code>output</code>的调用在 Logo 中与 Python 中的<code>return</code>语句有相同作用：它会中止过程体的执行，并返回一个值。Logo 过程可以通过调用<code>stop</code>来不带任何值返回。</p>
+<pre><code class="language-logo">? to count
+&gt; print 1
+&gt; print 2
+&gt; stop
+&gt; print 3
+&gt; end
+? count
+1
+2
+</code></pre>
+<p><strong>作用域</strong>:Logo 是动态作用域语言。类似 Python 的词法作用域语言并不允许一个函数的局部名称影响另一个函数的求值，除非第二个函数显式定义在第一个函数内。两个顶层函数的形参完全是隔离的。在动态作用域的语言中，没有这种隔离。当一个函数调用另一个函数时，绑定到第一个函数局部帧的名称可在第二个函数的函数体中访问：</p>
+<pre><code class="language-logo">? to print_last_x
+&gt; print :x
+&gt; end
+? to print_x :x
+&gt; print_last_x
+&gt; end
+? print_x 5
+5
+</code></pre>
+<p>虽然名称<code>x</code>并没有在全局帧中绑定，而是在<code>print_x</code>的局部帧中，也就是首先调用的函数。Logo 的动态作用域规则允许函数<code>print_last_x</code>引用<code>x</code>，它被绑定到<code>print_x</code>的形式参数上。</p>
+<p>动态作用域只需要一个对计算环境模型的简单修改就能实现。由用户函数调用创建的帧总是扩展自当前环境（调用处）。例如，上面的<code>print_x</code>调用引入了新的帧，它扩展自当前环境，当前环境中包含<code>print_x</code>的局部帧和全局帧。所以，在<code>print_last_x</code>的主体中查找<code>x</code>会发现局部帧中该名称绑定到<code>5</code>。与之相似，在 Python 的词法作用域下，<code>print_last_x</code>的帧只扩展自全局帧（定义处），而并不扩展自<code>print_x</code>的局部帧（调用处）。</p>
+<p>动态作用域语言拥有一些好处，它的过程可能不需要接受许多参数。例如，<code>print_last_x</code>上面的过程没有接受参数，但是它的行为仍然由内层作用域参数化。</p>
+<p><strong>常规编程</strong>:我们的 Logo 之旅就到此为止了。我们还没有介绍任何高级特性，例如，对象系统、高阶过程，或者语句。学会在 Logo 中高效编程需要将语言的简单特性组合为有效的整体。</p>
+<p>Logo 中没有条件表达式类型。过程<code>if</code>和<code>ifelse</code>使用调用表达式的求值规则。<code>if</code>的第一个参数是个布尔单词，<code>True</code>或者<code>False</code>。第二个参数不是输出值，而是一个句子，包含如果第一个参数为<code>True</code>时需要求值的代码行。这个设计的重要结果是，第二个函数的内容如果不被用到就不会全部求值。</p>
+<pre><code class="language-logo">? 1/0
+div raised a ZeroDivisionError: division by zero
+? to reciprocal :x
+&gt; if not :x = 0 [output 1 / :x]
+&gt; output &quot;infinity
+&gt; end
+? print reciprocal 2
+0.5
+? print reciprocal 0
+infinity
+</code></pre>
+<p>Logo 的条件语句不仅仅不需要特殊语法，而且它实际上可以使用<code>word</code>和<code>run</code>实现。<code>ifelse</code>的基本过程接受三个函数：布尔单词、如果单词为<code>True</code>需要求值的句子，和如果单词为<code>False</code>需要求值的句子。通过适当命名形式参数，我们可以实现拥有相同行为的用户定义过程<code>ifelse2</code>。</p>
+<pre><code class="language-logo">? to ifelse2 :predicate :True :False
+&gt; output run run word &quot;: :predicate
+&gt; end
+? print ifelse2 emptyp [] [&quot;empty] [&quot;full]
+empty
+</code></pre>
+<p>递归过程不需要任何特殊语法，它们可以和<code>run</code>、<code>sentence</code>、<code>first</code>和<code>butfirst</code>一起使用，来定义句子上的通用序列操作。例如，我们可以通过构建二元句子并执行它，来在参数上调用过程。如果参数是个单词，它必须被引用。</p>
+<pre><code class="language-logo">? to apply_fn :fn :arg
+&gt; output run list :fn ifelse word? :arg [word &quot;&quot; :arg] [:arg]
+&gt; end
+</code></pre>
+<p>下面，我们可以定义一个过程，它在句子<code>:s</code>上逐步映射函数<code>:fn</code>。</p>
+<pre><code class="language-logo">? to map_fn :fn :s
+&gt; if emptyp :s [output []]
+&gt; output fput apply_fn :fn first :s map_fn :fn butfirst :s
+&gt; end
+? show map &quot;double [1 2 3]
+[2 4 6]
+</code></pre>
+<p><code>map_fn</code>主体的第二行也可以使用圆括号编写，表明调用表达式的嵌套结构。但是，圆括号表示了调用表达式的开始和末尾，而不是包围在操作数和非运算符周围。</p>
+<pre><code class="language-logo">&gt; (output (fput (apply_fn :fn (first :s)) (map_fn :fn (butfirst :s))))
+</code></pre>
+<p>圆括号在 Logo 中并不必须，但是它们通常帮助程序员记录嵌套表达式的结构。许多 Lisp 的方言都需要圆括号，所以就拥有了显式嵌套的语法。</p>
+<p>作为最后一个例子，Logo 可以以非常紧凑的形式使用海龟制图来递归作图。谢尔宾斯基三角是个分形图形，它绘制每个三角形的同时还绘制邻近的三个三角形，它们的顶点是包含它们的三角形的边上的中点。它可以由这个 Logo 程序以有限的递归深度来绘制。</p>
+<pre><code class="language-logo">? to triangle :exp
+&gt; repeat 3 [run :exp lt 120]
+&gt; end
+
+? to sierpinski :d :k
+&gt; triangle [ifelse :k = 1 [fd :d] [leg :d :k]]
+&gt; end
+
+? to leg :d :k
+&gt; sierpinski :d / 2 :k - 1
+&gt; penup fd :d pendown
+&gt; end
+</code></pre>
+<p><code>triangle </code>过程是个通用方法，它重复三次绘制过程，并在每个重复之后左转。<code>sierpinski </code>过程接受长度和递归深度。如果深度为<code>1</code>，它画出纯三角形，否则它画出由<code>log</code>的调用所组成的三角形。<code>leg</code>过程画出谢尔宾斯基递归三角型的一条边，通过递归调用<code>sierpinski </code>填充这条边长度的上一半，之后将海龟移动到另一个顶点上。过程<code>up</code>和<code>down</code>通过将笔拿起并在之后放下，在海龟移动过程中停止画图。<code>sierpinski</code>和<code>leg</code>之间的多重递归产生了如下结果：</p>
+<pre><code class="language-logo">? sierpinski 400 6
+</code></pre>
+<p><img src="img/sier.png" alt="" /></p>
+<h2 id="363-结构"><a class="header" href="#363-结构">3.6.3 结构</a></h2>
+<p>这一节描述了 Logo 解释器的通常结构。虽然这一章是独立的，它也确实引用了配套项目。完成这个项目会从零制造出这一章描述的解释器的有效实现。</p>
+<p>Logo 的解释器可以拥有和计算器解释器相同的结构。解析器产生表达式数据结构，它们可由求值器来解释。求值函数检查表达式的形式，并且对于调用表达式，它在一些参数上调用函数来应用某个过程。但是，还是存在一些结构上的不同以适应 Logo 的特殊语法。</p>
+<p><strong>行</strong>:Logo 解析器并不读取一行代码，而是读取可能按序包含多个表达式的整行代码。它不返回表达式树，而是返回 Logo 句子。</p>
+<p>解析器实际上只做微小的语法分析。特别是，解析工作并不会将调用表达式的运算符和操作数子表达式区分为树的不同枝干。反之，调用表达式的组成部分顺序排列，嵌套调用表达式表示为摊平的记号序列。最终，解析工作并不判断基本表达式，例如数值的类型，因为 Logo 没有丰富的类型系统。反之，每个元素都是单词或句子。</p>
+<pre><code class="language-py">&gt;&gt;&gt; parse_line('print sum 10 difference 7 3')
+['print', 'sum', '10', 'difference', '7', '3']
+</code></pre>
+<p>解析器做了很微小的分析，因为 Logo 的动态特性需要求值器解析嵌套表达式的结构。</p>
+<p>解析器并不会弄清句子的嵌套结构，句子中的句子表示为 Python 的嵌套列表。</p>
+<pre><code class="language-py">&gt;&gt;&gt; parse_line('print sentence &quot;this [is a [deep] list]')
+['print', 'sentence', '&quot;this', ['is', 'a', ['deep'], 'list']]
+</code></pre>
+<p><code>parse_line</code>的完整实现在配套项目的<code>logo_parser.py</code>中。</p>
+<p><strong>求值</strong>:Logo 一次求值一行。求值器的一个框架实现定义在配套项目的<code>logo.py</code>中。从<code>parse_line</code>返回的句子传给了<code>eval_line</code>函数，它求出行中的每个表达式。<code>eval_line</code>函数重复调用<code>logo_eval</code>，它求出行中的下一个完整的表达式，直到这一行全部求值完毕，之后返回最后一个值。<code>logo_eval</code>函数求出单个表达式。</p>
+<p><img src="img/logo_eval.png" alt="" /></p>
+<p><code>logo_eval</code>函数求出不同形式的表达式：基本、变量、定义、引用和调用表达式，我们已经在上一节中介绍过它们了。Logo 中多元素表达式的形式可以由检查第一个元素来判断。表达式的每个形式都有自己的求值规则。</p>
+<ol>
+<li>基本表达式（可以解释为数值、<code>True</code>或<code>False</code>的单词）求值为自身。</li>
+<li>变量在环境中查找。环境会在下一节中详细讨论。</li>
+<li>定义处理为特殊情况。用户定义过程也在下一节中详细讨论。</li>
+<li>引用表达式求值为引用的文本，它是个去掉前导引号的字符串。句子（表示为 Python 列表）也看做引用，它们求值为自身。</li>
+<li>调用表达式在当前环境中查找运算符名称，并且调用绑定到该名称的过程。</li>
+</ol>
+<p>下面是<code>logo_apply</code>的简单实现。我们去掉了一些错误检查，以专注于我们的讨论。配套项目中有更加健壮的实现。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def logo_eval(line, env):
+        &quot;&quot;&quot;Evaluate the first expression in a line.&quot;&quot;&quot;
+        token = line.pop()
+        if isprimitive(token):
+            return token
+        elif isvariable(token):
+            return env.lookup_variable(variable_name(token))
+        elif isdefinition(token):
+            return eval_definition(line, env)
+        elif isquoted(token):
+            return text_of_quotation(token)
+        else:
+            procedure = env.procedures.get(token, None)
+            return apply_procedure(procedure, line, env)
+</code></pre>
+<p>上面的最后情况调用了第二个过程，表达为函数<code>apply_procedure</code>。为了调用由运算符记号命名的过程，这个运算符会在当前环境中查找。在上面的定义中，<code>env</code>是<code>Environment </code>类的实例，会在下一节中描述。<code>env.procedures</code>属性是个储存运算符名称和过程之间映射的字典。在 Logo 中，环境拥有单词的这种映射，并且没有局部定义的过程。而且，Logo 为过程名称和变量名称维护分离的映射，叫做分离的命名空间。但是，以这种方式复用名称并不推荐。</p>
+<p><strong>过程调用</strong>:过程调用以调用<code>apply_procedure</code>函数开始，它被传入由<code>logo_apply</code>查找到的函数，并带有代码的当前行和当前环境。Logo 中过程调用的过程比计算器中的<code>calc_apply</code>更加通用。特别是，<code>apply_procedure</code>必须检查打算调用的过程，以便在求解<code>n</code>个运算符表达式之前，判断它的参数数量<code>n</code>。这里我们会看到，为什么 Logo 解析器不能仅仅由语法分析构建表达式树，因为树的结构由过程决定。</p>
+<p><code>apply_procedure</code>函数调用<code>collect_args </code>函数，它必须重复调用<code>logo_eval</code>来求解行中的下<code>n</code>个表达式。之后，计算完过程的参数之后，<code>apply_procedure</code>调用了<code>logo_apply</code>，实际上这个函数在参数上调用过程。下面的调用图示展示了这个过程。</p>
+<p><img src="img/logo_apply.png" alt="" /></p>
+<p>最终的函数 <code>logo_apply</code>接受两种参数：基本过程和用户定义的过程，二者都是<code>Procedure</code>的实例。<code>Procedure</code>是一个 Python 对象，它拥有过程的名称、参数数量、主体和形式参数作为实例属性。<code>body</code>属性可以拥有不同类型。基本过程在 Python 中已经实现，所以它的<code>body</code>就是 Python 函数。用户定义的过程（非基本）定义在 Logo 中，所以它的 <code>body</code>就是 Logo 代码行的列表。<code>Procedure</code>也拥有两个布尔值属性。一个用于表明是否是基本过程，另一个用于表明是否需要访问当前环境。</p>
+<pre><code class="language-py">&gt;&gt;&gt; class Procedure():
+        def __init__(self, name, arg_count, body, isprimitive=False,
+                     needs_env=False, formal_params=None):
+            self.name = name
+            self.arg_count = arg_count
+            self.body = body
+            self.isprimitive = isprimitive
+            self.needs_env = needs_env
+            self.formal_params = formal_params
+</code></pre>
+<p>基本过程通过在参数列表上调用主体，并返回它的返回值作为过程输出来应用。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def logo_apply(proc, args):
+        &quot;&quot;&quot;Apply a Logo procedure to a list of arguments.&quot;&quot;&quot;
+        if proc.isprimitive:
+            return proc.body(*args)
+        else:
+            &quot;&quot;&quot;Apply a user-defined procedure&quot;&quot;&quot;
+</code></pre>
+<p>用户定义过程的主体是代码行的列表，每一行都是 Logo 句子。为了在参数列表上调用过程，我们在新的环境中求出主体的代码行。为了构造这个环境，我们向当前环境中添加新的帧，过程的形式参数在里面绑定到实参上。这个过程的重要结构化抽象是，求出用户定义过程的主体的代码行，需要递归调用<code>eval_line</code>。</p>
+<p><strong>求值/应用递归</strong>:实现求值过程的函数，<code>eval_line </code>和<code>logo_eval</code>，以及实现函数应用过程的函数，<code>apply_procedure</code>、<code>collect_args</code>和<code>logo_apply</code>，是互相递归的。无论何时调用表达式被发现，求值操作都需要调用它。应用操作使用求值来求出实参中的操作数表达式，以及求出用户定义过程的主体。这个互相递归过程的通用结构在解释器中非常常见：求值以应用定义，应用又使用求值定义。</p>
+<p><img src="img/eval_apply.png" alt="" /></p>
+<p>这个递归循环终止于语言的基本类型。求值的基本条件是，求解基本表达式、变量、引用表达式或定义。函数调用的基本条件是调用基本过程。这个互相递归的结构，在处理表达式形式的求值函数，和处理函数及其参数的应用之间，构成了求值过程的本质。</p>
+<h2 id="364-环境"><a class="header" href="#364-环境">3.6.4 环境</a></h2>
+<p>既然我们已经描述了 Logo 解释器的结构，我们转而实现<code>Environment </code>类，便于让它使用动态作用域正确支持赋值、过程定义和变量查找。<code>Environment</code>实例表示名称绑定的共有集合，可以在程序执行期间的某一点上访问。绑定在帧中组织，而帧以 Python 字典实现。帧包含变量的名称绑定，但不包含过程。运算符名称和<code>Procedure</code>实例之间的绑定在 Logo 中是单独储存的。在这个实现中，包含变量名称绑定的帧储存为字典的列表，位于<code>Environment</code>的<code>_frames</code>属性中，而过程名称绑定储存在值为字典的<code>procedures</code>属性中。</p>
+<p>帧不能直接访问，而是通过两个<code>Environment</code>的方法：<code>lookup_variable</code>和<code>set_variable_value</code>。前者实现了一个过程，与我们在第一章的计算环境模型中引入的查找过程相同。名称在当前环境第一帧（最新添加）中与值匹配。如果它被找到，所绑定的值会被返回。如果没有找到，会在被当前帧扩展的帧中寻找。</p>
+<p><code>set_variable_value </code>也会寻找与变量名称匹配的绑定。如果找到了，它会更新为新的值，如果没有找到，那么会在全局帧上创建新的绑定。这些方法的实现留做配套项目中的练习。</p>
+<p><code>lookup_variable </code>方法在求解变量名称时由<code>logo_eval</code>调用。<code>set_variable_value </code>由<code>logo_make</code>函数调用，它用作 Logo 中<code>make</code>基本过程的主体。</p>
+<p>除了变量和<code>make</code>基本过程之外，我们的解释器支持它的第一种抽象手段：将名称绑定到值上。在 Logo 中，我们现在可以重复我们第一章中的第一种抽象步骤。</p>
+<pre><code class="language-logo">? make &quot;radius 10
+? print 2 * :radius
+20
+</code></pre>
+<p>赋值只是抽象的一种有限形式。我们已经从这门课的开始看到，即使对于不是很大的程序，用户定义函数也是管理复杂性的关键工具。我们需要两个改进来实现 Logo 中的用户定义过程。首先，我们必须描述<code>eval_definition</code>的实现，如果当前行是定义，<code>logo_eval</code>会调用这个 Python 函数。其次，我们需要在<code>logo_apply</code>中完成我们的描述，它在一些参数上调用用户过程。这两个改动都需要利用上一节定义的<code>Procedure</code>类。</p>
+<p>定义通过创建新的<code>Procedure</code>实例来求值，它表示用户定义的过程。考虑下面的 Logo 过程定义：</p>
+<pre><code class="language-logo">? to factorial :n
+&gt; output ifelse :n = 1 [1] [:n * factorial :n - 1]
+&gt; end
+? print fact 5
+120
+</code></pre>
+<p>定义的第一行提供了过程的名称<code>factorial</code>和形参<code>n</code>。随后的一些行组成了过程体。这些行并不会立即求值，而是为将来使用而储存。也就是说，这些行由<code>eval_definition</code>读取并解析，但是并不传递给<code>eval_line</code>。主体中的行一直读取，直到出现了只包含<code>end</code>的行。在 Logo 中，<code>end</code>并不是需要求值的过程，也不是过程体的一部分。它是个函数定义末尾的语法标记。</p>
+<p><code>Procedure</code>实例从这个过程的名称、形参列表以及主体中创建，并且在环境中的<code>procedures</code>的字典属性中注册。不像 Python，在 Logo 中，一旦过程绑定到一个名称，其它定义都不能复用这个名称。</p>
+<p><code>logo_apply</code>将<code>Procedure</code>实例应用于一些参数，它是表示为字符串的 Logo 值（对于单词），或列表（对于句子）。对于用户定义过程，<code>logo_apply</code>创建了新的帧，它是一个字典对象，键是过程的形参，值是实参。在动态作用域语言例如 Logo 中，这个新的帧总是扩展自过程调用处的当前环境。所以，我们将新创建的帧附加到当前环境上。之后，主体中的每一行都依次传递给<code>eval_line </code>。最后，在主体完成求值后，我们可以从环境中移除新创建的帧。由于 Logo 并不支持高阶或一等过程，在程序执行期间，我们并不需要一次跟踪多于一个环境。</p>
+<p>下面的例子演示了帧的列表和动态作用域规则，它们由调用这两个 Logo 用户定义过程产生：</p>
+<pre><code class="language-logo">? to f :x
+&gt; make &quot;z sum :x :y
+&gt; end
+? to g :x :y
+&gt; f sum :x :x
+&gt; end
+? g 3 7
+? print :z
+13
+</code></pre>
+<p>由这些表达式的求值创建的环境分为过程和帧，它们维护在分离的命名空间中。帧的顺序由调用顺序决定。</p>
+<p><img src="img/scope.png" alt="" /></p>
+<h2 id="365-数据即程序"><a class="header" href="#365-数据即程序">3.6.5 数据即程序</a></h2>
+<p>在思考求值 Logo 表达式的程序时，一个类比可能很有帮助。程序含义的一个可取观点是，程序是抽象机器的描述。例如，再次思考下面的计算阶乘的过程：</p>
+<pre><code class="language-logo">? to factorial :n
+&gt; output ifelse :n = 1 [1] [:n * factorial :n - 1]
+&gt; end
+</code></pre>
+<p>我们可以在 Python 中表达为等价的程序，使用传统的表达式。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def factorial(n):
+        return 1 if n == 1 else n * factorial(n - 1)
+</code></pre>
+<p>我们可能将这个程序看做机器的描述，它包含几个部分，减法、乘法和相等性测试，并带有两相开关和另一个阶乘机器（阶乘机器是无限的，因为它在其中包含另一个阶乘机器）。下面的图示是一个阶乘机器的流程图，展示了这些部分是怎么组合到一起的。</p>
+<p><img src="img/factorial_machine.png" alt="" /></p>
+<p>与之相似，我们可以将 Logo 解释器看做非常特殊的机器，它接受机器的描述作为输入。给定这个输入，解释器就能配置自己来模拟描述的机器。例如，如果我们向解释器中输入阶乘的定义，解释器就可以计算阶乘。</p>
+<p><img src="img/universal_machine.png" alt="" /></p>
+<p>从这个观点得出，我们的 Logo 解释器可以看做通用的机器。当输入以 Logo 程序描述时，它就能模拟其它机器。它在由我们的编程语言操作的数据对象，和编程语言自身之间起到衔接作用。想象一下，一个用户在我们正在运行的 Logo 解释器中输入了 Logo 表达式。从用户的角度来看，类似<code>sum 2 2</code>的输入表达式是编程语言中的表达式，解释器应该对其求值。但是，从解释器的角度来看，表达式只是单词组成的句子，可以根据定义好的一系列规则来操作它。</p>
+<p>用户的程序是解释器的数据，这不应该是混乱的原因。实际上，有时候忽略这个差异会更方便，以及让用户能够显式将数据对象求值为表达式。在 Logo 中，无论我们何时使用<code>run </code>过程，我们都使用了这种能力。Python 中也存在相似的函数：<code>eval</code>函数会求出 Python 表达式，<code>exec</code>函数会求出 Python 语句，所以：</p>
+<pre><code class="language-py">&gt;&gt;&gt; eval('2+2')
+4
+</code></pre>
+<p>和</p>
+<pre><code class="language-py">&gt;&gt;&gt; 2+2
+4
+</code></pre>
+<p>返回了相同的结果。求解构造为指令的一部分的表达式是动态编程语言的常见和强大的特性。这个特性在 Logo 中十分普遍，很少语言是这样，但是在程序执行期间构造和求解表达式的能力，对任何程序员来说都是有价值的工具。</p>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../python/sicp_py/sicp-py-zh-master/3.5.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../python/sicp_py/sicp-py-zh-master/ch4.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../python/sicp_py/sicp-py-zh-master/3.5.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../python/sicp_py/sicp-py-zh-master/ch4.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "python/sicp_py/sicp-py-zh-master/3.6.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>

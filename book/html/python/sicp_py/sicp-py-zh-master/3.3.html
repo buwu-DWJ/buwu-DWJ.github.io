@@ -1,0 +1,483 @@
+<!DOCTYPE HTML>
+<html lang="chs" class="sidebar-visible no-js ayu">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>3.3 递归数据结构 - 布武不舞</title>
+
+
+    <!-- Custom HTML head -->
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="icon" href="../../../favicon.svg">
+    <link rel="shortcut icon" href="../../../favicon.png">
+    <link rel="stylesheet" href="../../../css/variables.css">
+    <link rel="stylesheet" href="../../../css/general.css">
+    <link rel="stylesheet" href="../../../css/chrome.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+    <!-- Highlight.js Stylesheets -->
+    <link rel="stylesheet" href="../../../highlight.css">
+    <link rel="stylesheet" href="../../../tomorrow-night.css">
+    <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+    <!-- Custom theme stylesheets -->
+    <link rel="stylesheet" href="../../../theme/style3.css">
+
+
+</head>
+
+<body>
+
+    <!-- Provide site root to javascript -->
+    <script type="text/javascript">
+        var path_to_root = "../../../";
+        var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+    </script>
+
+    <!-- Work around some values being stored in localStorage wrapped in quotes -->
+    <script type="text/javascript">
+        try {
+            var theme = localStorage.getItem('mdbook-theme');
+            var sidebar = localStorage.getItem('mdbook-sidebar');
+            if (theme.startsWith('"') && theme.endsWith('"')) {
+                localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+            }
+            if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+            }
+        } catch (e) { }
+    </script>
+
+    <!-- Set the theme before any content is loaded, prevents flash -->
+    <script type="text/javascript">
+        var theme;
+        try { theme = localStorage.getItem('mdbook-theme'); } catch (e) { }
+        if (theme === null || theme === undefined) { theme = default_theme; }
+        var html = document.querySelector('html');
+        html.classList.remove('no-js')
+        html.classList.remove('ayu')
+        html.classList.add(theme);
+        html.classList.add('js');
+    </script>
+
+    <!-- Hide / unhide sidebar before it is displayed -->
+    <script type="text/javascript">
+        var html = document.querySelector('html');
+        var sidebar = 'hidden';
+        if (document.body.clientWidth >= 1080) {
+            try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch (e) { }
+            sidebar = sidebar || 'visible';
+        }
+        html.classList.remove('sidebar-visible');
+        html.classList.add("sidebar-" + sidebar);
+    </script>
+
+    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <div class="sidebar-scrollbox">
+            <ol class="chapter"><li class="chapter-item affix "><a href="../../../pre.html">目录</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../../../markdown/markdown.html"><strong aria-hidden="true">1.</strong> Markdown&LaTeX</a></li><li class="chapter-item expanded "><a href="../../../python/python.html"><strong aria-hidden="true">2.</strong> Python</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/win32com/pre.html"><strong aria-hidden="true">2.1.</strong> win32com</a></li><li class="chapter-item "><a href="../../../python/crawler/pre.html"><strong aria-hidden="true">2.2.</strong> crawler</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/crawler/html.html"><strong aria-hidden="true">2.2.1.</strong> HTML</a></li><li class="chapter-item "><a href="../../../python/crawler/BeautifulSoup.html"><strong aria-hidden="true">2.2.2.</strong> BeautifulSoup</a></li><li class="chapter-item "><a href="../../../python/crawler/re.html"><strong aria-hidden="true">2.2.3.</strong> re</a></li><li class="chapter-item "><a href="../../../python/crawler/xpath.html"><strong aria-hidden="true">2.2.4.</strong> XPath</a></li><li class="chapter-item "><a href="../../../python/crawler/css_selector.html"><strong aria-hidden="true">2.2.5.</strong> CSS_selector</a></li><li class="chapter-item "><a href="../../../python/crawler/dash.html"><strong aria-hidden="true">2.2.6.</strong> dash</a></li></ol></li><li class="chapter-item "><a href="../../../python/pytorch/pytorch.html"><strong aria-hidden="true">2.3.</strong> pytorch</a></li><li class="chapter-item "><a href="../../../python/np_pd/np_pd.html"><strong aria-hidden="true">2.4.</strong> others</a></li><li class="chapter-item "><a href="../../../python/python之禅/pre.html"><strong aria-hidden="true">2.5.</strong> python之禅</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/python之禅/optim.html"><strong aria-hidden="true">2.5.1.</strong> 结构上优化运行速度</a></li><li class="chapter-item "><a href="../../../python/python之禅/python_optim.html"><strong aria-hidden="true">2.5.2.</strong> 其他细节</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.6.</strong> SICP_for_Python</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch1.html"><strong aria-hidden="true">2.6.1.</strong> 第一章 使用函数构建抽象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.1.html"><strong aria-hidden="true">2.6.1.1.</strong> 1.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.2.html"><strong aria-hidden="true">2.6.1.2.</strong> 1.2 编程元素</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.3.html"><strong aria-hidden="true">2.6.1.3.</strong> 1.3 定义新的函数</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.4.html"><strong aria-hidden="true">2.6.1.4.</strong> 1.4 实践指南：函数的艺术</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.5.html"><strong aria-hidden="true">2.6.1.5.</strong> 1.5 控制</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/1.6.html"><strong aria-hidden="true">2.6.1.6.</strong> 1.6 高阶函数</a></li></ol></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch2.html"><strong aria-hidden="true">2.6.2.</strong> 第二章 使用对象构建抽象</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.1.html"><strong aria-hidden="true">2.6.2.1.</strong> 2.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.2.html"><strong aria-hidden="true">2.6.2.2.</strong> 2.2 数据抽象</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.3.html"><strong aria-hidden="true">2.6.2.3.</strong> 2.3 序列</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.4.html"><strong aria-hidden="true">2.6.2.4.</strong> 2.4 可变数据</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.5.html"><strong aria-hidden="true">2.6.2.5.</strong> 2.5 面向对象编程</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.6.html"><strong aria-hidden="true">2.6.2.6.</strong> 2.6 实现类和对象</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/2.7.html"><strong aria-hidden="true">2.6.2.7.</strong> 2.7 泛用方法</a></li></ol></li><li class="chapter-item expanded "><a href="../../../python/sicp_py/sicp-py-zh-master/ch3.html"><strong aria-hidden="true">2.6.3.</strong> 第三章 计算机程序的构造和解释</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.1.html"><strong aria-hidden="true">2.6.3.1.</strong> 3.1 引言</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.2.html"><strong aria-hidden="true">2.6.3.2.</strong> 3.2 函数和所生成的过程</a></li><li class="chapter-item expanded "><a href="../../../python/sicp_py/sicp-py-zh-master/3.3.html" class="active"><strong aria-hidden="true">2.6.3.3.</strong> 3.3 递归数据结构</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.4.html"><strong aria-hidden="true">2.6.3.4.</strong> 3.4 异常</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.5.html"><strong aria-hidden="true">2.6.3.5.</strong> 3.5 组合语言的解释器</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/3.6.html"><strong aria-hidden="true">2.6.3.6.</strong> 3.6 抽象语言的解释器</a></li></ol></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch4.html"><strong aria-hidden="true">2.6.4.</strong> 第四章 分布式和并行计算</a></li><li class="chapter-item "><a href="../../../python/sicp_py/sicp-py-zh-master/ch5.html"><strong aria-hidden="true">2.6.5.</strong> 第五章 序列和协程</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../cpp/pre.html"><strong aria-hidden="true">3.</strong> CPP</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><div><strong aria-hidden="true">3.1.</strong> cpp_primer_plus笔记</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/1.基础/index.html"><strong aria-hidden="true">3.1.1.</strong> 基础</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/2.函数/index.html"><strong aria-hidden="true">3.1.2.</strong> 函数</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/3.内存模型和名称空间/index.html"><strong aria-hidden="true">3.1.3.</strong> 内存模型和名称空间</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/4.对象和类/index.html"><strong aria-hidden="true">3.1.4.</strong> 对象和类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/5.使用类/index.html"><strong aria-hidden="true">3.1.5.</strong> 使用类</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/6.类和动态内存分配/index.html"><strong aria-hidden="true">3.1.6.</strong> 类和动态内存分配</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/7.类继承/index.html"><strong aria-hidden="true">3.1.7.</strong> 类继承</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/8.C++中的代码重用/index.html"><strong aria-hidden="true">3.1.8.</strong> 代码重用</a></li><li class="chapter-item "><a href="../../../cpp/cpp_primer_plus/9.友元、异常和其他/index.html"><strong aria-hidden="true">3.1.9.</strong> 友元、异常及其他</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pre.html"><strong aria-hidden="true">4.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/pre.html"><strong aria-hidden="true">4.1.</strong> Rust圣经👿摘要</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/pre.html"><strong aria-hidden="true">4.1.1.</strong> 基础知识</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic.html"><strong aria-hidden="true">4.1.1.1.</strong> 安装及其他</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/pre.html"><strong aria-hidden="true">4.1.1.2.</strong> 基本类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/basic_types.html"><strong aria-hidden="true">4.1.1.2.1.</strong> 数值类型</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/char.html"><strong aria-hidden="true">4.1.1.2.2.</strong> 字符,布尔,单元类型</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/statement.html"><strong aria-hidden="true">4.1.1.2.3.</strong> 语句和表达式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/basic_types/function.html"><strong aria-hidden="true">4.1.1.2.4.</strong> 函数</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/variable.html"><strong aria-hidden="true">4.1.1.3.</strong> 变量绑定与解构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/pre.html"><strong aria-hidden="true">4.1.1.4.</strong> 所有权,引用与借用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/ownership.html"><strong aria-hidden="true">4.1.1.4.1.</strong> 所有权</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/ownership/borrowing.html"><strong aria-hidden="true">4.1.1.4.2.</strong> 引用与借用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/pre.html"><strong aria-hidden="true">4.1.1.5.</strong> 复合类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/string_slice.html"><strong aria-hidden="true">4.1.1.5.1.</strong> 字符串与切片</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/tuple.html"><strong aria-hidden="true">4.1.1.5.2.</strong> 元组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/struct.html"><strong aria-hidden="true">4.1.1.5.3.</strong> 结构体</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/enum.html"><strong aria-hidden="true">4.1.1.5.4.</strong> 枚举</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/compound_type/array.html"><strong aria-hidden="true">4.1.1.5.5.</strong> 数组</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/flow_control.html"><strong aria-hidden="true">4.1.1.6.</strong> 流式控制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pre.html"><strong aria-hidden="true">4.1.1.7.</strong> 模式匹配</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/if_let.html"><strong aria-hidden="true">4.1.1.7.1.</strong> if_let</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/option.html"><strong aria-hidden="true">4.1.1.7.2.</strong> option</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/pattern_match.html"><strong aria-hidden="true">4.1.1.7.3.</strong> 模式适用场景</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/match_pattern/all_patterns.html"><strong aria-hidden="true">4.1.1.7.4.</strong> 全模式列表</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/method.html"><strong aria-hidden="true">4.1.1.8.</strong> 方法method</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/pre.html"><strong aria-hidden="true">4.1.1.9.</strong> 泛型和特征</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/generic.html"><strong aria-hidden="true">4.1.1.9.1.</strong> 泛型Generics</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait.html"><strong aria-hidden="true">4.1.1.9.2.</strong> 特征Traits</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/trait_object.html"><strong aria-hidden="true">4.1.1.9.3.</strong> 特征对象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/generics_and_traits/advance_trait.html"><strong aria-hidden="true">4.1.1.9.4.</strong> 深入特征</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/pre.html"><strong aria-hidden="true">4.1.1.10.</strong> 集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/vector.html"><strong aria-hidden="true">4.1.1.10.1.</strong> 动态数组</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/collections/hashmap.html"><strong aria-hidden="true">4.1.1.10.2.</strong> hashmap</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/lifetime.html"><strong aria-hidden="true">4.1.1.11.</strong> 生命周期🆘</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/pre.html"><strong aria-hidden="true">4.1.1.12.</strong> 返回值与错误处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/panic.html"><strong aria-hidden="true">4.1.1.12.1.</strong> panic!深入</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/result_error/result.html"><strong aria-hidden="true">4.1.1.12.2.</strong> 返回值Result</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/pre.html"><strong aria-hidden="true">4.1.1.13.</strong> 包和模块</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/crate.html"><strong aria-hidden="true">4.1.1.13.1.</strong> 包Crate</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/module.html"><strong aria-hidden="true">4.1.1.13.2.</strong> 模块Module</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/crate_module/use.html"><strong aria-hidden="true">4.1.1.13.3.</strong> 使用use及受限可见性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/comment.html"><strong aria-hidden="true">4.1.1.14.</strong> 注释和文档</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/converse.html"><strong aria-hidden="true">4.1.1.15.</strong> 类型转换</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic/formatted_output.html"><strong aria-hidden="true">4.1.1.16.</strong> 格式化输出</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/intro.html"><strong aria-hidden="true">4.1.2.</strong> 入门实战：构建一个简单命令行程序</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/base-features.html"><strong aria-hidden="true">4.1.2.1.</strong> 基本功能</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/refactoring.html"><strong aria-hidden="true">4.1.2.2.</strong> 增加模块化和错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/tests.html"><strong aria-hidden="true">4.1.2.3.</strong> 测试驱动开发</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/envs.html"><strong aria-hidden="true">4.1.2.4.</strong> 使用环境变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/basic-practice/iterators.html"><strong aria-hidden="true">4.1.2.5.</strong> 使用迭代器来改进程序(可选)</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/intro.html"><strong aria-hidden="true">4.1.3.</strong> Rust 高级进阶</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/intro.html"><strong aria-hidden="true">4.1.3.1.</strong> 生命周期</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/advance.html"><strong aria-hidden="true">4.1.3.1.1.</strong> 深入生命周期</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/lifetime/static.html"><strong aria-hidden="true">4.1.3.1.2.</strong> &'static 和 T: 'static</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/intro.html"><strong aria-hidden="true">4.1.3.2.</strong> 函数式编程: 闭包、迭代器</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/closure.html"><strong aria-hidden="true">4.1.3.2.1.</strong> 闭包 Closure</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/functional-programing/iterator.html"><strong aria-hidden="true">4.1.3.2.2.</strong> 迭代器 Iterator</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/intro.html"><strong aria-hidden="true">4.1.3.3.</strong> 深入类型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/custom-type.html"><strong aria-hidden="true">4.1.3.3.1.</strong> newtype 和 类型别名</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/sized.html"><strong aria-hidden="true">4.1.3.3.2.</strong> Sized 和不定长类型 DST</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/into-types/enum-int.html"><strong aria-hidden="true">4.1.3.3.3.</strong> 枚举和整数</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/intro.html"><strong aria-hidden="true">4.1.3.4.</strong> 智能指针</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/box.html"><strong aria-hidden="true">4.1.3.4.1.</strong> Box堆对象分配</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/deref.html"><strong aria-hidden="true">4.1.3.4.2.</strong> Deref 解引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/drop.html"><strong aria-hidden="true">4.1.3.4.3.</strong> Drop 释放资源</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/rc-arc.html"><strong aria-hidden="true">4.1.3.4.4.</strong> Rc 与 Arc 实现 1vN 所有权机制</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/smart-pointer/cell-refcell.html"><strong aria-hidden="true">4.1.3.4.5.</strong> Cell 与 RefCell 内部可变性</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/intro.html"><strong aria-hidden="true">4.1.3.5.</strong> 循环引用与自引用</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/circle-reference.html"><strong aria-hidden="true">4.1.3.5.1.</strong> Weak 与循环引用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/circle-self-ref/self-referential.html"><strong aria-hidden="true">4.1.3.5.2.</strong> 结构体中的自引用</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/intro.html"><strong aria-hidden="true">4.1.3.6.</strong> 多线程并发编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/concurrency-parallelism.html"><strong aria-hidden="true">4.1.3.6.1.</strong> 并发和并行</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/thread.html"><strong aria-hidden="true">4.1.3.6.2.</strong> 使用多线程</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/message-passing.html"><strong aria-hidden="true">4.1.3.6.3.</strong> 线程同步：消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync1.html"><strong aria-hidden="true">4.1.3.6.4.</strong> 线程同步：锁、Condvar 和信号量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/sync2.html"><strong aria-hidden="true">4.1.3.6.5.</strong> 线程同步：Atomic 原子操作与内存顺序</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/send-sync.html"><strong aria-hidden="true">4.1.3.6.6.</strong> 基于 Send 和 Sync 的线程安全</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/concurrency-with-threads/web-server.html"><strong aria-hidden="true">4.1.3.6.7.</strong> 实践应用：多线程 Web 服务器 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/global-variable.html"><strong aria-hidden="true">4.1.3.7.</strong> 全局变量</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/errors.html"><strong aria-hidden="true">4.1.3.8.</strong> 错误处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/intro.html"><strong aria-hidden="true">4.1.3.9.</strong> Unsafe Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/superpowers.html"><strong aria-hidden="true">4.1.3.9.1.</strong> 五种兵器</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/unsafe/inline-asm.html"><strong aria-hidden="true">4.1.3.9.2.</strong> 内联汇编 todo</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/advance/macro.html"><strong aria-hidden="true">4.1.3.10.</strong> Macro 宏编程</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/intro.html"><strong aria-hidden="true">4.1.4.</strong> Rust 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/intro.html"><strong aria-hidden="true">4.1.4.1.</strong> async/await 异步编程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/getting-started.html"><strong aria-hidden="true">4.1.4.1.1.</strong> async 编程入门</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/future-excuting.html"><strong aria-hidden="true">4.1.4.1.2.</strong> 底层探秘: Future 执行与任务调度</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pin-unpin.html"><strong aria-hidden="true">4.1.4.1.3.</strong> 定海神针 Pin 和 Unpin</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/async-await.html"><strong aria-hidden="true">4.1.4.1.4.</strong> async/await 和 Stream 流处理</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/multi-futures-simultaneous.html"><strong aria-hidden="true">4.1.4.1.5.</strong> 同时运行多个 Future</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/pain-points-and-workarounds.html"><strong aria-hidden="true">4.1.4.1.6.</strong> 一些疑难问题的解决办法</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/async/web-server.html"><strong aria-hidden="true">4.1.4.1.7.</strong> 实践应用：Async Web 服务器</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/intro.html"><strong aria-hidden="true">4.1.4.2.</strong> Tokio 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/overview.html"><strong aria-hidden="true">4.1.4.2.1.</strong> tokio 概览</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/getting-startted.html"><strong aria-hidden="true">4.1.4.2.2.</strong> 使用初印象</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/spawning.html"><strong aria-hidden="true">4.1.4.2.3.</strong> 创建异步任务</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/shared-state.html"><strong aria-hidden="true">4.1.4.2.4.</strong> 共享状态</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/channels.html"><strong aria-hidden="true">4.1.4.2.5.</strong> 消息传递</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/io.html"><strong aria-hidden="true">4.1.4.2.6.</strong> I/O</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/frame.html"><strong aria-hidden="true">4.1.4.2.7.</strong> 解析数据帧</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/async.html"><strong aria-hidden="true">4.1.4.2.8.</strong> 深入 async</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/select.html"><strong aria-hidden="true">4.1.4.2.9.</strong> select</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/stream.html"><strong aria-hidden="true">4.1.4.2.10.</strong> 类似迭代器的 Stream</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/graceful-shutdown.html"><strong aria-hidden="true">4.1.4.2.11.</strong> 优雅的关闭</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/async-rust/tokio/bridging-with-sync.html"><strong aria-hidden="true">4.1.4.2.12.</strong> 异步跟同步共存</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/intro.html"><strong aria-hidden="true">4.1.5.</strong> Cargo 使用指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/getting-started.html"><strong aria-hidden="true">4.1.5.1.</strong> 上手使用</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/intro.html"><strong aria-hidden="true">4.1.5.2.</strong> 基础指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/why-exist.html"><strong aria-hidden="true">4.1.5.2.1.</strong> 为何会有 Cargo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/download-package.html"><strong aria-hidden="true">4.1.5.2.2.</strong> 下载并构建 Package</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/dependencies.html"><strong aria-hidden="true">4.1.5.2.3.</strong> 添加依赖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/package-layout.html"><strong aria-hidden="true">4.1.5.2.4.</strong> Package 目录结构</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-toml-lock.html"><strong aria-hidden="true">4.1.5.2.5.</strong> Cargo.toml vs Cargo.lock</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/tests-ci.html"><strong aria-hidden="true">4.1.5.2.6.</strong> 测试和 CI</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/cargo-cache.html"><strong aria-hidden="true">4.1.5.2.7.</strong> Cargo 缓存</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/guide/build-cache.html"><strong aria-hidden="true">4.1.5.2.8.</strong> Build 缓存</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/intro.html"><strong aria-hidden="true">4.1.5.3.</strong> 进阶指南</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/specify-deps.html"><strong aria-hidden="true">4.1.5.3.1.</strong> 指定依赖项</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/deps-overriding.html"><strong aria-hidden="true">4.1.5.3.2.</strong> 依赖覆盖</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/manifest.html"><strong aria-hidden="true">4.1.5.3.3.</strong> Cargo.toml 清单详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/cargo-target.html"><strong aria-hidden="true">4.1.5.3.4.</strong> Cargo Target</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/workspaces.html"><strong aria-hidden="true">4.1.5.3.5.</strong> 工作空间 Workspace</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/intro.html"><strong aria-hidden="true">4.1.5.3.6.</strong> 条件编译 Features</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/features/examples.html"><strong aria-hidden="true">4.1.5.3.6.1.</strong> Features 示例</a></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/profiles.html"><strong aria-hidden="true">4.1.5.3.7.</strong> 发布配置 Profile</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/configuration.html"><strong aria-hidden="true">4.1.5.3.8.</strong> 通过 config.toml 对 Cargo 进行配置</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/publishing-on-crates.io.html"><strong aria-hidden="true">4.1.5.3.9.</strong> 发布到 crates.io</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/intro.html"><strong aria-hidden="true">4.1.5.3.10.</strong> 构建脚本 build.rs</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/cargo/reference/build-script/examples.html"><strong aria-hidden="true">4.1.5.3.10.1.</strong> 构建脚本示例</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/intro.html"><strong aria-hidden="true">4.1.6.</strong> 日志和监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/about-log.html"><strong aria-hidden="true">4.1.6.1.</strong> 日志详解</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/log.html"><strong aria-hidden="true">4.1.6.2.</strong> 日志门面 log</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing.html"><strong aria-hidden="true">4.1.6.3.</strong> 使用 tracing 记录日志</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/tracing-logger.html"><strong aria-hidden="true">4.1.6.4.</strong> 自定义 tracing 的输出格式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/intro.html"><strong aria-hidden="true">4.1.6.5.</strong> 监控</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/about-observe.html"><strong aria-hidden="true">4.1.6.5.1.</strong> 可观测性</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/logs/observe/trace.html"><strong aria-hidden="true">4.1.6.5.2.</strong> 分布式追踪</a></li></ol></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.1.7.</strong> Appendix</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/keywords.html"><strong aria-hidden="true">4.1.7.1.</strong> 关键字</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/operators.html"><strong aria-hidden="true">4.1.7.2.</strong> 运算符与符号</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/expressions.html"><strong aria-hidden="true">4.1.7.3.</strong> 表达式</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/derive.html"><strong aria-hidden="true">4.1.7.4.</strong> 派生特征 trait</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/prelude.html"><strong aria-hidden="true">4.1.7.5.</strong> prelude 模块 todo</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-version.html"><strong aria-hidden="true">4.1.7.6.</strong> Rust 版本说明</a></li><li class="chapter-item "><a href="../../../rust/rust_holy/appendix/rust-versions/intro.html"><strong aria-hidden="true">4.1.7.7.</strong> Rust 历次版本更新解读</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../appendix/rust-versions/1.58.html"><strong aria-hidden="true">4.1.7.7.1.</strong> 1.58</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.59.html"><strong aria-hidden="true">4.1.7.7.2.</strong> 1.59</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.60.html"><strong aria-hidden="true">4.1.7.7.3.</strong> 1.60</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.61.html"><strong aria-hidden="true">4.1.7.7.4.</strong> 1.61</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.62.html"><strong aria-hidden="true">4.1.7.7.5.</strong> 1.62</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.63.html"><strong aria-hidden="true">4.1.7.7.6.</strong> 1.63</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.64.html"><strong aria-hidden="true">4.1.7.7.7.</strong> 1.64</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.65.html"><strong aria-hidden="true">4.1.7.7.8.</strong> 1.65</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.66.html"><strong aria-hidden="true">4.1.7.7.9.</strong> 1.66</a></li><li class="chapter-item "><a href="../../../appendix/rust-versions/1.67.html"><strong aria-hidden="true">4.1.7.7.10.</strong> 1.67</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/pyo3.html"><strong aria-hidden="true">4.2.</strong> PyO3</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonmodules.html"><strong aria-hidden="true">4.2.1.</strong> Python 模组</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/pre.html"><strong aria-hidden="true">4.2.2.</strong> Python 函数</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/function_signatures.html"><strong aria-hidden="true">4.2.2.1.</strong> 函数签名 Function signatures</a></li><li class="chapter-item "><a href="../../../rust/pyo3/pythonfunctions/error_handling.html"><strong aria-hidden="true">4.2.2.2.</strong> 错误处理 Error handling</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/pre.html"><strong aria-hidden="true">4.2.3.</strong> Python 类</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/class_customization.html"><strong aria-hidden="true">4.2.3.1.</strong> 类的自定义</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/basic_type.html"><strong aria-hidden="true">4.2.3.2.</strong> 基本对象的自定义</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/emulate_number_type.html"><strong aria-hidden="true">4.2.3.3.</strong> 模拟数值类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_classes/emulate_callable_objects.html"><strong aria-hidden="true">4.2.3.4.</strong> 模拟可调用类型</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/pre.html"><strong aria-hidden="true">4.2.4.</strong> 类型转换</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/tables.html"><strong aria-hidden="true">4.2.4.1.</strong> 将Rust类型映射为python类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/type_conversion/traits.html"><strong aria-hidden="true">4.2.4.2.</strong> 转换特征 Conversion traits</a></li></ol></li><li class="chapter-item "><a href="../../../rust/pyo3/python_exceptions.html"><strong aria-hidden="true">4.2.5.</strong> Python异常</a></li><li class="chapter-item "><a href="../../../rust/pyo3/python_from_rust.html"><strong aria-hidden="true">4.2.6.</strong> 在Rust中调用Python</a></li><li class="chapter-item "><a href="../../../rust/pyo3/GIL.html"><strong aria-hidden="true">4.2.7.</strong> GIL, 可变性与对象类型</a></li><li class="chapter-item "><a href="../../../rust/pyo3/parallelism.html"><strong aria-hidden="true">4.2.8.</strong> 并行</a></li><li class="chapter-item "><a href="../../../rust/pyo3/debugging.html"><strong aria-hidden="true">4.2.9.</strong> debug</a></li><li class="chapter-item "><a href="../../../rust/pyo3/features_reference.html"><strong aria-hidden="true">4.2.10.</strong> 特性引用Features reference</a></li><li class="chapter-item "><a href="../../../rust/pyo3/memory_management.html"><strong aria-hidden="true">4.2.11.</strong> 内存管理</a></li><li class="chapter-item "><a href="../../../rust/pyo3/advanced_topic.html"><strong aria-hidden="true">4.2.12.</strong> 高阶话题</a></li><li class="chapter-item "><a href="../../../rust/pyo3/building_distribution.md/pre.html"><strong aria-hidden="true">4.2.13.</strong> 构建与发布</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/building_distribution.md/multiple_version.html"><strong aria-hidden="true">4.2.13.1.</strong> 支持多个Python版本</a></li></ol></li><li class="chapter-item "><div><strong aria-hidden="true">4.2.14.</strong> 有用的包</div><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../rust/pyo3/useful_crates/logging.html"><strong aria-hidden="true">4.2.14.1.</strong> Logging</a></li><li class="chapter-item "><a href="../../../rust/pyo3/useful_crates/async_and_await.html"><strong aria-hidden="true">4.2.14.2.</strong> async与await</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../others/pre.html"><strong aria-hidden="true">5.</strong> Others</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../others/com.html"><strong aria-hidden="true">5.1.</strong> COM组件</a></li><li class="chapter-item "><a href="../../../others/cython/pre.html"><strong aria-hidden="true">5.2.</strong> cython</a></li></ol></li><li class="chapter-item "><a href="../../../ml/ml.html"><strong aria-hidden="true">6.</strong> ML</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../ml/pre/pre.html"><strong aria-hidden="true">6.1.</strong> 绪言</a></li><li class="chapter-item "><a href="../../../ml/chapter2/chapter2.html"><strong aria-hidden="true">6.2.</strong> 模型的评估与选择</a></li><li class="chapter-item "><a href="../../../ml/chapter3/chapter3.html"><strong aria-hidden="true">6.3.</strong> 线性模型</a></li><li class="chapter-item "><a href="../../../ml/chapter4/chapter4.html"><strong aria-hidden="true">6.4.</strong> 决策树</a></li><li class="chapter-item "><a href="../../../ml/chapter5/chapter5.html"><strong aria-hidden="true">6.5.</strong> 神经网络</a></li><li class="chapter-item "><a href="../../../ml/chapter6/chapter6.html"><strong aria-hidden="true">6.6.</strong> 支持向量机</a></li><li class="chapter-item "><a href="../../../ml/chapter7/chapter7.html"><strong aria-hidden="true">6.7.</strong> 贝叶斯分类器</a></li><li class="chapter-item "><a href="../../../ml/chapter8/chapter8.html"><strong aria-hidden="true">6.8.</strong> EM算法</a></li><li class="chapter-item "><a href="../../../ml/chapter9/chapter9.html"><strong aria-hidden="true">6.9.</strong> 集成学习</a></li><li class="chapter-item "><a href="../../../ml/chapter10/chapter10.html"><strong aria-hidden="true">6.10.</strong> 聚类算法</a></li><li class="chapter-item "><a href="../../../ml/chapter11/chapter11.html"><strong aria-hidden="true">6.11.</strong> 降维与度量学习</a></li><li class="chapter-item "><a href="../../../ml/chapter12/chapter12.html"><strong aria-hidden="true">6.12.</strong> 特征选择与稀疏学习</a></li><li class="chapter-item "><a href="../../../ml/chapter13/chapter13.html"><strong aria-hidden="true">6.13.</strong> 计算学习理论</a></li><li class="chapter-item "><a href="../../../ml/chapter14/chapter14.html"><strong aria-hidden="true">6.14.</strong> 半监督学习</a></li><li class="chapter-item "><a href="../../../ml/chapter15/chapter15.html"><strong aria-hidden="true">6.15.</strong> 概率图模型</a></li><li class="chapter-item "><a href="../../../ml/chapter16/chapter16.html"><strong aria-hidden="true">6.16.</strong> 强化学习</a></li></ol></li><li class="chapter-item "><a href="../../../nn/basic.html"><strong aria-hidden="true">7.</strong> NN</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../nn/feedforward.html"><strong aria-hidden="true">7.1.</strong> 前馈神经网络</a></li><li class="chapter-item "><a href="../../../nn/memory.html"><strong aria-hidden="true">7.2.</strong> 循环神经网络</a></li><li class="chapter-item "><a href="../../../nn/GAN.html"><strong aria-hidden="true">7.3.</strong> 生成对抗网络</a></li><li class="chapter-item "><a href="../../../nn/graph.html"><strong aria-hidden="true">7.4.</strong> 图神经网络</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL.html"><strong aria-hidden="true">8.1.</strong> RL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/RL/chapter1/chapter1.html"><strong aria-hidden="true">8.1.1.</strong> 有模型数值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter2/chapter2.html"><strong aria-hidden="true">8.1.2.</strong> 回合更新价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter3/chapter3.html"><strong aria-hidden="true">8.1.3.</strong> 时序差分价值迭代</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter4/chapter4.html"><strong aria-hidden="true">8.1.4.</strong> 函数近似方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter5/chapter5.html"><strong aria-hidden="true">8.1.5.</strong> 回合更新策略梯度方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter6/chapter6.html"><strong aria-hidden="true">8.1.6.</strong> 执行者/评论者方法</a></li><li class="chapter-item "><a href="../../../DRL/RL/chapter7/chapter7.html"><strong aria-hidden="true">8.1.7.</strong> 连续动作空间的确定性策略</a></li></ol></li><li class="chapter-item "><a href="../../../DRL/fin.html"><strong aria-hidden="true">8.2.</strong> FIN</a></li><li class="chapter-item "><a href="../../../DRL/DRL.html"><strong aria-hidden="true">8.3.</strong> DRL</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../DRL/DRL/chatgpt.html"><strong aria-hidden="true">8.3.1.</strong> ChatGPT历史</a></li></ol></li></ol></li><li class="chapter-item "><a href="../../../option/option.html"><strong aria-hidden="true">9.</strong> Option</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/pre.html"><strong aria-hidden="true">9.1.</strong> 期权基础概念</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/basic/basic.html"><strong aria-hidden="true">9.1.1.</strong> 基础知识</a></li><li class="chapter-item "><a href="../../../option/basic/spread.html"><strong aria-hidden="true">9.1.2.</strong> 价差</a></li><li class="chapter-item "><a href="../../../option/basic/theorems.html"><strong aria-hidden="true">9.1.3.</strong> 深入希腊值</a></li><li class="chapter-item "><a href="../../../option/basic/trading.html"><strong aria-hidden="true">9.1.4.</strong> 日内交易要点</a></li></ol></li><li class="chapter-item "><a href="../../../option/models/pre.html"><strong aria-hidden="true">9.2.</strong> 期权模型</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/models/sv.html"><strong aria-hidden="true">9.2.1.</strong> 经典SV</a></li><li class="chapter-item "><a href="../../../option/models/rough.html"><strong aria-hidden="true">9.2.2.</strong> RV</a></li><li class="chapter-item "><a href="../../../option/models/wing_model.html"><strong aria-hidden="true">9.2.3.</strong> wing_model</a></li></ol></li><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_trading_pre.html"><strong aria-hidden="true">9.3.</strong> Automatic_Trading</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/automatic_hedging_pre.html"><strong aria-hidden="true">9.3.1.</strong> Automatic_Hedging</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../option/automatic_trading/automatic_hedging/hedging_vanilla.html"><strong aria-hidden="true">9.3.1.1.</strong> hedging_vanilla</a></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../../../philosophy/philosophy.html"><strong aria-hidden="true">10.</strong> Phylosophy</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../philosophy/history/history.html"><strong aria-hidden="true">10.1.</strong> 西方哲学史</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../philosophy/history/chapter1.html"><strong aria-hidden="true">10.1.1.</strong> 古希腊哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter2.html"><strong aria-hidden="true">10.1.2.</strong> 希腊化时期和中世纪的哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter3.html"><strong aria-hidden="true">10.1.3.</strong> 近代早期的哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter4.html"><strong aria-hidden="true">10.1.4.</strong> 近代晚期和19世纪哲学</a></li><li class="chapter-item "><a href="../../../philosophy/history/chapter5.html"><strong aria-hidden="true">10.1.5.</strong> 20世纪和当代哲学</a></li></ol></li><li class="chapter-item "><a href="../../../philosophy/critique_of_pure_reason/main.html"><strong aria-hidden="true">10.2.</strong> 纯粹理性批判</a></li></ol></li></ol>
+        </div>
+        <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+    </nav>
+
+    <div id="page-wrapper" class="page-wrapper">
+
+        <div class="page">
+                        <div id="menu-bar-hover-placeholder"></div>
+            <div id="menu-bar" class="menu-bar sticky bordered">
+                <div class="left-buttons">
+                    <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                        aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                        aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                    <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                        <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button>
+                        </li>
+                    </ul>
+                    <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                        aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                        aria-controls="searchbar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+
+                <h1 class="menu-title">布武不舞</h1>
+
+                <div class="right-buttons">
+                    <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                        <i id="print-button" class="fa fa-print"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div id="search-wrapper" class="hidden">
+                <form id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                        aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </form>
+                <div id="searchresults-outer" class="searchresults-outer hidden">
+                    <div id="searchresults-header" class="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+            <script type="text/javascript">
+                document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+
+                // Get viewed page store
+                var viewed_key = 'mdbook-viewed';
+                var viewed_map = {};
+                try {
+                    var viewed_storage = localStorage.getItem(viewed_key);
+                    if (viewed_storage) {
+                        viewed_map = JSON.parse(viewed_storage)
+                    }
+                } catch (e) { }
+
+                Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+
+                    // Apply viewed style
+                    if (viewed_map[link.pathname]) {
+                        link.classList.add('md-viewed')
+                    }
+                });
+
+                // Mark viewed after 30s
+                setTimeout(function () {
+                    viewed_map[location.pathname] = 1;
+                    localStorage.setItem(viewed_key, JSON.stringify(viewed_map));
+                }, 30000)
+            </script>
+
+            <div id="content" class="content">
+                <!-- Page table of contents -->
+                <div class="sidetoc">
+                    <nav class="pagetoc"></nav>
+                </div>
+                <main>
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="33-递归数据结构"><a class="header" href="#33-递归数据结构">3.3 递归数据结构</a></h1>
+<p>在第二章中，我们引入了偶对的概念，作为一种将两个对象结合为一个对象的机制。我们展示了偶对可以使用内建元素来实现。偶对的封闭性表明偶对的每个元素本身都可以为偶对。</p>
+<p>这种封闭性允许我们实现递归列表的数据抽象，它是我们的第一种序列类型。递归列表可以使用递归函数最为自然地操作，就像它们的名称和结构表示的那样。在这一节中，我们会讨论操作递归列表和其它递归结构的自定义的函数。</p>
+<h2 id="331-处理递归列表"><a class="header" href="#331-处理递归列表">3.3.1 处理递归列表</a></h2>
+<p>递归列表结构将列表表示为首个元素和列表的剩余部分的组合。我们之前使用函数实现了递归列表，但是现在我们可以使用类来重新实现。下面，长度（<code>__len__</code>）和元素选择（<code>__getitem__</code>）被重写来展示处理递归列表的典型模式。</p>
+<pre><code class="language-py">&gt;&gt;&gt; class Rlist(object):
+        &quot;&quot;&quot;A recursive list consisting of a first element and the rest.&quot;&quot;&quot;
+        class EmptyList(object):
+            def __len__(self):
+                return 0
+        empty = EmptyList()
+        def __init__(self, first, rest=empty):
+            self.first = first
+            self.rest = rest
+        def __repr__(self):
+            args = repr(self.first)
+            if self.rest is not Rlist.empty:
+                args += ', {0}'.format(repr(self.rest))
+            return 'Rlist({0})'.format(args)
+        def __len__(self):
+            return 1 + len(self.rest)
+        def __getitem__(self, i):
+            if i == 0:
+                return self.first
+            return self.rest[i-1]
+</code></pre>
+<p><code>__len__</code>和<code>__getitem__</code>的定义实际上是递归的，虽然不是那么明显。Python 内建函数<code>len</code>在自定义对象的参数上调用时会寻找叫做<code>__len__</code>的方法。与之类似，下标运算符会寻找叫做<code>__getitem__</code>的方法。于是，这些定义最后会调用对象自身。剩余部分上的递归调用是递归列表处理的普遍模式。这个递归列表的类定义与 Python 的内建序列和打印操作能够合理交互。</p>
+<pre><code class="language-py">&gt;&gt;&gt; s = Rlist(1, Rlist(2, Rlist(3)))
+&gt;&gt;&gt; s.rest
+Rlist(2, Rlist(3))
+&gt;&gt;&gt; len(s)
+3
+&gt;&gt;&gt; s[1]
+2
+</code></pre>
+<p>创建新列表的操作能够直接使用递归来表示。例如，我们可以定义<code>extend_rlist</code>函数，它接受两个递归列表作为参数并将二者的元素组合到新列表中。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def extend_rlist(s1, s2):
+        if s1 is Rlist.empty:
+            return s2
+        return Rlist(s1.first, extend_rlist(s1.rest, s2))
+&gt;&gt;&gt; extend_rlist(s.rest, s)
+Rlist(2, Rlist(3, Rlist(1, Rlist(2, Rlist(3)))))
+</code></pre>
+<p>与之类似，在递归列表上映射函数展示了相似的模式：</p>
+<pre><code class="language-py">&gt;&gt;&gt; def map_rlist(s, fn):
+        if s is Rlist.empty:
+            return s
+        return Rlist(fn(s.first), map_rlist(s.rest, fn))
+&gt;&gt;&gt; map_rlist(s, square)
+Rlist(1, Rlist(4, Rlist(9)))
+</code></pre>
+<p>过滤操作包括额外的条件语句，但是也拥有相似的递归结构。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def filter_rlist(s, fn):
+        if s is Rlist.empty:
+            return s
+        rest = filter_rlist(s.rest, fn)
+        if fn(s.first):
+            return Rlist(s.first, rest)
+        return rest
+&gt;&gt;&gt; filter_rlist(s, lambda x: x % 2 == 1)
+Rlist(1, Rlist(3))
+</code></pre>
+<p>列表操作的递归实现通常不需要局部赋值或者<code>while</code>语句。反之，递归列表可以作为函数调用的结果来拆分和构造。所以，它们拥有步骤数量和所需空间的线性增长度。</p>
+<h2 id="332-层次结构"><a class="header" href="#332-层次结构">3.3.2 层次结构</a></h2>
+<p>层次结构产生于数据的封闭特性，例如，元组可以包含其它元组。考虑这个数值<code>1</code>到<code>4</code>的嵌套表示。</p>
+<pre><code class="language-py">&gt;&gt;&gt; ((1, 2), 3, 4)
+((1, 2), 3, 4)
+</code></pre>
+<p>这个元组是个长度为 3 的序列，它的第一个元素也是一个元组。这个嵌套结构的盒子和指针的图示表明，它可以看做拥有四个叶子的树，每个叶子都是一个数值。</p>
+<p><img src="img/tree.png" alt="" /></p>
+<p>在树中，每个子树本身都是一棵树。作为基本条件，任何本身不是元组的元素都是一个简单的树，没有任何枝干。也就是说，所有数值都是树，就像在偶对<code>(1, 2)</code>和整个结构中那样。</p>
+<p>递归是用于处理树形结构的自然工具，因为我们通常可以将树的操作降至枝干的操作，它会相应产生枝干的枝干的操作，以此类推，直到我们到达了树的叶子。例如，我们可以实现<code>count_leaves</code>函数，它返回树的叶子总数。</p>
+<pre><code class="language-py">&gt;&gt;&gt; t = ((1, 2), 3, 4)
+&gt;&gt;&gt; count_leaves(t)
+4
+&gt;&gt;&gt; big_tree = ((t, t), 5)
+&gt;&gt;&gt; big_tree
+((((1, 2), 3, 4), ((1, 2), 3, 4)), 5)
+&gt;&gt;&gt; count_leaves(big_tree)
+9
+</code></pre>
+<p>正如<code>map</code>是用于处理序列的强大工具，映射和递归一起为树的操作提供了强大而通用的计算形式。例如，我们可以使用高阶递归函数<code>map_tree </code>将树的每个叶子平方，它的结构类似于<code>count_leaves</code>。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def map_tree(tree, fn):
+        if type(tree) != tuple:
+            return fn(tree)
+        return tuple(map_tree(branch, fn) for branch in tree)
+&gt;&gt;&gt; map_tree(big_tree, square)
+((((1, 4), 9, 16), ((1, 4), 9, 16)), 25)
+</code></pre>
+<p><strong>内部值</strong>:上面描述的树只在叶子上存在值。另一个通用的树形结构表示也在树的内部节点上存在值。我们使用类来表示这种树。</p>
+<pre><code class="language-py">&gt;&gt;&gt; class Tree(object):
+        def __init__(self, entry, left=None, right=None):
+            self.entry = entry
+            self.left = left
+            self.right = right
+        def __repr__(self):
+            args = repr(self.entry)
+            if self.left or self.right:
+                args += ', {0}, {1}'.format(repr(self.left), repr(self.right))
+            return 'Tree({0})'.format(args)
+</code></pre>
+<p>例如，<code>Tree</code>类可以为<code>fib</code>的递归实现表示表达式树中计算的值。<code>fib</code>函数用于计算斐波那契数。下面的函数<code>fib_tree(n)</code>返回<code>Tree</code>，它将第 n 个斐波那契树作为<code>entry</code>，并将所有之前计算出来的斐波那契数存入它的枝干中。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def fib_tree(n):
+        &quot;&quot;&quot;Return a Tree that represents a recursive Fibonacci calculation.&quot;&quot;&quot;
+        if n == 1:
+            return Tree(0)
+        if n == 2:
+            return Tree(1)
+        left = fib_tree(n-2)
+        right = fib_tree(n-1)
+        return Tree(left.entry + right.entry, left, right)
+&gt;&gt;&gt; fib_tree(5)
+Tree(3, Tree(1, Tree(0), Tree(1)), Tree(2, Tree(1), Tree(1, Tree(0), Tree(1))))
+</code></pre>
+<p>这个例子表明，表达式树可以使用树形结构编程表示。嵌套表达式和树形数据结构的联系，在我们这一章稍后对解释器设计的讨论中起到核心作用。</p>
+<h2 id="333-集合"><a class="header" href="#333-集合">3.3.3 集合</a></h2>
+<p>除了列表、元组和字典之外，Python 拥有第四种容器类型，叫做<code>set</code>。集合字面值遵循元素以花括号闭合的数学表示。重复的元素在构造中会移除。集合是无序容器，所以打印出来的顺序可能和元素在集合字面值中的顺序不同。</p>
+<pre><code class="language-py">&gt;&gt;&gt; s = {3, 2, 1, 4, 4}
+&gt;&gt;&gt; s
+{1, 2, 3, 4}
+</code></pre>
+<p>Python 的集合支持多种操作，包括成员测试、长度计算和标准的交集并集操作。</p>
+<pre><code class="language-py">&gt;&gt;&gt; 3 in s
+True
+&gt;&gt;&gt; len(s)
+4
+&gt;&gt;&gt; s.union({1, 5})
+{1, 2, 3, 4, 5}
+&gt;&gt;&gt; s.intersection({6, 5, 4, 3})
+{3, 4}
+</code></pre>
+<p>除了<code>union</code>和<code>intersection</code>，Python 的集合还支持多种其它操作。断言<code>isdisjoint</code>、<code>issubset</code>和<code>issuperset</code>提供了集合比较操作。集合是可变的，并且可以使用<code>add</code>、<code>remove</code>、<code>discard</code>和<code>pop</code>一次修改一个元素。额外的方法提供了多元素的修改，例如<code>clear</code>和<code>update</code>。Python <a href="http://docs.python.org/py3k/library/stdtypes.html#set">集合文档</a>十分详细并足够易懂。</p>
+<p><strong>实现集合</strong>:抽象上，集合是不同对象的容器，支持成员测试、交集、并集和附加操作。向集合添加元素会返回新的集合，它包含原始集合的所有元素，如果没有重复的话，也包含新的元素。并集和交集运算返回出现在任意一个或两个集合中的元素构成的集合。就像任何数据抽象那样，我们可以随意实现任何集合表示上的任何函数，只要它们提供这种行为。</p>
+<p>在这章的剩余部分，我们会考虑三个实现集合的不同方式，它们在表示上不同。我们会通过分析集合操作的增长度，刻画这些不同表示的效率。我们也会使用这一章之前的<code>Rlist</code>和<code>Tree</code>类，它们可以编写用于集合元素操作的简单而优雅的递归解决方案。</p>
+<p><strong>作为无序序列的集合</strong>:一种集合的表示方式是看做没有出现多于一次的元素的序列。空集由空序列来表示。成员测试会递归遍历整个列表。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def empty(s):
+        return s is Rlist.empty
+&gt;&gt;&gt; def set_contains(s, v):
+        &quot;&quot;&quot;Return True if and only if set s contains v.&quot;&quot;&quot;
+        if empty(s):
+            return False
+        elif s.first == v:
+            return True
+        return set_contains(s.rest, v)
+&gt;&gt;&gt; s = Rlist(1, Rlist(2, Rlist(3)))
+&gt;&gt;&gt; set_contains(s, 2)
+True
+&gt;&gt;&gt; set_contains(s, 5)
+False
+</code></pre>
+<p>这个<code>set_contains </code>的实现需要<code>Θ(n)</code>的时间来测试元素的成员性，其中<code>n</code>是集合<code>s</code>的大小。使用这个线性时间的成员测试函数，我们可以将元素添加到集合中，也是线性时间。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def adjoin_set(s, v):
+        &quot;&quot;&quot;Return a set containing all elements of s and element v.&quot;&quot;&quot;
+        if set_contains(s, v):
+            return s
+        return Rlist(v, s)
+&gt;&gt;&gt; t = adjoin_set(s, 4)
+&gt;&gt;&gt; t
+Rlist(4, Rlist(1, Rlist(2, Rlist(3))))
+</code></pre>
+<p>那么问题来了，我们应该在设计表示时关注效率。计算两个集合<code>set1</code>和<code>set2</code>的交集需要成员测试，但是这次每个<code>set1</code>的元素必须测试<code>set2</code>中的成员性，对于两个大小为<code>n</code>的集合，这会产生步骤数量的平方增长度<code>Θ(n^2)</code>。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def intersect_set(set1, set2):
+        &quot;&quot;&quot;Return a set containing all elements common to set1 and set2.&quot;&quot;&quot;
+        return filter_rlist(set1, lambda v: set_contains(set2, v))
+&gt;&gt;&gt; intersect_set(t, map_rlist(s, square))
+Rlist(4, Rlist(1))
+</code></pre>
+<p>在计算两个集合的并集时，我们必须小心避免两次包含任意一个元素。<code>union_set </code>函数也需要线性数量的成员测试，同样会产生包含<code>Θ(n^2)</code>步骤的过程。</p>
+<pre><code class="language-py">&gt;&gt;&gt; def union_set(set1, set2):
+        &quot;&quot;&quot;Return a set containing all elements either in set1 or set2.&quot;&quot;&quot;
+        set1_not_set2 = filter_rlist(set1, lambda v: not set_contains(set2, v))
+        return extend_rlist(set1_not_set2, set2)
+&gt;&gt;&gt; union_set(t, s)
+Rlist(4, Rlist(1, Rlist(2, Rlist(3))))
+</code></pre>
+<p><strong>作为有序元组的集合</strong>:一种加速我们的集合操作的方式是修改表示，使集合元素递增排列。为了这样做，我们需要一些比较两个对象的方式，使我们能判断哪个更大。Python 中，许多不同对象类型都可以使用<code>&lt;</code>和<code>&gt;</code>运算符比较，但是我们会专注于这个例子中的数值。我们会通过将元素递增排列来表示数值集合。</p>
+<p>有序的一个优点会在<code>set_contains</code>体现：在检查对象是否存在时，我们不再需要扫描整个集合。如果我们到达了大于要寻找的元素的集合元素，我们就知道这个元素不在集合中：</p>
+<pre><code class="language-py">&gt;&gt;&gt; def set_contains(s, v):
+        if empty(s) or s.first &gt; v:
+            return False
+        elif s.first == v:
+            return True
+        return set_contains(s.rest, v)
+&gt;&gt;&gt; set_contains(s, 0)
+False
+</code></pre>
+<p>这节省了多少步呢？最坏的情况中，我们所寻找的元素可能是集合中最大的元素，所以步骤数量和无序表示相同。另一方面，如果我们寻找许多不同大小的元素，我们可以预料到有时我们可以在列表开头的位置停止搜索，其它情况下我们仍旧需要检测整个列表。平均上我们应该需要检测集合中一半的元素。所以，步骤数量的平均值应该是<code>n/2</code>。这还是<code>Θ(n)</code>的增长度，但是它确实会在平均上为我们节省之前实现的一半步骤数量。</p>
+<p>我们可以通过重新实现<code>intersect_set</code>获取更加可观的速度提升。在无序表示中，这个操作需要<code>Θ(n^2)</code>的步骤，因为我们对<code>set1</code>的每个元素执行<code>set2</code>上的完整扫描。但是使用有序的实现，我们可以使用更加机智的方式。我们同时迭代两个集合，跟踪<code>set1</code>中的元素<code>e1</code>和<code>set2</code>中的元素<code>e2</code>。当<code>e1</code>和<code>e2</code>相等时，我们在交集中添加该元素。</p>
+<p>但是，假设<code>e1</code>小于<code>e2</code>，由于<code>e2</code>比<code>set2</code>的剩余元素更小，我们可以立即推断出<code>e1</code>不会出现在<code>set2</code>剩余部分的任何位置，因此也不会出现在交集中。所以，我们不再需要考虑<code>e1</code>，我们将它丢弃并来到<code>set1</code>的下一个元素。当<code>e2 &lt; e1</code>时，我们可以使用相似的逻辑来步进<code>set2</code>中的元素。下面是这个函数：</p>
+<pre><code class="language-py">&gt;&gt;&gt; def intersect_set(set1, set2):
+        if empty(set1) or empty(set2):
+            return Rlist.empty
+        e1, e2 = set1.first, set2.first
+        if e1 == e2:
+            return Rlist(e1, intersect_set(set1.rest, set2.rest))
+        elif e1 &lt; e2:
+            return intersect_set(set1.rest, set2)
+        elif e2 &lt; e1:
+            return intersect_set(set1, set2.rest)
+&gt;&gt;&gt; intersect_set(s, s.rest)
+Rlist(2, Rlist(3))
+</code></pre>
+<p>为了估计这个过程所需的步骤数量，观察每一步我们都缩小了至少集合的一个元素的大小。所以，所需的步骤数量最多为<code>set1</code>和<code>set2</code>的大小之和，而不是无序表示所需的大小之积。这是<code>Θ(n)</code>而不是<code>Θ(n^2)</code>的增长度 -- 即使集合大小适中，它也是一个相当可观的加速。例如，两个大小为<code>100</code>的集合的交集需要 <code>200</code>步，而不是无序表示的 10000 步。</p>
+<p>表示为有序序列的集合的添加和并集操作也以线性时间计算。这些实现都留做练习。</p>
+<p><strong>作为二叉树的集合</strong>:我们可以比有序列表表示做得更好，通过将几个元素重新以树的形式排列。我们使用之前引入的<code>Tree</code>类。树根的<code>entry</code>持有集合的一个元素。<code>left</code>分支的元素包括所有小于树根元素的元素。<code>right</code>分支的元素包括所有大于树根元素的元素。下面的图展示了一些树，它们表示集合<code>{1, 3, 5, 7, 9, 11}</code>。相同的集合可能会以不同形式的树来表示。有效表示所需的唯一条件就是所有<code>left</code>子树的元素应该小于<code>entry</code>，并且所有<code>right</code>子树的元素应该大于它。</p>
+<p><img src="img/set_trees.png" alt="" /></p>
+<p>树形表示的优点是：假设我们打算检查<code>v</code>是否在集合中。我们通过将<code>v</code>于<code>entry</code>比较开始。如果<code>v</code>小于它，我们就知道了我们只需要搜索<code>left</code>子树。如果<code>v</code>大于它，我们只需要搜索<code>right</code>子树。现在如果树是“平衡”的，每个这些子树都约为整个的一半大小。所以，每一步中我们都可以将大小为<code>n</code>的树的搜索问题降至搜索大小为<code>n/2</code>的子树。由于树的大小在每一步减半，我们应该预料到，用户搜索树的步骤以<code>Θ(log n)</code>增长。比起之前的表示，它的速度对于大型集合有可观的提升。<code>set_contains </code>函数利用了树形集合的有序结构：</p>
+<pre><code class="language-py">&gt;&gt;&gt; def set_contains(s, v):
+        if s is None:
+            return False
+        elif s.entry == v:
+            return True
+        elif s.entry &lt; v:
+            return set_contains(s.right, v)
+        elif s.entry &gt; v:
+            return set_contains(s.left, v)
+</code></pre>
+<p>向集合添加元素与之类似，并且也需要<code>Θ(log n)</code>的增长度。为了添加值<code>v</code>，我们将<code>v</code>与<code>entry</code>比较，来决定<code>v</code>应该添加到<code>right</code>还是<code>left</code>分支，以及是否已经将<code>v</code>添加到了合适的分支上。我们将这个新构造的分支与原始的<code>entry</code>和其它分支组合。如果<code>v</code>等于<code>entry</code>，我们就可以返回这个节点。如果我们被要求将<code>v</code>添加到空的树中，我们会生成一个<code>Tree</code>，它包含<code>v</code>作为<code>entry</code>，并且<code>left</code>和<code>right</code>都是空的分支。下面是这个函数：</p>
+<pre><code class="language-py">&gt;&gt;&gt; def adjoin_set(s, v):
+        if s is None:
+            return Tree(v)
+        if s.entry == v:
+            return s
+        if s.entry &lt; v:
+            return Tree(s.entry, s.left, adjoin_set(s.right, v))
+        if s.entry &gt; v:
+            return Tree(s.entry, adjoin_set(s.left, v), s.right)
+
+&gt;&gt;&gt; adjoin_set(adjoin_set(adjoin_set(None, 2), 3), 1)
+Tree(2, Tree(1), Tree(3))
+</code></pre>
+<p>搜索该树可以以对数步骤数量执行，我们这个叙述基于树是“平衡”的假设。也就是说，树的左子树和右子树都拥有相同数量的相应元素，使每个子树含有母树一半的元素。但是我们如何确定，我们构造的树就是平衡的呢？即使我们以一颗平衡树开始，使用<code>adjoin_set</code>添加元素也会产生不平衡的结果。由于新添加的元素位置取决于如何将元素与集合中的已有元素比较，我们可以预测，如果我们“随机”添加元素到树中，树在平均上就会趋向于平衡。</p>
+<p>但是这不是一个保证。例如，如果我们以空集开始，并向序列中添加 1 到 7，我们就会在最后得到很不平衡的树，其中所有左子树都是空的，所以它与简单的有序列表相比并没有什么优势。一种解决这个问题的方式是定义一种操作，它将任意的树转换为具有相同元素的平衡树。我们可以在每个<code>adjoin_set</code>操作之后执行这个转换来保证我们的集合是平衡的。</p>
+<p>交集和并集操作可以在树形集合上以线性时间执行，通过将它们转换为有序的列表，并转换回来。细节留做练习。</p>
+<p><strong>Python 集合实现</strong>:Python 内建的<code>set</code>类型并没有使用上述任意一种表示。反之，Python 使用了一种实现，它的成员测试和添加操作是（近似）常量时间的，基于一种叫做哈希（散列）的机制，这是其它课程的话题。内建的 Python 集合不能包含可变的数据类型，例如列表、字典或者其它集合。为了能够嵌套集合，Python 也提供了一种内建的不可变<code>frozenset </code>类，除了可变操作和运算符之外，它拥有和<code>set</code>相同的方法。</p>
+
+                    <div id="giscus-container"></div>
+                </main>
+
+                <nav class="nav-wrapper" aria-label="Page navigation">
+                    <!-- Mobile navigation buttons -->
+                    <a rel="prev" href="../../../python/sicp_py/sicp-py-zh-master/3.2.html" class="mobile-nav-chapters previous"
+                        title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../python/sicp_py/sicp-py-zh-master/3.4.html" class="mobile-nav-chapters next"
+                        title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+                    <div style="clear: both"></div>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../../../python/sicp_py/sicp-py-zh-master/3.2.html" class="nav-chapters previous" title="Previous chapter"
+                aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a rel="next" href="../../../python/sicp_py/sicp-py-zh-master/3.4.html" class="nav-chapters next" title="Next chapter"
+                aria-label="Next chapter" aria-keyshortcuts="Right">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </nav>
+
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        window.playground_copyable = true;
+    </script>
+
+    <script src="../../../ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../editor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mode-rust.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-dawn.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../theme-tomorrow_night.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="../../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../highlight.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../book.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var pagePath = "python/sicp_py/sicp-py-zh-master/3.3.md"
+    </script>
+
+
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="../../../assets/custom.js"></script>
+    <script type="text/javascript" src="../../../assets/bigPicture.js"></script>
+
+
+</body>
+
+</html>
